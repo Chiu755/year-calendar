@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<body style="margin:0;">
+<canvas id="c"></canvas>
+
+<script>
+const canvas = document.getElementById("c");
+const SCALE = 2.2;
+
+// ================== 基础尺寸 ==================
+const BASE_WIDTH = 1260;
+const BASE_HEIGHT = 2736;
+canvas.width = Math.round(BASE_WIDTH * SCALE);
+canvas.height = Math.round(BASE_HEIGHT * SCALE);
+const ctx = canvas.getContext("2d");
+
+// ================== 背景（暗色模式） ==================
+ctx.fillStyle = "#0b0b0d";
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+// ================== 预留区域 ==================
+const TOP_RESERVED = Math.round(420 * SCALE);
+const BOTTOM_RESERVED = Math.round(420 * SCALE);
+
+const CALENDAR_TOP = TOP_RESERVED;
+const CALENDAR_BOTTOM = canvas.height - BOTTOM_RESERVED;
+const CALENDAR_HEIGHT = CALENDAR_BOTTOM - CALENDAR_TOP;
+
+// ================== 日期 ==================
+const today = new Date();
+const year = today.getFullYear();
+const startOfYear = new Date(year, 0, 1);
+const dayOfYear =
+  Math.floor((today - startOfYear) / 86400000) + 1;
+
+// ================== 月份数据 ==================
+const months = [
+  { name: "Jan", days: 31 },
+  { name: "Feb", days: new Date(year, 1, 29).getMonth() === 1 ? 29 : 28 },
+  { name: "Mar", days: 31 },
+  { name: "Apr", days: 30 },
+  { name: "May", days: 31 },
+  { name: "Jun", days: 30 },
+  { name: "Jul", days: 31 },
+  { name: "Aug", days: 31 },
+  { name: "Sep", days: 30 },
+  { name: "Oct", days: 31 },
+  { name: "Nov", days: 30 },
+  { name: "Dec", days: 31 },
+];
+
+// ================== 布局参数 ==================
+const MONTHS_PER_ROW = 3;
+const cols = 7;
+
+const BASE_SIZE = 22;
+const BASE_GAP = 10;
+const size = Math.round(BASE_SIZE * SCALE);
+const gap = Math.round(BASE_GAP * SCALE);
+
+const monthTitleHeight = Math.round(36 * SCALE);
+const titleGap = Math.round(14 * SCALE);
+const monthBlockGap = Math.round(36 * SCALE);
+const rowGap = Math.round(60 * SCALE);
+
+// ================== 单个月高度计算 ==================
+function monthHeight(days, monthIndex) {
+  const firstDay = new Date(year, monthIndex, 1).getDay();
+  const offset = (firstDay + 6) % 7; // 周一为 0
+  const totalCells = offset + days;
+  const rows = Math.ceil(totalCells / cols);
+
+  return (
+    monthTitleHeight +
+    titleGap +
+    rows * size +
+    (rows - 1) * gap
+  );
+}
+
+// 统一月份高度
+const maxMonthHeight = Math.max(
+  ...months.map((m, i) => monthHeight(m.days, i))
+);
+
+// ================== 整体居中 ==================
+const rows = 4;
+const calendarHeight =
+  rows * maxMonthHeight +
+  (rows - 1) * rowGap;
+
+let cursorY =
+  CALENDAR_TOP +
+  (CALENDAR_HEIGHT - calendarHeight) / 2;
+
+let dayCounter = 1;
+
+// ================== 绘制 ==================
+for (let r = 0; r < rows; r++) {
+  const rowMonths = months.slice(
+    r * MONTHS_PER_ROW,
+    r * MONTHS_PER_ROW + MONTHS_PER_ROW
+  );
+
+  const monthWidth = cols * size + (cols - 1) * gap;
+  const rowWidth =
+    MONTHS_PER_ROW * monthWidth +
+    (MONTHS_PER_ROW - 1) * monthBlockGap;
+
+  let cursorX = (canvas.width - rowWidth) / 2;
+
+  rowMonths.forEach((month, mIndex) => {
+    const monthIndex = r * MONTHS_PER_ROW + mIndex;
+
+    // ---- 月份标题 ----
+    ctx.fillStyle = "#8e8e93";
+    ctx.font = `${Math.round(32 * SCALE)}px -apple-system, BlinkMacSystemFont`;
+    ctx.textAlign = "center";
+    ctx.fillText(
+      month.name,
+      cursorX + monthWidth / 2,
+      cursorY + monthTitleHeight - 6
+    );
+
+    // ---- 星期偏移（周一开始）----
+    const firstDay = new Date(year, monthIndex, 1).getDay();
+    const offset = (firstDay + 6) % 7;
+
+    const yStart =
+      cursorY + monthTitleHeight + titleGap;
+
+    for (let i = 0; i < month.days; i++) {
+      const index = offset + i;
+
+      const x =
+        cursorX + (index % cols) * (size + gap);
+      const y =
+        yStart + Math.floor(index / cols) * (size + gap);
+
+      // ---- 暗色模式配色 ----
+      if (dayCounter < dayOfYear) {
+        ctx.fillStyle = "#f2f2f7";   // 已过去
+      } else if (dayCounter === dayOfYear) {
+        ctx.fillStyle = "#ff453a";   // 今天
+      } else {
+        ctx.fillStyle = "#2c2c2e";   // 未到
+      }
+
+      ctx.fillRect(x, y, size, size);
+
+      // ---- 今天强调描边 ----
+      if (dayCounter === dayOfYear) {
+        ctx.strokeStyle = "rgba(255,69,58,0.6)";
+        ctx.lineWidth = Math.max(2, SCALE);
+        ctx.strokeRect(
+          x - 2,
+          y - 2,
+          size + 4,
+          size + 4
+        );
+      }
+
+      dayCounter++;
+    }
+
+    cursorX += monthWidth + monthBlockGap;
+  });
+
+  cursorY += maxMonthHeight + rowGap;
+}
+</script>
+</body>
+</html>
