@@ -7,20 +7,20 @@
 const canvas = document.getElementById("c");
 const ctx = canvas.getContext("2d");
 
-// ================== 画布尺寸（固定） ==================
+// ================== 画布尺寸 ==================
 const BASE_WIDTH = 1260;
 const BASE_HEIGHT = 2736;
 canvas.width = BASE_WIDTH;
 canvas.height = BASE_HEIGHT;
 
-// ================== 日历缩放因子（唯一需要调的） ==================
+// ================== 日历缩放因子 ==================
 const CALENDAR_SCALE = 1.25;
 
-// ================== 背景（暗色模式） ==================
-ctx.fillStyle = "#0b0b0d";
+// ================== 背景 ==================
+ctx.fillStyle = "#141414";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-// ================== 预留区域（不缩放） ==================
+// ================== 预留区域 ==================
 const TOP_RESERVED = 420;
 const BOTTOM_RESERVED = 420;
 
@@ -34,6 +34,24 @@ const year = today.getFullYear();
 const startOfYear = new Date(year, 0, 1);
 const dayOfYear =
   Math.floor((today - startOfYear) / 86400000) + 1;
+
+// ================== 年度进度 ==================
+const endOfYear = new Date(year, 11, 31);
+const daysInYear =
+  Math.floor((endOfYear - startOfYear) / 86400000) + 1;
+
+const progressPercent = Math.floor((dayOfYear / daysInYear) * 100);
+const daysLeft = daysInYear - dayOfYear;
+
+// ================== 灰色主题 ==================
+const GRAY_THEMES = {
+  soft: "#2c2c2e",
+  medium: "#3a3a3c",
+  warm: "#3f3f46",
+  cool: "#303036",
+  strong: "#48484a"
+};
+const FUTURE_DAY_COLOR = GRAY_THEMES.medium;
 
 // ================== 月份数据 ==================
 const months = [
@@ -51,13 +69,11 @@ const months = [
   { name: "Dec", days: 31 },
 ];
 
-// ================== 日历基础尺寸（不带 scale） ==================
+// ================== 日历基础尺寸 ==================
 const MONTHS_PER_ROW = 3;
 const cols = 7;
-
 const size = 22;
 const gap = 10;
-
 const monthTitleHeight = 36;
 const titleGap = 14;
 const monthBlockGap = 36;
@@ -88,31 +104,20 @@ const calendarHeight =
   rows * maxMonthHeight +
   (rows - 1) * rowGap;
 
-// ================== 计算缩放后的居中位置 ==================
 const scaledCalendarHeight = calendarHeight * CALENDAR_SCALE;
 const calendarStartY =
   CALENDAR_TOP +
   (CALENDAR_HEIGHT - scaledCalendarHeight) / 2;
 
-// ================== 开始绘制「缩放日历」 ==================
+// ================== 绘制日历（缩放） ==================
 ctx.save();
-
-// 把坐标原点移到日历左上角（缩放前坐标系）
-ctx.translate(
-  canvas.width / 2,
-  calendarStartY
-);
-
-// 只缩放日历
+ctx.translate(canvas.width / 2, calendarStartY);
 ctx.scale(CALENDAR_SCALE, CALENDAR_SCALE);
-
-// 因为 scale 了，x 要反向偏移一半
 ctx.translate(-canvas.width / 2, 0);
 
 let cursorY = 0;
 let dayCounter = 1;
 
-// ================== 绘制月份 ==================
 for (let r = 0; r < rows; r++) {
   const rowMonths = months.slice(
     r * MONTHS_PER_ROW,
@@ -129,9 +134,8 @@ for (let r = 0; r < rows; r++) {
   rowMonths.forEach((month, mIndex) => {
     const monthIndex = r * MONTHS_PER_ROW + mIndex;
 
-    // ---- 月份标题 ----
     ctx.fillStyle = "#8e8e93";
-    ctx.font = `32px -apple-system, BlinkMacSystemFont`;
+    ctx.font = "32px -apple-system";
     ctx.textAlign = "center";
     ctx.fillText(
       month.name,
@@ -141,7 +145,6 @@ for (let r = 0; r < rows; r++) {
 
     const firstDay = new Date(year, monthIndex, 1).getDay();
     const offset = (firstDay + 6) % 7;
-
     const yStart = cursorY + monthTitleHeight + titleGap;
 
     for (let i = 0; i < month.days; i++) {
@@ -149,20 +152,20 @@ for (let r = 0; r < rows; r++) {
       const x = cursorX + (index % cols) * (size + gap);
       const y = yStart + Math.floor(index / cols) * (size + gap);
 
-      if (dayCounter < dayOfYear) {
-        ctx.fillStyle = "#f2f2f7";
-      } else if (dayCounter === dayOfYear) {
-        ctx.fillStyle = "#ff453a";
-      } else {
-        ctx.fillStyle = "#2c2c2e";
-      }
+      if (dayCounter < dayOfYear) ctx.fillStyle = "#f2f2f7";
+      else if (dayCounter === dayOfYear) ctx.fillStyle = "#ff453a";
+      else ctx.fillStyle = FUTURE_DAY_COLOR;
 
-      ctx.fillRect(x, y, size, size);
+      ctx.beginPath();
+      ctx.arc(x + size/2, y + size/2, size/2, 0, Math.PI*2);
+      ctx.fill();
 
       if (dayCounter === dayOfYear) {
         ctx.strokeStyle = "rgba(255,69,58,0.6)";
         ctx.lineWidth = 2;
-        ctx.strokeRect(x - 2, y - 2, size + 4, size + 4);
+        ctx.beginPath();
+        ctx.arc(x + size/2, y + size/2, size/2 + 3, 0, Math.PI*2);
+        ctx.stroke();
       }
 
       dayCounter++;
@@ -175,6 +178,19 @@ for (let r = 0; r < rows; r++) {
 }
 
 ctx.restore();
+
+// ================== 年度进度（贴着日历底部） ==================
+ctx.fillStyle = "#8e8e93";
+ctx.font = "48px -apple-system";
+ctx.textAlign = "center";
+
+const progressY = calendarStartY + scaledCalendarHeight + 80;
+
+ctx.fillText(
+  `${progressPercent}% · ${daysLeft}d left`,
+  canvas.width / 2,
+  progressY
+);
 </script>
 </body>
 </html>
