@@ -1,0 +1,34 @@
+name: Generate Daily Wallpaper
+
+on:
+  schedule:
+    # 中国时间 00:01 = UTC 16:01
+    - cron: "1 16 * * *"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Render wallpaper
+        run: npm run render
+
+      - name: Commit and push image
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add output/today.png
+          git commit -m "chore: update daily wallpaper" || echo "No changes"
+          git push
