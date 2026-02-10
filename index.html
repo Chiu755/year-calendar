@@ -1,59 +1,61 @@
 <!DOCTYPE html>
-<html>
-<body style="margin:0;">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Year Calendar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body style="margin:0;background:#141414;">
 <canvas id="c"></canvas>
 
 <script>
+/* ================== 画布 ================== */
 const canvas = document.getElementById("c");
 const ctx = canvas.getContext("2d");
 
-// ================== 画布尺寸 ==================
-const BASE_WIDTH = 1260;
-const BASE_HEIGHT = 2736;
-canvas.width = BASE_WIDTH;
-canvas.height = BASE_HEIGHT;
+const WIDTH = 1260;
+const HEIGHT = 2736;
+canvas.width = WIDTH;
+canvas.height = HEIGHT;
 
-// ================== 日历缩放因子 ==================
+/* ================== 视觉常量 ================== */
 const CALENDAR_SCALE = 1.25;
 
-// ================== 背景 ==================
-ctx.fillStyle = "#141414";
-ctx.fillRect(0, 0, canvas.width, canvas.height);
+const BG_COLOR = "#141414";
+const TEXT_COLOR = "#8e8e93";
+const PAST_DAY_COLOR = "#f2f2f7";
+const TODAY_COLOR = "#ff453a";
+const FUTURE_DAY_COLOR = "#3a3a3c";
 
-// ================== 预留区域 ==================
+/* ================== 背景 ================== */
+ctx.fillStyle = BG_COLOR;
+ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+/* ================== 预留区域 ================== */
 const TOP_RESERVED = 420;
 const BOTTOM_RESERVED = 420;
 
 const CALENDAR_TOP = TOP_RESERVED;
-const CALENDAR_BOTTOM = canvas.height - BOTTOM_RESERVED;
+const CALENDAR_BOTTOM = HEIGHT - BOTTOM_RESERVED;
 const CALENDAR_HEIGHT = CALENDAR_BOTTOM - CALENDAR_TOP;
 
-// ================== 日期 ==================
-const today = new Date();
+/* ================== 日期 ================== */
+const today = new Date(Date.now());
 const year = today.getFullYear();
 const startOfYear = new Date(year, 0, 1);
+
 const dayOfYear =
   Math.floor((today - startOfYear) / 86400000) + 1;
 
-// ================== 年度进度 ==================
 const endOfYear = new Date(year, 11, 31);
 const daysInYear =
   Math.floor((endOfYear - startOfYear) / 86400000) + 1;
 
-const progressPercent = Math.floor((dayOfYear / daysInYear) * 100);
+const progressPercent = Math.floor(dayOfYear / daysInYear * 100);
 const daysLeft = daysInYear - dayOfYear;
 
-// ================== 灰色主题 ==================
-const GRAY_THEMES = {
-  soft: "#2c2c2e",
-  medium: "#3a3a3c",
-  warm: "#3f3f46",
-  cool: "#303036",
-  strong: "#48484a"
-};
-const FUTURE_DAY_COLOR = GRAY_THEMES.medium;
-
-// ================== 月份数据 ==================
+/* ================== 月份数据 ================== */
 const months = [
   { name: "Jan", days: 31 },
   { name: "Feb", days: new Date(year, 1, 29).getMonth() === 1 ? 29 : 28 },
@@ -66,131 +68,125 @@ const months = [
   { name: "Sep", days: 30 },
   { name: "Oct", days: 31 },
   { name: "Nov", days: 30 },
-  { name: "Dec", days: 31 },
+  { name: "Dec", days: 31 }
 ];
 
-// ================== 日历基础尺寸 ==================
+/* ================== 日历布局 ================== */
 const MONTHS_PER_ROW = 3;
-const cols = 7;
-const size = 22;
-const gap = 10;
-const monthTitleHeight = 36;
-const titleGap = 14;
-const monthBlockGap = 36;
-const rowGap = 60;
+const COLS = 7;
+const DOT_SIZE = 22;
+const DOT_GAP = 10;
 
-// ================== 单个月高度 ==================
-function monthHeight(days, monthIndex) {
+const MONTH_TITLE_HEIGHT = 36;
+const TITLE_GAP = 14;
+const MONTH_GAP = 36;
+const ROW_GAP = 60;
+
+/* ================== 单个月高度 ================== */
+function getMonthHeight(days, monthIndex) {
   const firstDay = new Date(year, monthIndex, 1).getDay();
   const offset = (firstDay + 6) % 7;
-  const totalCells = offset + days;
-  const rows = Math.ceil(totalCells / cols);
+  const rows = Math.ceil((offset + days) / COLS);
 
   return (
-    monthTitleHeight +
-    titleGap +
-    rows * size +
-    (rows - 1) * gap
+    MONTH_TITLE_HEIGHT +
+    TITLE_GAP +
+    rows * DOT_SIZE +
+    (rows - 1) * DOT_GAP
   );
 }
 
-const maxMonthHeight = Math.max(
-  ...months.map((m, i) => monthHeight(m.days, i))
+const MAX_MONTH_HEIGHT = Math.max(
+  ...months.map((m, i) => getMonthHeight(m.days, i))
 );
 
-// ================== 整体日历高度 ==================
-const rows = 4;
+/* ================== 日历整体高度 ================== */
+const TOTAL_ROWS = 4;
 const calendarHeight =
-  rows * maxMonthHeight +
-  (rows - 1) * rowGap;
+  TOTAL_ROWS * MAX_MONTH_HEIGHT +
+  (TOTAL_ROWS - 1) * ROW_GAP;
 
 const scaledCalendarHeight = calendarHeight * CALENDAR_SCALE;
 const calendarStartY =
-  CALENDAR_TOP +
-  (CALENDAR_HEIGHT - scaledCalendarHeight) / 2;
+  CALENDAR_TOP + (CALENDAR_HEIGHT - scaledCalendarHeight) / 2;
 
-// ================== 绘制日历（缩放） ==================
+/* ================== 绘制日历 ================== */
 ctx.save();
-ctx.translate(canvas.width / 2, calendarStartY);
+ctx.translate(WIDTH / 2, calendarStartY);
 ctx.scale(CALENDAR_SCALE, CALENDAR_SCALE);
-ctx.translate(-canvas.width / 2, 0);
+ctx.translate(-WIDTH / 2, 0);
 
 let cursorY = 0;
 let dayCounter = 1;
 
-for (let r = 0; r < rows; r++) {
-  const rowMonths = months.slice(
-    r * MONTHS_PER_ROW,
-    r * MONTHS_PER_ROW + MONTHS_PER_ROW
-  );
+for (let r = 0; r < TOTAL_ROWS; r++) {
+  const rowMonths = months.slice(r * MONTHS_PER_ROW, r * MONTHS_PER_ROW + MONTHS_PER_ROW);
 
-  const monthWidth = cols * size + (cols - 1) * gap;
+  const monthWidth = COLS * DOT_SIZE + (COLS - 1) * DOT_GAP;
   const rowWidth =
     MONTHS_PER_ROW * monthWidth +
-    (MONTHS_PER_ROW - 1) * monthBlockGap;
+    (MONTHS_PER_ROW - 1) * MONTH_GAP;
 
-  let cursorX = (canvas.width - rowWidth) / 2;
+  let cursorX = (WIDTH - rowWidth) / 2;
 
-  rowMonths.forEach((month, mIndex) => {
-    const monthIndex = r * MONTHS_PER_ROW + mIndex;
+  rowMonths.forEach((month, i) => {
+    const monthIndex = r * MONTHS_PER_ROW + i;
 
-    ctx.fillStyle = "#8e8e93";
+    ctx.fillStyle = TEXT_COLOR;
     ctx.font = "32px -apple-system";
     ctx.textAlign = "center";
-    ctx.fillText(
-      month.name,
-      cursorX + monthWidth / 2,
-      cursorY + monthTitleHeight - 6
-    );
+    ctx.fillText(month.name, cursorX + monthWidth / 2, cursorY + MONTH_TITLE_HEIGHT - 6);
 
     const firstDay = new Date(year, monthIndex, 1).getDay();
     const offset = (firstDay + 6) % 7;
-    const yStart = cursorY + monthTitleHeight + titleGap;
+    const yStart = cursorY + MONTH_TITLE_HEIGHT + TITLE_GAP;
 
-    for (let i = 0; i < month.days; i++) {
-      const index = offset + i;
-      const x = cursorX + (index % cols) * (size + gap);
-      const y = yStart + Math.floor(index / cols) * (size + gap);
+    for (let d = 0; d < month.days; d++) {
+      const index = offset + d;
+      const x = cursorX + (index % COLS) * (DOT_SIZE + DOT_GAP);
+      const y = yStart + Math.floor(index / COLS) * (DOT_SIZE + DOT_GAP);
 
-      if (dayCounter < dayOfYear) ctx.fillStyle = "#f2f2f7";
-      else if (dayCounter === dayOfYear) ctx.fillStyle = "#ff453a";
+      if (dayCounter < dayOfYear) ctx.fillStyle = PAST_DAY_COLOR;
+      else if (dayCounter === dayOfYear) ctx.fillStyle = TODAY_COLOR;
       else ctx.fillStyle = FUTURE_DAY_COLOR;
 
       ctx.beginPath();
-      ctx.arc(x + size/2, y + size/2, size/2, 0, Math.PI*2);
+      ctx.arc(x + DOT_SIZE / 2, y + DOT_SIZE / 2, DOT_SIZE / 2, 0, Math.PI * 2);
       ctx.fill();
 
       if (dayCounter === dayOfYear) {
         ctx.strokeStyle = "rgba(255,69,58,0.6)";
         ctx.lineWidth = 2;
         ctx.beginPath();
-        ctx.arc(x + size/2, y + size/2, size/2 + 3, 0, Math.PI*2);
+        ctx.arc(x + DOT_SIZE / 2, y + DOT_SIZE / 2, DOT_SIZE / 2 + 3, 0, Math.PI * 2);
         ctx.stroke();
       }
 
       dayCounter++;
     }
 
-    cursorX += monthWidth + monthBlockGap;
+    cursorX += monthWidth + MONTH_GAP;
   });
 
-  cursorY += maxMonthHeight + rowGap;
+  cursorY += MAX_MONTH_HEIGHT + ROW_GAP;
 }
 
 ctx.restore();
 
-// ================== 年度进度（贴着日历底部） ==================
-ctx.fillStyle = "#8e8e93";
-ctx.font = "48px -apple-system";
+/* ================== 年度进度 ================== */
+ctx.fillStyle = TEXT_COLOR;
+ctx.font = "56px -apple-system";
 ctx.textAlign = "center";
 
 const progressY = calendarStartY + scaledCalendarHeight + 80;
+ctx.fillText(`${progressPercent}% · ${daysLeft}d left`, WIDTH / 2, progressY);
 
-ctx.fillText(
-  `${progressPercent}% · ${daysLeft}d left`,
-  canvas.width / 2,
-  progressY
-);
+/* ================== 导出为图片 ================== */
+setTimeout(() => {
+  const imgURL = canvas.toDataURL("image/png");
+  document.body.innerHTML = `<img src="${imgURL}" style="width:100%;display:block;">`;
+}, 300);
 </script>
+
 </body>
 </html>
