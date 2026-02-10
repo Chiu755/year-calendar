@@ -25,7 +25,7 @@ await page.goto(URL, {
 });
 
 // ⏱ 等 canvas & JS 彻底画完（关键）
-await page.waitForTimeout(2000);
+await new Promise(resolve => setTimeout(resolve, 2000));
 
 await page.screenshot({
   path: OUTPUT,
