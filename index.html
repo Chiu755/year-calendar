@@ -41,7 +41,9 @@ const CALENDAR_BOTTOM = HEIGHT - BOTTOM_RESERVED;
 const CALENDAR_HEIGHT = CALENDAR_BOTTOM - CALENDAR_TOP;
 
 /* ================== 日期 ================== */
-const today = new Date(Date.now());
+const today = new Date(
+  new Date().toLocaleString("en-US", { timeZone: "Asia/Shanghai" })
+);
 const year = today.getFullYear();
 const startOfYear = new Date(year, 0, 1);
 
