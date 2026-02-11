@@ -1,3 +1,4 @@
+process.env.TZ = "Asia/Shanghai";
 import puppeteer from "puppeteer";
 import fs from "fs";
 
