@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Year Calendar</title>
+  <title>Year Calendar with Rounded Progress Bar</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -24,9 +24,9 @@ const CALENDAR_SCALE = 1.25;
 
 const BG_COLOR = "#141414";
 const TEXT_COLOR = "#8e8e93";
-const PAST_DAY_COLOR = "#f2f2f7";
+const PAST_DAY_COLOR = "#8e8e93";
 const TODAY_COLOR = "#ff453a";
-const FUTURE_DAY_COLOR = "#3a3a3c";
+const FUTURE_DAY_COLOR = "#2c2c2e";
 
 /* ================== 背景 ================== */
 ctx.fillStyle = BG_COLOR;
@@ -46,15 +46,12 @@ const today = new Date(
 );
 const year = today.getFullYear();
 const startOfYear = new Date(year, 0, 1);
-
-const dayOfYear =
-  Math.floor((today - startOfYear) / 86400000) + 1;
+const dayOfYear = Math.floor((today - startOfYear) / 86400000) + 1;
 
 const endOfYear = new Date(year, 11, 31);
-const daysInYear =
-  Math.floor((endOfYear - startOfYear) / 86400000) + 1;
+const daysInYear = Math.floor((endOfYear - startOfYear) / 86400000) + 1;
 
-const progressPercent = Math.floor(dayOfYear / daysInYear * 100);
+const progressPercent = Math.floor((dayOfYear / daysInYear) * 100);
 const daysLeft = daysInYear - dayOfYear;
 
 /* ================== 月份数据 ================== */
@@ -89,28 +86,16 @@ function getMonthHeight(days, monthIndex) {
   const firstDay = new Date(year, monthIndex, 1).getDay();
   const offset = (firstDay + 6) % 7;
   const rows = Math.ceil((offset + days) / COLS);
-
-  return (
-    MONTH_TITLE_HEIGHT +
-    TITLE_GAP +
-    rows * DOT_SIZE +
-    (rows - 1) * DOT_GAP
-  );
+  return MONTH_TITLE_HEIGHT + TITLE_GAP + rows * DOT_SIZE + (rows - 1) * DOT_GAP;
 }
 
-const MAX_MONTH_HEIGHT = Math.max(
-  ...months.map((m, i) => getMonthHeight(m.days, i))
-);
+const MAX_MONTH_HEIGHT = Math.max(...months.map((m, i) => getMonthHeight(m.days, i)));
 
 /* ================== 日历整体高度 ================== */
 const TOTAL_ROWS = 4;
-const calendarHeight =
-  TOTAL_ROWS * MAX_MONTH_HEIGHT +
-  (TOTAL_ROWS - 1) * ROW_GAP;
-
+const calendarHeight = TOTAL_ROWS * MAX_MONTH_HEIGHT + (TOTAL_ROWS - 1) * ROW_GAP;
 const scaledCalendarHeight = calendarHeight * CALENDAR_SCALE;
-const calendarStartY =
-  CALENDAR_TOP + (CALENDAR_HEIGHT - scaledCalendarHeight) / 2;
+const calendarStartY = CALENDAR_TOP + (CALENDAR_HEIGHT - scaledCalendarHeight) / 2;
 
 /* ================== 绘制日历 ================== */
 ctx.save();
@@ -123,12 +108,8 @@ let dayCounter = 1;
 
 for (let r = 0; r < TOTAL_ROWS; r++) {
   const rowMonths = months.slice(r * MONTHS_PER_ROW, r * MONTHS_PER_ROW + MONTHS_PER_ROW);
-
   const monthWidth = COLS * DOT_SIZE + (COLS - 1) * DOT_GAP;
-  const rowWidth =
-    MONTHS_PER_ROW * monthWidth +
-    (MONTHS_PER_ROW - 1) * MONTH_GAP;
-
+  const rowWidth = MONTHS_PER_ROW * monthWidth + (MONTHS_PER_ROW - 1) * MONTH_GAP;
   let cursorX = (WIDTH - rowWidth) / 2;
 
   rowMonths.forEach((month, i) => {
@@ -172,23 +153,54 @@ for (let r = 0; r < TOTAL_ROWS; r++) {
 
   cursorY += MAX_MONTH_HEIGHT + ROW_GAP;
 }
-
 ctx.restore();
 
-/* ================== 年度进度 ================== */
+/* ================== 年度进度条 ================== */
+// 计算第一行三个月最左侧和最右侧的点
+const firstMonthX = (WIDTH - ((COLS * DOT_SIZE + (COLS-1)*DOT_GAP)*3 + MONTH_GAP*2)) / 2;
+const lastMonthX = firstMonthX + (COLS * DOT_SIZE + (COLS-1)*DOT_GAP)*3 + MONTH_GAP*2;
+const progressBarX = firstMonthX;
+const progressBarWidth = lastMonthX - firstMonthX;
+const progressBarHeight = 20;
+const progressY = calendarStartY + scaledCalendarHeight + 80;
+const progressBarY = progressY - 70;
+
+// 圆角矩形函数
+function drawRoundedRect(x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+  ctx.fill();
+}
+
+// 背景条
+ctx.fillStyle = FUTURE_DAY_COLOR;
+drawRoundedRect(progressBarX, progressBarY, progressBarWidth, progressBarHeight, progressBarHeight/2);
+
+// 已完成进度条
+ctx.fillStyle = TODAY_COLOR;
+drawRoundedRect(progressBarX, progressBarY, progressBarWidth * (dayOfYear/daysInYear), progressBarHeight, progressBarHeight/2);
+
+/* ================== 年度进度文字 ================== */
 ctx.fillStyle = TEXT_COLOR;
 ctx.font = "56px -apple-system";
 ctx.textAlign = "center";
-
-const progressY = calendarStartY + scaledCalendarHeight + 80;
-ctx.fillText(`${progressPercent}% · ${daysLeft}d left`, WIDTH / 2, progressY);
+ctx.fillText(`${progressPercent}% · ${daysLeft}d left`, WIDTH/2, progressY);
 
 /* ================== 导出为图片 ================== */
 setTimeout(() => {
   const imgURL = canvas.toDataURL("image/png");
   document.body.innerHTML = `<img src="${imgURL}" style="width:100%;display:block;">`;
 }, 300);
-</script>
 
+</script>
 </body>
 </html>
