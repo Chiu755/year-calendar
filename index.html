@@ -162,8 +162,8 @@ const lastMonthX = firstMonthX + (COLS * DOT_SIZE + (COLS-1)*DOT_GAP)*3 + MONTH_
 const progressBarX = firstMonthX;
 const progressBarWidth = lastMonthX - firstMonthX;
 const progressBarHeight = 20;
-const progressY = calendarStartY + scaledCalendarHeight + 80;
-const progressBarY = progressY - 70;
+const progressY = calendarStartY + scaledCalendarHeight + 70;
+const progressBarY = progressY + 30;
 
 // 圆角矩形函数
 function drawRoundedRect(x, y, w, h, r) {
