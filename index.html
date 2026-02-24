@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Year Calendar with Rounded Progress Bar</title>
+  <title>Year Calendar with Gold Payday</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -27,6 +27,7 @@ const TEXT_COLOR = "#8e8e93";
 const PAST_DAY_COLOR = "#8e8e93";
 const TODAY_COLOR = "#ff453a";
 const FUTURE_DAY_COLOR = "#2c2c2e";
+const PAYDAY_GOLD = "#d4af37"; // 金色
 
 /* ================== 背景 ================== */
 ctx.fillStyle = BG_COLOR;
@@ -44,6 +45,7 @@ const CALENDAR_HEIGHT = CALENDAR_BOTTOM - CALENDAR_TOP;
 const today = new Date(
   new Date().toLocaleString("en-US", { timeZone: "Asia/Shanghai" })
 );
+
 const year = today.getFullYear();
 const startOfYear = new Date(year, 0, 1);
 const dayOfYear = Math.floor((today - startOfYear) / 86400000) + 1;
@@ -81,7 +83,6 @@ const TITLE_GAP = 14;
 const MONTH_GAP = 36;
 const ROW_GAP = 60;
 
-/* ================== 单个月高度 ================== */
 function getMonthHeight(days, monthIndex) {
   const firstDay = new Date(year, monthIndex, 1).getDay();
   const offset = (firstDay + 6) % 7;
@@ -91,7 +92,6 @@ function getMonthHeight(days, monthIndex) {
 
 const MAX_MONTH_HEIGHT = Math.max(...months.map((m, i) => getMonthHeight(m.days, i)));
 
-/* ================== 日历整体高度 ================== */
 const TOTAL_ROWS = 4;
 const calendarHeight = TOTAL_ROWS * MAX_MONTH_HEIGHT + (TOTAL_ROWS - 1) * ROW_GAP;
 const scaledCalendarHeight = calendarHeight * CALENDAR_SCALE;
@@ -129,20 +129,52 @@ for (let r = 0; r < TOTAL_ROWS; r++) {
       const x = cursorX + (index % COLS) * (DOT_SIZE + DOT_GAP);
       const y = yStart + Math.floor(index / COLS) * (DOT_SIZE + DOT_GAP);
 
-      if (dayCounter < dayOfYear) ctx.fillStyle = PAST_DAY_COLOR;
-      else if (dayCounter === dayOfYear) ctx.fillStyle = TODAY_COLOR;
-      else ctx.fillStyle = FUTURE_DAY_COLOR;
+      const isPayday = (d + 1 === 25);
+
+      // ===== 颜色逻辑 =====
+      if (isPayday) {
+        ctx.fillStyle = PAYDAY_GOLD;
+      } else if (dayCounter < dayOfYear) {
+        ctx.fillStyle = PAST_DAY_COLOR;
+      } else if (dayCounter === dayOfYear) {
+        ctx.fillStyle = TODAY_COLOR;
+      } else {
+        ctx.fillStyle = FUTURE_DAY_COLOR;
+      }
 
       ctx.beginPath();
       ctx.arc(x + DOT_SIZE / 2, y + DOT_SIZE / 2, DOT_SIZE / 2, 0, Math.PI * 2);
       ctx.fill();
 
+      // ===== 今日红圈 =====
       if (dayCounter === dayOfYear) {
         ctx.strokeStyle = "rgba(255,69,58,0.6)";
         ctx.lineWidth = 2;
         ctx.beginPath();
         ctx.arc(x + DOT_SIZE / 2, y + DOT_SIZE / 2, DOT_SIZE / 2 + 3, 0, Math.PI * 2);
         ctx.stroke();
+      }
+
+      // ===== 25号画 ¥ =====
+      if (isPayday) {
+        const centerX = x + DOT_SIZE / 2;
+        const centerY = y + DOT_SIZE / 2;
+
+        ctx.fillStyle = BG_COLOR;
+        ctx.font = "14px -apple-system";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText("¥", centerX, centerY + 1);
+
+        // 已过去的 25 号加斜线
+        if (dayCounter < dayOfYear) {
+          ctx.strokeStyle = BG_COLOR;
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.moveTo(x + 4, y + DOT_SIZE - 4);
+          ctx.lineTo(x + DOT_SIZE - 4, y + 4);
+          ctx.stroke();
+        }
       }
 
       dayCounter++;
@@ -153,10 +185,10 @@ for (let r = 0; r < TOTAL_ROWS; r++) {
 
   cursorY += MAX_MONTH_HEIGHT + ROW_GAP;
 }
+
 ctx.restore();
 
 /* ================== 年度进度条 ================== */
-// 计算第一行三个月最左侧和最右侧的点
 const firstMonthX = (WIDTH - ((COLS * DOT_SIZE + (COLS-1)*DOT_GAP)*3 + MONTH_GAP*2)) / 2;
 const lastMonthX = firstMonthX + (COLS * DOT_SIZE + (COLS-1)*DOT_GAP)*3 + MONTH_GAP*2;
 const progressBarX = firstMonthX;
@@ -165,7 +197,6 @@ const progressBarHeight = 20;
 const progressY = calendarStartY + scaledCalendarHeight + 70;
 const progressBarY = progressY + 30;
 
-// 圆角矩形函数
 function drawRoundedRect(x, y, w, h, r) {
   ctx.beginPath();
   ctx.moveTo(x + r, y);
@@ -181,21 +212,19 @@ function drawRoundedRect(x, y, w, h, r) {
   ctx.fill();
 }
 
-// 背景条
 ctx.fillStyle = FUTURE_DAY_COLOR;
 drawRoundedRect(progressBarX, progressBarY, progressBarWidth, progressBarHeight, progressBarHeight/2);
 
-// 已完成进度条
 ctx.fillStyle = TODAY_COLOR;
 drawRoundedRect(progressBarX, progressBarY, progressBarWidth * (dayOfYear/daysInYear), progressBarHeight, progressBarHeight/2);
 
-/* ================== 年度进度文字 ================== */
+/* ================== 年度文字 ================== */
 ctx.fillStyle = TEXT_COLOR;
 ctx.font = "56px -apple-system";
 ctx.textAlign = "center";
 ctx.fillText(`${progressPercent}% · ${daysLeft}d left`, WIDTH/2, progressY);
 
-/* ================== 导出为图片 ================== */
+/* ================== 导出 ================== */
 setTimeout(() => {
   const imgURL = canvas.toDataURL("image/png");
   document.body.innerHTML = `<img src="${imgURL}" style="width:100%;display:block;">`;
