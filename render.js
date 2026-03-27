@@ -3,10 +3,12 @@ process.env.TZ = "Asia/Shanghai";
 import puppeteer from "puppeteer";
 import fs from "fs";
 import path from "path";
+import { pathToFileURL } from "url";
 
-const URL = "https://chiu755.github.io/year-calendar/";
 const OUTPUT_ROOT = "output";
 const TODAY_OUTPUT = path.join(OUTPUT_ROOT, "today.png");
+const HTML_ENTRY = path.resolve("index.html");
+const HTML_URL = pathToFileURL(HTML_ENTRY).href;
 
 // =============================
 // 📅 生成日期信息
@@ -43,12 +45,16 @@ await page.setViewport({
   deviceScaleFactor: 2
 });
 
-await page.goto(URL, {
-  waitUntil: "networkidle0"
+await page.goto(HTML_URL, {
+  waitUntil: "load"
 });
 
-// ⏱ 等 canvas & JS 渲染完成
-await new Promise(resolve => setTimeout(resolve, 2000));
+// ⏱ 等导出图片真正出现在页面上，再截图
+await page.waitForSelector("img");
+await page.waitForFunction(() => {
+  const img = document.querySelector("img");
+  return Boolean(img && img.complete && img.naturalWidth > 0);
+});
 
 // =============================
 // 📸 截图（只截一次）
