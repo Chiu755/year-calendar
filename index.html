@@ -9,6 +9,7 @@
 <body style="margin:0;background:#141414;">
 <canvas id="c"></canvas>
 
+<script src="theme-engine.js"></script>
 <script>
 /* ================== 画布 ================== */
 const canvas = document.getElementById("c");
@@ -28,10 +29,6 @@ const PAST_DAY_COLOR = "#8e8e93";
 const TODAY_COLOR = "#ff453a";
 const FUTURE_DAY_COLOR = "#2c2c2e";
 const PAYDAY_GOLD = "#d4af37"; // 金色
-
-/* ================== 背景 ================== */
-ctx.fillStyle = BG_COLOR;
-ctx.fillRect(0, 0, WIDTH, HEIGHT);
 
 /* ================== 预留区域 ================== */
 const TOP_RESERVED = 550;
@@ -55,6 +52,10 @@ const daysInYear = Math.floor((endOfYear - startOfYear) / 86400000) + 1;
 
 const progressPercent = Math.floor((dayOfYear / daysInYear) * 100);
 const daysLeft = daysInYear - dayOfYear;
+
+/* ================== 每日主题背景 ================== */
+const dailyTheme = getDailyTheme(today);
+drawDailyThemeBackground(ctx, dailyTheme, WIDTH, HEIGHT);
 
 /* ================== 月份数据 ================== */
 const months = [
@@ -81,7 +82,7 @@ const DOT_GAP = 10;
 const MONTH_TITLE_HEIGHT = 36;
 const TITLE_GAP = 14;
 const MONTH_GAP = 36;
-const ROW_GAP = 60;
+const ROW_GAP = 52;
 
 function getMonthHeight(days, monthIndex) {
   const firstDay = new Date(year, monthIndex, 1).getDay();
@@ -95,7 +96,7 @@ const MAX_MONTH_HEIGHT = Math.max(...months.map((m, i) => getMonthHeight(m.days,
 const TOTAL_ROWS = 4;
 const calendarHeight = TOTAL_ROWS * MAX_MONTH_HEIGHT + (TOTAL_ROWS - 1) * ROW_GAP;
 const scaledCalendarHeight = calendarHeight * CALENDAR_SCALE;
-const calendarStartY = CALENDAR_TOP + (CALENDAR_HEIGHT - scaledCalendarHeight) / 2;
+const calendarStartY = CALENDAR_TOP + (CALENDAR_HEIGHT - scaledCalendarHeight) / 2 + 12;
 
 /* ================== 绘制日历 ================== */
 ctx.save();
@@ -194,7 +195,7 @@ const lastMonthX = firstMonthX + (COLS * DOT_SIZE + (COLS-1)*DOT_GAP)*3 + MONTH_
 const progressBarX = firstMonthX;
 const progressBarWidth = lastMonthX - firstMonthX;
 const progressBarHeight = 20;
-const progressY = calendarStartY + scaledCalendarHeight + 70;
+const progressY = calendarStartY + scaledCalendarHeight + 58;
 const progressBarY = progressY + 30;
 
 function drawRoundedRect(x, y, w, h, r) {
@@ -223,6 +224,9 @@ ctx.fillStyle = TEXT_COLOR;
 ctx.font = "56px -apple-system";
 ctx.textAlign = "center";
 ctx.fillText(`${progressPercent}% · ${daysLeft}d left`, WIDTH/2, progressY);
+
+/* ================== 每日主题文字 ================== */
+drawThemeCaption(ctx, dailyTheme, WIDTH / 2, progressBarY + 88);
 
 /* ================== 导出 ================== */
 setTimeout(() => {

@@ -9,6 +9,7 @@ const OUTPUT_ROOT = "output";
 const TODAY_OUTPUT = path.join(OUTPUT_ROOT, "today.png");
 const HTML_ENTRY = path.resolve("index.html");
 const HTML_URL = pathToFileURL(HTML_ENTRY).href;
+const PUPPETEER_PROFILE = "/private/tmp/year-calendar-puppeteer-profile";
 
 // =============================
 // 📅 生成日期信息
@@ -28,12 +29,19 @@ const datedOutput = path.join(monthFolder, datedFileName);
 // 📁 创建目录
 // =============================
 fs.mkdirSync(monthFolder, { recursive: true });
+fs.mkdirSync(PUPPETEER_PROFILE, { recursive: true });
 
 // =============================
 // 🚀 启动浏览器
 // =============================
 const browser = await puppeteer.launch({
-  args: ["--no-sandbox", "--disable-setuid-sandbox"]
+  args: [
+    "--no-sandbox",
+    "--disable-setuid-sandbox",
+    "--disable-crash-reporter",
+    "--disable-crashpad",
+    `--user-data-dir=${PUPPETEER_PROFILE}`
+  ]
 });
 
 const page = await browser.newPage();
