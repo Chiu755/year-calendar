@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "render": "node render.js",
-    "render:force": "node render.js --force"
+    "render:force": "node render.js --force",
+    "refresh-holidays": "node refresh-holiday-data.js"
   },
   "dependencies": {
     "puppeteer": "25.1.0"

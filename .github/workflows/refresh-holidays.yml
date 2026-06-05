@@ -1,0 +1,40 @@
+name: Refresh Holiday Data
+
+on:
+  schedule:
+    # Every two months, around China time 00:21 on the second day.
+    - cron: "21 16 1 */2 *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-holiday-data
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Refresh holiday cache
+        run: npm run refresh-holidays
+
+      - name: Commit holiday cache
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add data/holiday-cache.js
+          git commit -m "chore: refresh holiday data" || echo "No holiday data changes"
+          git push origin HEAD:${GITHUB_REF_NAME}

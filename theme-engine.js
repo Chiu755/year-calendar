@@ -298,9 +298,36 @@ function fallbackTheme(date) {
   });
 }
 
+function dateKey(date) {
+  return [
+    date.getFullYear(),
+    String(date.getMonth() + 1).padStart(2, "0"),
+    String(date.getDate()).padStart(2, "0")
+  ].join("-");
+}
+
+function cachedHolidayThemes(date) {
+  const cache = window.YearCalendarHolidayCache;
+  const rawThemes = cache?.days?.[dateKey(date)];
+  if (!Array.isArray(rawThemes)) return [];
+
+  return rawThemes.map((theme) => createTheme({
+    title: theme.title,
+    caption: theme.caption,
+    description: theme.description,
+    motif: theme.motif,
+    gradient: theme.gradient,
+    accent: theme.accent,
+    secondary: theme.secondary,
+    priority: theme.priority,
+    tags: theme.tags || []
+  }));
+}
+
 function rankDailyThemes(date) {
   const md = monthDay(date);
   const candidates = [];
+  const cachedThemes = cachedHolidayThemes(date);
 
   for (const [termDate, title, caption, motif, gradient, accent, secondary] of SOLAR_TERMS) {
     if (md === termDate) {
@@ -308,15 +335,19 @@ function rankDailyThemes(date) {
     }
   }
 
-  for (const [holidayDate, title, caption, motif, gradient, accent, secondary, priority] of FIXED_HOLIDAYS) {
-    if (md === holidayDate) {
-      candidates.push(createTheme({ title, caption, motif, gradient, accent, secondary, priority }));
-    }
-  }
+  candidates.push(...cachedThemes);
 
-  for (const rule of FLOATING_RULES) {
-    if (rule.match(date)) {
-      candidates.push(createTheme(rule));
+  if (cachedThemes.length === 0) {
+    for (const [holidayDate, title, caption, motif, gradient, accent, secondary, priority] of FIXED_HOLIDAYS) {
+      if (md === holidayDate) {
+        candidates.push(createTheme({ title, caption, motif, gradient, accent, secondary, priority }));
+      }
+    }
+
+    for (const rule of FLOATING_RULES) {
+      if (rule.match(date)) {
+        candidates.push(createTheme(rule));
+      }
     }
   }
 
