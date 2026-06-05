@@ -4,6 +4,8 @@ const THEME_CONFIG = {
   overlay: "rgba(5,5,6,0.34)"
 };
 
+const FONT_STACK = "\"Noto Sans CJK SC\", \"Noto Sans SC\", \"Noto Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Helvetica, Arial, sans-serif";
+
 const MOTIF_TAGS = {
   grain: ["botanical", "harvest"],
   waterFlowers: ["water", "botanical"],
@@ -435,7 +437,7 @@ function drawThemeDecorations(ctx, theme, width, height) {
 function drawFittedText(ctx, text, x, y, maxWidth, startSize, minSize) {
   let size = startSize;
   do {
-    ctx.font = `${size}px -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif`;
+    ctx.font = `${size}px ${FONT_STACK}`;
     if (ctx.measureText(text).width <= maxWidth || size <= minSize) break;
     size -= 1;
   } while (size > minSize);
