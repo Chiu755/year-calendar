@@ -71,6 +71,82 @@ const MOTIF_STYLES = {
   springBuds: [["#18251f", "#5b6040", "#111516"], "#a9d37f", "#e6b6c8"]
 };
 
+const COUNTRY_PALETTES = {
+  CN: [["#25080c", "#8f171c", "#12090a"], "#f6c85f", "#e83b36"],
+  US: [["#101a34", "#4a2432", "#111316"], "#6aa7ff", "#e85a63"],
+  JP: [["#171318", "#4b1f2a", "#111214"], "#f2eee6", "#d94a4d"],
+  SG: [["#151821", "#5b2530", "#111315"], "#e85a63", "#f3f3f5"],
+  FR: [["#101d3f", "#342742", "#4c2734"], "#6aa7ff", "#e85a63"],
+  GB: [["#111b32", "#482538", "#111316"], "#7faee8", "#e65b5b"],
+  CA: [["#17161c", "#5d2630", "#111214"], "#e85a63", "#f3f3f5"],
+  AU: [["#101d34", "#263a54", "#111316"], "#78aee8", "#d8b95b"],
+  DE: [["#151515", "#55302d", "#111111"], "#d8b95b", "#d65345"],
+  IT: [["#10251f", "#4f2c31", "#111515"], "#70bf75", "#e65b5b"],
+  ES: [["#211619", "#63362a", "#111314"], "#d8b95b", "#e65b5b"],
+  KR: [["#11192d", "#3d2f4b", "#111316"], "#f3f3f5", "#d8555b"],
+  TH: [["#111b34", "#4d2844", "#111316"], "#7fbbe8", "#e65b5b"],
+  CH: [["#151b27", "#4d2727", "#111314"], "#e65b5b", "#f0f0f2"],
+  NO: [["#101d34", "#4f2d38", "#101316"], "#6da2cf", "#e65b5b"],
+  MX: [["#10251f", "#4f2c31", "#111515"], "#70bf75", "#e85a63"],
+  BR: [["#102622", "#465c2d", "#101516"], "#77c98e", "#d8c070"],
+  IN: [["#18251f", "#604026", "#111515"], "#f0a24a", "#70bf75"],
+  ZA: [["#10251f", "#1f415a", "#111515"], "#77c98e", "#d8b95b"],
+  NZ: [["#101d34", "#293f5d", "#101316"], "#78aee8", "#e85a63"]
+};
+
+const OCCASION_PALETTES = [
+  [/christmas/i, [["#101827", "#2d4436", "#111314"], "#d8c070", "#d65345"]],
+  [/halloween/i, [["#17121f", "#4b2d13", "#111113"], "#f08a2d", "#8d65c5"]],
+  [/valentine/i, [["#241525", "#643044", "#111214"], "#e87a94", "#d7b56b"]],
+  [/new year's day|new year's eve/i, [["#151a2d", "#493456", "#111316"], "#d6c070", "#78b8e6"]],
+  [/thanksgiving|harvest/i, [["#211916", "#604026", "#111314"], "#d8a05f", "#9bb06d"]]
+];
+
+const CULTURAL_OBSERVANCES = [
+  ["01-24", "International Day of Education", "国际教育日", "联合国设立的国际日，关注学习、知识与人的发展。", "starfield", ["#111d34", "#263e5b", "#101316"], "#78bde8", "#d8c070", 66, ["culture", "international", "light"]],
+  ["02-11", "Women and Girls in Science Day", "妇女和女童参与科学国际日", "国际日，鼓励更多女性进入科学与探索的领域。", "aurora", ["#17182d", "#3d2f59", "#111316"], "#b68fd8", "#78bde8", 68, ["culture", "international", "sky"]],
+  ["02-21", "International Mother Language Day", "国际母语日", "联合国教科文组织倡议的日子，纪念语言多样性与文化传承。", "streamers", ["#151d2d", "#3f3a58", "#111316"], "#d8b95b", "#78bde8", 72, ["culture", "international", "celebration"]],
+  ["03-08", "International Women's Day", "国际妇女节", "纪念女性权益与创造力的国际节日。", "petals", ["#241525", "#643044", "#111214"], "#e87a94", "#d7b56b", 74, ["culture", "international", "celebration", "botanical"]],
+  ["03-20", "International Day of Happiness", "国际幸福日", "联合国设立的国际日，提醒人们珍视幸福与共同生活。", "sunRibbons", ["#201d25", "#5e4a2a", "#111314"], "#f0c95c", "#e87a94", 66, ["culture", "international", "sun", "celebration"]],
+  ["03-21", "World Poetry Day", "世界诗歌日", "联合国教科文组织设立的文化日，纪念诗歌、语言与想象力。", "petals", ["#17182d", "#473254", "#111316"], "#d6b6e8", "#d8c070", 70, ["culture", "international", "botanical"]],
+  ["03-22", "World Water Day", "世界水日", "联合国设立的国际日，关注水资源与蓝色星球。", "waterFlowers", ["#0c2134", "#225a6a", "#101418"], "#70cce8", "#8bd0b6", 72, ["culture", "international", "water"]],
+  ["04-15", "World Art Day", "世界艺术日", "纪念艺术、创作与视觉文化的世界性日子。", "streamers", ["#19172d", "#5a344d", "#111316"], "#e87a94", "#78bde8", 72, ["culture", "international", "celebration"]],
+  ["04-22", "Earth Day", "世界地球日", "关注环境保护与生态共生的全球纪念日。", "aurora", ["#102622", "#2f5c4c", "#101516"], "#77c98e", "#75bdd8", 76, ["culture", "international", "botanical", "water"]],
+  ["04-23", "World Book Day", "世界读书日", "联合国教科文组织设立的文化日，纪念阅读、书籍与出版。", "starfield", ["#171827", "#3c3350", "#111316"], "#d8c070", "#b68fd8", 70, ["culture", "international", "light"]],
+  ["04-30", "International Jazz Day", "国际爵士乐日", "联合国教科文组织设立的音乐日，纪念即兴、节奏与城市夜色。", "starfield", ["#111729", "#493456", "#111316"], "#d6c070", "#8fc8ff", 74, ["culture", "international", "sky", "celebration"]],
+  ["05-18", "International Museum Day", "国际博物馆日", "纪念博物馆、收藏与公共文化记忆。", "mountainFlags", ["#171822", "#4d3d32", "#111314"], "#d8b95b", "#78bde8", 70, ["culture", "international", "civic"]],
+  ["05-21", "International Tea Day", "国际茶日", "联合国设立的国际日，纪念茶、农耕与日常仪式感。", "springBuds", ["#14251d", "#496143", "#111516"], "#8fcb7d", "#d8c070", 72, ["culture", "international", "botanical", "harvest"]],
+  ["06-05", "World Environment Day", "世界环境日", "联合国环境日，关注生态、城市与地球未来。", "aurora", ["#102622", "#2f5c4c", "#101516"], "#77c98e", "#75bdd8", 74, ["culture", "international", "botanical", "water"]],
+  ["06-08", "World Oceans Day", "世界海洋日", "关注海洋、潮汐与蓝色星球的国际日。", "waterFlowers", ["#0c2134", "#225a6a", "#101418"], "#70cce8", "#8bd0b6", 76, ["culture", "international", "water", "island"]],
+  ["06-21", "World Music Day", "世界音乐日", "夏至前后的音乐日，用节奏、声响与街头庆祝连接城市。", "sunRibbons", ["#1c2332", "#6c522e", "#111316"], "#f0c95c", "#79b7d8", 74, ["culture", "international", "celebration", "sun"]],
+  ["07-30", "International Day of Friendship", "国际友谊日", "联合国设立的国际日，纪念友谊、理解与相互照亮。", "streamers", ["#141d2f", "#493456", "#111316"], "#d6c070", "#78b8e6", 68, ["culture", "international", "celebration", "light"]],
+  ["08-09", "Indigenous Peoples Day", "世界土著人民国际日", "联合国设立的国际日，关注原住民文化、土地与传统。", "mountainFlags", ["#1a2019", "#5a5634", "#111515"], "#d8b95b", "#91c47c", 70, ["culture", "international", "mountain", "botanical"]],
+  ["08-12", "International Youth Day", "国际青年日", "联合国设立的国际日，关注年轻人的创造力与公共参与。", "streamers", ["#102238", "#365a70", "#101418"], "#78bde6", "#e66b58", 68, ["culture", "international", "celebration"]],
+  ["08-19", "World Photography Day", "世界摄影日", "纪念影像、光线与观看方式的文化日。", "starfield", ["#111827", "#2e3d51", "#101316"], "#d8c070", "#78bde8", 68, ["culture", "international", "light"]],
+  ["09-21", "International Day of Peace", "国际和平日", "联合国设立的国际日，纪念和平、停火与共同生活。", "candle", ["#101827", "#37304d", "#111214"], "#f0c95c", "#f2f0d6", 76, ["culture", "international", "light", "memorial"]],
+  ["09-27", "World Tourism Day", "世界旅游日", "关注旅行、地方文化与人与地点之间的连接。", "mountainFlags", ["#102039", "#5c4227", "#101417"], "#6da2cf", "#f0b64d", 66, ["culture", "international", "mountain", "celebration"]],
+  ["10-01", "International Coffee Day", "国际咖啡日", "纪念咖啡、手作与城市日常节奏的国际文化日。", "grain", ["#1b1513", "#563321", "#111314"], "#d8a05f", "#9bb06d", 64, ["culture", "international", "harvest"]],
+  ["10-05", "World Teachers' Day", "世界教师日", "联合国教科文组织设立的国际日，感谢教育者与知识传递。", "starfield", ["#171827", "#3c3350", "#111316"], "#d8c070", "#b68fd8", 68, ["culture", "international", "light"]],
+  ["10-16", "World Food Day", "世界粮食日", "联合国粮农组织纪念日，关注食物、土地与人类生活。", "grain", ["#211916", "#604026", "#111314"], "#d8a05f", "#9bb06d", 70, ["culture", "international", "harvest", "botanical"]],
+  ["10-24", "United Nations Day", "联合国日", "纪念联合国宪章生效的国际日，象征合作、和平与公共秩序。", "tricolor", ["#101d34", "#263a54", "#111316"], "#78aee8", "#f3f3f5", 72, ["culture", "international", "civic"]],
+  ["11-13", "World Kindness Day", "世界友善日", "纪念善意、照顾与人与人之间温柔连接的文化日。", "petals", ["#241525", "#643044", "#111214"], "#e87a94", "#d7b56b", 66, ["culture", "international", "botanical", "light"]],
+  ["11-16", "International Day for Tolerance", "国际宽容日", "联合国教科文组织设立的国际日，纪念理解、差异与共处。", "candle", ["#101827", "#37304d", "#111214"], "#f0c95c", "#f2f0d6", 68, ["culture", "international", "light"]],
+  ["11-21", "World Television Day", "世界电视日", "联合国设立的国际日，纪念影像媒介与公共叙事。", "starfield", ["#101b33", "#2e4770", "#101316"], "#9fc8ff", "#e6c86f", 62, ["culture", "international", "sky", "light"]],
+  ["12-10", "Human Rights Day", "人权日", "联合国纪念日，关注人的尊严、自由与平等。", "candle", ["#101827", "#37304d", "#111214"], "#f0c95c", "#f2f0d6", 74, ["culture", "international", "civic", "light"]],
+  ["12-18", "International Migrants Day", "国际移民日", "联合国设立的国际日，关注迁徙、家园与跨文化生活。", "mountainFlags", ["#111d34", "#263e5b", "#101316"], "#78bde8", "#d8c070", 66, ["culture", "international", "mountain"]]
+].map(([monthDay, title, localName, description, motif, gradient, accent, secondary, priority, tags]) => ({
+  monthDay,
+  title,
+  localName,
+  description,
+  motif,
+  gradient,
+  accent,
+  secondary,
+  priority,
+  tags
+}));
+
 function parseArgs(argv) {
   const options = {
     date: null,
@@ -180,8 +256,24 @@ function priorityForHoliday(holiday, country, score) {
 
 function descriptionForHoliday(holiday, country) {
   const localPart = holiday.localName && holiday.localName !== holiday.name ? `，当地名称是「${holiday.localName}」` : "";
-  const typePart = Array.isArray(holiday.types) && holiday.types.length ? `，类型为 ${holiday.types.join(", ")}` : "";
-  return `${country.zhName}的公共节日${localPart}${typePart}。`;
+  return `${country.zhName}的${primaryHolidayTypeLabel(holiday.types)}${localPart}。`;
+}
+
+function primaryHolidayTypeLabel(types = []) {
+  const labels = holidayTypeLabels(types);
+  return labels[0] || "节日";
+}
+
+function holidayTypeLabels(types = []) {
+  const labels = {
+    Public: "公众节日",
+    Bank: "银行假日",
+    School: "学校假日",
+    Authorities: "政府机关假日",
+    Optional: "可选假日",
+    Observance: "纪念日"
+  };
+  return Array.isArray(types) ? types.map((value) => labels[value]).filter(Boolean) : [];
 }
 
 function captionForHoliday(holiday, country) {
@@ -191,7 +283,9 @@ function captionForHoliday(holiday, country) {
 
 function themeForHoliday(holiday, country, score) {
   const motif = selectMotif(holiday, country);
-  const [gradient, accent, secondary] = MOTIF_STYLES[motif] || MOTIF_STYLES.aurora;
+  const text = `${holiday.name} ${holiday.localName}`.toLowerCase();
+  const occasionPalette = OCCASION_PALETTES.find(([pattern]) => pattern.test(text))?.[1];
+  const [gradient, accent, secondary] = occasionPalette || COUNTRY_PALETTES[country.code] || MOTIF_STYLES[motif] || MOTIF_STYLES.aurora;
   return {
     title: holiday.name,
     caption: captionForHoliday(holiday, country),
@@ -207,7 +301,7 @@ function themeForHoliday(holiday, country, score) {
       countryCode: country.code,
       countryName: country.name,
       localName: holiday.localName,
-      types: holiday.types || []
+      typeLabels: holidayTypeLabels(holiday.types)
     },
     score: Math.round(score * 100) / 100
   };
@@ -226,12 +320,47 @@ function dedupeThemes(themes) {
   const seen = new Set();
   const result = [];
   for (const theme of themes) {
-    const key = `${theme.title.toLowerCase()}-${theme.source.countryCode}`;
+    const key = `${theme.title.toLowerCase()}-${theme.source.provider}-${theme.source.countryCode || "global"}`;
     if (seen.has(key)) continue;
     seen.add(key);
     result.push(theme);
   }
   return result;
+}
+
+function themeForCulturalObservance(observance, date) {
+  return {
+    title: observance.title,
+    caption: `${observance.title} · ${observance.localName}`,
+    description: observance.description,
+    motif: observance.motif,
+    gradient: observance.gradient,
+    accent: observance.accent,
+    secondary: observance.secondary,
+    priority: observance.priority,
+    tags: observance.tags,
+    source: {
+      provider: "Curated Cultural Observances",
+      countryCode: "INTL",
+      countryName: "International",
+      zhName: "国际",
+      localName: observance.localName,
+      typeLabels: observance.tags.includes("culture") ? ["文化日"] : ["国际日"]
+    },
+    score: observance.priority * 8 + date.getMonth() * 3
+  };
+}
+
+function addCulturalObservances(days, startDate, endDate) {
+  for (const year of yearsInRange(startDate, endDate)) {
+    for (const observance of CULTURAL_OBSERVANCES) {
+      const date = dateFromKey(`${year}-${observance.monthDay}`);
+      if (!date || !inRange(date, startDate, endDate)) continue;
+      const key = dateKey(date);
+      days[key] ||= [];
+      days[key].push(themeForCulturalObservance(observance, date));
+    }
+  }
 }
 
 async function buildHolidayCache(options) {
@@ -259,6 +388,8 @@ async function buildHolidayCache(options) {
     }
   }
 
+  addCulturalObservances(days, startDate, endDate);
+
   const rankedDays = {};
   for (const [day, themes] of Object.entries(days).sort(([a], [b]) => a.localeCompare(b))) {
     rankedDays[day] = dedupeThemes(themes)
@@ -270,6 +401,16 @@ async function buildHolidayCache(options) {
     version: 1,
     generatedAt: new Date().toISOString(),
     source: `${API_ROOT}/PublicHolidays/{year}/{countryCode}`,
+    sources: [
+      {
+        name: "Nager.Date Public Holidays",
+        url: `${API_ROOT}/PublicHolidays/{year}/{countryCode}`
+      },
+      {
+        name: "Curated Cultural Observances",
+        count: CULTURAL_OBSERVANCES.length
+      }
+    ],
     window: {
       start: dateKey(startDate),
       end: dateKey(endDate),

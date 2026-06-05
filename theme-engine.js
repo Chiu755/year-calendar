@@ -26,6 +26,78 @@ const MOTIF_TAGS = {
   aurora: ["sky", "mountain", "light"]
 };
 
+const CULTURAL_PALETTES = {
+  CN: { gradient: ["#25080c", "#8f171c", "#12090a"], accent: "#f6c85f", secondary: "#e83b36", tags: ["civic", "celebration", "sun", "light"] },
+  US: { gradient: ["#101a34", "#4a2432", "#111316"], accent: "#6aa7ff", secondary: "#e85a63", tags: ["civic", "celebration", "sky"] },
+  JP: { gradient: ["#171318", "#4b1f2a", "#111214"], accent: "#f2eee6", secondary: "#d94a4d", tags: ["sun", "civic"] },
+  SG: { gradient: ["#151821", "#5b2530", "#111315"], accent: "#e85a63", secondary: "#f3f3f5", tags: ["civic", "celebration"] },
+  FR: { gradient: ["#101d3f", "#342742", "#4c2734"], accent: "#6aa7ff", secondary: "#e85a63", tags: ["civic", "celebration"] },
+  GB: { gradient: ["#111b32", "#482538", "#111316"], accent: "#7faee8", secondary: "#e65b5b", tags: ["civic"] },
+  CA: { gradient: ["#17161c", "#5d2630", "#111214"], accent: "#e85a63", secondary: "#f3f3f5", tags: ["civic", "botanical"] },
+  AU: { gradient: ["#101d34", "#263a54", "#111316"], accent: "#78aee8", secondary: "#d8b95b", tags: ["sky", "civic"] },
+  DE: { gradient: ["#151515", "#55302d", "#111111"], accent: "#d8b95b", secondary: "#d65345", tags: ["civic"] },
+  IT: { gradient: ["#10251f", "#4f2c31", "#111515"], accent: "#70bf75", secondary: "#e65b5b", tags: ["civic", "botanical"] },
+  ES: { gradient: ["#211619", "#63362a", "#111314"], accent: "#d8b95b", secondary: "#e65b5b", tags: ["sun", "civic"] },
+  KR: { gradient: ["#11192d", "#3d2f4b", "#111316"], accent: "#f3f3f5", secondary: "#d8555b", tags: ["civic", "sky"] },
+  TH: { gradient: ["#111b34", "#4d2844", "#111316"], accent: "#7fbbe8", secondary: "#e65b5b", tags: ["water", "celebration"] },
+  CH: { gradient: ["#151b27", "#4d2727", "#111314"], accent: "#e65b5b", secondary: "#f0f0f2", tags: ["mountain", "civic"] },
+  NO: { gradient: ["#101d34", "#4f2d38", "#101316"], accent: "#6da2cf", secondary: "#e65b5b", tags: ["winter", "civic"] },
+  MX: { gradient: ["#10251f", "#4f2c31", "#111515"], accent: "#70bf75", secondary: "#e85a63", tags: ["civic", "celebration"] },
+  BR: { gradient: ["#102622", "#465c2d", "#101516"], accent: "#77c98e", secondary: "#d8c070", tags: ["sun", "celebration"] },
+  IN: { gradient: ["#18251f", "#604026", "#111515"], accent: "#f0a24a", secondary: "#70bf75", tags: ["civic", "sun"] },
+  ZA: { gradient: ["#10251f", "#1f415a", "#111515"], accent: "#77c98e", secondary: "#d8b95b", tags: ["civic", "celebration"] },
+  NZ: { gradient: ["#101d34", "#293f5d", "#101316"], accent: "#78aee8", secondary: "#e85a63", tags: ["sky", "civic"] }
+};
+
+const OCCASION_PALETTES = [
+  [/christmas/i, { gradient: ["#101827", "#2d4436", "#111314"], accent: "#d8c070", secondary: "#d65345", tags: ["winter", "light"] }],
+  [/halloween/i, { gradient: ["#17121f", "#4b2d13", "#111113"], accent: "#f08a2d", secondary: "#8d65c5", tags: ["night", "playful"] }],
+  [/valentine/i, { gradient: ["#241525", "#643044", "#111214"], accent: "#e87a94", secondary: "#d7b56b", tags: ["botanical", "celebration"] }],
+  [/new year's day|new year's eve/i, { gradient: ["#151a2d", "#493456", "#111316"], accent: "#d6c070", secondary: "#78b8e6", tags: ["fireworks", "light"] }],
+  [/thanksgiving|harvest/i, { gradient: ["#211916", "#604026", "#111314"], accent: "#d8a05f", secondary: "#9bb06d", tags: ["harvest", "botanical"] }]
+];
+
+const COUNTRY_NAMES_ZH = {
+  INTL: "国际",
+  CN: "中国",
+  US: "美国",
+  JP: "日本",
+  SG: "新加坡",
+  FR: "法国",
+  GB: "英国",
+  CA: "加拿大",
+  AU: "澳大利亚",
+  DE: "德国",
+  IT: "意大利",
+  ES: "西班牙",
+  KR: "韩国",
+  TH: "泰国",
+  CH: "瑞士",
+  NO: "挪威",
+  MX: "墨西哥",
+  BR: "巴西",
+  IN: "印度",
+  ZA: "南非",
+  NZ: "新西兰"
+};
+
+const HOLIDAY_TYPE_LABELS = {
+  Public: "公众节日",
+  Bank: "银行假日",
+  School: "学校假日",
+  Authorities: "政府机关假日",
+  Optional: "可选假日",
+  Observance: "纪念日"
+};
+
+const PALETTE_ATMOSPHERES = [
+  "#2a1024", "#33131b", "#3a160f", "#38210f", "#2e2a12", "#1f3218", "#123025", "#103038",
+  "#102b44", "#14244b", "#1d1f4a", "#2a1d49", "#381c42", "#431b34", "#4a1f27", "#3c2a18",
+  "#24351f", "#17382d", "#163847", "#19304f", "#222b52", "#312650", "#44234a", "#512233",
+  "#552622", "#483316", "#394018", "#254521", "#18483a", "#174654", "#1d3c60", "#29345f",
+  "#3a2b5a", "#4b2851", "#5a2840", "#5a302d", "#4b3b22"
+];
+
 const DAY_INTROS = {
   "New Year's Day": "公历新年的第一天，用烟火和微光开启新一年的日历。",
   "Valentine's Day": "情人节，以玫瑰、书信和温柔心意纪念亲密关系。",
@@ -174,35 +246,131 @@ const FLOATING_RULES = [
   }
 ];
 
-const FALLBACK_THEMES = [
-  ["Fiji Day", "Fiji Day · 南太平洋的海风与旗色", "waterFlowers", ["#10293a", "#2c6470", "#101417"], "#75cce8", "#d8b95b"],
-  ["Monaco National Day", "Monaco National Day · 海岸城邦的红白光", "tricolor", ["#141a27", "#523039", "#111315"], "#e65b5b", "#f2f2f4"],
-  ["Liechtenstein National Day", "Liechtenstein National Day · 阿尔卑斯山间的蓝红夜", "mountainFlags", ["#111c34", "#4c2938", "#101316"], "#6da2cf", "#d8b95b"],
-  ["Tonga National Day", "Tonga National Day · 岛风与珊瑚海", "waterFlowers", ["#102434", "#315566", "#101417"], "#78c8e6", "#e85a63"],
-  ["Kiribati Independence Day", "Kiribati Independence Day · 海平线上的日出", "sunRibbons", ["#102437", "#60412b", "#101417"], "#f0b64d", "#6fc7e6"],
-  ["Nauru Independence Day", "Nauru Independence Day · 蓝海、星点与岛屿", "starfield", ["#101f35", "#263d5a", "#101316"], "#77bde8", "#d8c070"],
-  ["Palau Constitution Day", "Palau Constitution Day · 月色映着太平洋", "tanabata", ["#101b33", "#2e4770", "#101316"], "#9fc8ff", "#e6c86f"],
-  ["Samoa Independence Day", "Samoa Independence Day · 岛屿星光与红蓝旗影", "starfield", ["#111a34", "#543044", "#101316"], "#78aee8", "#e85a63"],
-  ["San Marino Civic Day", "San Marino Civic Day · 山城钟声与蓝白旗", "mountainFlags", ["#112138", "#334a62", "#101417"], "#7fbbe8", "#f0f0f2"],
-  ["Malta Republic Day", "Malta Republic Day · 石城海岸的红白晨光", "tricolor", ["#161a24", "#50302d", "#111314"], "#e65b5b", "#f3f0df"],
-  ["Cyprus Independence Day", "Cyprus Independence Day · 橄榄枝与地中海微光", "springBuds", ["#18251e", "#5a5634", "#111515"], "#91c47c", "#d8b95b"],
-  ["Belize Independence Day", "Belize Independence Day · 热带蓝与庆典鼓点", "sunRibbons", ["#102344", "#364f6c", "#101417"], "#6da2ff", "#e85a63"],
-  ["Cape Verde Independence Day", "Cape Verde Independence Day · 大西洋群岛的星与潮", "starfield", ["#111d34", "#263e5b", "#101316"], "#78bde8", "#d8c070"],
-  ["Saint Lucia Independence Day", "Saint Lucia Independence Day · 火山双峰与加勒比海", "mountainFlags", ["#102338", "#43505f", "#101417"], "#78c6e6", "#f0c95c"],
-  ["Barbados Independence Day", "Barbados Independence Day · 金蓝旗影与海风", "sunRibbons", ["#10223a", "#4f4c2b", "#101417"], "#d8b95b", "#78bde8"],
-  ["Botswana Day", "Botswana Day · 蓝白黑的草原清晨", "tricolor", ["#102434", "#304c5e", "#101417"], "#86c9e8", "#f3f3f5"],
-  ["Estonia Independence Day", "Estonia Independence Day · 北方蓝黑白的雪光", "snow", ["#101827", "#27364d", "#101214"], "#8fb8e8", "#f1f4f8"],
-  ["Georgia Independence Day", "Georgia Independence Day · 高加索山风与红白旗", "mountainFlags", ["#151b24", "#4d2b2d", "#111314"], "#e65b5b", "#f3f0df"],
-  ["Nepal Constitution Day", "Nepal Constitution Day · 喜马拉雅山影与旗色", "mountainFlags", ["#111c34", "#4f2d2d", "#101316"], "#d8555b", "#6da2cf"],
-  ["Laos National Day", "Laos National Day · 湄公河畔的红蓝圆月", "tanabata", ["#101b33", "#44344f", "#101316"], "#9fc8ff", "#d8555b"],
-  ["Qatar National Day", "Qatar National Day · 沙海边缘的酒红日光", "sunRibbons", ["#1a1620", "#573040", "#111214"], "#b95a72", "#d8c070"],
-  ["Oman National Day", "Oman National Day · 海湾风与红绿白旗", "tricolor", ["#12251e", "#50302d", "#111314"], "#70bf75", "#e65b5b"],
-  ["Mongolia Naadam", "Naadam · 草原、彩旗与夏日竞技", "mountainFlags", ["#102039", "#5c4227", "#101417"], "#6da2cf", "#f0b64d"],
-  ["Norway Constitution Day", "Norway Constitution Day · 五月旗海与峡湾蓝", "tricolor", ["#101d34", "#4f2d38", "#101316"], "#6da2cf", "#e65b5b"]
+const MONTH_MOODS = [
+  {
+    title: "Deep Winter Light",
+    zhMonth: "一月",
+    mood: "寒夜、雪光与岁初微光",
+    motif: "snow",
+    gradient: ["#101827", "#26374c", "#101214"],
+    accent: "#a9c9e8",
+    secondary: "#d9d9e5",
+    tags: ["seasonal", "winter", "light"]
+  },
+  {
+    title: "Early Spring Signal",
+    zhMonth: "二月",
+    mood: "早春枝芽、细雨和将醒未醒的空气",
+    motif: "springBuds",
+    gradient: ["#14251d", "#425643", "#111516"],
+    accent: "#92c982",
+    secondary: "#d8c070",
+    tags: ["seasonal", "spring", "botanical"]
+  },
+  {
+    title: "Spring Bud Field",
+    zhMonth: "三月",
+    mood: "昼夜渐平、花信渐浓与新绿漫开的田野",
+    motif: "springBuds",
+    gradient: ["#16251e", "#526141", "#111516"],
+    accent: "#a9d37f",
+    secondary: "#e6b6c8",
+    tags: ["seasonal", "spring", "botanical"]
+  },
+  {
+    title: "Clear Rain Garden",
+    zhMonth: "四月",
+    mood: "清明雨气、水面花影和暮春透明感",
+    motif: "waterFlowers",
+    gradient: ["#122735", "#346158", "#101518"],
+    accent: "#87c9b7",
+    secondary: "#c8d58f",
+    tags: ["seasonal", "spring", "water", "botanical"]
+  },
+  {
+    title: "Green Grain Rise",
+    zhMonth: "五月",
+    mood: "麦穗渐满、长昼初热和明亮绿意",
+    motif: "grain",
+    gradient: ["#1a271c", "#5d6639", "#121515"],
+    accent: "#bfd46f",
+    secondary: "#76b58a",
+    tags: ["seasonal", "harvest", "botanical"]
+  },
+  {
+    title: "Summer Water Pattern",
+    zhMonth: "六月",
+    mood: "夏日水纹、梅雨蓝绿和长昼里的潮湿光感",
+    motif: "waterFlowers",
+    gradient: ["#102735", "#2d6467", "#111518"],
+    accent: "#73d1c9",
+    secondary: "#d8b95b",
+    tags: ["seasonal", "summer", "water", "light"]
+  },
+  {
+    title: "High Summer Heatwave",
+    zhMonth: "七月",
+    mood: "盛夏热浪、莲叶水面和午后云雨",
+    motif: "sunRibbons",
+    gradient: ["#221a20", "#68412a", "#121314"],
+    accent: "#e89b42",
+    secondary: "#75bdd0",
+    tags: ["seasonal", "summer", "sun", "water"]
+  },
+  {
+    title: "Late Summer Grain",
+    zhMonth: "八月",
+    mood: "暑气渐散、初秋谷色和夜里的新凉",
+    motif: "grain",
+    gradient: ["#1d211a", "#615237", "#121414"],
+    accent: "#d6a95e",
+    secondary: "#88a06a",
+    tags: ["seasonal", "harvest", "autumn"]
+  },
+  {
+    title: "Autumn Grain Balance",
+    zhMonth: "九月",
+    mood: "秋分前后的谷物、露水和昼夜均衡",
+    motif: "grain",
+    gradient: ["#201d1b", "#635136", "#121414"],
+    accent: "#d8a95e",
+    secondary: "#8fa36b",
+    tags: ["seasonal", "harvest", "autumn"]
+  },
+  {
+    title: "Cold Dew Skyline",
+    zhMonth: "十月",
+    mood: "深秋冷露、霜色边缘和更清澈的夜空",
+    motif: "aurora",
+    gradient: ["#111c2b", "#30445a", "#101316"],
+    accent: "#91bfe6",
+    secondary: "#c5b06f",
+    tags: ["seasonal", "autumn", "sky", "light"]
+  },
+  {
+    title: "First Winter Window",
+    zhMonth: "十一月",
+    mood: "初冬窗光、浅寒空气和安静的蓝灰色",
+    motif: "candle",
+    gradient: ["#101b2b", "#253c50", "#101214"],
+    accent: "#84bde6",
+    secondary: "#d2d8e6",
+    tags: ["seasonal", "winter", "light"]
+  },
+  {
+    title: "Winter Solstice Glow",
+    zhMonth: "十二月",
+    mood: "冬光、雪意和长夜里慢慢回升的金色",
+    motif: "snow",
+    gradient: ["#11182a", "#273154", "#101214"],
+    accent: "#9dbaf0",
+    secondary: "#d6c071",
+    tags: ["seasonal", "winter", "light"]
+  }
 ];
 
-function createTheme({ title, caption, motif, gradient, accent, secondary, priority = 50, description, tags = [] }) {
-  return {
+function createTheme({ title, caption, motif, gradient, accent, secondary, priority = 50, description, tags = [], source = null }) {
+  const theme = {
     title,
     caption,
     description: description || inferThemeDescription(title, caption),
@@ -211,7 +379,43 @@ function createTheme({ title, caption, motif, gradient, accent, secondary, prior
     gradient,
     accent,
     secondary,
-    priority
+    priority,
+    source
+  };
+  return applyCulturalPalette(theme);
+}
+
+function applyCulturalPalette(theme) {
+  const text = `${theme.title} ${theme.caption}`.toLowerCase();
+  const countryPalette = theme.source?.countryCode ? CULTURAL_PALETTES[theme.source.countryCode] : null;
+  const occasionPalette = OCCASION_PALETTES.find(([pattern]) => pattern.test(text))?.[1];
+  const palette = occasionPalette || countryPalette;
+  if (!palette) return theme;
+
+  return {
+    ...theme,
+    gradient: palette.gradient,
+    accent: palette.accent,
+    secondary: palette.secondary,
+    tags: Array.from(new Set([...theme.tags, ...(palette.tags || [])]))
+  };
+}
+
+function applyPaletteAtmosphere(theme, date, index) {
+  const tint = PALETTE_ATMOSPHERES[(dayOfYearForTheme(date) + themeVariant(theme, PALETTE_ATMOSPHERES.length) + index * 7) % PALETTE_ATMOSPHERES.length];
+  const warmTint = PALETTE_ATMOSPHERES[(dayOfYearForTheme(date) * 3 + themeVariant(theme, PALETTE_ATMOSPHERES.length, 4)) % PALETTE_ATMOSPHERES.length];
+  const culturalWeight = theme.source?.countryCode || /christmas|halloween|valentine|thanksgiving/i.test(theme.title) ? 0.12 : 0.22;
+  const accentWeight = theme.source?.countryCode ? 0.1 : 0.18;
+
+  return {
+    ...theme,
+    gradient: [
+      mixHex(theme.gradient[0], tint, culturalWeight),
+      mixHex(mixHex(theme.gradient[1], tint, culturalWeight * 0.8), theme.accent, 0.08),
+      mixHex(theme.gradient[2], warmTint, culturalWeight * 0.55)
+    ],
+    accent: mixHex(theme.accent, tint, accentWeight),
+    secondary: mixHex(theme.secondary, warmTint, accentWeight * 0.85)
   };
 }
 
@@ -285,17 +489,77 @@ function seededJitter(seed, index) {
 }
 
 function fallbackTheme(date) {
-  const seed = seedForDate(date);
-  const item = FALLBACK_THEMES[seed % FALLBACK_THEMES.length];
+  const mood = MONTH_MOODS[date.getMonth()];
+  const nearbyTerm = nearestSolarTerm(date);
+  const hasNearbyTerm = nearbyTerm && nearbyTerm.distance <= 9;
+  const termWeight = hasNearbyTerm ? Math.max(0.2, (10 - nearbyTerm.distance) / 10 * 0.55) : 0;
+  const title = hasNearbyTerm ? `${mood.title} / ${nearbyTerm.title}` : mood.title;
+  const caption = hasNearbyTerm ? `${mood.title} · ${nearbyTerm.title}` : `${mood.title} · ${mood.zhMonth}气质`;
+  const description = seasonalFallbackDescription(mood, nearbyTerm);
+  const termTheme = hasNearbyTerm ? nearbyTerm.theme : null;
+
   return createTheme({
-    title: item[0],
-    caption: item[1],
-    motif: item[2],
-    gradient: item[3],
-    accent: item[4],
-    secondary: item[5],
-    priority: 30
+    title,
+    caption,
+    description,
+    motif: mood.motif,
+    gradient: termTheme ? blendGradient(mood.gradient, termTheme.gradient, termWeight) : mood.gradient,
+    accent: termTheme ? mixHex(mood.accent, termTheme.accent, termWeight) : mood.accent,
+    secondary: termTheme ? mixHex(mood.secondary, termTheme.secondary, termWeight) : mood.secondary,
+    priority: 30,
+    tags: [
+      ...mood.tags,
+      ...(termTheme ? termTheme.tags : []),
+      hasNearbyTerm ? "solar-nearby" : "month-mood"
+    ]
   });
+}
+
+function nearestSolarTerm(date) {
+  const year = date.getFullYear();
+  const target = startOfDay(date);
+  let nearest = null;
+
+  for (const candidateYear of [year - 1, year, year + 1]) {
+    for (const [termDate, title, caption, motif, gradient, accent, secondary] of SOLAR_TERMS) {
+      const candidateDate = dateFromMonthDay(candidateYear, termDate);
+      const diff = Math.round((target - candidateDate) / 86400000);
+      const distance = Math.abs(diff);
+      if (!nearest || distance < nearest.distance) {
+        nearest = {
+          title,
+          caption,
+          diff,
+          distance,
+          date: candidateDate,
+          theme: createTheme({ title, caption, motif, gradient, accent, secondary, priority: 95 })
+        };
+      }
+    }
+  }
+
+  return nearest;
+}
+
+function seasonalFallbackDescription(mood, nearbyTerm) {
+  if (nearbyTerm?.distance <= 9) {
+    const relation = nearbyTerm.diff < 0 ? "临近" : nearbyTerm.diff === 0 ? "正逢" : "刚过";
+    return `${mood.zhMonth}的季节主题，${relation}「${nearbyTerm.title}」，以${mood.mood}作为视觉来源。`;
+  }
+  return `${mood.zhMonth}的季节主题，以${mood.mood}作为视觉来源。`;
+}
+
+function dateFromMonthDay(year, value) {
+  const [month, day] = value.split("-").map(Number);
+  return new Date(year, month - 1, day);
+}
+
+function startOfDay(date) {
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+}
+
+function blendGradient(base, overlay, amount) {
+  return base.map((color, index) => mixHex(color, overlay[index] || color, amount));
 }
 
 function dateKey(date) {
@@ -314,20 +578,49 @@ function cachedHolidayThemes(date) {
   return rawThemes.map((theme) => createTheme({
     title: theme.title,
     caption: theme.caption,
-    description: theme.description,
+    description: displayDescriptionForSource(theme),
     motif: theme.motif,
     gradient: theme.gradient,
     accent: theme.accent,
     secondary: theme.secondary,
     priority: theme.priority,
-    tags: theme.tags || []
+    tags: theme.tags || [],
+    source: theme.source || null
   }));
 }
 
-function rankDailyThemes(date) {
+function displayDescriptionForSource(theme) {
+  if (!theme.source) return theme.description;
+  if (theme.source.provider === "Curated Cultural Observances") return theme.description;
+
+  const country = theme.source.zhName || COUNTRY_NAMES_ZH[theme.source.countryCode] || theme.source.countryName || "当地";
+  const type = holidayTypeLabelFromSource(theme.source);
+  const localPart = theme.source.localName && theme.source.localName !== theme.title ? `，当地名称是「${theme.source.localName}」` : "";
+  return `${country}的${type}${localPart}。`;
+}
+
+function holidayTypeLabelFromSource(source) {
+  if (Array.isArray(source?.typeLabels) && source.typeLabels[0]) return source.typeLabels[0];
+  return primaryHolidayTypeLabel(source?.types);
+}
+
+function primaryHolidayTypeLabel(types = []) {
+  const type = Array.isArray(types) ? types.find((value) => HOLIDAY_TYPE_LABELS[value]) : null;
+  return type ? HOLIDAY_TYPE_LABELS[type] : "节日";
+}
+
+function diversityPenalty(theme, avoidMotifs = []) {
+  const recentIndex = avoidMotifs.lastIndexOf(theme.motif);
+  if (recentIndex === -1) return 0;
+  const recency = avoidMotifs.length - recentIndex;
+  return Math.max(5, 18 - recency * 2);
+}
+
+function rankDailyThemes(date, options = {}) {
   const md = monthDay(date);
   const candidates = [];
   const cachedThemes = cachedHolidayThemes(date);
+  const avoidMotifs = Array.isArray(options.avoidMotifs) ? options.avoidMotifs : [];
 
   for (const [termDate, title, caption, motif, gradient, accent, secondary] of SOLAR_TERMS) {
     if (md === termDate) {
@@ -357,12 +650,15 @@ function rankDailyThemes(date) {
 
   const seed = seedForDate(date);
   return candidates
-    .map((theme, index) => ({
-      theme,
-      score: theme.priority + seededJitter(seed, index) * 6,
-      rankSeed: seed,
-      sourceIndex: index
-    }))
+    .map((theme, index) => {
+      const variedTheme = applyPaletteAtmosphere(theme, date, index);
+      return {
+        theme: variedTheme,
+        score: theme.priority + seededJitter(seed, index) * 6 - diversityPenalty(theme, avoidMotifs),
+        rankSeed: seed,
+        sourceIndex: index
+      };
+    })
     .sort((a, b) => b.score - a.score)
     .map((entry, rank) => ({
       ...entry,
@@ -382,6 +678,8 @@ function drawDailyThemeBackground(ctx, theme, width, height) {
   ctx.fillStyle = bg;
   ctx.fillRect(0, 0, width, height);
 
+  drawAtmosphericColorField(ctx, theme, width, height);
+
   ctx.fillStyle = THEME_CONFIG.overlay;
   ctx.fillRect(0, 0, width, height);
 
@@ -398,15 +696,87 @@ function drawDailyThemeBackground(ctx, theme, width, height) {
   drawThemeDecorations(ctx, theme, width, height);
 }
 
+function drawAtmosphericColorField(ctx, theme, width, height) {
+  const variant = themeVariant(theme, 7, 8);
+
+  const topWash = ctx.createRadialGradient(width * 0.22, height * 0.08, 0, width * 0.22, height * 0.08, height * 0.58);
+  topWash.addColorStop(0, hexToRgba(theme.accent, 0.22));
+  topWash.addColorStop(0.52, hexToRgba(theme.gradient[1], 0.08));
+  topWash.addColorStop(1, "rgba(0,0,0,0)");
+  ctx.fillStyle = topWash;
+  ctx.fillRect(0, 0, width, height);
+
+  const lowerWash = ctx.createRadialGradient(width * 0.78, height * 0.88, 0, width * 0.78, height * 0.88, height * 0.62);
+  lowerWash.addColorStop(0, hexToRgba(theme.secondary, 0.18));
+  lowerWash.addColorStop(0.58, hexToRgba(theme.gradient[0], 0.07));
+  lowerWash.addColorStop(1, "rgba(0,0,0,0)");
+  ctx.fillStyle = lowerWash;
+  ctx.fillRect(0, 0, width, height);
+
+  for (let band = 0; band < 3; band++) {
+    const y = 180 + band * 880 + variant * 18;
+    const ribbon = ctx.createLinearGradient(0, y, width, y + 260);
+    ribbon.addColorStop(0, "rgba(0,0,0,0)");
+    ribbon.addColorStop(0.28, hexToRgba(band % 2 ? theme.secondary : theme.accent, 0.045));
+    ribbon.addColorStop(0.5, hexToRgba(theme.gradient[1], 0.035));
+    ribbon.addColorStop(0.72, hexToRgba(band % 2 ? theme.accent : theme.secondary, 0.045));
+    ribbon.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.fillStyle = ribbon;
+    ctx.save();
+    ctx.translate(width / 2, y);
+    ctx.rotate((-5 + band * 4 + variant) * Math.PI / 180);
+    ctx.fillRect(-width, -90, width * 2, 260);
+    ctx.restore();
+  }
+
+  const vignette = ctx.createLinearGradient(0, 0, 0, height);
+  vignette.addColorStop(0, "rgba(0,0,0,0.18)");
+  vignette.addColorStop(0.36, "rgba(0,0,0,0)");
+  vignette.addColorStop(0.72, "rgba(0,0,0,0)");
+  vignette.addColorStop(1, "rgba(0,0,0,0.34)");
+  ctx.fillStyle = vignette;
+  ctx.fillRect(0, 0, width, height);
+}
+
 function drawThemeCaption(ctx, theme, x, y) {
   ctx.save();
   ctx.textAlign = "center";
   ctx.textBaseline = "alphabetic";
-  ctx.fillStyle = "rgba(225,225,230,0.82)";
-  drawFittedText(ctx, theme.title, x, y - 10, 980, 35, 25);
-  ctx.fillStyle = "rgba(215,215,219,0.64)";
-  drawFittedText(ctx, theme.description, x, y + 34, 1040, 24, 18);
+
+  const meta = themeMetaLine(theme);
+  if (meta) {
+    ctx.fillStyle = hexToRgba(theme.accent, 0.68);
+    drawFittedText(ctx, meta, x, y - 58, 860, 18, 14);
+    drawCaptionRule(ctx, theme, x, y - 42);
+  }
+
+  ctx.fillStyle = "rgba(242,242,246,0.86)";
+  const titleSize = /^[\u4e00-\u9fff]{2,6}$/.test(theme.title) ? 40 : 36;
+  drawFittedText(ctx, theme.title, x, y - 6, 980, titleSize, 25);
+
+  ctx.fillStyle = "rgba(215,215,219,0.66)";
+  drawFittedText(ctx, theme.description, x, y + 39, 1040, 23, 17);
   ctx.restore();
+}
+
+function themeMetaLine(theme) {
+  if (theme.source?.countryName) {
+    const country = theme.source.zhName || COUNTRY_NAMES_ZH[theme.source.countryCode] || theme.source.countryName;
+    return `${country} · ${holidayTypeLabelFromSource(theme.source)}`;
+  }
+  if (hasTag(theme, "seasonal")) return hasTag(theme, "solar-nearby") ? "Seasonal Mood · Solar Term Nearby" : "Seasonal Mood";
+  if (/^[\u4e00-\u9fff]{2,6}$/.test(theme.title)) return "Solar Term · China";
+  if (hasTag(theme, "civic")) return "Civic Holiday";
+  if (hasTag(theme, "celebration")) return "Festival Day";
+  return "";
+}
+
+function drawCaptionRule(ctx, theme, x, y) {
+  strokePath(ctx, [[x - 265, y], [x - 46, y]], theme.secondary, 1.4, 0.15);
+  strokePath(ctx, [[x + 46, y], [x + 265, y]], theme.secondary, 1.4, 0.15);
+  drawDiamond(ctx, x, y, 6, theme.accent, 0.28);
+  drawDiamond(ctx, x - 32, y, 4, theme.secondary, 0.18);
+  drawDiamond(ctx, x + 32, y, 4, theme.secondary, 0.18);
 }
 
 function drawThemeDecorations(ctx, theme, width, height) {
@@ -462,6 +832,7 @@ function drawThemeDecorations(ctx, theme, width, height) {
     default:
       drawAurora(ctx, theme, width, height);
   }
+  drawCulturalIllustration(ctx, theme, width, height);
   drawSemanticOrnaments(ctx, theme, width, height);
 }
 
@@ -481,6 +852,29 @@ function hexToRgba(hex, alpha) {
   const g = parseInt(value.slice(2, 4), 16);
   const b = parseInt(value.slice(4, 6), 16);
   return `rgba(${r},${g},${b},${alpha})`;
+}
+
+function hexToRgb(hex) {
+  const value = hex.replace("#", "");
+  return [
+    parseInt(value.slice(0, 2), 16),
+    parseInt(value.slice(2, 4), 16),
+    parseInt(value.slice(4, 6), 16)
+  ];
+}
+
+function rgbToHex([r, g, b]) {
+  const channels = [r, g, b].map((value) => {
+    const channel = Math.max(0, Math.min(255, Math.round(value)));
+    return channel.toString(16).padStart(2, "0");
+  });
+  return `#${channels.join("")}`;
+}
+
+function mixHex(base, overlay, amount) {
+  const a = hexToRgb(base);
+  const b = hexToRgb(overlay);
+  return rgbToHex(a.map((value, index) => value * (1 - amount) + b[index] * amount));
 }
 
 function drawSoftGlow(ctx, x, y, r, color, alpha) {
@@ -553,6 +947,7 @@ function drawSemanticOrnaments(ctx, theme, width, height) {
   if (hasTag(theme, "island")) drawIslandFronds(ctx, theme, width, height, variant);
   if (hasTag(theme, "sun")) drawSolarHalos(ctx, theme, width, height, variant);
   if (hasTag(theme, "light")) drawSmallLanternGlow(ctx, theme, width, height, variant);
+  drawSignatureOrnaments(ctx, theme, width, height, variant);
 }
 
 function hasTag(theme, tag) {
@@ -751,6 +1146,299 @@ function drawSmallLanternGlow(ctx, theme, width, height, variant) {
     const y = i % 2 ? 520 + ((i * 151) % 620) : height - 690 + ((i * 127) % 430);
     drawSoftGlow(ctx, x, y, 42 + (i % 3) * 12, i % 2 ? theme.secondary : theme.accent, 0.035);
     drawEllipse(ctx, x, y, 5, 14, 0, i % 2 ? theme.secondary : theme.accent, 0.08);
+  }
+}
+
+function drawCulturalIllustration(ctx, theme, width, height) {
+  const code = theme.source?.countryCode;
+  const text = `${theme.title} ${theme.caption}`.toLowerCase();
+
+  if (code === "CN") {
+    drawChinaRedGoldEmblem(ctx, theme, width, height);
+    return;
+  }
+  if (code === "JP") {
+    drawRisingSunSeal(ctx, theme, width, height);
+    return;
+  }
+  if (/christmas/i.test(text)) {
+    drawEvergreenIllustration(ctx, theme, width, height);
+    return;
+  }
+  if (/halloween/i.test(text)) {
+    drawNightFestivalIllustration(ctx, theme, width, height);
+    return;
+  }
+  if (hasTag(theme, "civic")) {
+    drawFlagColorSweep(ctx, theme, width, height);
+    return;
+  }
+  if (hasTag(theme, "water") || hasTag(theme, "island")) {
+    drawCoastalSeal(ctx, theme, width, height);
+  }
+}
+
+function drawChinaRedGoldEmblem(ctx, theme, width, height) {
+  for (const [cx, cy, scale] of [[width / 2, 210, 1], [width / 2, height - 220, 0.92]]) {
+    drawSoftGlow(ctx, cx, cy, 150 * scale, theme.accent, 0.055);
+    for (let ring = 0; ring < 4; ring++) {
+      ctx.save();
+      ctx.strokeStyle = hexToRgba(theme.accent, 0.075 - ring * 0.008);
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.arc(cx, cy, (48 + ring * 30) * scale, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.restore();
+    }
+    drawStar(ctx, cx, cy, 22 * scale, 9 * scale, theme.accent, 0.22);
+    for (let i = 0; i < 4; i++) {
+      const angle = -0.9 + i * 0.28;
+      drawStar(ctx, cx + Math.cos(angle) * 62 * scale, cy + Math.sin(angle) * 50 * scale, 9 * scale, 4 * scale, theme.accent, 0.16);
+    }
+  }
+  for (const y of [138, height - 130]) {
+    strokePath(ctx, [[70, y], [260, y - 38, 420, y + 34, 610, y - 10], [805, y - 50, 980, y + 30, width - 70, y - 6]], theme.secondary, 5, 0.14);
+    strokePath(ctx, [[92, y + 28], [280, y - 6, 450, y + 56, 628, y + 20], [830, y - 12, 996, y + 52, width - 92, y + 18]], theme.accent, 3, 0.12);
+  }
+}
+
+function drawRisingSunSeal(ctx, theme, width, height) {
+  for (const [cx, cy] of [[width / 2, 230], [width / 2, height - 235]]) {
+    drawSoftGlow(ctx, cx, cy, 128, theme.secondary, 0.04);
+    drawEllipse(ctx, cx, cy, 54, 54, 0, theme.secondary, 0.13);
+    for (let i = 0; i < 18; i++) {
+      const angle = (Math.PI * 2 * i) / 18;
+      strokePath(ctx, [[cx + Math.cos(angle) * 72, cy + Math.sin(angle) * 72], [cx + Math.cos(angle) * 126, cy + Math.sin(angle) * 126]], theme.accent, 2, 0.055);
+    }
+  }
+}
+
+function drawFlagColorSweep(ctx, theme, width, height) {
+  const bands = [
+    [theme.accent, 0],
+    ["#f3f3f5", 1],
+    [theme.secondary, 2]
+  ];
+  for (const [color, index] of bands) {
+    const y = 135 + index * 38;
+    strokePath(ctx, [[70, y], [260, y - 54, 440, y + 48, 620, y - 4], [830, y - 58, 990, y + 40, width - 70, y - 8]], color, 4, index === 1 ? 0.08 : 0.14);
+    const bottomY = height - 150 - index * 36;
+    strokePath(ctx, [[80, bottomY], [285, bottomY - 48, 460, bottomY + 44, 646, bottomY - 2], [830, bottomY - 54, 990, bottomY + 38, width - 80, bottomY - 6]], color, 4, index === 1 ? 0.07 : 0.12);
+  }
+}
+
+function drawEvergreenIllustration(ctx, theme, width, height) {
+  for (const [baseX, baseY, side] of [[85, 380, 1], [width - 85, 380, -1], [95, height - 405, 1], [width - 95, height - 405, -1]]) {
+    for (let i = 0; i < 7; i++) {
+      const x = baseX + side * (i * 26);
+      const y = baseY + i * 8;
+      strokePath(ctx, [[x, y], [x + side * 82, y - 42]], i % 2 ? theme.secondary : theme.accent, 2, 0.09);
+      drawEllipse(ctx, x + side * 38, y - 18, 5, 18, side * 0.72, theme.secondary, 0.075);
+    }
+  }
+}
+
+function drawNightFestivalIllustration(ctx, theme, width, height) {
+  drawSoftGlow(ctx, width / 2, 235, 130, theme.accent, 0.04);
+  for (let i = 0; i < 12; i++) {
+    const x = 90 + ((i * 113) % (width - 180));
+    const y = i % 2 ? 335 + (i % 4) * 32 : height - 360 + (i % 3) * 28;
+    drawEllipse(ctx, x, y, 11 + (i % 3) * 4, 17 + (i % 4) * 4, 0, theme.accent, 0.08);
+    strokePath(ctx, [[x, y - 18], [x + 8, y - 34]], theme.secondary, 2, 0.08);
+  }
+}
+
+function drawCoastalSeal(ctx, theme, width, height) {
+  for (const [cx, cy] of [[width / 2, 230], [width / 2, height - 230]]) {
+    drawSoftGlow(ctx, cx, cy, 132, theme.secondary, 0.035);
+    for (let i = 0; i < 4; i++) {
+      strokePath(ctx, [[cx - 110, cy + i * 18], [cx - 34, cy - 28 + i * 10, cx + 36, cy + 30 + i * 8, cx + 110, cy - 6 + i * 12]], i % 2 ? theme.secondary : theme.accent, 2, 0.08);
+    }
+  }
+}
+
+function drawSignatureOrnaments(ctx, theme, width, height, variant) {
+  if (hasTag(theme, "civic")) drawCeremonialMedallions(ctx, theme, width, height, variant);
+  if (hasTag(theme, "celebration")) drawFoldedPaperFans(ctx, theme, width, height, variant);
+  if (hasTag(theme, "water") || hasTag(theme, "island")) drawTideGlyphs(ctx, theme, width, height, variant);
+  if (hasTag(theme, "botanical") || hasTag(theme, "harvest")) drawPressedSprigs(ctx, theme, width, height, variant);
+  if (hasTag(theme, "sky") || hasTag(theme, "light")) drawLuminousPearls(ctx, theme, width, height, variant);
+  if (hasTag(theme, "winter")) drawGlassBands(ctx, theme, width, height, variant);
+  if (hasTag(theme, "memorial")) drawRemembranceStems(ctx, theme, width, height, variant);
+  if (hasTag(theme, "culture")) drawCulturalGlyphs(ctx, theme, width, height, variant);
+}
+
+function drawCulturalGlyphs(ctx, theme, width, height, variant) {
+  const text = `${theme.title} ${theme.caption}`.toLowerCase();
+  if (/book|education|teacher|language|poetry/.test(text)) drawBookGlyphs(ctx, theme, width, height, variant);
+  if (/music|jazz/.test(text)) drawSoundGlyphs(ctx, theme, width, height, variant);
+  if (/photo|television/.test(text)) drawFrameGlyphs(ctx, theme, width, height, variant);
+  if (/coffee|tea|food/.test(text)) drawSteamGlyphs(ctx, theme, width, height, variant);
+  if (/peace|human rights|tolerance|friendship|kindness/.test(text)) drawPeaceGlyphs(ctx, theme, width, height, variant);
+}
+
+function drawBookGlyphs(ctx, theme, width, height, variant) {
+  for (const [cx, cy] of [[145, 430], [width - 145, 430], [170, height - 430], [width - 170, height - 430]]) {
+    ctx.save();
+    ctx.strokeStyle = hexToRgba(theme.accent, 0.08);
+    ctx.lineWidth = 2;
+    roundRect(ctx, cx - 30, cy - 22, 60, 44, 5);
+    ctx.stroke();
+    strokePath(ctx, [[cx, cy - 20], [cx, cy + 22]], theme.secondary, 1.5, 0.08);
+    for (let i = 0; i < 3; i++) {
+      strokePath(ctx, [[cx - 21, cy - 10 + i * 10], [cx - 6, cy - 10 + i * 10]], theme.accent, 1, 0.075);
+      strokePath(ctx, [[cx + 6, cy - 10 + i * 10], [cx + 21, cy - 10 + i * 10]], theme.secondary, 1, 0.075);
+    }
+    ctx.restore();
+  }
+}
+
+function drawSoundGlyphs(ctx, theme, width, height, variant) {
+  for (const baseY of [390 + variant * 5, height - 410 - variant * 4]) {
+    for (let i = 0; i < 18; i++) {
+      const x = 95 + i * ((width - 190) / 17);
+      const amp = 14 + ((i + variant) % 5) * 7;
+      strokePath(ctx, [[x, baseY - amp], [x, baseY + amp]], i % 2 ? theme.secondary : theme.accent, 2, 0.065);
+    }
+  }
+}
+
+function drawFrameGlyphs(ctx, theme, width, height, variant) {
+  for (const [x, y] of [[120, 405], [width - 240, 405], [145, height - 470], [width - 265, height - 470]]) {
+    ctx.save();
+    ctx.strokeStyle = hexToRgba(theme.secondary, 0.075);
+    ctx.lineWidth = 2;
+    roundRect(ctx, x, y, 120, 78, 8);
+    ctx.stroke();
+    dot(ctx, x + 92, y + 22, 5, theme.accent, 0.08);
+    drawEllipse(ctx, x + 58, y + 40, 18, 18, 0, theme.accent, 0.055);
+    ctx.restore();
+  }
+}
+
+function drawSteamGlyphs(ctx, theme, width, height, variant) {
+  for (const [cx, cy] of [[130, 430], [width - 130, 430], [165, height - 430], [width - 165, height - 430]]) {
+    drawEllipse(ctx, cx, cy + 34, 38, 11, 0, theme.secondary, 0.055);
+    for (let i = 0; i < 3; i++) {
+      strokePath(ctx, [[cx - 22 + i * 22, cy + 12], [cx - 30 + i * 22, cy - 22, cx - 12 + i * 24, cy - 34, cx - 20 + i * 24, cy - 62]], theme.accent, 2, 0.075);
+    }
+  }
+}
+
+function drawPeaceGlyphs(ctx, theme, width, height, variant) {
+  for (const [cx, cy] of [[width / 2, 250], [width / 2, height - 260]]) {
+    ctx.save();
+    ctx.strokeStyle = hexToRgba(theme.accent, 0.08);
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(cx, cy, 52, 0, Math.PI * 2);
+    ctx.stroke();
+    strokePath(ctx, [[cx, cy - 52], [cx, cy + 52]], theme.secondary, 2, 0.08);
+    strokePath(ctx, [[cx, cy + 8], [cx - 36, cy + 42]], theme.secondary, 2, 0.08);
+    strokePath(ctx, [[cx, cy + 8], [cx + 36, cy + 42]], theme.secondary, 2, 0.08);
+    ctx.restore();
+  }
+}
+
+function drawCeremonialMedallions(ctx, theme, width, height, variant) {
+  const anchors = [
+    [width / 2, 205],
+    [width / 2, height - 235]
+  ];
+  for (const [cx, cy] of anchors) {
+    for (let ring = 0; ring < 3; ring++) {
+      ctx.save();
+      ctx.strokeStyle = hexToRgba(ring % 2 ? theme.secondary : theme.accent, 0.05 + ring * 0.018);
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.arc(cx, cy, 52 + ring * 27 + variant, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.restore();
+    }
+    for (let i = 0; i < 18; i++) {
+      const angle = (Math.PI * 2 * i) / 18;
+      const r = 86 + (i % 2) * 14;
+      drawDiamond(ctx, cx + Math.cos(angle) * r, cy + Math.sin(angle) * r, 4 + (i % 3), i % 2 ? theme.secondary : theme.accent, 0.07);
+    }
+  }
+}
+
+function drawFoldedPaperFans(ctx, theme, width, height, variant) {
+  const fans = [
+    [150, 400, 1],
+    [width - 150, 400, -1],
+    [190, height - 420, 1],
+    [width - 190, height - 420, -1]
+  ];
+  for (const [cx, cy, side] of fans) {
+    for (let fold = 0; fold < 7; fold++) {
+      const angle = side * (-0.72 + fold * 0.24);
+      strokePath(ctx, [[cx, cy], [cx + Math.cos(angle) * 78, cy + Math.sin(angle) * 78]], fold % 2 ? theme.secondary : theme.accent, 2, 0.085);
+    }
+    ctx.save();
+    ctx.strokeStyle = hexToRgba(theme.accent, 0.075);
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(cx, cy, 78, side > 0 ? -0.72 : Math.PI - 0.72, side > 0 ? 0.72 : Math.PI + 0.72);
+    ctx.stroke();
+    ctx.restore();
+  }
+}
+
+function drawTideGlyphs(ctx, theme, width, height, variant) {
+  for (const base of [380, height - 465]) {
+    for (let i = 0; i < 9; i++) {
+      const cx = 120 + ((i * 143 + variant * 29) % (width - 240));
+      const cy = base + (i % 3) * 26;
+      ctx.save();
+      ctx.strokeStyle = hexToRgba(i % 2 ? theme.secondary : theme.accent, 0.07);
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.arc(cx, cy, 16 + (i % 4) * 4, Math.PI * 0.1, Math.PI * 1.78);
+      ctx.stroke();
+      ctx.restore();
+      dot(ctx, cx + 22, cy - 3, 2.5, theme.secondary, 0.08);
+    }
+  }
+}
+
+function drawPressedSprigs(ctx, theme, width, height, variant) {
+  for (const [baseX, baseY, side] of [[128, 510, 1], [width - 128, 510, -1], [142, height - 520, 1], [width - 142, height - 520, -1]]) {
+    strokePath(ctx, [[baseX, baseY], [baseX + side * 82, baseY - 76, baseX + side * 126, baseY + 34, baseX + side * 188, baseY - 42]], theme.accent, 2, 0.08);
+    for (let i = 0; i < 6; i++) {
+      const x = baseX + side * (32 + i * 25);
+      const y = baseY - 24 + ((i + variant) % 3) * 22;
+      drawEllipse(ctx, x, y, 5 + (i % 2), 15 + (i % 3) * 3, side * (i % 2 ? 0.72 : -0.42), i % 2 ? theme.secondary : theme.accent, 0.075);
+    }
+  }
+}
+
+function drawLuminousPearls(ctx, theme, width, height, variant) {
+  for (let arc = 0; arc < 2; arc++) {
+    const cy = arc === 0 ? 315 : height - 330;
+    for (let i = 0; i < 14; i++) {
+      const t = i / 13;
+      const x = 135 + t * (width - 270);
+      const y = cy + Math.sin(t * Math.PI * 2 + variant) * 22;
+      drawSoftGlow(ctx, x, y, 16 + (i % 3) * 5, i % 2 ? theme.secondary : theme.accent, 0.026);
+      dot(ctx, x, y, 2.2 + (i % 3) * 0.8, "#ffffff", 0.1);
+    }
+  }
+}
+
+function drawGlassBands(ctx, theme, width, height, variant) {
+  for (const y of [430 + variant * 3, height - 450 - variant * 2]) {
+    for (let i = 0; i < 4; i++) {
+      strokePath(ctx, [[84, y + i * 22], [300, y - 28 + i * 18, 520, y + 34 + i * 10, 700, y - 10 + i * 18], [900, y - 48 + i * 12, 1040, y + 30 + i * 10, width - 84, y - 4 + i * 18]], "#f3f7ff", 1.5, 0.042 + i * 0.01);
+    }
+  }
+}
+
+function drawRemembranceStems(ctx, theme, width, height, variant) {
+  const stems = [[96, height - 705, 1], [width - 96, height - 705, -1], [118, 620, 1], [width - 118, 620, -1]];
+  for (const [x, y, side] of stems) {
+    strokePath(ctx, [[x, y + 80], [x + side * 28, y + 20, x + side * 12, y - 38, x + side * 48, y - 82]], theme.secondary, 2, 0.075);
+    flower(ctx, x + side * 50, y - 92, 22 + (variant % 3) * 3, theme.accent, theme.secondary, 0.1, 5);
   }
 }
 

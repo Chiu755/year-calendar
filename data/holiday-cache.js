@@ -1,7 +1,17 @@
 window.YearCalendarHolidayCache = {
   "version": 1,
-  "generatedAt": "2026-06-05T09:16:36.859Z",
+  "generatedAt": "2026-06-05T12:30:01.522Z",
   "source": "https://date.nager.at/api/v3/PublicHolidays/{year}/{countryCode}",
+  "sources": [
+    {
+      "name": "Nager.Date Public Holidays",
+      "url": "https://date.nager.at/api/v3/PublicHolidays/{year}/{countryCode}"
+    },
+    {
+      "name": "Curated Cultural Observances",
+      "count": 31
+    }
+  ],
   "window": {
     "start": "2026-06-05",
     "end": "2027-01-31",
@@ -132,19 +142,52 @@ window.YearCalendarHolidayCache = {
     ]
   },
   "days": {
+    "2026-06-05": [
+      {
+        "title": "World Environment Day",
+        "caption": "World Environment Day · 世界环境日",
+        "description": "联合国环境日，关注生态、城市与地球未来。",
+        "motif": "aurora",
+        "gradient": [
+          "#102622",
+          "#2f5c4c",
+          "#101516"
+        ],
+        "accent": "#77c98e",
+        "secondary": "#75bdd8",
+        "priority": 74,
+        "tags": [
+          "culture",
+          "international",
+          "botanical",
+          "water"
+        ],
+        "source": {
+          "provider": "Curated Cultural Observances",
+          "countryCode": "INTL",
+          "countryName": "International",
+          "zhName": "国际",
+          "localName": "世界环境日",
+          "typeLabels": [
+            "文化日"
+          ]
+        },
+        "score": 607
+      }
+    ],
     "2026-06-06": [
       {
         "title": "Memorial Day",
         "caption": "Memorial Day · 현충일",
-        "description": "韩国的公共节日，当地名称是「현충일」，类型为 Public。",
+        "description": "韩国的公众节日，当地名称是「현충일」。",
         "motif": "petals",
         "gradient": [
-          "#241525",
-          "#643044",
-          "#111214"
+          "#11192d",
+          "#3d2f4b",
+          "#111316"
         ],
-        "accent": "#e87a94",
-        "secondary": "#d7b56b",
+        "accent": "#f3f3f5",
+        "secondary": "#d8555b",
         "priority": 68,
         "tags": [
           "botanical",
@@ -155,8 +198,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "KR",
           "countryName": "South Korea",
           "localName": "현충일",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 304
@@ -164,16 +207,47 @@ window.YearCalendarHolidayCache = {
     ],
     "2026-06-08": [
       {
+        "title": "World Oceans Day",
+        "caption": "World Oceans Day · 世界海洋日",
+        "description": "关注海洋、潮汐与蓝色星球的国际日。",
+        "motif": "waterFlowers",
+        "gradient": [
+          "#0c2134",
+          "#225a6a",
+          "#101418"
+        ],
+        "accent": "#70cce8",
+        "secondary": "#8bd0b6",
+        "priority": 76,
+        "tags": [
+          "culture",
+          "international",
+          "water",
+          "island"
+        ],
+        "source": {
+          "provider": "Curated Cultural Observances",
+          "countryCode": "INTL",
+          "countryName": "International",
+          "zhName": "国际",
+          "localName": "世界海洋日",
+          "typeLabels": [
+            "文化日"
+          ]
+        },
+        "score": 623
+      },
+      {
         "title": "King's Birthday",
         "caption": "King's Birthday · Australia",
-        "description": "澳大利亚的公共节日，类型为 Public。",
+        "description": "澳大利亚的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#101d34",
+          "#263a54",
+          "#111316"
         ],
-        "accent": "#e2534f",
+        "accent": "#78aee8",
         "secondary": "#d8b95b",
         "priority": 67,
         "tags": [
@@ -185,8 +259,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "AU",
           "countryName": "Australia",
           "localName": "King's Birthday",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 310
@@ -196,15 +270,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Day of La Rioja",
         "caption": "Day of La Rioja · Día de La Rioja",
-        "description": "西班牙的公共节日，当地名称是「Día de La Rioja」，类型为 Public。",
+        "description": "西班牙的公众节日，当地名称是「Día de La Rioja」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#211619",
+          "#63362a",
+          "#111314"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#d8b95b",
+        "secondary": "#e65b5b",
         "priority": 62,
         "tags": [
           "civic",
@@ -215,8 +289,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "ES",
           "countryName": "Spain",
           "localName": "Día de La Rioja",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 200
@@ -224,15 +298,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Day of Murcia",
         "caption": "Day of Murcia · Día de la Región de Murcia",
-        "description": "西班牙的公共节日，当地名称是「Día de la Región de Murcia」，类型为 Public。",
+        "description": "西班牙的公众节日，当地名称是「Día de la Región de Murcia」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#211619",
+          "#63362a",
+          "#111314"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#d8b95b",
+        "secondary": "#e65b5b",
         "priority": 62,
         "tags": [
           "civic",
@@ -243,8 +317,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "ES",
           "countryName": "Spain",
           "localName": "Día de la Región de Murcia",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 200
@@ -254,15 +328,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "World Cup Bank Holiday",
         "caption": "World Cup Bank Holiday · United Kingdom",
-        "description": "英国的公共节日，类型为 Public。",
+        "description": "英国的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#111b32",
+          "#482538",
+          "#111316"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#7faee8",
+        "secondary": "#e65b5b",
         "priority": 62,
         "tags": [
           "civic",
@@ -273,8 +347,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "GB",
           "countryName": "United Kingdom",
           "localName": "World Cup Bank Holiday",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 192
@@ -284,14 +358,14 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Youth Day",
         "caption": "Youth Day · South Africa",
-        "description": "南非的公共节日，类型为 Public。",
+        "description": "南非的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#10251f",
+          "#1f415a",
+          "#111515"
         ],
-        "accent": "#e2534f",
+        "accent": "#77c98e",
         "secondary": "#d8b95b",
         "priority": 67,
         "tags": [
@@ -303,8 +377,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "ZA",
           "countryName": "South Africa",
           "localName": "Youth Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 280
@@ -314,15 +388,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Dragon Boat Festival",
         "caption": "Dragon Boat Festival · 端午节",
-        "description": "中国的公共节日，当地名称是「端午节」，类型为 Public。",
+        "description": "中国的公众节日，当地名称是「端午节」。",
         "motif": "waterFlowers",
         "gradient": [
-          "#0d2836",
-          "#1d5a64",
-          "#101518"
+          "#25080c",
+          "#8f171c",
+          "#12090a"
         ],
-        "accent": "#70d6d0",
-        "secondary": "#f2b8c6",
+        "accent": "#f6c85f",
+        "secondary": "#e83b36",
         "priority": 91,
         "tags": [
           "water",
@@ -334,8 +408,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CN",
           "countryName": "China",
           "localName": "端午节",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 872
@@ -343,11 +417,11 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Juneteenth National Independence Day",
         "caption": "Juneteenth National Independence Day · United States",
-        "description": "美国的公共节日，类型为 Public, Bank。",
+        "description": "美国的公众节日。",
         "motif": "fireworks",
         "gradient": [
           "#101a34",
-          "#4a2734",
+          "#4a2432",
           "#111316"
         ],
         "accent": "#6aa7ff",
@@ -364,9 +438,9 @@ window.YearCalendarHolidayCache = {
           "countryCode": "US",
           "countryName": "United States",
           "localName": "Juneteenth National Independence Day",
-          "types": [
-            "Public",
-            "Bank"
+          "typeLabels": [
+            "公众节日",
+            "银行假日"
           ]
         },
         "score": 732
@@ -374,17 +448,48 @@ window.YearCalendarHolidayCache = {
     ],
     "2026-06-21": [
       {
-        "title": "National Aboriginal Day",
-        "caption": "National Aboriginal Day · Canada",
-        "description": "加拿大的公共节日，类型为 Public。",
-        "motif": "fireworks",
+        "title": "World Music Day",
+        "caption": "World Music Day · 世界音乐日",
+        "description": "夏至前后的音乐日，用节奏、声响与街头庆祝连接城市。",
+        "motif": "sunRibbons",
         "gradient": [
-          "#101a34",
-          "#4a2734",
+          "#1c2332",
+          "#6c522e",
           "#111316"
         ],
-        "accent": "#6aa7ff",
-        "secondary": "#e85a63",
+        "accent": "#f0c95c",
+        "secondary": "#79b7d8",
+        "priority": 74,
+        "tags": [
+          "culture",
+          "international",
+          "celebration",
+          "sun"
+        ],
+        "source": {
+          "provider": "Curated Cultural Observances",
+          "countryCode": "INTL",
+          "countryName": "International",
+          "zhName": "国际",
+          "localName": "世界音乐日",
+          "typeLabels": [
+            "文化日"
+          ]
+        },
+        "score": 607
+      },
+      {
+        "title": "National Aboriginal Day",
+        "caption": "National Aboriginal Day · Canada",
+        "description": "加拿大的公众节日。",
+        "motif": "fireworks",
+        "gradient": [
+          "#17161c",
+          "#5d2630",
+          "#111214"
+        ],
+        "accent": "#e85a63",
+        "secondary": "#f3f3f5",
         "priority": 75,
         "tags": [
           "sky",
@@ -397,8 +502,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CA",
           "countryName": "Canada",
           "localName": "National Aboriginal Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 502
@@ -408,15 +513,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "National Holiday",
         "caption": "National Holiday · Fête nationale du Québec",
-        "description": "加拿大的公共节日，当地名称是「Fête nationale du Québec」，类型为 Public。",
+        "description": "加拿大的公众节日，当地名称是「Fête nationale du Québec」。",
         "motif": "fireworks",
         "gradient": [
-          "#101a34",
-          "#4a2734",
-          "#111316"
+          "#17161c",
+          "#5d2630",
+          "#111214"
         ],
-        "accent": "#6aa7ff",
-        "secondary": "#e85a63",
+        "accent": "#e85a63",
+        "secondary": "#f3f3f5",
         "priority": 72,
         "tags": [
           "sky",
@@ -429,8 +534,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CA",
           "countryName": "Canada",
           "localName": "Fête nationale du Québec",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 422
@@ -438,15 +543,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Discovery Day",
         "caption": "Discovery Day · Canada",
-        "description": "加拿大的公共节日，类型为 Public。",
+        "description": "加拿大的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#17161c",
+          "#5d2630",
+          "#111214"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#e85a63",
+        "secondary": "#f3f3f5",
         "priority": 67,
         "tags": [
           "civic",
@@ -457,8 +562,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CA",
           "countryName": "Canada",
           "localName": "Discovery Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 310
@@ -466,15 +571,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "St. John's Day",
         "caption": "St. John's Day · Sant Joan",
-        "description": "西班牙的公共节日，当地名称是「Sant Joan」，类型为 Public。",
+        "description": "西班牙的公众节日，当地名称是「Sant Joan」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#211619",
+          "#63362a",
+          "#111314"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#d8b95b",
+        "secondary": "#e65b5b",
         "priority": 62,
         "tags": [
           "civic",
@@ -485,8 +590,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "ES",
           "countryName": "Spain",
           "localName": "Sant Joan",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 200
@@ -496,15 +601,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Saint Peter and Saint Paul",
         "caption": "Saint Peter and Saint Paul · Peter und Paul",
-        "description": "瑞士的公共节日，当地名称是「Peter und Paul」，类型为 Observance。",
+        "description": "瑞士的纪念日，当地名称是「Peter und Paul」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#151b27",
+          "#4d2727",
+          "#111314"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#e65b5b",
+        "secondary": "#f0f0f2",
         "priority": 56,
         "tags": [
           "civic",
@@ -515,8 +620,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CH",
           "countryName": "Switzerland",
           "localName": "Peter und Paul",
-          "types": [
-            "Observance"
+          "typeLabels": [
+            "纪念日"
           ]
         },
         "score": 100
@@ -526,15 +631,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Canada Day",
         "caption": "Canada Day · Canada",
-        "description": "加拿大的公共节日，类型为 Public。",
+        "description": "加拿大的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#17161c",
+          "#5d2630",
+          "#111214"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#e85a63",
+        "secondary": "#f3f3f5",
         "priority": 70,
         "tags": [
           "civic",
@@ -545,8 +650,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CA",
           "countryName": "Canada",
           "localName": "Canada Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 350
@@ -556,11 +661,11 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Independence Day",
         "caption": "Independence Day · United States",
-        "description": "美国的公共节日，类型为 Public, Bank。",
+        "description": "美国的公众节日。",
         "motif": "fireworks",
         "gradient": [
           "#101a34",
-          "#4a2734",
+          "#4a2432",
           "#111316"
         ],
         "accent": "#6aa7ff",
@@ -577,9 +682,9 @@ window.YearCalendarHolidayCache = {
           "countryCode": "US",
           "countryName": "United States",
           "localName": "Independence Day",
-          "types": [
-            "Public",
-            "Bank"
+          "typeLabels": [
+            "公众节日",
+            "银行假日"
           ]
         },
         "score": 732
@@ -589,15 +694,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Constitutionalist Revolution of 1932",
         "caption": "Constitutionalist Revolution of 1932 · Revolução Constitucionalista de 1932",
-        "description": "巴西的公共节日，当地名称是「Revolução Constitucionalista de 1932」，类型为 Public。",
+        "description": "巴西的公众节日，当地名称是「Revolução Constitucionalista de 1932」。",
         "motif": "fireworks",
         "gradient": [
-          "#101a34",
-          "#4a2734",
-          "#111316"
+          "#102622",
+          "#465c2d",
+          "#101516"
         ],
-        "accent": "#6aa7ff",
-        "secondary": "#e85a63",
+        "accent": "#77c98e",
+        "secondary": "#d8c070",
         "priority": 69,
         "tags": [
           "sky",
@@ -610,8 +715,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "BR",
           "countryName": "Brazil",
           "localName": "Revolução Constitucionalista de 1932",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 352
@@ -621,15 +726,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Matariki",
         "caption": "Matariki · New Zealand",
-        "description": "新西兰的公共节日，类型为 Public。",
+        "description": "新西兰的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#101d34",
+          "#293f5d",
+          "#101316"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#78aee8",
+        "secondary": "#e85a63",
         "priority": 63,
         "tags": [
           "civic",
@@ -640,8 +745,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "NZ",
           "countryName": "New Zealand",
           "localName": "Matariki",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 200
@@ -651,15 +756,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Orangemen's Day",
         "caption": "Orangemen's Day · Canada",
-        "description": "加拿大的公共节日，类型为 Public。",
+        "description": "加拿大的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#17161c",
+          "#5d2630",
+          "#111214"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#e85a63",
+        "secondary": "#f3f3f5",
         "priority": 67,
         "tags": [
           "civic",
@@ -670,8 +775,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CA",
           "countryName": "Canada",
           "localName": "Orangemen's Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 310
@@ -681,15 +786,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Battle of the Boyne",
         "caption": "Battle of the Boyne · United Kingdom",
-        "description": "英国的公共节日，类型为 Public。",
+        "description": "英国的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#111b32",
+          "#482538",
+          "#111316"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#7faee8",
+        "secondary": "#e65b5b",
         "priority": 64,
         "tags": [
           "civic",
@@ -700,8 +805,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "GB",
           "countryName": "United Kingdom",
           "localName": "Battle of the Boyne",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 240
@@ -711,12 +816,12 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Bastille Day",
         "caption": "Bastille Day · Fête nationale",
-        "description": "法国的公共节日，当地名称是「Fête nationale」，类型为 Public。",
+        "description": "法国的公众节日，当地名称是「Fête nationale」。",
         "motif": "fireworks",
         "gradient": [
-          "#101a34",
-          "#4a2734",
-          "#111316"
+          "#101d3f",
+          "#342742",
+          "#4c2734"
         ],
         "accent": "#6aa7ff",
         "secondary": "#e85a63",
@@ -732,8 +837,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "FR",
           "countryName": "France",
           "localName": "Fête nationale",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 492
@@ -743,15 +848,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Constitution Day",
         "caption": "Constitution Day · 제헌절",
-        "description": "韩国的公共节日，当地名称是「제헌절」，类型为 Public。",
+        "description": "韩国的公众节日，当地名称是「제헌절」。",
         "motif": "fireworks",
         "gradient": [
-          "#101a34",
-          "#4a2734",
+          "#11192d",
+          "#3d2f4b",
           "#111316"
         ],
-        "accent": "#6aa7ff",
-        "secondary": "#e85a63",
+        "accent": "#f3f3f5",
+        "secondary": "#d8555b",
         "priority": 73,
         "tags": [
           "sky",
@@ -764,8 +869,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "KR",
           "countryName": "South Korea",
           "localName": "제헌절",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 432
@@ -775,15 +880,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Marine Day",
         "caption": "Marine Day · 海の日",
-        "description": "日本的公共节日，当地名称是「海の日」，类型为 Public。",
+        "description": "日本的公众节日，当地名称是「海の日」。",
         "motif": "waterFlowers",
         "gradient": [
-          "#0d2836",
-          "#1d5a64",
-          "#101518"
+          "#171318",
+          "#4b1f2a",
+          "#111214"
         ],
-        "accent": "#70d6d0",
-        "secondary": "#f2b8c6",
+        "accent": "#f2eee6",
+        "secondary": "#d94a4d",
         "priority": 71,
         "tags": [
           "water",
@@ -794,8 +899,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "JP",
           "countryName": "Japan",
           "localName": "海の日",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 380
@@ -805,15 +910,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Santiago Apóstol",
         "caption": "Santiago Apóstol · Spain",
-        "description": "西班牙的公共节日，类型为 Public。",
+        "description": "西班牙的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#211619",
+          "#63362a",
+          "#111314"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#d8b95b",
+        "secondary": "#e65b5b",
         "priority": 62,
         "tags": [
           "civic",
@@ -824,8 +929,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "ES",
           "countryName": "Spain",
           "localName": "Santiago Apóstol",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 200
@@ -835,15 +940,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Day of the Cantabrian Institutions",
         "caption": "Day of the Cantabrian Institutions · Día de las Instituciones de Cantabria",
-        "description": "西班牙的公共节日，当地名称是「Día de las Instituciones de Cantabria」，类型为 Public。",
+        "description": "西班牙的公众节日，当地名称是「Día de las Instituciones de Cantabria」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#211619",
+          "#63362a",
+          "#111314"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#d8b95b",
+        "secondary": "#e65b5b",
         "priority": 62,
         "tags": [
           "civic",
@@ -854,26 +959,59 @@ window.YearCalendarHolidayCache = {
           "countryCode": "ES",
           "countryName": "Spain",
           "localName": "Día de las Instituciones de Cantabria",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 200
+      }
+    ],
+    "2026-07-30": [
+      {
+        "title": "International Day of Friendship",
+        "caption": "International Day of Friendship · 国际友谊日",
+        "description": "联合国设立的国际日，纪念友谊、理解与相互照亮。",
+        "motif": "streamers",
+        "gradient": [
+          "#141d2f",
+          "#493456",
+          "#111316"
+        ],
+        "accent": "#d6c070",
+        "secondary": "#78b8e6",
+        "priority": 68,
+        "tags": [
+          "culture",
+          "international",
+          "celebration",
+          "light"
+        ],
+        "source": {
+          "provider": "Curated Cultural Observances",
+          "countryCode": "INTL",
+          "countryName": "International",
+          "zhName": "国际",
+          "localName": "国际友谊日",
+          "typeLabels": [
+            "文化日"
+          ]
+        },
+        "score": 562
       }
     ],
     "2026-08-01": [
       {
         "title": "Swiss National Day",
         "caption": "Swiss National Day · Bundesfeier",
-        "description": "瑞士的公共节日，当地名称是「Bundesfeier」，类型为 Public。",
+        "description": "瑞士的公众节日，当地名称是「Bundesfeier」。",
         "motif": "fireworks",
         "gradient": [
-          "#101a34",
-          "#4a2734",
-          "#111316"
+          "#151b27",
+          "#4d2727",
+          "#111314"
         ],
-        "accent": "#6aa7ff",
-        "secondary": "#e85a63",
+        "accent": "#e65b5b",
+        "secondary": "#f0f0f2",
         "priority": 72,
         "tags": [
           "sky",
@@ -886,8 +1024,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CH",
           "countryName": "Switzerland",
           "localName": "Bundesfeier",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 412
@@ -897,15 +1035,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Civic Holiday",
         "caption": "Civic Holiday · Canada",
-        "description": "加拿大的公共节日，类型为 Public。",
+        "description": "加拿大的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#17161c",
+          "#5d2630",
+          "#111214"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#e85a63",
+        "secondary": "#f3f3f5",
         "priority": 67,
         "tags": [
           "civic",
@@ -916,8 +1054,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CA",
           "countryName": "Canada",
           "localName": "Civic Holiday",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 310
@@ -925,15 +1063,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "British Columbia Day",
         "caption": "British Columbia Day · Canada",
-        "description": "加拿大的公共节日，类型为 Public。",
+        "description": "加拿大的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#17161c",
+          "#5d2630",
+          "#111214"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#e85a63",
+        "secondary": "#f3f3f5",
         "priority": 67,
         "tags": [
           "civic",
@@ -944,8 +1082,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CA",
           "countryName": "Canada",
           "localName": "British Columbia Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 310
@@ -953,15 +1091,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Heritage Day",
         "caption": "Heritage Day · Canada",
-        "description": "加拿大的公共节日，类型为 Public。",
+        "description": "加拿大的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#17161c",
+          "#5d2630",
+          "#111214"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#e85a63",
+        "secondary": "#f3f3f5",
         "priority": 67,
         "tags": [
           "civic",
@@ -972,8 +1110,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CA",
           "countryName": "Canada",
           "localName": "Heritage Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 310
@@ -981,15 +1119,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "New Brunswick Day",
         "caption": "New Brunswick Day · Canada",
-        "description": "加拿大的公共节日，类型为 Public。",
+        "description": "加拿大的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#17161c",
+          "#5d2630",
+          "#111214"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#e85a63",
+        "secondary": "#f3f3f5",
         "priority": 67,
         "tags": [
           "civic",
@@ -1000,8 +1138,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CA",
           "countryName": "Canada",
           "localName": "New Brunswick Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 310
@@ -1009,15 +1147,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Natal Day",
         "caption": "Natal Day · Canada",
-        "description": "加拿大的公共节日，类型为 Public。",
+        "description": "加拿大的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#17161c",
+          "#5d2630",
+          "#111214"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#e85a63",
+        "secondary": "#f3f3f5",
         "priority": 67,
         "tags": [
           "civic",
@@ -1028,26 +1166,59 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CA",
           "countryName": "Canada",
           "localName": "Natal Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 310
+      }
+    ],
+    "2026-08-09": [
+      {
+        "title": "Indigenous Peoples Day",
+        "caption": "Indigenous Peoples Day · 世界土著人民国际日",
+        "description": "联合国设立的国际日，关注原住民文化、土地与传统。",
+        "motif": "mountainFlags",
+        "gradient": [
+          "#1a2019",
+          "#5a5634",
+          "#111515"
+        ],
+        "accent": "#d8b95b",
+        "secondary": "#91c47c",
+        "priority": 70,
+        "tags": [
+          "culture",
+          "international",
+          "mountain",
+          "botanical"
+        ],
+        "source": {
+          "provider": "Curated Cultural Observances",
+          "countryCode": "INTL",
+          "countryName": "International",
+          "zhName": "国际",
+          "localName": "世界土著人民国际日",
+          "typeLabels": [
+            "文化日"
+          ]
+        },
+        "score": 581
       }
     ],
     "2026-08-10": [
       {
         "title": "National Day",
         "caption": "National Day · Singapore",
-        "description": "新加坡的公共节日，类型为 Public。",
+        "description": "新加坡的公众节日。",
         "motif": "fireworks",
         "gradient": [
-          "#101a34",
-          "#4a2734",
-          "#111316"
+          "#151821",
+          "#5b2530",
+          "#111315"
         ],
-        "accent": "#6aa7ff",
-        "secondary": "#e85a63",
+        "accent": "#e85a63",
+        "secondary": "#f3f3f5",
         "priority": 81,
         "tags": [
           "sky",
@@ -1060,8 +1231,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "SG",
           "countryName": "Singapore",
           "localName": "National Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 612
@@ -1069,15 +1240,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "National Women's Day",
         "caption": "National Women's Day · South Africa",
-        "description": "南非的公共节日，类型为 Public。",
+        "description": "南非的公众节日。",
         "motif": "fireworks",
         "gradient": [
-          "#101a34",
-          "#4a2734",
-          "#111316"
+          "#10251f",
+          "#1f415a",
+          "#111515"
         ],
-        "accent": "#6aa7ff",
-        "secondary": "#e85a63",
+        "accent": "#77c98e",
+        "secondary": "#d8b95b",
         "priority": 75,
         "tags": [
           "sky",
@@ -1090,8 +1261,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "ZA",
           "countryName": "South Africa",
           "localName": "National Women's Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 472
@@ -1101,15 +1272,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Mountain Day",
         "caption": "Mountain Day · 山の日",
-        "description": "日本的公共节日，当地名称是「山の日」，类型为 Public。",
+        "description": "日本的公众节日，当地名称是「山の日」。",
         "motif": "mountainFlags",
         "gradient": [
-          "#151b27",
-          "#4d2727",
-          "#111314"
+          "#171318",
+          "#4b1f2a",
+          "#111214"
         ],
-        "accent": "#e65b5b",
-        "secondary": "#f0f0f2",
+        "accent": "#f2eee6",
+        "secondary": "#d94a4d",
         "priority": 71,
         "tags": [
           "mountain",
@@ -1121,26 +1292,58 @@ window.YearCalendarHolidayCache = {
           "countryCode": "JP",
           "countryName": "Japan",
           "localName": "山の日",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 380
+      }
+    ],
+    "2026-08-12": [
+      {
+        "title": "International Youth Day",
+        "caption": "International Youth Day · 国际青年日",
+        "description": "联合国设立的国际日，关注年轻人的创造力与公共参与。",
+        "motif": "streamers",
+        "gradient": [
+          "#102238",
+          "#365a70",
+          "#101418"
+        ],
+        "accent": "#78bde6",
+        "secondary": "#e66b58",
+        "priority": 68,
+        "tags": [
+          "culture",
+          "international",
+          "celebration"
+        ],
+        "source": {
+          "provider": "Curated Cultural Observances",
+          "countryCode": "INTL",
+          "countryName": "International",
+          "zhName": "国际",
+          "localName": "国际青年日",
+          "typeLabels": [
+            "文化日"
+          ]
+        },
+        "score": 565
       }
     ],
     "2026-08-15": [
       {
         "title": "Assumption Day",
         "caption": "Assumption Day · Assomption",
-        "description": "法国的公共节日，当地名称是「Assomption」，类型为 Public。",
+        "description": "法国的公众节日，当地名称是「Assomption」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#101d3f",
+          "#342742",
+          "#4c2734"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#6aa7ff",
+        "secondary": "#e85a63",
         "priority": 68,
         "tags": [
           "civic",
@@ -1151,8 +1354,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "FR",
           "countryName": "France",
           "localName": "Assomption",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 300
@@ -1160,15 +1363,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Assumption Day",
         "caption": "Assumption Day · Ferragosto o Assunzione",
-        "description": "意大利的公共节日，当地名称是「Ferragosto o Assunzione」，类型为 Public。",
+        "description": "意大利的公众节日，当地名称是「Ferragosto o Assunzione」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#10251f",
+          "#4f2c31",
+          "#111515"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#70bf75",
+        "secondary": "#e65b5b",
         "priority": 65,
         "tags": [
           "civic",
@@ -1179,8 +1382,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "IT",
           "countryName": "Italy",
           "localName": "Ferragosto o Assunzione",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 240
@@ -1188,15 +1391,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Assumption",
         "caption": "Assumption · Asunción",
-        "description": "西班牙的公共节日，当地名称是「Asunción」，类型为 Public。",
+        "description": "西班牙的公众节日，当地名称是「Asunción」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#211619",
+          "#63362a",
+          "#111314"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#d8b95b",
+        "secondary": "#e65b5b",
         "priority": 65,
         "tags": [
           "civic",
@@ -1207,8 +1410,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "ES",
           "countryName": "Spain",
           "localName": "Asunción",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 240
@@ -1216,15 +1419,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Assumption Day",
         "caption": "Assumption Day · Mariä Himmelfahrt",
-        "description": "德国的公共节日，当地名称是「Mariä Himmelfahrt」，类型为 Public。",
+        "description": "德国的公众节日，当地名称是「Mariä Himmelfahrt」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#151515",
+          "#55302d",
+          "#111111"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#d8b95b",
+        "secondary": "#d65345",
         "priority": 63,
         "tags": [
           "civic",
@@ -1235,8 +1438,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "DE",
           "countryName": "Germany",
           "localName": "Mariä Himmelfahrt",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 220
@@ -1244,15 +1447,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Assumption of the Virgin Mary",
         "caption": "Assumption of the Virgin Mary · Maria Himmelfahrt",
-        "description": "瑞士的公共节日，当地名称是「Maria Himmelfahrt」，类型为 Public。",
+        "description": "瑞士的公众节日，当地名称是「Maria Himmelfahrt」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#151b27",
+          "#4d2727",
+          "#111314"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#e65b5b",
+        "secondary": "#f0f0f2",
         "priority": 62,
         "tags": [
           "civic",
@@ -1263,8 +1466,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CH",
           "countryName": "Switzerland",
           "localName": "Maria Himmelfahrt",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 180
@@ -1274,15 +1477,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Gold Cup Parade Day",
         "caption": "Gold Cup Parade Day · Canada",
-        "description": "加拿大的公共节日，类型为 Public。",
+        "description": "加拿大的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#17161c",
+          "#5d2630",
+          "#111214"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#e85a63",
+        "secondary": "#f3f3f5",
         "priority": 67,
         "tags": [
           "civic",
@@ -1293,8 +1496,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CA",
           "countryName": "Canada",
           "localName": "Gold Cup Parade Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 310
@@ -1302,15 +1505,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Discovery Day",
         "caption": "Discovery Day · Canada",
-        "description": "加拿大的公共节日，类型为 Public。",
+        "description": "加拿大的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#17161c",
+          "#5d2630",
+          "#111214"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#e85a63",
+        "secondary": "#f3f3f5",
         "priority": 67,
         "tags": [
           "civic",
@@ -1321,8 +1524,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CA",
           "countryName": "Canada",
           "localName": "Discovery Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 310
@@ -1330,15 +1533,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Liberation Day",
         "caption": "Liberation Day · 광복절",
-        "description": "韩国的公共节日，当地名称是「광복절」，类型为 Public。",
+        "description": "韩国的公众节日，当地名称是「광복절」。",
         "motif": "fireworks",
         "gradient": [
-          "#101a34",
-          "#4a2734",
+          "#11192d",
+          "#3d2f4b",
           "#111316"
         ],
-        "accent": "#6aa7ff",
-        "secondary": "#e85a63",
+        "accent": "#f3f3f5",
+        "secondary": "#d8555b",
         "priority": 65,
         "tags": [
           "sky",
@@ -1351,26 +1554,58 @@ window.YearCalendarHolidayCache = {
           "countryCode": "KR",
           "countryName": "South Korea",
           "localName": "광복절",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 240
+      }
+    ],
+    "2026-08-19": [
+      {
+        "title": "World Photography Day",
+        "caption": "World Photography Day · 世界摄影日",
+        "description": "纪念影像、光线与观看方式的文化日。",
+        "motif": "starfield",
+        "gradient": [
+          "#111827",
+          "#2e3d51",
+          "#101316"
+        ],
+        "accent": "#d8c070",
+        "secondary": "#78bde8",
+        "priority": 68,
+        "tags": [
+          "culture",
+          "international",
+          "light"
+        ],
+        "source": {
+          "provider": "Curated Cultural Observances",
+          "countryCode": "INTL",
+          "countryName": "International",
+          "zhName": "国际",
+          "localName": "世界摄影日",
+          "typeLabels": [
+            "文化日"
+          ]
+        },
+        "score": 565
       }
     ],
     "2026-08-31": [
       {
         "title": "Summer Bank Holiday",
         "caption": "Summer Bank Holiday · United Kingdom",
-        "description": "英国的公共节日，类型为 Public。",
+        "description": "英国的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#111b32",
+          "#482538",
+          "#111316"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#7faee8",
+        "secondary": "#e65b5b",
         "priority": 62,
         "tags": [
           "civic",
@@ -1381,8 +1616,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "GB",
           "countryName": "United Kingdom",
           "localName": "Summer Bank Holiday",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 192
@@ -1392,15 +1627,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Labour Day",
         "caption": "Labour Day · Labor Day",
-        "description": "美国的公共节日，当地名称是「Labor Day」，类型为 Public, Bank。",
+        "description": "美国的公众节日，当地名称是「Labor Day」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#101a34",
+          "#4a2432",
+          "#111316"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#6aa7ff",
+        "secondary": "#e85a63",
         "priority": 78,
         "tags": [
           "civic",
@@ -1411,9 +1646,9 @@ window.YearCalendarHolidayCache = {
           "countryCode": "US",
           "countryName": "United States",
           "localName": "Labor Day",
-          "types": [
-            "Public",
-            "Bank"
+          "typeLabels": [
+            "公众节日",
+            "银行假日"
           ]
         },
         "score": 540
@@ -1421,15 +1656,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Independence Day",
         "caption": "Independence Day · Dia da Independência",
-        "description": "巴西的公共节日，当地名称是「Dia da Independência」，类型为 Public。",
+        "description": "巴西的公众节日，当地名称是「Dia da Independência」。",
         "motif": "fireworks",
         "gradient": [
-          "#101a34",
-          "#4a2734",
-          "#111316"
+          "#102622",
+          "#465c2d",
+          "#101516"
         ],
-        "accent": "#6aa7ff",
-        "secondary": "#e85a63",
+        "accent": "#77c98e",
+        "secondary": "#d8c070",
         "priority": 71,
         "tags": [
           "sky",
@@ -1442,8 +1677,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "BR",
           "countryName": "Brazil",
           "localName": "Dia da Independência",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 392
@@ -1451,15 +1686,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Labour Day",
         "caption": "Labour Day · Canada",
-        "description": "加拿大的公共节日，类型为 Public。",
+        "description": "加拿大的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#17161c",
+          "#5d2630",
+          "#111214"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#e85a63",
+        "secondary": "#f3f3f5",
         "priority": 70,
         "tags": [
           "civic",
@@ -1470,8 +1705,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CA",
           "countryName": "Canada",
           "localName": "Labour Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 350
@@ -1481,15 +1716,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Day of Asturias",
         "caption": "Day of Asturias · Día de Asturias",
-        "description": "西班牙的公共节日，当地名称是「Día de Asturias」，类型为 Public。",
+        "description": "西班牙的公众节日，当地名称是「Día de Asturias」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#211619",
+          "#63362a",
+          "#111314"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#d8b95b",
+        "secondary": "#e65b5b",
         "priority": 62,
         "tags": [
           "civic",
@@ -1500,8 +1735,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "ES",
           "countryName": "Spain",
           "localName": "Día de Asturias",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 200
@@ -1509,15 +1744,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Day of Extremadura",
         "caption": "Day of Extremadura · Día de Extremadura",
-        "description": "西班牙的公共节日，当地名称是「Día de Extremadura」，类型为 Public。",
+        "description": "西班牙的公众节日，当地名称是「Día de Extremadura」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#211619",
+          "#63362a",
+          "#111314"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#d8b95b",
+        "secondary": "#e65b5b",
         "priority": 62,
         "tags": [
           "civic",
@@ -1528,8 +1763,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "ES",
           "countryName": "Spain",
           "localName": "Día de Extremadura",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 200
@@ -1539,15 +1774,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Geneva Prayday",
         "caption": "Geneva Prayday · Jeûne genevois",
-        "description": "瑞士的公共节日，当地名称是「Jeûne genevois」，类型为 Public。",
+        "description": "瑞士的公众节日，当地名称是「Jeûne genevois」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#151b27",
+          "#4d2727",
+          "#111314"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#e65b5b",
+        "secondary": "#f0f0f2",
         "priority": 62,
         "tags": [
           "civic",
@@ -1558,8 +1793,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CH",
           "countryName": "Switzerland",
           "localName": "Jeûne genevois",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 180
@@ -1569,15 +1804,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "National Day of Catalonia",
         "caption": "National Day of Catalonia · Diada Nacional de Catalunya",
-        "description": "西班牙的公共节日，当地名称是「Diada Nacional de Catalunya」，类型为 Public。",
+        "description": "西班牙的公众节日，当地名称是「Diada Nacional de Catalunya」。",
         "motif": "fireworks",
         "gradient": [
-          "#101a34",
-          "#4a2734",
-          "#111316"
+          "#211619",
+          "#63362a",
+          "#111314"
         ],
-        "accent": "#6aa7ff",
-        "secondary": "#e85a63",
+        "accent": "#d8b95b",
+        "secondary": "#e65b5b",
         "priority": 70,
         "tags": [
           "sky",
@@ -1590,8 +1825,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "ES",
           "countryName": "Spain",
           "localName": "Diada Nacional de Catalunya",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 392
@@ -1601,15 +1836,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Feast of Our Lady of Bien Aparecida",
         "caption": "Feast of Our Lady of Bien Aparecida · Festividad de la Bien Aparecida",
-        "description": "西班牙的公共节日，当地名称是「Festividad de la Bien Aparecida」，类型为 Public。",
+        "description": "西班牙的公众节日，当地名称是「Festividad de la Bien Aparecida」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#211619",
+          "#63362a",
+          "#111314"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#d8b95b",
+        "secondary": "#e65b5b",
         "priority": 66,
         "tags": [
           "civic",
@@ -1620,8 +1855,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "ES",
           "countryName": "Spain",
           "localName": "Festividad de la Bien Aparecida",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 280
@@ -1631,14 +1866,14 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Independence Day",
         "caption": "Independence Day · Día de la Independencia",
-        "description": "墨西哥的公共节日，当地名称是「Día de la Independencia」，类型为 Public。",
+        "description": "墨西哥的公众节日，当地名称是「Día de la Independencia」。",
         "motif": "fireworks",
         "gradient": [
-          "#101a34",
-          "#4a2734",
-          "#111316"
+          "#10251f",
+          "#4f2c31",
+          "#111515"
         ],
-        "accent": "#6aa7ff",
+        "accent": "#70bf75",
         "secondary": "#e85a63",
         "priority": 72,
         "tags": [
@@ -1652,8 +1887,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "MX",
           "countryName": "Mexico",
           "localName": "Día de la Independencia",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 412
@@ -1663,7 +1898,7 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Federal Day of Thanksgiving",
         "caption": "Federal Day of Thanksgiving · Eidgenössischer Dank-, Buss- und Bettag",
-        "description": "瑞士的公共节日，当地名称是「Eidgenössischer Dank-, Buss- und Bettag」，类型为 Observance。",
+        "description": "瑞士的纪念日，当地名称是「Eidgenössischer Dank-, Buss- und Bettag」。",
         "motif": "grain",
         "gradient": [
           "#211916",
@@ -1683,8 +1918,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CH",
           "countryName": "Switzerland",
           "localName": "Eidgenössischer Dank-, Buss- und Bettag",
-          "types": [
-            "Observance"
+          "typeLabels": [
+            "纪念日"
           ]
         },
         "score": 292
@@ -1692,15 +1927,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "World Children's Day",
         "caption": "World Children's Day · Weltkindertag",
-        "description": "德国的公共节日，当地名称是「Weltkindertag」，类型为 Public。",
+        "description": "德国的公众节日，当地名称是「Weltkindertag」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#151515",
+          "#55302d",
+          "#111111"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#d8b95b",
+        "secondary": "#d65345",
         "priority": 63,
         "tags": [
           "civic",
@@ -1711,8 +1946,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "DE",
           "countryName": "Germany",
           "localName": "Weltkindertag",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 220
@@ -1720,17 +1955,48 @@ window.YearCalendarHolidayCache = {
     ],
     "2026-09-21": [
       {
+        "title": "International Day of Peace",
+        "caption": "International Day of Peace · 国际和平日",
+        "description": "联合国设立的国际日，纪念和平、停火与共同生活。",
+        "motif": "candle",
+        "gradient": [
+          "#101827",
+          "#37304d",
+          "#111214"
+        ],
+        "accent": "#f0c95c",
+        "secondary": "#f2f0d6",
+        "priority": 76,
+        "tags": [
+          "culture",
+          "international",
+          "light",
+          "memorial"
+        ],
+        "source": {
+          "provider": "Curated Cultural Observances",
+          "countryCode": "INTL",
+          "countryName": "International",
+          "zhName": "国际",
+          "localName": "国际和平日",
+          "typeLabels": [
+            "文化日"
+          ]
+        },
+        "score": 632
+      },
+      {
         "title": "Respect for the Aged Day",
         "caption": "Respect for the Aged Day · 敬老の日",
-        "description": "日本的公共节日，当地名称是「敬老の日」，类型为 Public。",
+        "description": "日本的公众节日，当地名称是「敬老の日」。",
         "motif": "sunRibbons",
         "gradient": [
-          "#10283a",
-          "#345e68",
-          "#101417"
+          "#171318",
+          "#4b1f2a",
+          "#111214"
         ],
-        "accent": "#6ecbe6",
-        "secondary": "#f0c95c",
+        "accent": "#f2eee6",
+        "secondary": "#d94a4d",
         "priority": 71,
         "tags": [
           "sun",
@@ -1741,8 +2007,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "JP",
           "countryName": "Japan",
           "localName": "敬老の日",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 380
@@ -1750,15 +2016,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Federal Fast Monday",
         "caption": "Federal Fast Monday · Bettagsmontag",
-        "description": "瑞士的公共节日，当地名称是「Bettagsmontag」，类型为 Public。",
+        "description": "瑞士的公众节日，当地名称是「Bettagsmontag」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#151b27",
+          "#4d2727",
+          "#111314"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#e65b5b",
+        "secondary": "#f0f0f2",
         "priority": 62,
         "tags": [
           "civic",
@@ -1769,8 +2035,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CH",
           "countryName": "Switzerland",
           "localName": "Bettagsmontag",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 180
@@ -1780,15 +2046,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Autumnal Equinox Day",
         "caption": "Autumnal Equinox Day · 秋分の日",
-        "description": "日本的公共节日，当地名称是「秋分の日」，类型为 Public。",
+        "description": "日本的公众节日，当地名称是「秋分の日」。",
         "motif": "grain",
         "gradient": [
-          "#211916",
-          "#604026",
-          "#111314"
+          "#171318",
+          "#4b1f2a",
+          "#111214"
         ],
-        "accent": "#d8a05f",
-        "secondary": "#9bb06d",
+        "accent": "#f2eee6",
+        "secondary": "#d94a4d",
         "priority": 71,
         "tags": [
           "botanical",
@@ -1799,8 +2065,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "JP",
           "countryName": "Japan",
           "localName": "秋分の日",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 380
@@ -1810,14 +2076,14 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Heritage Day",
         "caption": "Heritage Day · South Africa",
-        "description": "南非的公共节日，类型为 Public。",
+        "description": "南非的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#10251f",
+          "#1f415a",
+          "#111515"
         ],
-        "accent": "#e2534f",
+        "accent": "#77c98e",
         "secondary": "#d8b95b",
         "priority": 67,
         "tags": [
@@ -1829,8 +2095,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "ZA",
           "countryName": "South Africa",
           "localName": "Heritage Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 280
@@ -1838,15 +2104,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Chuseok",
         "caption": "Chuseok · 추석",
-        "description": "韩国的公共节日，当地名称是「추석」，类型为 Public。",
+        "description": "韩国的公众节日，当地名称是「추석」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#11192d",
+          "#3d2f4b",
+          "#111316"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#f3f3f5",
+        "secondary": "#d8555b",
         "priority": 65,
         "tags": [
           "civic",
@@ -1857,8 +2123,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "KR",
           "countryName": "South Korea",
           "localName": "추석",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 240
@@ -1868,15 +2134,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Mid-Autumn Festival",
         "caption": "Mid-Autumn Festival · 中秋节",
-        "description": "中国的公共节日，当地名称是「中秋节」，类型为 Public。",
+        "description": "中国的公众节日，当地名称是「中秋节」。",
         "motif": "tanabata",
         "gradient": [
-          "#0f1734",
-          "#25265f",
-          "#11131d"
+          "#25080c",
+          "#8f171c",
+          "#12090a"
         ],
-        "accent": "#9fc8ff",
-        "secondary": "#e6c86f",
+        "accent": "#f6c85f",
+        "secondary": "#e83b36",
         "priority": 91,
         "tags": [
           "sky",
@@ -1889,8 +2155,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CN",
           "countryName": "China",
           "localName": "中秋节",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 872
@@ -1898,15 +2164,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Chuseok",
         "caption": "Chuseok · 추석",
-        "description": "韩国的公共节日，当地名称是「추석」，类型为 Public。",
+        "description": "韩国的公众节日，当地名称是「추석」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#11192d",
+          "#3d2f4b",
+          "#111316"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#f3f3f5",
+        "secondary": "#d8555b",
         "priority": 65,
         "tags": [
           "civic",
@@ -1917,8 +2183,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "KR",
           "countryName": "South Korea",
           "localName": "추석",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 240
@@ -1928,15 +2194,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Chuseok",
         "caption": "Chuseok · 추석",
-        "description": "韩国的公共节日，当地名称是「추석」，类型为 Public。",
+        "description": "韩国的公众节日，当地名称是「추석」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#11192d",
+          "#3d2f4b",
+          "#111316"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#f3f3f5",
+        "secondary": "#d8555b",
         "priority": 65,
         "tags": [
           "civic",
@@ -1947,25 +2213,58 @@ window.YearCalendarHolidayCache = {
           "countryCode": "KR",
           "countryName": "South Korea",
           "localName": "추석",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 240
+      }
+    ],
+    "2026-09-27": [
+      {
+        "title": "World Tourism Day",
+        "caption": "World Tourism Day · 世界旅游日",
+        "description": "关注旅行、地方文化与人与地点之间的连接。",
+        "motif": "mountainFlags",
+        "gradient": [
+          "#102039",
+          "#5c4227",
+          "#101417"
+        ],
+        "accent": "#6da2cf",
+        "secondary": "#f0b64d",
+        "priority": 66,
+        "tags": [
+          "culture",
+          "international",
+          "mountain",
+          "celebration"
+        ],
+        "source": {
+          "provider": "Curated Cultural Observances",
+          "countryCode": "INTL",
+          "countryName": "International",
+          "zhName": "国际",
+          "localName": "世界旅游日",
+          "typeLabels": [
+            "文化日"
+          ]
+        },
+        "score": 552
       }
     ],
     "2026-09-28": [
       {
         "title": "King's Birthday",
         "caption": "King's Birthday · Australia",
-        "description": "澳大利亚的公共节日，类型为 Public。",
+        "description": "澳大利亚的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#101d34",
+          "#263a54",
+          "#111316"
         ],
-        "accent": "#e2534f",
+        "accent": "#78aee8",
         "secondary": "#d8b95b",
         "priority": 67,
         "tags": [
@@ -1977,8 +2276,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "AU",
           "countryName": "Australia",
           "localName": "King's Birthday",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 310
@@ -1986,15 +2285,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Canterbury (South) Anniversary Day",
         "caption": "Canterbury (South) Anniversary Day · Dominion Day",
-        "description": "新西兰的公共节日，当地名称是「Dominion Day」，类型为 Public。",
+        "description": "新西兰的公众节日，当地名称是「Dominion Day」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#101d34",
+          "#293f5d",
+          "#101316"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#78aee8",
+        "secondary": "#e85a63",
         "priority": 64,
         "tags": [
           "civic",
@@ -2005,8 +2304,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "NZ",
           "countryName": "New Zealand",
           "localName": "Dominion Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 240
@@ -2016,15 +2315,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "National Day for Truth and Reconciliation",
         "caption": "National Day for Truth and Reconciliation · Canada",
-        "description": "加拿大的公共节日，类型为 Public。",
+        "description": "加拿大的公众节日。",
         "motif": "fireworks",
         "gradient": [
-          "#101a34",
-          "#4a2734",
-          "#111316"
+          "#17161c",
+          "#5d2630",
+          "#111214"
         ],
-        "accent": "#6aa7ff",
-        "secondary": "#e85a63",
+        "accent": "#e85a63",
+        "secondary": "#f3f3f5",
         "priority": 74,
         "tags": [
           "sky",
@@ -2037,8 +2336,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CA",
           "countryName": "Canada",
           "localName": "National Day for Truth and Reconciliation",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 462
@@ -2048,15 +2347,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "National Day",
         "caption": "National Day · 国庆节",
-        "description": "中国的公共节日，当地名称是「国庆节」，类型为 Public。",
+        "description": "中国的公众节日，当地名称是「国庆节」。",
         "motif": "fireworks",
         "gradient": [
-          "#101a34",
-          "#4a2734",
-          "#111316"
+          "#25080c",
+          "#8f171c",
+          "#12090a"
         ],
-        "accent": "#6aa7ff",
-        "secondary": "#e85a63",
+        "accent": "#f6c85f",
+        "secondary": "#e83b36",
         "priority": 88,
         "tags": [
           "sky",
@@ -2069,26 +2368,56 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CN",
           "countryName": "China",
           "localName": "国庆节",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 792
+      },
+      {
+        "title": "International Coffee Day",
+        "caption": "International Coffee Day · 国际咖啡日",
+        "description": "纪念咖啡、手作与城市日常节奏的国际文化日。",
+        "motif": "grain",
+        "gradient": [
+          "#1b1513",
+          "#563321",
+          "#111314"
+        ],
+        "accent": "#d8a05f",
+        "secondary": "#9bb06d",
+        "priority": 64,
+        "tags": [
+          "culture",
+          "international",
+          "harvest"
+        ],
+        "source": {
+          "provider": "Curated Cultural Observances",
+          "countryCode": "INTL",
+          "countryName": "International",
+          "zhName": "国际",
+          "localName": "国际咖啡日",
+          "typeLabels": [
+            "文化日"
+          ]
+        },
+        "score": 539
       }
     ],
     "2026-10-03": [
       {
         "title": "German Unity Day",
         "caption": "German Unity Day · Tag der Deutschen Einheit",
-        "description": "德国的公共节日，当地名称是「Tag der Deutschen Einheit」，类型为 Public。",
+        "description": "德国的公众节日，当地名称是「Tag der Deutschen Einheit」。",
         "motif": "fireworks",
         "gradient": [
-          "#101a34",
-          "#4a2734",
-          "#111316"
+          "#151515",
+          "#55302d",
+          "#111111"
         ],
-        "accent": "#6aa7ff",
-        "secondary": "#e85a63",
+        "accent": "#d8b95b",
+        "secondary": "#d65345",
         "priority": 66,
         "tags": [
           "sky",
@@ -2101,8 +2430,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "DE",
           "countryName": "Germany",
           "localName": "Tag der Deutschen Einheit",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 260
@@ -2112,15 +2441,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "St. Francis of Assisi's Day",
         "caption": "St. Francis of Assisi's Day · San Francesco d'Assisi",
-        "description": "意大利的公共节日，当地名称是「San Francesco d'Assisi」，类型为 Public。",
+        "description": "意大利的公众节日，当地名称是「San Francesco d'Assisi」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#10251f",
+          "#4f2c31",
+          "#111515"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#70bf75",
+        "secondary": "#e65b5b",
         "priority": 65,
         "tags": [
           "civic",
@@ -2131,8 +2460,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "IT",
           "countryName": "Italy",
           "localName": "San Francesco d'Assisi",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 240
@@ -2140,17 +2469,47 @@ window.YearCalendarHolidayCache = {
     ],
     "2026-10-05": [
       {
-        "title": "National Foundation Day",
-        "caption": "National Foundation Day · 개천절",
-        "description": "韩国的公共节日，当地名称是「개천절」，类型为 Public。",
-        "motif": "fireworks",
+        "title": "World Teachers' Day",
+        "caption": "World Teachers' Day · 世界教师日",
+        "description": "联合国教科文组织设立的国际日，感谢教育者与知识传递。",
+        "motif": "starfield",
         "gradient": [
-          "#101a34",
-          "#4a2734",
+          "#171827",
+          "#3c3350",
           "#111316"
         ],
-        "accent": "#6aa7ff",
-        "secondary": "#e85a63",
+        "accent": "#d8c070",
+        "secondary": "#b68fd8",
+        "priority": 68,
+        "tags": [
+          "culture",
+          "international",
+          "light"
+        ],
+        "source": {
+          "provider": "Curated Cultural Observances",
+          "countryCode": "INTL",
+          "countryName": "International",
+          "zhName": "国际",
+          "localName": "世界教师日",
+          "typeLabels": [
+            "文化日"
+          ]
+        },
+        "score": 571
+      },
+      {
+        "title": "National Foundation Day",
+        "caption": "National Foundation Day · 개천절",
+        "description": "韩国的公众节日，当地名称是「개천절」。",
+        "motif": "fireworks",
+        "gradient": [
+          "#11192d",
+          "#3d2f4b",
+          "#111316"
+        ],
+        "accent": "#f3f3f5",
+        "secondary": "#d8555b",
         "priority": 73,
         "tags": [
           "sky",
@@ -2163,8 +2522,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "KR",
           "countryName": "South Korea",
           "localName": "개천절",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 432
@@ -2172,14 +2531,14 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Labour Day",
         "caption": "Labour Day · Australia",
-        "description": "澳大利亚的公共节日，类型为 Public。",
+        "description": "澳大利亚的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#101d34",
+          "#263a54",
+          "#111316"
         ],
-        "accent": "#e2534f",
+        "accent": "#78aee8",
         "secondary": "#d8b95b",
         "priority": 67,
         "tags": [
@@ -2191,8 +2550,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "AU",
           "countryName": "Australia",
           "localName": "Labour Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 310
@@ -2200,14 +2559,14 @@ window.YearCalendarHolidayCache = {
       {
         "title": "King's Birthday",
         "caption": "King's Birthday · Australia",
-        "description": "澳大利亚的公共节日，类型为 Public。",
+        "description": "澳大利亚的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#101d34",
+          "#263a54",
+          "#111316"
         ],
-        "accent": "#e2534f",
+        "accent": "#78aee8",
         "secondary": "#d8b95b",
         "priority": 67,
         "tags": [
@@ -2219,8 +2578,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "AU",
           "countryName": "Australia",
           "localName": "King's Birthday",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 310
@@ -2230,15 +2589,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Hangul Day",
         "caption": "Hangul Day · 한글날",
-        "description": "韩国的公共节日，当地名称是「한글날」，类型为 Public。",
+        "description": "韩国的公众节日，当地名称是「한글날」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#11192d",
+          "#3d2f4b",
+          "#111316"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#f3f3f5",
+        "secondary": "#d8555b",
         "priority": 65,
         "tags": [
           "civic",
@@ -2249,8 +2608,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "KR",
           "countryName": "South Korea",
           "localName": "한글날",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 240
@@ -2258,15 +2617,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Day of the Valencian Community",
         "caption": "Day of the Valencian Community · Dia de la Comunitat Valenciana",
-        "description": "西班牙的公共节日，当地名称是「Dia de la Comunitat Valenciana」，类型为 Public。",
+        "description": "西班牙的公众节日，当地名称是「Dia de la Comunitat Valenciana」。",
         "motif": "fireworks",
         "gradient": [
-          "#101a34",
-          "#4a2734",
-          "#111316"
+          "#211619",
+          "#63362a",
+          "#111314"
         ],
-        "accent": "#6aa7ff",
-        "secondary": "#e85a63",
+        "accent": "#d8b95b",
+        "secondary": "#e65b5b",
         "priority": 62,
         "tags": [
           "sky",
@@ -2279,8 +2638,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "ES",
           "countryName": "Spain",
           "localName": "Dia de la Comunitat Valenciana",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 200
@@ -2290,15 +2649,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "National Day of Spain",
         "caption": "National Day of Spain · Fiesta Nacional de España",
-        "description": "西班牙的公共节日，当地名称是「Fiesta Nacional de España」，类型为 Public。",
+        "description": "西班牙的公众节日，当地名称是「Fiesta Nacional de España」。",
         "motif": "fireworks",
         "gradient": [
-          "#101a34",
-          "#4a2734",
-          "#111316"
+          "#211619",
+          "#63362a",
+          "#111314"
         ],
-        "accent": "#6aa7ff",
-        "secondary": "#e85a63",
+        "accent": "#d8b95b",
+        "secondary": "#e65b5b",
         "priority": 76,
         "tags": [
           "sky",
@@ -2311,8 +2670,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "ES",
           "countryName": "Spain",
           "localName": "Fiesta Nacional de España",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 512
@@ -2320,15 +2679,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Columbus Day",
         "caption": "Columbus Day · United States",
-        "description": "美国的公共节日，类型为 Public。",
+        "description": "美国的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#101a34",
+          "#4a2432",
+          "#111316"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#6aa7ff",
+        "secondary": "#e85a63",
         "priority": 75,
         "tags": [
           "civic",
@@ -2339,8 +2698,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "US",
           "countryName": "United States",
           "localName": "Columbus Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 500
@@ -2348,15 +2707,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Indigenous Peoples' Day",
         "caption": "Indigenous Peoples' Day · United States",
-        "description": "美国的公共节日，类型为 Public。",
+        "description": "美国的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#101a34",
+          "#4a2432",
+          "#111316"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#6aa7ff",
+        "secondary": "#e85a63",
         "priority": 75,
         "tags": [
           "civic",
@@ -2367,8 +2726,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "US",
           "countryName": "United States",
           "localName": "Indigenous Peoples' Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 500
@@ -2376,7 +2735,7 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Thanksgiving",
         "caption": "Thanksgiving · Canada",
-        "description": "加拿大的公共节日，类型为 Public。",
+        "description": "加拿大的公众节日。",
         "motif": "grain",
         "gradient": [
           "#211916",
@@ -2396,8 +2755,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CA",
           "countryName": "Canada",
           "localName": "Thanksgiving",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 462
@@ -2405,15 +2764,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Sports Day",
         "caption": "Sports Day · スポーツの日",
-        "description": "日本的公共节日，当地名称是「スポーツの日」，类型为 Public。",
+        "description": "日本的公众节日，当地名称是「スポーツの日」。",
         "motif": "sunRibbons",
         "gradient": [
-          "#10283a",
-          "#345e68",
-          "#101417"
+          "#171318",
+          "#4b1f2a",
+          "#111214"
         ],
-        "accent": "#6ecbe6",
-        "secondary": "#f0c95c",
+        "accent": "#f2eee6",
+        "secondary": "#d94a4d",
         "priority": 71,
         "tags": [
           "sun",
@@ -2424,26 +2783,59 @@ window.YearCalendarHolidayCache = {
           "countryCode": "JP",
           "countryName": "Japan",
           "localName": "スポーツの日",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 380
+      }
+    ],
+    "2026-10-16": [
+      {
+        "title": "World Food Day",
+        "caption": "World Food Day · 世界粮食日",
+        "description": "联合国粮农组织纪念日，关注食物、土地与人类生活。",
+        "motif": "grain",
+        "gradient": [
+          "#211916",
+          "#604026",
+          "#111314"
+        ],
+        "accent": "#d8a05f",
+        "secondary": "#9bb06d",
+        "priority": 70,
+        "tags": [
+          "culture",
+          "international",
+          "harvest",
+          "botanical"
+        ],
+        "source": {
+          "provider": "Curated Cultural Observances",
+          "countryCode": "INTL",
+          "countryName": "International",
+          "zhName": "国际",
+          "localName": "世界粮食日",
+          "typeLabels": [
+            "文化日"
+          ]
+        },
+        "score": 587
       }
     ],
     "2026-10-23": [
       {
         "title": "Hawke's Bay Anniversary Day",
         "caption": "Hawke's Bay Anniversary Day · New Zealand",
-        "description": "新西兰的公共节日，类型为 Public。",
+        "description": "新西兰的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#101d34",
+          "#293f5d",
+          "#101316"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#78aee8",
+        "secondary": "#e85a63",
         "priority": 64,
         "tags": [
           "civic",
@@ -2454,26 +2846,58 @@ window.YearCalendarHolidayCache = {
           "countryCode": "NZ",
           "countryName": "New Zealand",
           "localName": "Hawke's Bay Anniversary Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 240
+      }
+    ],
+    "2026-10-24": [
+      {
+        "title": "United Nations Day",
+        "caption": "United Nations Day · 联合国日",
+        "description": "纪念联合国宪章生效的国际日，象征合作、和平与公共秩序。",
+        "motif": "tricolor",
+        "gradient": [
+          "#101d34",
+          "#263a54",
+          "#111316"
+        ],
+        "accent": "#78aee8",
+        "secondary": "#f3f3f5",
+        "priority": 72,
+        "tags": [
+          "culture",
+          "international",
+          "civic"
+        ],
+        "source": {
+          "provider": "Curated Cultural Observances",
+          "countryCode": "INTL",
+          "countryName": "International",
+          "zhName": "国际",
+          "localName": "联合国日",
+          "typeLabels": [
+            "文化日"
+          ]
+        },
+        "score": 603
       }
     ],
     "2026-10-26": [
       {
         "title": "Labour Day",
         "caption": "Labour Day · New Zealand",
-        "description": "新西兰的公共节日，类型为 Public。",
+        "description": "新西兰的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#101d34",
+          "#293f5d",
+          "#101316"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#78aee8",
+        "secondary": "#e85a63",
         "priority": 67,
         "tags": [
           "civic",
@@ -2484,8 +2908,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "NZ",
           "countryName": "New Zealand",
           "localName": "Labour Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 280
@@ -2495,15 +2919,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Reformation Day",
         "caption": "Reformation Day · Reformationstag",
-        "description": "德国的公共节日，当地名称是「Reformationstag」，类型为 Public。",
+        "description": "德国的公众节日，当地名称是「Reformationstag」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#151515",
+          "#55302d",
+          "#111111"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#d8b95b",
+        "secondary": "#d65345",
         "priority": 63,
         "tags": [
           "civic",
@@ -2514,8 +2938,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "DE",
           "countryName": "Germany",
           "localName": "Reformationstag",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 220
@@ -2525,15 +2949,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "All Saints' Day",
         "caption": "All Saints' Day · Toussaint",
-        "description": "法国的公共节日，当地名称是「Toussaint」，类型为 Public。",
+        "description": "法国的公众节日，当地名称是「Toussaint」。",
         "motif": "petals",
         "gradient": [
-          "#241525",
-          "#643044",
-          "#111214"
+          "#101d3f",
+          "#342742",
+          "#4c2734"
         ],
-        "accent": "#e87a94",
-        "secondary": "#d7b56b",
+        "accent": "#6aa7ff",
+        "secondary": "#e85a63",
         "priority": 70,
         "tags": [
           "botanical",
@@ -2544,8 +2968,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "FR",
           "countryName": "France",
           "localName": "Toussaint",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 364
@@ -2553,15 +2977,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "All Saints Day",
         "caption": "All Saints Day · Tutti i santi",
-        "description": "意大利的公共节日，当地名称是「Tutti i santi」，类型为 Public。",
+        "description": "意大利的公众节日，当地名称是「Tutti i santi」。",
         "motif": "petals",
         "gradient": [
-          "#241525",
-          "#643044",
-          "#111214"
+          "#10251f",
+          "#4f2c31",
+          "#111515"
         ],
-        "accent": "#e87a94",
-        "secondary": "#d7b56b",
+        "accent": "#70bf75",
+        "secondary": "#e65b5b",
         "priority": 68,
         "tags": [
           "botanical",
@@ -2572,8 +2996,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "IT",
           "countryName": "Italy",
           "localName": "Tutti i santi",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 304
@@ -2581,15 +3005,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "All Saints Day",
         "caption": "All Saints Day · Día de todos los Santos",
-        "description": "西班牙的公共节日，当地名称是「Día de todos los Santos」，类型为 Public。",
+        "description": "西班牙的公众节日，当地名称是「Día de todos los Santos」。",
         "motif": "petals",
         "gradient": [
-          "#241525",
-          "#643044",
-          "#111214"
+          "#211619",
+          "#63362a",
+          "#111314"
         ],
-        "accent": "#e87a94",
-        "secondary": "#d7b56b",
+        "accent": "#d8b95b",
+        "secondary": "#e65b5b",
         "priority": 68,
         "tags": [
           "botanical",
@@ -2600,8 +3024,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "ES",
           "countryName": "Spain",
           "localName": "Día de todos los Santos",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 304
@@ -2609,15 +3033,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "All Saints' Day",
         "caption": "All Saints' Day · Allerheiligen",
-        "description": "德国的公共节日，当地名称是「Allerheiligen」，类型为 Public。",
+        "description": "德国的公众节日，当地名称是「Allerheiligen」。",
         "motif": "petals",
         "gradient": [
-          "#241525",
-          "#643044",
-          "#111214"
+          "#151515",
+          "#55302d",
+          "#111111"
         ],
-        "accent": "#e87a94",
-        "secondary": "#d7b56b",
+        "accent": "#d8b95b",
+        "secondary": "#d65345",
         "priority": 66,
         "tags": [
           "botanical",
@@ -2628,8 +3052,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "DE",
           "countryName": "Germany",
           "localName": "Allerheiligen",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 284
@@ -2637,15 +3061,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "All Saints' Day",
         "caption": "All Saints' Day · Allerheiligen",
-        "description": "瑞士的公共节日，当地名称是「Allerheiligen」，类型为 Public。",
+        "description": "瑞士的公众节日，当地名称是「Allerheiligen」。",
         "motif": "petals",
         "gradient": [
-          "#241525",
-          "#643044",
-          "#111214"
+          "#151b27",
+          "#4d2727",
+          "#111314"
         ],
-        "accent": "#e87a94",
-        "secondary": "#d7b56b",
+        "accent": "#e65b5b",
+        "secondary": "#f0f0f2",
         "priority": 64,
         "tags": [
           "botanical",
@@ -2656,8 +3080,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CH",
           "countryName": "Switzerland",
           "localName": "Allerheiligen",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 244
@@ -2667,15 +3091,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Marlborough Anniversary Day",
         "caption": "Marlborough Anniversary Day · New Zealand",
-        "description": "新西兰的公共节日，类型为 Public。",
+        "description": "新西兰的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#101d34",
+          "#293f5d",
+          "#101316"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#78aee8",
+        "secondary": "#e85a63",
         "priority": 64,
         "tags": [
           "civic",
@@ -2686,8 +3110,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "NZ",
           "countryName": "New Zealand",
           "localName": "Marlborough Anniversary Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 240
@@ -2695,15 +3119,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "All Souls' Day",
         "caption": "All Souls' Day · Dia de Finados",
-        "description": "巴西的公共节日，当地名称是「Dia de Finados」，类型为 Public。",
+        "description": "巴西的公众节日，当地名称是「Dia de Finados」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#102622",
+          "#465c2d",
+          "#101516"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#77c98e",
+        "secondary": "#d8c070",
         "priority": 63,
         "tags": [
           "civic",
@@ -2714,8 +3138,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "BR",
           "countryName": "Brazil",
           "localName": "Dia de Finados",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 200
@@ -2725,15 +3149,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Culture Day",
         "caption": "Culture Day · 文化の日",
-        "description": "日本的公共节日，当地名称是「文化の日」，类型为 Public。",
+        "description": "日本的公众节日，当地名称是「文化の日」。",
         "motif": "sunRibbons",
         "gradient": [
-          "#10283a",
-          "#345e68",
-          "#101417"
+          "#171318",
+          "#4b1f2a",
+          "#111214"
         ],
-        "accent": "#6ecbe6",
-        "secondary": "#f0c95c",
+        "accent": "#f2eee6",
+        "secondary": "#d94a4d",
         "priority": 71,
         "tags": [
           "sun",
@@ -2744,8 +3168,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "JP",
           "countryName": "Japan",
           "localName": "文化の日",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 380
@@ -2753,14 +3177,14 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Melbourne Cup",
         "caption": "Melbourne Cup · Australia",
-        "description": "澳大利亚的公共节日，类型为 Public。",
+        "description": "澳大利亚的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#101d34",
+          "#263a54",
+          "#111316"
         ],
-        "accent": "#e2534f",
+        "accent": "#78aee8",
         "secondary": "#d8b95b",
         "priority": 64,
         "tags": [
@@ -2772,8 +3196,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "AU",
           "countryName": "Australia",
           "localName": "Melbourne Cup",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 230
@@ -2783,15 +3207,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Deepavali",
         "caption": "Deepavali · Singapore",
-        "description": "新加坡的公共节日，类型为 Public。",
+        "description": "新加坡的公众节日。",
         "motif": "sunRibbons",
         "gradient": [
-          "#10283a",
-          "#345e68",
-          "#101417"
+          "#151821",
+          "#5b2530",
+          "#111315"
         ],
-        "accent": "#6ecbe6",
-        "secondary": "#f0c95c",
+        "accent": "#e85a63",
+        "secondary": "#f3f3f5",
         "priority": 69,
         "tags": [
           "sun",
@@ -2802,8 +3226,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "SG",
           "countryName": "Singapore",
           "localName": "Deepavali",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 340
@@ -2813,15 +3237,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Veterans Day",
         "caption": "Veterans Day · United States",
-        "description": "美国的公共节日，类型为 Public, Bank。",
+        "description": "美国的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#101a34",
+          "#4a2432",
+          "#111316"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#6aa7ff",
+        "secondary": "#e85a63",
         "priority": 78,
         "tags": [
           "civic",
@@ -2832,9 +3256,9 @@ window.YearCalendarHolidayCache = {
           "countryCode": "US",
           "countryName": "United States",
           "localName": "Veterans Day",
-          "types": [
-            "Public",
-            "Bank"
+          "typeLabels": [
+            "公众节日",
+            "银行假日"
           ]
         },
         "score": 540
@@ -2842,15 +3266,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Remembrance Day",
         "caption": "Remembrance Day · Canada",
-        "description": "加拿大的公共节日，类型为 Public。",
+        "description": "加拿大的公众节日。",
         "motif": "petals",
         "gradient": [
-          "#241525",
-          "#643044",
+          "#17161c",
+          "#5d2630",
           "#111214"
         ],
-        "accent": "#e87a94",
-        "secondary": "#d7b56b",
+        "accent": "#e85a63",
+        "secondary": "#f3f3f5",
         "priority": 70,
         "tags": [
           "botanical",
@@ -2861,8 +3285,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CA",
           "countryName": "Canada",
           "localName": "Remembrance Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 374
@@ -2870,15 +3294,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Armistice Day",
         "caption": "Armistice Day · Canada",
-        "description": "加拿大的公共节日，类型为 Public。",
+        "description": "加拿大的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#17161c",
+          "#5d2630",
+          "#111214"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#e85a63",
+        "secondary": "#f3f3f5",
         "priority": 67,
         "tags": [
           "civic",
@@ -2889,8 +3313,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CA",
           "countryName": "Canada",
           "localName": "Armistice Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 310
@@ -2898,15 +3322,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Armistice Day",
         "caption": "Armistice Day · Armistice 1918",
-        "description": "法国的公共节日，当地名称是「Armistice 1918」，类型为 Public。",
+        "description": "法国的公众节日，当地名称是「Armistice 1918」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#101d3f",
+          "#342742",
+          "#4c2734"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#6aa7ff",
+        "secondary": "#e85a63",
         "priority": 68,
         "tags": [
           "civic",
@@ -2917,8 +3341,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "FR",
           "countryName": "France",
           "localName": "Armistice 1918",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 300
@@ -2926,17 +3350,48 @@ window.YearCalendarHolidayCache = {
     ],
     "2026-11-13": [
       {
+        "title": "World Kindness Day",
+        "caption": "World Kindness Day · 世界友善日",
+        "description": "纪念善意、照顾与人与人之间温柔连接的文化日。",
+        "motif": "petals",
+        "gradient": [
+          "#241525",
+          "#643044",
+          "#111214"
+        ],
+        "accent": "#e87a94",
+        "secondary": "#d7b56b",
+        "priority": 66,
+        "tags": [
+          "culture",
+          "international",
+          "botanical",
+          "light"
+        ],
+        "source": {
+          "provider": "Curated Cultural Observances",
+          "countryCode": "INTL",
+          "countryName": "International",
+          "zhName": "国际",
+          "localName": "世界友善日",
+          "typeLabels": [
+            "文化日"
+          ]
+        },
+        "score": 558
+      },
+      {
         "title": "Canterbury Anniversary Day",
         "caption": "Canterbury Anniversary Day · Canterbury (North & Central) Anniversary Day",
-        "description": "新西兰的公共节日，当地名称是「Canterbury (North & Central) Anniversary Day」，类型为 Public。",
+        "description": "新西兰的公众节日，当地名称是「Canterbury (North & Central) Anniversary Day」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#101d34",
+          "#293f5d",
+          "#101316"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#78aee8",
+        "secondary": "#e85a63",
         "priority": 64,
         "tags": [
           "civic",
@@ -2947,8 +3402,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "NZ",
           "countryName": "New Zealand",
           "localName": "Canterbury (North & Central) Anniversary Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 240
@@ -2958,15 +3413,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Republic Proclamation Day",
         "caption": "Republic Proclamation Day · Proclamação da República",
-        "description": "巴西的公共节日，当地名称是「Proclamação da República」，类型为 Public。",
+        "description": "巴西的公众节日，当地名称是「Proclamação da República」。",
         "motif": "fireworks",
         "gradient": [
-          "#101a34",
-          "#4a2734",
-          "#111316"
+          "#102622",
+          "#465c2d",
+          "#101516"
         ],
-        "accent": "#6aa7ff",
-        "secondary": "#e85a63",
+        "accent": "#77c98e",
+        "secondary": "#d8c070",
         "priority": 71,
         "tags": [
           "sky",
@@ -2979,8 +3434,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "BR",
           "countryName": "Brazil",
           "localName": "Proclamação da República",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 392
@@ -2988,17 +3443,47 @@ window.YearCalendarHolidayCache = {
     ],
     "2026-11-16": [
       {
+        "title": "International Day for Tolerance",
+        "caption": "International Day for Tolerance · 国际宽容日",
+        "description": "联合国教科文组织设立的国际日，纪念理解、差异与共处。",
+        "motif": "candle",
+        "gradient": [
+          "#101827",
+          "#37304d",
+          "#111214"
+        ],
+        "accent": "#f0c95c",
+        "secondary": "#f2f0d6",
+        "priority": 68,
+        "tags": [
+          "culture",
+          "international",
+          "light"
+        ],
+        "source": {
+          "provider": "Curated Cultural Observances",
+          "countryCode": "INTL",
+          "countryName": "International",
+          "zhName": "国际",
+          "localName": "国际宽容日",
+          "typeLabels": [
+            "文化日"
+          ]
+        },
+        "score": 574
+      },
+      {
         "title": "Revolution Day",
         "caption": "Revolution Day · Día de la Revolución",
-        "description": "墨西哥的公共节日，当地名称是「Día de la Revolución」，类型为 Public。",
+        "description": "墨西哥的公众节日，当地名称是「Día de la Revolución」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#10251f",
+          "#4f2c31",
+          "#111515"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#70bf75",
+        "secondary": "#e85a63",
         "priority": 64,
         "tags": [
           "civic",
@@ -3009,8 +3494,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "MX",
           "countryName": "Mexico",
           "localName": "Día de la Revolución",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 220
@@ -3020,15 +3505,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Repentance and Prayer Day",
         "caption": "Repentance and Prayer Day · Buß- und Bettag",
-        "description": "德国的公共节日，当地名称是「Buß- und Bettag」，类型为 Public。",
+        "description": "德国的公众节日，当地名称是「Buß- und Bettag」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#151515",
+          "#55302d",
+          "#111111"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#d8b95b",
+        "secondary": "#d65345",
         "priority": 63,
         "tags": [
           "civic",
@@ -3039,8 +3524,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "DE",
           "countryName": "Germany",
           "localName": "Buß- und Bettag",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 220
@@ -3050,15 +3535,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Black Awareness Day",
         "caption": "Black Awareness Day · Dia da Consciência Negra",
-        "description": "巴西的公共节日，当地名称是「Dia da Consciência Negra」，类型为 Public。",
+        "description": "巴西的公众节日，当地名称是「Dia da Consciência Negra」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#102622",
+          "#465c2d",
+          "#101516"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#77c98e",
+        "secondary": "#d8c070",
         "priority": 63,
         "tags": [
           "civic",
@@ -3069,26 +3554,59 @@ window.YearCalendarHolidayCache = {
           "countryCode": "BR",
           "countryName": "Brazil",
           "localName": "Dia da Consciência Negra",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 200
+      }
+    ],
+    "2026-11-21": [
+      {
+        "title": "World Television Day",
+        "caption": "World Television Day · 世界电视日",
+        "description": "联合国设立的国际日，纪念影像媒介与公共叙事。",
+        "motif": "starfield",
+        "gradient": [
+          "#101b33",
+          "#2e4770",
+          "#101316"
+        ],
+        "accent": "#9fc8ff",
+        "secondary": "#e6c86f",
+        "priority": 62,
+        "tags": [
+          "culture",
+          "international",
+          "sky",
+          "light"
+        ],
+        "source": {
+          "provider": "Curated Cultural Observances",
+          "countryCode": "INTL",
+          "countryName": "International",
+          "zhName": "国际",
+          "localName": "世界电视日",
+          "typeLabels": [
+            "文化日"
+          ]
+        },
+        "score": 526
       }
     ],
     "2026-11-23": [
       {
         "title": "Labour Thanksgiving Day",
         "caption": "Labour Thanksgiving Day · 勤労感謝の日",
-        "description": "日本的公共节日，当地名称是「勤労感謝の日」，类型为 Public。",
+        "description": "日本的公众节日，当地名称是「勤労感謝の日」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#211916",
+          "#604026",
+          "#111314"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#d8a05f",
+        "secondary": "#9bb06d",
         "priority": 79,
         "tags": [
           "civic",
@@ -3099,8 +3617,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "JP",
           "countryName": "Japan",
           "localName": "勤労感謝の日",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 572
@@ -3110,15 +3628,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Thanksgiving Day",
         "caption": "Thanksgiving Day · United States",
-        "description": "美国的公共节日，类型为 Public, Bank。",
+        "description": "美国的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#211916",
+          "#604026",
+          "#111314"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#d8a05f",
+        "secondary": "#9bb06d",
         "priority": 86,
         "tags": [
           "civic",
@@ -3129,9 +3647,9 @@ window.YearCalendarHolidayCache = {
           "countryCode": "US",
           "countryName": "United States",
           "localName": "Thanksgiving Day",
-          "types": [
-            "Public",
-            "Bank"
+          "typeLabels": [
+            "公众节日",
+            "银行假日"
           ]
         },
         "score": 732
@@ -3141,15 +3659,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Saint Andrew's Day",
         "caption": "Saint Andrew's Day · United Kingdom",
-        "description": "英国的公共节日，类型为 Public。",
+        "description": "英国的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#111b32",
+          "#482538",
+          "#111316"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#7faee8",
+        "secondary": "#e65b5b",
         "priority": 67,
         "tags": [
           "civic",
@@ -3160,8 +3678,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "GB",
           "countryName": "United Kingdom",
           "localName": "Saint Andrew's Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 320
@@ -3169,15 +3687,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Chatham Islands Anniversary Day",
         "caption": "Chatham Islands Anniversary Day · New Zealand",
-        "description": "新西兰的公共节日，类型为 Public。",
+        "description": "新西兰的公众节日。",
         "motif": "waterFlowers",
         "gradient": [
-          "#0d2836",
-          "#1d5a64",
-          "#101518"
+          "#101d34",
+          "#293f5d",
+          "#101316"
         ],
-        "accent": "#70d6d0",
-        "secondary": "#f2b8c6",
+        "accent": "#78aee8",
+        "secondary": "#e85a63",
         "priority": 64,
         "tags": [
           "water",
@@ -3188,8 +3706,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "NZ",
           "countryName": "New Zealand",
           "localName": "Chatham Islands Anniversary Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 240
@@ -3197,15 +3715,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Westland Anniversary Day",
         "caption": "Westland Anniversary Day · New Zealand",
-        "description": "新西兰的公共节日，类型为 Public。",
+        "description": "新西兰的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#101d34",
+          "#293f5d",
+          "#101316"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#78aee8",
+        "secondary": "#e85a63",
         "priority": 64,
         "tags": [
           "civic",
@@ -3216,8 +3734,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "NZ",
           "countryName": "New Zealand",
           "localName": "Westland Anniversary Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 240
@@ -3227,15 +3745,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Constitution Day",
         "caption": "Constitution Day · Día de la Constitución",
-        "description": "西班牙的公共节日，当地名称是「Día de la Constitución」，类型为 Public。",
+        "description": "西班牙的公众节日，当地名称是「Día de la Constitución」。",
         "motif": "fireworks",
         "gradient": [
-          "#101a34",
-          "#4a2734",
-          "#111316"
+          "#211619",
+          "#63362a",
+          "#111314"
         ],
-        "accent": "#6aa7ff",
-        "secondary": "#e85a63",
+        "accent": "#d8b95b",
+        "secondary": "#e65b5b",
         "priority": 73,
         "tags": [
           "sky",
@@ -3248,8 +3766,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "ES",
           "countryName": "Spain",
           "localName": "Día de la Constitución",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 432
@@ -3259,15 +3777,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Immaculate Conception",
         "caption": "Immaculate Conception · Immacolata Concezione",
-        "description": "意大利的公共节日，当地名称是「Immacolata Concezione」，类型为 Public。",
+        "description": "意大利的公众节日，当地名称是「Immacolata Concezione」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#10251f",
+          "#4f2c31",
+          "#111515"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#70bf75",
+        "secondary": "#e65b5b",
         "priority": 65,
         "tags": [
           "civic",
@@ -3278,8 +3796,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "IT",
           "countryName": "Italy",
           "localName": "Immacolata Concezione",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 240
@@ -3287,15 +3805,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Immaculate Conception",
         "caption": "Immaculate Conception · Inmaculada Concepción",
-        "description": "西班牙的公共节日，当地名称是「Inmaculada Concepción」，类型为 Public。",
+        "description": "西班牙的公众节日，当地名称是「Inmaculada Concepción」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#211619",
+          "#63362a",
+          "#111314"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#d8b95b",
+        "secondary": "#e65b5b",
         "priority": 65,
         "tags": [
           "civic",
@@ -3306,8 +3824,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "ES",
           "countryName": "Spain",
           "localName": "Inmaculada Concepción",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 240
@@ -3315,15 +3833,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Immaculate Conception",
         "caption": "Immaculate Conception · Mariä Empfängnis",
-        "description": "瑞士的公共节日，当地名称是「Mariä Empfängnis」，类型为 Public。",
+        "description": "瑞士的公众节日，当地名称是「Mariä Empfängnis」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#151b27",
+          "#4d2727",
+          "#111314"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#e65b5b",
+        "secondary": "#f0f0f2",
         "priority": 62,
         "tags": [
           "civic",
@@ -3334,25 +3852,58 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CH",
           "countryName": "Switzerland",
           "localName": "Mariä Empfängnis",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 180
+      }
+    ],
+    "2026-12-10": [
+      {
+        "title": "Human Rights Day",
+        "caption": "Human Rights Day · 人权日",
+        "description": "联合国纪念日，关注人的尊严、自由与平等。",
+        "motif": "candle",
+        "gradient": [
+          "#101827",
+          "#37304d",
+          "#111214"
+        ],
+        "accent": "#f0c95c",
+        "secondary": "#f2f0d6",
+        "priority": 74,
+        "tags": [
+          "culture",
+          "international",
+          "civic",
+          "light"
+        ],
+        "source": {
+          "provider": "Curated Cultural Observances",
+          "countryCode": "INTL",
+          "countryName": "International",
+          "zhName": "国际",
+          "localName": "人权日",
+          "typeLabels": [
+            "文化日"
+          ]
+        },
+        "score": 625
       }
     ],
     "2026-12-16": [
       {
         "title": "Day of Reconciliation",
         "caption": "Day of Reconciliation · South Africa",
-        "description": "南非的公共节日，类型为 Public。",
+        "description": "南非的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#10251f",
+          "#1f415a",
+          "#111515"
         ],
-        "accent": "#e2534f",
+        "accent": "#77c98e",
         "secondary": "#d8b95b",
         "priority": 63,
         "tags": [
@@ -3364,26 +3915,58 @@ window.YearCalendarHolidayCache = {
           "countryCode": "ZA",
           "countryName": "South Africa",
           "localName": "Day of Reconciliation",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 200
+      }
+    ],
+    "2026-12-18": [
+      {
+        "title": "International Migrants Day",
+        "caption": "International Migrants Day · 国际移民日",
+        "description": "联合国设立的国际日，关注迁徙、家园与跨文化生活。",
+        "motif": "mountainFlags",
+        "gradient": [
+          "#111d34",
+          "#263e5b",
+          "#101316"
+        ],
+        "accent": "#78bde8",
+        "secondary": "#d8c070",
+        "priority": 66,
+        "tags": [
+          "culture",
+          "international",
+          "mountain"
+        ],
+        "source": {
+          "provider": "Curated Cultural Observances",
+          "countryCode": "INTL",
+          "countryName": "International",
+          "zhName": "国际",
+          "localName": "国际移民日",
+          "typeLabels": [
+            "文化日"
+          ]
+        },
+        "score": 561
       }
     ],
     "2026-12-25": [
       {
         "title": "Christmas Day",
         "caption": "Christmas Day · United States",
-        "description": "美国的公共节日，类型为 Public, Bank。",
+        "description": "美国的公众节日。",
         "motif": "fireworks",
         "gradient": [
-          "#101a34",
-          "#4a2734",
-          "#111316"
+          "#101827",
+          "#2d4436",
+          "#111314"
         ],
-        "accent": "#6aa7ff",
-        "secondary": "#e85a63",
+        "accent": "#d8c070",
+        "secondary": "#d65345",
         "priority": 86,
         "tags": [
           "sky",
@@ -3395,9 +3978,9 @@ window.YearCalendarHolidayCache = {
           "countryCode": "US",
           "countryName": "United States",
           "localName": "Christmas Day",
-          "types": [
-            "Public",
-            "Bank"
+          "typeLabels": [
+            "公众节日",
+            "银行假日"
           ]
         },
         "score": 732
@@ -3405,15 +3988,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Christmas Day",
         "caption": "Christmas Day · Singapore",
-        "description": "新加坡的公共节日，类型为 Public。",
+        "description": "新加坡的公众节日。",
         "motif": "fireworks",
         "gradient": [
-          "#101a34",
-          "#4a2734",
-          "#111316"
+          "#101827",
+          "#2d4436",
+          "#111314"
         ],
-        "accent": "#6aa7ff",
-        "secondary": "#e85a63",
+        "accent": "#d8c070",
+        "secondary": "#d65345",
         "priority": 81,
         "tags": [
           "sky",
@@ -3425,8 +4008,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "SG",
           "countryName": "Singapore",
           "localName": "Christmas Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 612
@@ -3434,15 +4017,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Christmas Day",
         "caption": "Christmas Day · United Kingdom",
-        "description": "英国的公共节日，类型为 Public。",
+        "description": "英国的公众节日。",
         "motif": "fireworks",
         "gradient": [
-          "#101a34",
-          "#4a2734",
-          "#111316"
+          "#101827",
+          "#2d4436",
+          "#111314"
         ],
-        "accent": "#6aa7ff",
-        "secondary": "#e85a63",
+        "accent": "#d8c070",
+        "secondary": "#d65345",
         "priority": 78,
         "tags": [
           "sky",
@@ -3454,8 +4037,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "GB",
           "countryName": "United Kingdom",
           "localName": "Christmas Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 552
@@ -3463,15 +4046,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Christmas Day",
         "caption": "Christmas Day · Canada",
-        "description": "加拿大的公共节日，类型为 Public。",
+        "description": "加拿大的公众节日。",
         "motif": "fireworks",
         "gradient": [
-          "#101a34",
-          "#4a2734",
-          "#111316"
+          "#101827",
+          "#2d4436",
+          "#111314"
         ],
-        "accent": "#6aa7ff",
-        "secondary": "#e85a63",
+        "accent": "#d8c070",
+        "secondary": "#d65345",
         "priority": 78,
         "tags": [
           "sky",
@@ -3483,8 +4066,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CA",
           "countryName": "Canada",
           "localName": "Christmas Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 542
@@ -3492,15 +4075,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Christmas Day",
         "caption": "Christmas Day · Australia",
-        "description": "澳大利亚的公共节日，类型为 Public。",
+        "description": "澳大利亚的公众节日。",
         "motif": "fireworks",
         "gradient": [
-          "#101a34",
-          "#4a2734",
-          "#111316"
+          "#101827",
+          "#2d4436",
+          "#111314"
         ],
-        "accent": "#6aa7ff",
-        "secondary": "#e85a63",
+        "accent": "#d8c070",
+        "secondary": "#d65345",
         "priority": 78,
         "tags": [
           "sky",
@@ -3512,8 +4095,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "AU",
           "countryName": "Australia",
           "localName": "Christmas Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 542
@@ -3523,15 +4106,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "St. Stephen's Day",
         "caption": "St. Stephen's Day · Boxing Day",
-        "description": "加拿大的公共节日，当地名称是「Boxing Day」，类型为 Public。",
+        "description": "加拿大的公众节日，当地名称是「Boxing Day」。",
         "motif": "fireworks",
         "gradient": [
-          "#101a34",
-          "#4a2734",
-          "#111316"
+          "#17161c",
+          "#5d2630",
+          "#111214"
         ],
-        "accent": "#6aa7ff",
-        "secondary": "#e85a63",
+        "accent": "#e85a63",
+        "secondary": "#f3f3f5",
         "priority": 67,
         "tags": [
           "sky",
@@ -3543,8 +4126,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CA",
           "countryName": "Canada",
           "localName": "Boxing Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 310
@@ -3552,14 +4135,14 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Day of Goodwill",
         "caption": "Day of Goodwill · St. Stephen's Day",
-        "description": "南非的公共节日，当地名称是「St. Stephen's Day」，类型为 Public。",
+        "description": "南非的公众节日，当地名称是「St. Stephen's Day」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#10251f",
+          "#1f415a",
+          "#111515"
         ],
-        "accent": "#e2534f",
+        "accent": "#77c98e",
         "secondary": "#d8b95b",
         "priority": 67,
         "tags": [
@@ -3571,8 +4154,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "ZA",
           "countryName": "South Africa",
           "localName": "St. Stephen's Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 280
@@ -3580,15 +4163,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "St. Stephen's Day",
         "caption": "St. Stephen's Day · Zweiter Weihnachtstag",
-        "description": "德国的公共节日，当地名称是「Zweiter Weihnachtstag」，类型为 Public。",
+        "description": "德国的公众节日，当地名称是「Zweiter Weihnachtstag」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#151515",
+          "#55302d",
+          "#111111"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#d8b95b",
+        "secondary": "#d65345",
         "priority": 66,
         "tags": [
           "civic",
@@ -3599,8 +4182,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "DE",
           "countryName": "Germany",
           "localName": "Zweiter Weihnachtstag",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 260
@@ -3608,15 +4191,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "St. Stephen's Day",
         "caption": "St. Stephen's Day · Santo Stefano",
-        "description": "意大利的公共节日，当地名称是「Santo Stefano」，类型为 Public。",
+        "description": "意大利的公众节日，当地名称是「Santo Stefano」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#10251f",
+          "#4f2c31",
+          "#111515"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#70bf75",
+        "secondary": "#e65b5b",
         "priority": 65,
         "tags": [
           "civic",
@@ -3627,8 +4210,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "IT",
           "countryName": "Italy",
           "localName": "Santo Stefano",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 240
@@ -3636,15 +4219,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "St. Stephen's Day",
         "caption": "St. Stephen's Day · Andre juledag",
-        "description": "挪威的公共节日，当地名称是「Andre juledag」，类型为 Public。",
+        "description": "挪威的公众节日，当地名称是「Andre juledag」。",
         "motif": "mountainFlags",
         "gradient": [
-          "#151b27",
-          "#4d2727",
-          "#111314"
+          "#101d34",
+          "#4f2d38",
+          "#101316"
         ],
-        "accent": "#e65b5b",
-        "secondary": "#f0f0f2",
+        "accent": "#6da2cf",
+        "secondary": "#e65b5b",
         "priority": 64,
         "tags": [
           "mountain",
@@ -3656,8 +4239,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "NO",
           "countryName": "Norway",
           "localName": "Andre juledag",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 220
@@ -3667,15 +4250,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "St. Stephen's Day",
         "caption": "St. Stephen's Day · Boxing Day",
-        "description": "英国的公共节日，当地名称是「Boxing Day」，类型为 Public。",
+        "description": "英国的公众节日，当地名称是「Boxing Day」。",
         "motif": "fireworks",
         "gradient": [
-          "#101a34",
-          "#4a2734",
+          "#111b32",
+          "#482538",
           "#111316"
         ],
-        "accent": "#6aa7ff",
-        "secondary": "#e85a63",
+        "accent": "#7faee8",
+        "secondary": "#e65b5b",
         "priority": 70,
         "tags": [
           "sky",
@@ -3687,8 +4270,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "GB",
           "countryName": "United Kingdom",
           "localName": "Boxing Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 360
@@ -3696,15 +4279,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "St. Stephen's Day",
         "caption": "St. Stephen's Day · Boxing Day",
-        "description": "澳大利亚的公共节日，当地名称是「Boxing Day」，类型为 Public。",
+        "description": "澳大利亚的公众节日，当地名称是「Boxing Day」。",
         "motif": "fireworks",
         "gradient": [
-          "#101a34",
-          "#4a2734",
+          "#101d34",
+          "#263a54",
           "#111316"
         ],
-        "accent": "#6aa7ff",
-        "secondary": "#e85a63",
+        "accent": "#78aee8",
+        "secondary": "#d8b95b",
         "priority": 70,
         "tags": [
           "sky",
@@ -3716,8 +4299,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "AU",
           "countryName": "Australia",
           "localName": "Boxing Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 350
@@ -3725,14 +4308,14 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Boxing Day",
         "caption": "Boxing Day · New Zealand",
-        "description": "新西兰的公共节日，类型为 Public。",
+        "description": "新西兰的公众节日。",
         "motif": "fireworks",
         "gradient": [
-          "#101a34",
-          "#4a2734",
-          "#111316"
+          "#101d34",
+          "#293f5d",
+          "#101316"
         ],
-        "accent": "#6aa7ff",
+        "accent": "#78aee8",
         "secondary": "#e85a63",
         "priority": 67,
         "tags": [
@@ -3745,8 +4328,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "NZ",
           "countryName": "New Zealand",
           "localName": "Boxing Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 280
@@ -3756,15 +4339,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Restoration Day",
         "caption": "Restoration Day · Restauration de la République",
-        "description": "瑞士的公共节日，当地名称是「Restauration de la République」，类型为 Public。",
+        "description": "瑞士的公众节日，当地名称是「Restauration de la République」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#151b27",
+          "#4d2727",
+          "#111314"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#e65b5b",
+        "secondary": "#f0f0f2",
         "priority": 62,
         "tags": [
           "civic",
@@ -3775,8 +4358,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CH",
           "countryName": "Switzerland",
           "localName": "Restauration de la République",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 180
@@ -3786,15 +4369,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "New Year's Day",
         "caption": "New Year's Day · 元旦",
-        "description": "中国的公共节日，当地名称是「元旦」，类型为 Public。",
+        "description": "中国的公众节日，当地名称是「元旦」。",
         "motif": "fireworks",
         "gradient": [
-          "#101a34",
-          "#4a2734",
+          "#151a2d",
+          "#493456",
           "#111316"
         ],
-        "accent": "#6aa7ff",
-        "secondary": "#e85a63",
+        "accent": "#d6c070",
+        "secondary": "#78b8e6",
         "priority": 88,
         "tags": [
           "sky",
@@ -3806,8 +4389,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CN",
           "countryName": "China",
           "localName": "元旦",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 792
@@ -3815,15 +4398,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "New Year's Day",
         "caption": "New Year's Day · United States",
-        "description": "美国的公共节日，类型为 Public, Bank。",
+        "description": "美国的公众节日。",
         "motif": "fireworks",
         "gradient": [
-          "#101a34",
-          "#4a2734",
+          "#151a2d",
+          "#493456",
           "#111316"
         ],
-        "accent": "#6aa7ff",
-        "secondary": "#e85a63",
+        "accent": "#d6c070",
+        "secondary": "#78b8e6",
         "priority": 86,
         "tags": [
           "sky",
@@ -3835,9 +4418,9 @@ window.YearCalendarHolidayCache = {
           "countryCode": "US",
           "countryName": "United States",
           "localName": "New Year's Day",
-          "types": [
-            "Public",
-            "Bank"
+          "typeLabels": [
+            "公众节日",
+            "银行假日"
           ]
         },
         "score": 732
@@ -3845,15 +4428,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "New Year's Day",
         "caption": "New Year's Day · Singapore",
-        "description": "新加坡的公共节日，类型为 Public。",
+        "description": "新加坡的公众节日。",
         "motif": "fireworks",
         "gradient": [
-          "#101a34",
-          "#4a2734",
+          "#151a2d",
+          "#493456",
           "#111316"
         ],
-        "accent": "#6aa7ff",
-        "secondary": "#e85a63",
+        "accent": "#d6c070",
+        "secondary": "#78b8e6",
         "priority": 81,
         "tags": [
           "sky",
@@ -3865,8 +4448,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "SG",
           "countryName": "Singapore",
           "localName": "New Year's Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 612
@@ -3874,15 +4457,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "New Year's Day",
         "caption": "New Year's Day · 元日",
-        "description": "日本的公共节日，当地名称是「元日」，类型为 Public。",
+        "description": "日本的公众节日，当地名称是「元日」。",
         "motif": "fireworks",
         "gradient": [
-          "#101a34",
-          "#4a2734",
+          "#151a2d",
+          "#493456",
           "#111316"
         ],
-        "accent": "#6aa7ff",
-        "secondary": "#e85a63",
+        "accent": "#d6c070",
+        "secondary": "#78b8e6",
         "priority": 79,
         "tags": [
           "sky",
@@ -3894,8 +4477,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "JP",
           "countryName": "Japan",
           "localName": "元日",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 572
@@ -3903,15 +4486,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "New Year's Day",
         "caption": "New Year's Day · Canada",
-        "description": "加拿大的公共节日，类型为 Public。",
+        "description": "加拿大的公众节日。",
         "motif": "fireworks",
         "gradient": [
-          "#101a34",
-          "#4a2734",
+          "#151a2d",
+          "#493456",
           "#111316"
         ],
-        "accent": "#6aa7ff",
-        "secondary": "#e85a63",
+        "accent": "#d6c070",
+        "secondary": "#78b8e6",
         "priority": 78,
         "tags": [
           "sky",
@@ -3923,8 +4506,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CA",
           "countryName": "Canada",
           "localName": "New Year's Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 542
@@ -3934,15 +4517,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "2 January",
         "caption": "2 January · United Kingdom",
-        "description": "英国的公共节日，类型为 Public。",
+        "description": "英国的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#111b32",
+          "#482538",
+          "#111316"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#7faee8",
+        "secondary": "#e65b5b",
         "priority": 64,
         "tags": [
           "civic",
@@ -3953,8 +4536,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "GB",
           "countryName": "United Kingdom",
           "localName": "2 January",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 240
@@ -3962,15 +4545,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "St. Berchtold's Day",
         "caption": "St. Berchtold's Day · Berchtoldstag",
-        "description": "瑞士的公共节日，当地名称是「Berchtoldstag」，类型为 Public。",
+        "description": "瑞士的公众节日，当地名称是「Berchtoldstag」。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#151b27",
+          "#4d2727",
+          "#111314"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#e65b5b",
+        "secondary": "#f0f0f2",
         "priority": 62,
         "tags": [
           "civic",
@@ -3981,8 +4564,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CH",
           "countryName": "Switzerland",
           "localName": "Berchtoldstag",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 180
@@ -3992,15 +4575,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Day after New Year's Day",
         "caption": "Day after New Year's Day · New Zealand",
-        "description": "新西兰的公共节日，类型为 Public。",
+        "description": "新西兰的公众节日。",
         "motif": "fireworks",
         "gradient": [
-          "#101a34",
-          "#4a2734",
+          "#151a2d",
+          "#493456",
           "#111316"
         ],
-        "accent": "#6aa7ff",
-        "secondary": "#e85a63",
+        "accent": "#d6c070",
+        "secondary": "#78b8e6",
         "priority": 75,
         "tags": [
           "sky",
@@ -4012,8 +4595,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "NZ",
           "countryName": "New Zealand",
           "localName": "Day after New Year's Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 472
@@ -4023,15 +4606,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Epiphany",
         "caption": "Epiphany · Epifania",
-        "description": "意大利的公共节日，当地名称是「Epifania」，类型为 Public。",
+        "description": "意大利的公众节日，当地名称是「Epifania」。",
         "motif": "snow",
         "gradient": [
-          "#101827",
-          "#263a35",
-          "#111314"
+          "#10251f",
+          "#4f2c31",
+          "#111515"
         ],
-        "accent": "#d8c070",
-        "secondary": "#86b38c",
+        "accent": "#70bf75",
+        "secondary": "#e65b5b",
         "priority": 65,
         "tags": [
           "winter",
@@ -4043,8 +4626,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "IT",
           "countryName": "Italy",
           "localName": "Epifania",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 240
@@ -4052,15 +4635,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Epiphany",
         "caption": "Epiphany · Día de Reyes / Epifanía del Señor",
-        "description": "西班牙的公共节日，当地名称是「Día de Reyes / Epifanía del Señor」，类型为 Public。",
+        "description": "西班牙的公众节日，当地名称是「Día de Reyes / Epifanía del Señor」。",
         "motif": "snow",
         "gradient": [
-          "#101827",
-          "#263a35",
+          "#211619",
+          "#63362a",
           "#111314"
         ],
-        "accent": "#d8c070",
-        "secondary": "#86b38c",
+        "accent": "#d8b95b",
+        "secondary": "#e65b5b",
         "priority": 65,
         "tags": [
           "winter",
@@ -4072,8 +4655,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "ES",
           "countryName": "Spain",
           "localName": "Día de Reyes / Epifanía del Señor",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 240
@@ -4081,15 +4664,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Epiphany",
         "caption": "Epiphany · Heilige Drei Könige",
-        "description": "德国的公共节日，当地名称是「Heilige Drei Könige」，类型为 Public。",
+        "description": "德国的公众节日，当地名称是「Heilige Drei Könige」。",
         "motif": "snow",
         "gradient": [
-          "#101827",
-          "#263a35",
-          "#111314"
+          "#151515",
+          "#55302d",
+          "#111111"
         ],
-        "accent": "#d8c070",
-        "secondary": "#86b38c",
+        "accent": "#d8b95b",
+        "secondary": "#d65345",
         "priority": 63,
         "tags": [
           "winter",
@@ -4101,8 +4684,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "DE",
           "countryName": "Germany",
           "localName": "Heilige Drei Könige",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 220
@@ -4110,15 +4693,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Epiphany",
         "caption": "Epiphany · Heilige Drei Könige",
-        "description": "瑞士的公共节日，当地名称是「Heilige Drei Könige」，类型为 Public。",
+        "description": "瑞士的公众节日，当地名称是「Heilige Drei Könige」。",
         "motif": "snow",
         "gradient": [
-          "#101827",
-          "#263a35",
+          "#151b27",
+          "#4d2727",
           "#111314"
         ],
-        "accent": "#d8c070",
-        "secondary": "#86b38c",
+        "accent": "#e65b5b",
+        "secondary": "#f0f0f2",
         "priority": 62,
         "tags": [
           "winter",
@@ -4130,8 +4713,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "CH",
           "countryName": "Switzerland",
           "localName": "Heilige Drei Könige",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 180
@@ -4141,15 +4724,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Coming of Age Day",
         "caption": "Coming of Age Day · 成人の日",
-        "description": "日本的公共节日，当地名称是「成人の日」，类型为 Public。",
+        "description": "日本的公众节日，当地名称是「成人の日」。",
         "motif": "sunRibbons",
         "gradient": [
-          "#10283a",
-          "#345e68",
-          "#101417"
+          "#171318",
+          "#4b1f2a",
+          "#111214"
         ],
-        "accent": "#6ecbe6",
-        "secondary": "#f0c95c",
+        "accent": "#f2eee6",
+        "secondary": "#d94a4d",
         "priority": 71,
         "tags": [
           "sun",
@@ -4160,8 +4743,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "JP",
           "countryName": "Japan",
           "localName": "成人の日",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 380
@@ -4171,15 +4754,15 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Martin Luther King, Jr. Day",
         "caption": "Martin Luther King, Jr. Day · United States",
-        "description": "美国的公共节日，类型为 Public, Bank。",
+        "description": "美国的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#101a34",
+          "#4a2432",
+          "#111316"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#6aa7ff",
+        "secondary": "#e85a63",
         "priority": 78,
         "tags": [
           "civic",
@@ -4190,27 +4773,59 @@ window.YearCalendarHolidayCache = {
           "countryCode": "US",
           "countryName": "United States",
           "localName": "Martin Luther King, Jr. Day",
-          "types": [
-            "Public",
-            "Bank"
+          "typeLabels": [
+            "公众节日",
+            "银行假日"
           ]
         },
         "score": 540
+      }
+    ],
+    "2027-01-24": [
+      {
+        "title": "International Day of Education",
+        "caption": "International Day of Education · 国际教育日",
+        "description": "联合国设立的国际日，关注学习、知识与人的发展。",
+        "motif": "starfield",
+        "gradient": [
+          "#111d34",
+          "#263e5b",
+          "#101316"
+        ],
+        "accent": "#78bde8",
+        "secondary": "#d8c070",
+        "priority": 66,
+        "tags": [
+          "culture",
+          "international",
+          "light"
+        ],
+        "source": {
+          "provider": "Curated Cultural Observances",
+          "countryCode": "INTL",
+          "countryName": "International",
+          "zhName": "国际",
+          "localName": "国际教育日",
+          "typeLabels": [
+            "文化日"
+          ]
+        },
+        "score": 528
       }
     ],
     "2027-01-25": [
       {
         "title": "Wellington Anniversary Day",
         "caption": "Wellington Anniversary Day · New Zealand",
-        "description": "新西兰的公共节日，类型为 Public。",
+        "description": "新西兰的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#101d34",
+          "#293f5d",
+          "#101316"
         ],
-        "accent": "#e2534f",
-        "secondary": "#d8b95b",
+        "accent": "#78aee8",
+        "secondary": "#e85a63",
         "priority": 64,
         "tags": [
           "civic",
@@ -4221,8 +4836,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "NZ",
           "countryName": "New Zealand",
           "localName": "Wellington Anniversary Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 240
@@ -4232,14 +4847,14 @@ window.YearCalendarHolidayCache = {
       {
         "title": "Australia Day",
         "caption": "Australia Day · Australia",
-        "description": "澳大利亚的公共节日，类型为 Public。",
+        "description": "澳大利亚的公众节日。",
         "motif": "tricolor",
         "gradient": [
-          "#181b24",
-          "#4d2c2f",
-          "#111315"
+          "#101d34",
+          "#263a54",
+          "#111316"
         ],
-        "accent": "#e2534f",
+        "accent": "#78aee8",
         "secondary": "#d8b95b",
         "priority": 70,
         "tags": [
@@ -4251,8 +4866,8 @@ window.YearCalendarHolidayCache = {
           "countryCode": "AU",
           "countryName": "Australia",
           "localName": "Australia Day",
-          "types": [
-            "Public"
+          "typeLabels": [
+            "公众节日"
           ]
         },
         "score": 350

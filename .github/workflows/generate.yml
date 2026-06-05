@@ -32,7 +32,7 @@ jobs:
         run: PUPPETEER_SKIP_DOWNLOAD=true npm install
 
       - name: Install Puppeteer browser
-        run: npx puppeteer browsers install chrome
+        run: npx puppeteer install chrome
 
       - name: Install rendering fonts
         run: |
@@ -48,6 +48,7 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add -f output/today.png
+          git add data/theme-history.json
           git commit -m "chore: update today wallpaper" || echo "No today wallpaper changes"
           git push origin HEAD:${GITHUB_REF_NAME}
 

@@ -8,11 +8,15 @@ import { pathToFileURL } from "url";
 
 const OUTPUT_ROOT = "output";
 const DRAFT_ROOT = "drafts";
+const DATA_ROOT = "data";
+const THEME_HISTORY_FILE = path.join(DATA_ROOT, "theme-history.json");
 const TODAY_OUTPUT = path.join(OUTPUT_ROOT, "today.png");
 const HTML_ENTRY = path.resolve("index.html");
 const HTML_URL = pathToFileURL(HTML_ENTRY).href;
 const PUPPETEER_PROFILE = path.join(os.tmpdir(), "year-calendar-puppeteer-profile");
 const LOOKAHEAD_DAYS = 7;
+const DIVERSITY_LOOKBACK_DAYS = 10;
+const HISTORY_KEEP_DAYS = 45;
 
 function parseArgs(argv) {
   const options = {
@@ -90,9 +94,68 @@ function getBaseDate(options) {
   return new Date(now.getFullYear(), now.getMonth(), now.getDate());
 }
 
-async function renderWallpaper(page, date, themeRank, outputPath) {
+function readThemeHistory() {
+  if (!fs.existsSync(THEME_HISTORY_FILE)) {
+    return { version: 1, updatedAt: null, days: {} };
+  }
+
+  try {
+    const data = JSON.parse(fs.readFileSync(THEME_HISTORY_FILE, "utf8"));
+    return {
+      version: 1,
+      updatedAt: data.updatedAt || null,
+      days: data.days && typeof data.days === "object" ? data.days : {}
+    };
+  } catch {
+    return { version: 1, updatedAt: null, days: {} };
+  }
+}
+
+function recentMotifsForDate(history, date) {
+  const motifs = [];
+  for (let offset = DIVERSITY_LOOKBACK_DAYS; offset >= 1; offset--) {
+    const entry = history.days[dateKey(addDays(date, -offset))];
+    if (entry?.motif) motifs.push(entry.motif);
+  }
+  return motifs;
+}
+
+function rememberTheme(history, date, theme) {
+  history.days[dateKey(date)] = {
+    title: theme.title,
+    motif: theme.motif,
+    tags: theme.tags || []
+  };
+}
+
+function trimThemeHistory(history, baseDate) {
+  const minDate = addDays(baseDate, -HISTORY_KEEP_DAYS);
+  const maxDate = addDays(baseDate, LOOKAHEAD_DAYS);
+  for (const key of Object.keys(history.days)) {
+    const date = dateFromKey(key);
+    if (!date || date < minDate || date > maxDate) {
+      delete history.days[key];
+    }
+  }
+  history.updatedAt = new Date().toISOString();
+}
+
+function writeThemeHistory(history, baseDate) {
+  trimThemeHistory(history, baseDate);
+  fs.mkdirSync(DATA_ROOT, { recursive: true });
+  fs.writeFileSync(THEME_HISTORY_FILE, `${JSON.stringify(history, null, 2)}\n`);
+}
+
+async function renderWallpaper(page, date, themeRank, outputPath, avoidMotifs = []) {
   const key = dateKey(date);
-  const url = `${HTML_URL}?date=${key}&themeRank=${themeRank}`;
+  const params = new URLSearchParams({
+    date: key,
+    themeRank: String(themeRank)
+  });
+  if (avoidMotifs.length > 0) {
+    params.set("avoidMotifs", avoidMotifs.join(","));
+  }
+  const url = `${HTML_URL}?${params.toString()}`;
 
   await page.goto(url, { waitUntil: "load" });
   await page.waitForSelector("img");
@@ -108,7 +171,7 @@ async function renderWallpaper(page, date, themeRank, outputPath) {
   return page.evaluate(() => window.__YEAR_CALENDAR_RENDER_INFO);
 }
 
-async function renderDiscardedCandidates(page, date, info, options) {
+async function renderDiscardedCandidates(page, date, info, options, avoidMotifs) {
   const discarded = info.candidates.filter((candidate) => candidate.rank !== info.selectedRank);
   if (discarded.length === 0) return;
 
@@ -119,7 +182,7 @@ async function renderDiscardedCandidates(page, date, info, options) {
     const fileName = `rank-${String(candidate.rank + 1).padStart(2, "0")}-${slug(candidate.theme.title)}.png`;
     const outputPath = path.join(folder, fileName);
     if (!options.force && fs.existsSync(outputPath)) continue;
-    await renderWallpaper(page, date, candidate.rank, outputPath);
+    await renderWallpaper(page, date, candidate.rank, outputPath, avoidMotifs);
   }
 }
 
@@ -157,6 +220,7 @@ await page.setViewport({
 
 const generated = [];
 const skipped = [];
+const themeHistory = readThemeHistory();
 
 for (const date of dates) {
   const archivePath = archivePathForDate(date);
@@ -167,12 +231,15 @@ for (const date of dates) {
     continue;
   }
 
-  const info = await renderWallpaper(page, date, 0, archivePath);
-  await renderDiscardedCandidates(page, date, info, options);
+  const avoidMotifs = recentMotifsForDate(themeHistory, date);
+  const info = await renderWallpaper(page, date, 0, archivePath, avoidMotifs);
+  await renderDiscardedCandidates(page, date, info, options, avoidMotifs);
+  rememberTheme(themeHistory, date, info.selectedTheme);
   generated.push({
     date: dateKey(date),
     output: archivePath,
     selectedTheme: info.selectedTheme.title,
+    selectedMotif: info.selectedTheme.motif,
     discardedCount: info.candidates.length - 1
   });
 }
@@ -183,13 +250,14 @@ if (fs.existsSync(todayArchive)) {
 }
 
 await browser.close();
+writeThemeHistory(themeHistory, baseDate);
 
 console.log("Wallpaper generation complete:");
 console.log(`   base date: ${dateKey(baseDate)}`);
 console.log(`   ensured through: ${dateKey(addDays(baseDate, LOOKAHEAD_DAYS))}`);
 console.log(`   generated: ${generated.length}`);
 for (const item of generated) {
-  console.log(`   -> ${item.date}: ${item.selectedTheme} (${item.discardedCount} discarded)`);
+  console.log(`   -> ${item.date}: ${item.selectedTheme} / ${item.selectedMotif} (${item.discardedCount} discarded)`);
 }
 console.log(`   skipped existing: ${skipped.length}`);
 console.log(`   today: ${TODAY_OUTPUT}`);
