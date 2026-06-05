@@ -108,25 +108,6 @@ async function renderWallpaper(page, date, themeRank, outputPath) {
   return page.evaluate(() => window.__YEAR_CALENDAR_RENDER_INFO);
 }
 
-function writeCandidateMetadata(date, info) {
-  const folder = draftFolderForDate(date);
-  fs.mkdirSync(folder, { recursive: true });
-  fs.writeFileSync(
-    path.join(folder, "candidates.json"),
-    JSON.stringify(
-      {
-        date: dateKey(date),
-        selectedRank: info.selectedRank,
-        selectedTheme: info.selectedTheme,
-        discardedCandidates: info.candidates.filter((candidate) => candidate.rank !== info.selectedRank),
-        candidates: info.candidates
-      },
-      null,
-      2
-    )
-  );
-}
-
 async function renderDiscardedCandidates(page, date, info, options) {
   const discarded = info.candidates.filter((candidate) => candidate.rank !== info.selectedRank);
   if (discarded.length === 0) return;
@@ -146,12 +127,15 @@ function datesToEnsure(baseDate) {
   return Array.from({ length: LOOKAHEAD_DAYS + 1 }, (_, index) => addDays(baseDate, index));
 }
 
+function isSameDate(left, right) {
+  return dateKey(left) === dateKey(right);
+}
+
 const options = parseArgs(process.argv.slice(2));
 const baseDate = getBaseDate(options);
 const dates = datesToEnsure(baseDate);
 
 fs.mkdirSync(OUTPUT_ROOT, { recursive: true });
-fs.mkdirSync(DRAFT_ROOT, { recursive: true });
 fs.mkdirSync(PUPPETEER_PROFILE, { recursive: true });
 
 const browser = await puppeteer.launch({
@@ -176,7 +160,7 @@ const skipped = [];
 
 for (const date of dates) {
   const archivePath = archivePathForDate(date);
-  const shouldRender = options.force || !fs.existsSync(archivePath);
+  const shouldRender = options.force || isSameDate(date, baseDate) || !fs.existsSync(archivePath);
 
   if (!shouldRender) {
     skipped.push(dateKey(date));
@@ -184,7 +168,6 @@ for (const date of dates) {
   }
 
   const info = await renderWallpaper(page, date, 0, archivePath);
-  writeCandidateMetadata(date, info);
   await renderDiscardedCandidates(page, date, info, options);
   generated.push({
     date: dateKey(date),

@@ -36,6 +36,7 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add output/ drafts/
+          git add output/
+          if [ -d drafts ]; then git add drafts/; fi
           git commit -m "chore: update daily wallpaper" || echo "No changes"
           git push
