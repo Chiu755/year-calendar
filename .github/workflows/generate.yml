@@ -20,6 +20,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -38,11 +40,53 @@ jobs:
       - name: Render wallpaper
         run: npm run render
 
-      - name: Commit and push image
+      - name: Commit latest wallpaper
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add output/
-          if [ -d drafts ]; then git add drafts/; fi
-          git commit -m "chore: update daily wallpaper" || echo "No changes"
-          git push
+          git add -f output/today.png
+          git commit -m "chore: update today wallpaper" || echo "No today wallpaper changes"
+          git push origin HEAD:${GITHUB_REF_NAME}
+
+      - name: Commit generated archive
+        run: |
+          find output -maxdepth 4 -type f | sort
+          if [ -d drafts ]; then find drafts -maxdepth 4 -type f | sort; fi
+
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          asset_branch="generated-wallpapers"
+          asset_worktree="../generated-wallpapers"
+
+          if git ls-remote --exit-code --heads origin "$asset_branch"; then
+            git fetch origin "$asset_branch:$asset_branch"
+            git worktree add "$asset_worktree" "$asset_branch"
+          else
+            git worktree add --detach "$asset_worktree"
+            git -C "$asset_worktree" checkout --orphan "$asset_branch"
+            git -C "$asset_worktree" rm -rf . || true
+          fi
+
+          if [ ! -d "$asset_worktree/output" ] || ! find "$asset_worktree/output" -mindepth 1 -maxdepth 1 -type d | grep -q .; then
+            archive_source="$(git log --diff-filter=AM --format=%H -n 1 -- output drafts || true)"
+            if [ -n "$archive_source" ]; then
+              git -C "$asset_worktree" checkout "$archive_source" -- output || true
+              git -C "$asset_worktree" checkout "$archive_source" -- drafts || true
+            fi
+          fi
+
+          mkdir -p "$asset_worktree/output"
+          cp -R output/. "$asset_worktree/output/"
+
+          if [ -d drafts ]; then
+            mkdir -p "$asset_worktree/drafts"
+            cp -R drafts/. "$asset_worktree/drafts/"
+          fi
+
+          if [ -d "$asset_worktree/drafts" ]; then find "$asset_worktree/drafts" -name "*.json" -delete; fi
+
+          git -C "$asset_worktree" add -A output
+          if [ -d "$asset_worktree/drafts" ]; then git -C "$asset_worktree" add -A drafts; fi
+          git -C "$asset_worktree" commit -m "chore: update generated wallpapers" || echo "No generated image changes"
+          git -C "$asset_worktree" push origin "$asset_branch"
