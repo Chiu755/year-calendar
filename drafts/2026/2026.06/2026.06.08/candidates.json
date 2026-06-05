@@ -1,0 +1,57 @@
+{
+  "date": "2026-06-08",
+  "selectedRank": 0,
+  "selectedTheme": {
+    "title": "World Oceans Day",
+    "caption": "World Oceans Day · 潮汐、海风与蓝色星球",
+    "description": "世界海洋日，提醒人们保护潮汐、海风与蓝色星球。",
+    "motif": "waterFlowers",
+    "tags": [
+      "water",
+      "botanical",
+      "island",
+      "sky",
+      "light",
+      "celebration"
+    ],
+    "gradient": [
+      "#0c2134",
+      "#225a6a",
+      "#101418"
+    ],
+    "accent": "#70cce8",
+    "secondary": "#8bd0b6",
+    "priority": 74
+  },
+  "discardedCandidates": [],
+  "candidates": [
+    {
+      "theme": {
+        "title": "World Oceans Day",
+        "caption": "World Oceans Day · 潮汐、海风与蓝色星球",
+        "description": "世界海洋日，提醒人们保护潮汐、海风与蓝色星球。",
+        "motif": "waterFlowers",
+        "tags": [
+          "water",
+          "botanical",
+          "island",
+          "sky",
+          "light",
+          "celebration"
+        ],
+        "gradient": [
+          "#0c2134",
+          "#225a6a",
+          "#101418"
+        ],
+        "accent": "#70cce8",
+        "secondary": "#8bd0b6",
+        "priority": 74
+      },
+      "score": 76.92856041464256,
+      "rankSeed": 2026159,
+      "sourceIndex": 0,
+      "rank": 0
+    }
+  ]
+}
