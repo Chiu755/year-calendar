@@ -187,6 +187,33 @@ const SOLAR_TERMS = [
   ["01-20", "大寒", "大寒 · 岁末严寒，春信将近", "snow", ["#101725", "#28334a", "#101214"], "#b3cbe6", "#d8b95b"]
 ];
 
+const SOLAR_TERM_DESCRIPTIONS = {
+  立春: "立春是二十四节气之首，意味着寒冬开始松动，春天的气息重新进入日历。",
+  雨水: "雨水是春季的第二个节气，气温回升，降水增多，草木开始得到更柔和的滋养。",
+  惊蛰: "惊蛰标志春雷渐起、蛰伏的生命开始苏醒，是春天从静到动的转折。",
+  春分: "春分时昼夜大致平分，春意进入更稳定的阶段，花木与日光一同舒展。",
+  清明: "清明天气清澈明朗，草木新发，也是踏青、祭扫和记取春日人事的时节。",
+  谷雨: "谷雨是春季最后一个节气，雨水滋养百谷，暮春逐渐走向初夏。",
+  立夏: "立夏表示夏季开始，白昼变长，草木繁盛，天气开始显露稳定的暖意。",
+  小满: "小满时麦类作物籽粒渐渐饱满，但还没有完全成熟，夏意正在积蓄。",
+  芒种: "芒种多在仲夏前后，麦类收获、稻类播种，农事进入忙碌而丰盛的时段。",
+  夏至: "夏至是一年中白昼最长的节气，日光抵达盛处，盛夏也由此逐渐展开。",
+  小暑: "小暑意味着暑气开始明显增强，天气转热，雷雨和潮湿感也更频繁出现。",
+  大暑: "大暑是一年中最热的节气之一，炎热、湿气与午后云雨构成盛夏的高点。",
+  立秋: "立秋表示秋季开始，但暑气常未散尽，凉意先在夜里和风里出现。",
+  处暑: "处暑意味着暑热逐渐退去，白天仍暖，夜晚开始有更清楚的新凉。",
+  白露: "白露是秋季的第三个节气，天气转凉，清晨水汽凝成露珠，秋意开始变得清晰。",
+  秋分: "秋分时昼夜再次大致平分，秋色进入中段，收获、凉意与均衡感同时出现。",
+  寒露: "寒露时气温继续下降，露水带上寒意，深秋的清冷感变得更明显。",
+  霜降: "霜降是秋季最后一个节气，气温更低，霜意初现，草木逐渐进入深秋收束。",
+  立冬: "立冬表示冬季开始，万物趋向收藏，日历进入更安静的寒冷时段。",
+  小雪: "小雪时天气继续转寒，北方开始出现初雪或雪意，冬天的轮廓更清楚。",
+  大雪: "大雪表示寒意更深、降雪可能增多，冬季进入更沉静清寒的阶段。",
+  冬至: "冬至是一年中黑夜最长的节气，此后白昼开始慢慢回升，是冬天里的转折点。",
+  小寒: "小寒标志寒气加深，天气进入一年中最冷的一段，岁末微光也越来越近。",
+  大寒: "大寒是二十四节气的最后一个，严寒抵达深处，也预示新的春信将近。"
+};
+
 const FIXED_HOLIDAYS = [
   ["01-01", "New Year's Day", "New Year's Day · 新年第一束光", "fireworks", ["#151a2d", "#493456", "#111316"], "#d6c070", "#78b8e6", 90],
   ["02-14", "Valentine's Day", "Valentine's Day · 玫瑰色的二月心跳", "petals", ["#241525", "#643044", "#111214"], "#e87a94", "#d7b56b", 70],
@@ -251,6 +278,7 @@ const MONTH_MOODS = [
     title: "Deep Winter Light",
     zhMonth: "一月",
     mood: "寒夜、雪光与岁初微光",
+    intro: "一月处在深冬与岁初之间，寒意最盛，白昼缓慢变长，日历从清冷的微光里重新开始。",
     motif: "snow",
     gradient: ["#101827", "#26374c", "#101214"],
     accent: "#a9c9e8",
@@ -261,6 +289,7 @@ const MONTH_MOODS = [
     title: "Early Spring Signal",
     zhMonth: "二月",
     mood: "早春枝芽、细雨和将醒未醒的空气",
+    intro: "二月常在冬末与早春之间摆动，寒意还在，雨水和枝芽已经开始提示新的季节。",
     motif: "springBuds",
     gradient: ["#14251d", "#425643", "#111516"],
     accent: "#92c982",
@@ -271,6 +300,7 @@ const MONTH_MOODS = [
     title: "Spring Bud Field",
     zhMonth: "三月",
     mood: "昼夜渐平、花信渐浓与新绿漫开的田野",
+    intro: "三月进入春意更清楚的时段，昼夜渐渐均衡，花信与新绿让日历从沉静转向舒展。",
     motif: "springBuds",
     gradient: ["#16251e", "#526141", "#111516"],
     accent: "#a9d37f",
@@ -281,6 +311,7 @@ const MONTH_MOODS = [
     title: "Clear Rain Garden",
     zhMonth: "四月",
     mood: "清明雨气、水面花影和暮春透明感",
+    intro: "四月多有清明与谷雨，春雨变得频繁，草木继续生长，暮春的气息逐渐加深。",
     motif: "waterFlowers",
     gradient: ["#122735", "#346158", "#101518"],
     accent: "#87c9b7",
@@ -291,6 +322,7 @@ const MONTH_MOODS = [
     title: "Green Grain Rise",
     zhMonth: "五月",
     mood: "麦穗渐满、长昼初热和明亮绿意",
+    intro: "五月从春末走向初夏，麦穗渐满，白昼拉长，天气开始有更明亮的热意。",
     motif: "grain",
     gradient: ["#1a271c", "#5d6639", "#121515"],
     accent: "#bfd46f",
@@ -301,6 +333,7 @@ const MONTH_MOODS = [
     title: "Summer Water Pattern",
     zhMonth: "六月",
     mood: "夏日水纹、梅雨蓝绿和长昼里的潮湿光感",
+    intro: "六月进入仲夏，芒种与夏至前后日照变长，湿热、梅雨和水汽让季节变得丰沛。",
     motif: "waterFlowers",
     gradient: ["#102735", "#2d6467", "#111518"],
     accent: "#73d1c9",
@@ -311,6 +344,7 @@ const MONTH_MOODS = [
     title: "High Summer Heatwave",
     zhMonth: "七月",
     mood: "盛夏热浪、莲叶水面和午后云雨",
+    intro: "七月是暑气最明显的月份，小暑与大暑相继到来，热浪、云雨和漫长午后构成盛夏。",
     motif: "sunRibbons",
     gradient: ["#221a20", "#68412a", "#121314"],
     accent: "#e89b42",
@@ -321,6 +355,7 @@ const MONTH_MOODS = [
     title: "Late Summer Grain",
     zhMonth: "八月",
     mood: "暑气渐散、初秋谷色和夜里的新凉",
+    intro: "八月仍有暑气，却已经接近立秋与处暑，夜里开始出现新凉，季节悄悄转向秋天。",
     motif: "grain",
     gradient: ["#1d211a", "#615237", "#121414"],
     accent: "#d6a95e",
@@ -331,6 +366,7 @@ const MONTH_MOODS = [
     title: "Autumn Grain Balance",
     zhMonth: "九月",
     mood: "秋分前后的谷物、露水和昼夜均衡",
+    intro: "九月从白露走向秋分，暑气退去，清晨露水增多，昼夜重新接近均衡。",
     motif: "grain",
     gradient: ["#201d1b", "#635136", "#121414"],
     accent: "#d8a95e",
@@ -341,6 +377,7 @@ const MONTH_MOODS = [
     title: "Cold Dew Skyline",
     zhMonth: "十月",
     mood: "深秋冷露、霜色边缘和更清澈的夜空",
+    intro: "十月进入深秋，寒露与霜降带来更明显的凉意，天空清透，草木开始收束。",
     motif: "aurora",
     gradient: ["#111c2b", "#30445a", "#101316"],
     accent: "#91bfe6",
@@ -351,6 +388,7 @@ const MONTH_MOODS = [
     title: "First Winter Window",
     zhMonth: "十一月",
     mood: "初冬窗光、浅寒空气和安静的蓝灰色",
+    intro: "十一月从立冬走向小雪，寒意逐渐稳定，日历进入更安静、更向内的初冬。",
     motif: "candle",
     gradient: ["#101b2b", "#253c50", "#101214"],
     accent: "#84bde6",
@@ -361,6 +399,7 @@ const MONTH_MOODS = [
     title: "Winter Solstice Glow",
     zhMonth: "十二月",
     mood: "冬光、雪意和长夜里慢慢回升的金色",
+    intro: "十二月接近一年中黑夜最长的时段，大雪与冬至带来寒意，也带来白昼回升的转折。",
     motif: "snow",
     gradient: ["#11182a", "#273154", "#101214"],
     accent: "#9dbaf0",
@@ -424,7 +463,7 @@ function inferThemeDescription(title, caption) {
 
   const phrase = caption.includes("·") ? caption.split("·").slice(1).join("·").trim() : caption;
   if (/^[\u4e00-\u9fff]{2,4}$/.test(title)) {
-    return `二十四节气之一，${phrase}。`;
+    return SOLAR_TERM_DESCRIPTIONS[title] || `二十四节气之一，${phrase}。`;
   }
   if (/Independence Day/i.test(title)) {
     return `${title.replace(" Independence Day", "")}的独立纪念日，${phrase}。`;
@@ -510,6 +549,7 @@ function fallbackTheme(date) {
     tags: [
       ...mood.tags,
       ...(termTheme ? termTheme.tags : []),
+      ...(termTheme ? solarTermTags(nearbyTerm.title) : []),
       hasNearbyTerm ? "solar-nearby" : "month-mood"
     ]
   });
@@ -544,9 +584,22 @@ function nearestSolarTerm(date) {
 function seasonalFallbackDescription(mood, nearbyTerm) {
   if (nearbyTerm?.distance <= 9) {
     const relation = nearbyTerm.diff < 0 ? "临近" : nearbyTerm.diff === 0 ? "正逢" : "刚过";
-    return `${mood.zhMonth}的季节主题，${relation}「${nearbyTerm.title}」，以${mood.mood}作为视觉来源。`;
+    const termDescription = SOLAR_TERM_DESCRIPTIONS[nearbyTerm.title] || `「${nearbyTerm.title}」是二十四节气之一。`;
+    return `${termDescription}这一天${relation}这个节气。`;
   }
-  return `${mood.zhMonth}的季节主题，以${mood.mood}作为视觉来源。`;
+  return mood.intro;
+}
+
+function solarTermTags(title) {
+  const tags = [`term-${title}`];
+  if (/雨水|谷雨|小暑|大暑/.test(title)) tags.push("rain-season");
+  if (/白露|寒露|霜降/.test(title)) tags.push("dew-season");
+  if (/春分|秋分/.test(title)) tags.push("equinox");
+  if (/小满|芒种|立秋|秋分/.test(title)) tags.push("grain-season");
+  if (/夏至|小暑|大暑/.test(title)) tags.push("heat-season");
+  if (/小雪|大雪|小寒|大寒|冬至/.test(title)) tags.push("cold-season");
+  if (/立春|惊蛰|春分|清明/.test(title)) tags.push("spring-season");
+  return tags;
 }
 
 function dateFromMonthDay(year, value) {
@@ -1266,6 +1319,7 @@ function drawSignatureOrnaments(ctx, theme, width, height, variant) {
   if (hasTag(theme, "winter")) drawGlassBands(ctx, theme, width, height, variant);
   if (hasTag(theme, "memorial")) drawRemembranceStems(ctx, theme, width, height, variant);
   if (hasTag(theme, "culture")) drawCulturalGlyphs(ctx, theme, width, height, variant);
+  if (hasTag(theme, "seasonal")) drawSeasonalGlyphs(ctx, theme, width, height, variant);
 }
 
 function drawCulturalGlyphs(ctx, theme, width, height, variant) {
@@ -1439,6 +1493,121 @@ function drawRemembranceStems(ctx, theme, width, height, variant) {
   for (const [x, y, side] of stems) {
     strokePath(ctx, [[x, y + 80], [x + side * 28, y + 20, x + side * 12, y - 38, x + side * 48, y - 82]], theme.secondary, 2, 0.075);
     flower(ctx, x + side * 50, y - 92, 22 + (variant % 3) * 3, theme.accent, theme.secondary, 0.1, 5);
+  }
+}
+
+function drawSeasonalGlyphs(ctx, theme, width, height, variant) {
+  if (hasTag(theme, "dew-season")) drawDewBeadVeils(ctx, theme, width, height, variant);
+  if (hasTag(theme, "equinox")) drawEquinoxBalanceMarks(ctx, theme, width, height, variant);
+  if (hasTag(theme, "rain-season") || hasTag(theme, "summer")) drawRainCurtainGlyphs(ctx, theme, width, height, variant);
+  if (hasTag(theme, "heat-season")) drawHeatShimmerGlyphs(ctx, theme, width, height, variant);
+  if (hasTag(theme, "cold-season")) drawWinterWindowGlyphs(ctx, theme, width, height, variant);
+  if (hasTag(theme, "spring-season") || hasTag(theme, "spring")) drawSproutOrbitGlyphs(ctx, theme, width, height, variant);
+  if (hasTag(theme, "grain-season") || hasTag(theme, "harvest")) drawHarvestMoonGlyphs(ctx, theme, width, height, variant);
+}
+
+function drawDewBeadVeils(ctx, theme, width, height, variant) {
+  const rows = [310 + variant * 3, height - 520 - variant * 2];
+  for (const baseY of rows) {
+    for (let i = 0; i < 18; i++) {
+      const t = i / 17;
+      const x = 88 + t * (width - 176);
+      const y = baseY + Math.sin(t * Math.PI * 2 + variant * 0.7) * 30;
+      strokePath(ctx, [[x - 8, y - 34], [x - 2, y - 12, x + 2, y + 10, x + 8, y + 34]], theme.secondary, 1.4, 0.075);
+      drawEllipse(ctx, x, y + 42, 6 + (i % 3), 10 + (i % 4), 0, i % 2 ? theme.accent : "#f3f7ff", 0.16);
+      dot(ctx, x - 2, y + 38, 1.6, "#ffffff", 0.16);
+      drawSoftGlow(ctx, x, y + 42, 24, theme.accent, 0.026);
+    }
+  }
+  for (const [x, side] of [[105, 1], [width - 105, -1]]) {
+    for (let i = 0; i < 7; i++) {
+      const y = 605 + i * 190;
+      strokePath(ctx, [[x, y], [x + side * 42, y - 52, x + side * 82, y + 34, x + side * 126, y - 18]], theme.secondary, 1.8, 0.09);
+      drawEllipse(ctx, x + side * (34 + (i % 3) * 18), y + 12, 8, 12, 0, theme.accent, 0.13);
+    }
+  }
+  for (const [cx, cy, scale] of [[width / 2, 270, 1], [width / 2, height - 300, 0.8]]) {
+    drawSoftGlow(ctx, cx, cy, 120 * scale, theme.accent, 0.032);
+    drawEllipse(ctx, cx - 38 * scale, cy, 46 * scale, 54 * scale, -0.2, theme.secondary, 0.075);
+    drawEllipse(ctx, cx - 18 * scale, cy - 4 * scale, 38 * scale, 48 * scale, -0.2, theme.gradient[0], 0.18);
+    for (let i = 0; i < 5; i++) {
+      const angle = -0.5 + i * 0.25;
+      drawEllipse(ctx, cx + Math.cos(angle) * 96 * scale, cy + Math.sin(angle) * 42 * scale, 7 * scale, 12 * scale, angle, theme.accent, 0.11);
+    }
+  }
+}
+
+function drawEquinoxBalanceMarks(ctx, theme, width, height, variant) {
+  for (const y of [360 + variant * 4, height - 430 - variant * 3]) {
+    strokePath(ctx, [[width / 2 - 180, y], [width / 2 + 180, y]], theme.accent, 2, 0.075);
+    drawDiamond(ctx, width / 2, y, 9, theme.secondary, 0.11);
+    for (const side of [-1, 1]) {
+      const cx = width / 2 + side * 128;
+      strokePath(ctx, [[cx, y], [cx - side * 34, y + 42], [cx + side * 34, y + 42], [cx, y]], theme.secondary, 1.5, 0.065);
+      dot(ctx, cx, y + 42, 3.2, theme.accent, 0.09);
+    }
+  }
+}
+
+function drawRainCurtainGlyphs(ctx, theme, width, height, variant) {
+  for (const zone of [210, height - 610]) {
+    for (let i = 0; i < 28; i++) {
+      const x = 65 + ((i * 67 + variant * 43) % (width - 130));
+      const y = zone + ((i * 37) % 260);
+      const length = 30 + (i % 5) * 12;
+      strokePath(ctx, [[x, y], [x - 9, y + length]], i % 2 ? theme.secondary : theme.accent, 1.5, 0.055);
+      if (i % 4 === 0) drawEllipse(ctx, x - 12, y + length + 8, 4, 7, 0, theme.secondary, 0.07);
+    }
+  }
+}
+
+function drawHeatShimmerGlyphs(ctx, theme, width, height, variant) {
+  for (const y of [340 + variant * 6, height - 510 - variant * 4]) {
+    for (let i = 0; i < 9; i++) {
+      const x = 100 + i * ((width - 200) / 8);
+      strokePath(ctx, [[x, y + 42], [x - 20, y + 10, x + 24, y - 18, x, y - 54]], theme.accent, 2.4, 0.06);
+      strokePath(ctx, [[x + 18, y + 52], [x + 40, y + 16, x - 2, y - 12, x + 22, y - 46]], theme.secondary, 1.8, 0.045);
+    }
+  }
+}
+
+function drawWinterWindowGlyphs(ctx, theme, width, height, variant) {
+  for (const [x, y] of [[104, 420], [width - 224, 420], [130, height - 560], [width - 250, height - 560]]) {
+    ctx.save();
+    ctx.strokeStyle = hexToRgba("#f3f7ff", 0.06);
+    ctx.lineWidth = 2;
+    roundRect(ctx, x, y, 120, 150, 10);
+    ctx.stroke();
+    strokePath(ctx, [[x + 60, y], [x + 60, y + 150]], "#f3f7ff", 1.4, 0.055);
+    strokePath(ctx, [[x, y + 74], [x + 120, y + 74]], "#f3f7ff", 1.4, 0.055);
+    ctx.restore();
+    drawSoftGlow(ctx, x + 60, y + 84, 72, theme.secondary, 0.025);
+  }
+}
+
+function drawSproutOrbitGlyphs(ctx, theme, width, height, variant) {
+  for (const [cx, cy] of [[width / 2, 300], [width / 2, height - 420]]) {
+    for (let i = 0; i < 16; i++) {
+      const angle = (Math.PI * 2 * i) / 16 + variant * 0.04;
+      const rx = 250 + (i % 3) * 18;
+      const ry = 72 + (i % 4) * 7;
+      const x = cx + Math.cos(angle) * rx;
+      const y = cy + Math.sin(angle) * ry;
+      drawEllipse(ctx, x, y, 5, 15, angle, i % 2 ? theme.secondary : theme.accent, 0.075);
+    }
+  }
+}
+
+function drawHarvestMoonGlyphs(ctx, theme, width, height, variant) {
+  for (const [cx, cy, scale] of [[width / 2, 260, 1], [width / 2, height - 365, 0.86]]) {
+    drawSoftGlow(ctx, cx, cy, 165 * scale, theme.secondary, 0.04);
+    drawEllipse(ctx, cx, cy, 64 * scale, 64 * scale, 0, theme.secondary, 0.085);
+    for (let i = 0; i < 11; i++) {
+      const angle = -0.92 + i * 0.18;
+      const x = cx + Math.cos(angle) * 130 * scale;
+      const y = cy + Math.sin(angle) * 76 * scale;
+      drawEllipse(ctx, x, y, 8 * scale, 16 * scale, angle, i % 2 ? theme.accent : theme.secondary, 0.105);
+    }
   }
 }
 
