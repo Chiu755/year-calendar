@@ -2,6 +2,7 @@ process.env.TZ = "Asia/Shanghai";
 
 import puppeteer from "puppeteer";
 import fs from "fs";
+import os from "os";
 import path from "path";
 import { pathToFileURL } from "url";
 
@@ -9,7 +10,7 @@ const OUTPUT_ROOT = "output";
 const TODAY_OUTPUT = path.join(OUTPUT_ROOT, "today.png");
 const HTML_ENTRY = path.resolve("index.html");
 const HTML_URL = pathToFileURL(HTML_ENTRY).href;
-const PUPPETEER_PROFILE = "/private/tmp/year-calendar-puppeteer-profile";
+const PUPPETEER_PROFILE = path.join(os.tmpdir(), "year-calendar-puppeteer-profile");
 
 // =============================
 // 📅 生成日期信息
