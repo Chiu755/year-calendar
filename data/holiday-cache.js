@@ -1,6 +1,6 @@
 window.YearCalendarHolidayCache = {
   "version": 1,
-  "generatedAt": "2026-06-05T09:12:14.209Z",
+  "generatedAt": "2026-06-05T09:16:36.859Z",
   "source": "https://date.nager.at/api/v3/PublicHolidays/{year}/{countryCode}",
   "window": {
     "start": "2026-06-05",
