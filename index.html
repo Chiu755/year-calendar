@@ -39,9 +39,20 @@ const CALENDAR_BOTTOM = HEIGHT - BOTTOM_RESERVED;
 const CALENDAR_HEIGHT = CALENDAR_BOTTOM - CALENDAR_TOP;
 
 /* ================== 日期 ================== */
-const today = new Date(
-  new Date().toLocaleString("en-US", { timeZone: "Asia/Shanghai" })
-);
+function shanghaiNow() {
+  return new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Shanghai" }));
+}
+
+function parseDateParam(value) {
+  if (!value) return shanghaiNow();
+  const match = value.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!match) return shanghaiNow();
+  return new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+}
+
+const params = new URLSearchParams(window.location.search);
+const today = parseDateParam(params.get("date"));
+const requestedThemeRank = Math.max(0, Number(params.get("themeRank") || 0));
 
 const year = today.getFullYear();
 const startOfYear = new Date(year, 0, 1);
@@ -54,7 +65,15 @@ const progressPercent = Math.floor((dayOfYear / daysInYear) * 100);
 const daysLeft = daysInYear - dayOfYear;
 
 /* ================== 每日主题背景 ================== */
-const dailyTheme = getDailyTheme(today);
+const rankedThemes = ThemeEngine.rankDailyThemes(today);
+const selectedThemeEntry = rankedThemes[Math.min(requestedThemeRank, rankedThemes.length - 1)];
+const dailyTheme = selectedThemeEntry.theme;
+window.__YEAR_CALENDAR_RENDER_INFO = {
+  date: params.get("date"),
+  selectedRank: selectedThemeEntry.rank,
+  selectedTheme: selectedThemeEntry.theme,
+  candidates: rankedThemes
+};
 drawDailyThemeBackground(ctx, dailyTheme, WIDTH, HEIGHT);
 
 /* ================== 月份数据 ================== */

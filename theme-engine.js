@@ -4,6 +4,88 @@ const THEME_CONFIG = {
   overlay: "rgba(5,5,6,0.34)"
 };
 
+const MOTIF_TAGS = {
+  grain: ["botanical", "harvest"],
+  waterFlowers: ["water", "botanical"],
+  marigold: ["botanical", "memorial", "celebration"],
+  clover: ["botanical", "luck"],
+  mountainFlags: ["mountain", "civic", "celebration"],
+  tanabata: ["sky", "wish", "light"],
+  tricolor: ["civic", "celebration"],
+  pumpkin: ["night", "autumn", "playful"],
+  snow: ["winter", "sky", "light"],
+  springBuds: ["botanical", "spring"],
+  sunRibbons: ["sun", "celebration"],
+  fireworks: ["sky", "celebration", "light"],
+  petals: ["botanical", "memorial"],
+  candle: ["memorial", "light", "winter"],
+  streamers: ["civic", "celebration"],
+  starfield: ["sky", "light"],
+  aurora: ["sky", "mountain", "light"]
+};
+
+const DAY_INTROS = {
+  "New Year's Day": "公历新年的第一天，用烟火和微光开启新一年的日历。",
+  "Valentine's Day": "情人节，以玫瑰、书信和温柔心意纪念亲密关系。",
+  "Saint Patrick's Day": "爱尔兰文化节日，常以三叶草和绿色游行庆祝。",
+  Songkran: "泰国传统新年，泼水象征洗去旧岁、迎接祝福。",
+  "Earth Day": "世界地球日，提醒人们关注环境保护与生态共生。",
+  "International Workers' Day": "国际劳动节，纪念劳动者权益与春日劳动精神。",
+  "Children's Day Japan": "日本儿童节，鲤鱼旗象征孩子健康成长、乘风向上。",
+  "Tonga Emancipation Day": "汤加解放日，纪念自由与岛屿共同体的历史时刻。",
+  "Iceland National Day": "冰岛国庆日，纪念共和国成立和北大西洋夏日传统。",
+  "Seychelles National Day": "塞舌尔国庆日，用群岛旗色与海风庆祝国家身份。",
+  "Mozambique Independence Day": "莫桑比克独立日，纪念国家独立与海岸节庆鼓点。",
+  "Seychelles Independence Day": "塞舌尔独立日，纪念印度洋群岛走向独立的日子。",
+  "Independence Day": "美国独立日，常以烟火、旗帜和夏夜聚会庆祝。",
+  Tanabata: "七夕源自星河传说，人们写下愿望挂在短册上。",
+  "Bastille Day": "法国国庆日，纪念法国大革命中的巴士底狱事件。",
+  "Maldives Independence Day": "马尔代夫独立日，以珊瑚海与绿色旗影纪念主权。",
+  "Vanuatu Independence Day": "瓦努阿图独立日，纪念南太平洋岛国的独立庆典。",
+  "Swiss National Day": "瑞士国庆日，山间灯火和红白旗色是节日符号。",
+  "Singapore National Day": "新加坡国庆日，城市海湾常被红白旗色与烟火点亮。",
+  "San Marino Foundation Day": "圣马力诺建国日，纪念山城古国的共和国传统。",
+  "Andorra National Day": "安道尔国家日，纪念比利牛斯山间小国的守护传统。",
+  "Mexico Independence Day": "墨西哥独立日，钟声、广场和绿白红旗帜是核心意象。",
+  "Tuvalu Independence Day": "图瓦卢独立日，纪念太平洋岛国的国家生日。",
+  "Germany Unity Day": "德国统一日，纪念东西德重新统一的现代历史时刻。",
+  Halloween: "万圣夜前夕，南瓜灯、夜色和装扮构成十月节庆。",
+  "All Saints' Day": "诸圣节，用鲜花与烛光纪念圣徒和逝去的人。",
+  "Dia de Muertos": "亡灵节，以万寿菊、祭坛和色彩记住亲人。",
+  "Remembrance Day": "阵亡将士纪念日，红罂粟象征静默追思。",
+  "Saint Lucia Day": "圣露西亚节，冬夜烛冠与歌声象征光回到人间。",
+  "Bhutan National Day": "不丹国庆日，在山风和彩旗中纪念国家历史。",
+  "Christmas Eve": "平安夜，冬夜窗灯、松枝与等待构成节日前奏。",
+  "Christmas Day": "圣诞节，用松枝、钟声和雪光庆祝冬日团聚。",
+  "New Year's Eve": "跨年夜，在倒数与烟火中告别旧岁、迎向新年。",
+  Thanksgiving: "感恩节，以秋日餐桌和团聚表达感谢。",
+  "World Oceans Day": "世界海洋日，提醒人们保护潮汐、海风与蓝色星球。",
+  "Fiji Day": "斐济日，纪念群岛国家的独立与南太平洋节庆传统。",
+  "Monaco National Day": "摩纳哥国庆日，海岸城邦用红白旗色纪念国家传统。",
+  "Liechtenstein National Day": "列支敦士登国庆日，在阿尔卑斯山间庆祝国家身份。",
+  "Tonga National Day": "汤加国庆日，以岛风、旗色和共同体记忆庆祝国家日。",
+  "Kiribati Independence Day": "基里巴斯独立日，纪念太平洋岛国走向独立。",
+  "Nauru Independence Day": "瑙鲁独立日，纪念蓝海岛国的国家生日。",
+  "Palau Constitution Day": "帕劳宪法日，纪念宪法秩序与太平洋岛国身份。",
+  "Samoa Independence Day": "萨摩亚独立日，纪念南太平洋群岛国家的独立。",
+  "San Marino Civic Day": "圣马力诺公民日，纪念共和国传统与山城公民身份。",
+  "Malta Republic Day": "马耳他共和国日，纪念地中海岛国的共和国历史。",
+  "Cyprus Independence Day": "塞浦路斯独立日，纪念地中海岛国的独立。",
+  "Belize Independence Day": "伯利兹独立日，纪念中美洲国家的独立与热带庆典。",
+  "Cape Verde Independence Day": "佛得角独立日，纪念大西洋群岛国家的独立。",
+  "Saint Lucia Independence Day": "圣卢西亚独立日，纪念加勒比岛国的独立。",
+  "Barbados Independence Day": "巴巴多斯独立日，纪念加勒比岛国的独立与金蓝旗色。",
+  "Botswana Day": "博茨瓦纳日，纪念国家独立与蓝白黑旗色传统。",
+  "Estonia Independence Day": "爱沙尼亚独立日，纪念北方国家的独立。",
+  "Georgia Independence Day": "格鲁吉亚独立日，纪念高加索国家的独立。",
+  "Nepal Constitution Day": "尼泊尔宪法日，纪念喜马拉雅山国的宪法时刻。",
+  "Laos National Day": "老挝国庆日，纪念湄公河畔国家的现代历史。",
+  "Qatar National Day": "卡塔尔国庆日，纪念海湾国家的历史与酒红旗色。",
+  "Oman National Day": "阿曼国庆日，以红绿白旗色纪念海湾国家传统。",
+  "Mongolia Naadam": "那达慕是蒙古传统节庆，草原竞技与彩旗是核心意象。",
+  "Norway Constitution Day": "挪威宪法日，峡湾蓝与五月旗海庆祝国家宪法。"
+};
+
 const SOLAR_TERMS = [
   ["02-04", "立春", "立春 · 东风解冻，万物起始", "springBuds", ["#14251d", "#496143", "#111516"], "#8fcb7d", "#d8c070"],
   ["02-19", "雨水", "雨水 · 天街小雨，草色遥看", "waterFlowers", ["#102132", "#25495c", "#111518"], "#72bdd4", "#91b987"],
@@ -117,8 +199,64 @@ const FALLBACK_THEMES = [
   ["Norway Constitution Day", "Norway Constitution Day · 五月旗海与峡湾蓝", "tricolor", ["#101d34", "#4f2d38", "#101316"], "#6da2cf", "#e65b5b"]
 ];
 
-function createTheme({ title, caption, motif, gradient, accent, secondary, priority = 50 }) {
-  return { title, caption, motif, gradient, accent, secondary, priority };
+function createTheme({ title, caption, motif, gradient, accent, secondary, priority = 50, description, tags = [] }) {
+  return {
+    title,
+    caption,
+    description: description || inferThemeDescription(title, caption),
+    motif,
+    tags: Array.from(new Set([...(MOTIF_TAGS[motif] || []), ...inferThemeTags(title, caption), ...tags])),
+    gradient,
+    accent,
+    secondary,
+    priority
+  };
+}
+
+function inferThemeDescription(title, caption) {
+  if (DAY_INTROS[title]) return DAY_INTROS[title];
+
+  const phrase = caption.includes("·") ? caption.split("·").slice(1).join("·").trim() : caption;
+  if (/^[\u4e00-\u9fff]{2,4}$/.test(title)) {
+    return `二十四节气之一，${phrase}。`;
+  }
+  if (/Independence Day/i.test(title)) {
+    return `${title.replace(" Independence Day", "")}的独立纪念日，${phrase}。`;
+  }
+  if (/National Day/i.test(title)) {
+    return `${title.replace(" National Day", "")}的国家纪念日，${phrase}。`;
+  }
+  if (/Foundation Day/i.test(title)) {
+    return `${title.replace(" Foundation Day", "")}的建国纪念日，${phrase}。`;
+  }
+  if (/Constitution Day/i.test(title)) {
+    return `${title.replace(" Constitution Day", "")}的宪法纪念日，${phrase}。`;
+  }
+  if (/Republic Day/i.test(title)) {
+    return `${title.replace(" Republic Day", "")}的共和国纪念日，${phrase}。`;
+  }
+  if (/Civic Day/i.test(title)) {
+    return `${title.replace(" Civic Day", "")}的公民纪念日，${phrase}。`;
+  }
+  if (/Day$/i.test(title)) {
+    return `${title}是具有地方或国家意义的纪念日，${phrase}。`;
+  }
+
+  return `${phrase}。`;
+}
+
+function inferThemeTags(title, caption) {
+  const text = `${title} ${caption}`.toLowerCase();
+  const tags = [];
+  if (/ocean|sea|island|coast|pacific|atlantic|indian|maldives|seychelles|tonga|tuvalu|vanuatu|palau|fiji|samoa|kiribati|barbados|cape verde/.test(text)) tags.push("water", "island");
+  if (/national|independence|republic|constitution|foundation|unity|workers|emancipation|bastille|swiss|mexico|germany/.test(text)) tags.push("civic");
+  if (/christmas|winter|snow|lucia|estonia|norway|iceland|北方|冬|雪/.test(text)) tags.push("winter", "light");
+  if (/earth|spring|flower|petal|rose|bud|clover|grain|harvest|谷|雨|春|麦|花|草|叶/.test(text)) tags.push("botanical");
+  if (/star|firework|night|tanabata|eve|星|烟火|夜|光/.test(text)) tags.push("sky", "light");
+  if (/mountain|alps|andes|pyrenees|himalaya|bhutan|nepal|andorra|san marino|山/.test(text)) tags.push("mountain");
+  if (/memorial|remembrance|saints|muertos|candle|记忆|纪念|烛/.test(text)) tags.push("memorial");
+  if (/halloween|children|songkran|thanksgiving|valentine|day|festival|庆典|节日|祝福/.test(text)) tags.push("celebration");
+  return tags;
 }
 
 function monthDay(date) {
@@ -158,7 +296,7 @@ function fallbackTheme(date) {
   });
 }
 
-function getDailyTheme(date) {
+function rankDailyThemes(date) {
   const md = monthDay(date);
   const candidates = [];
 
@@ -188,9 +326,19 @@ function getDailyTheme(date) {
   return candidates
     .map((theme, index) => ({
       theme,
-      score: theme.priority + seededJitter(seed, index) * 6
+      score: theme.priority + seededJitter(seed, index) * 6,
+      rankSeed: seed,
+      sourceIndex: index
     }))
-    .sort((a, b) => b.score - a.score)[0].theme;
+    .sort((a, b) => b.score - a.score)
+    .map((entry, rank) => ({
+      ...entry,
+      rank
+    }));
+}
+
+function getDailyTheme(date) {
+  return rankDailyThemes(date)[0].theme;
 }
 
 function drawDailyThemeBackground(ctx, theme, width, height) {
@@ -221,9 +369,10 @@ function drawThemeCaption(ctx, theme, x, y) {
   ctx.save();
   ctx.textAlign = "center";
   ctx.textBaseline = "alphabetic";
-  ctx.font = "31px -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif";
-  ctx.fillStyle = "rgba(215,215,219,0.76)";
-  ctx.fillText(theme.caption, x, y);
+  ctx.fillStyle = "rgba(225,225,230,0.82)";
+  drawFittedText(ctx, theme.title, x, y - 10, 980, 35, 25);
+  ctx.fillStyle = "rgba(215,215,219,0.64)";
+  drawFittedText(ctx, theme.description, x, y + 34, 1040, 24, 18);
   ctx.restore();
 }
 
@@ -280,6 +429,17 @@ function drawThemeDecorations(ctx, theme, width, height) {
     default:
       drawAurora(ctx, theme, width, height);
   }
+  drawSemanticOrnaments(ctx, theme, width, height);
+}
+
+function drawFittedText(ctx, text, x, y, maxWidth, startSize, minSize) {
+  let size = startSize;
+  do {
+    ctx.font = `${size}px -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif`;
+    if (ctx.measureText(text).width <= maxWidth || size <= minSize) break;
+    size -= 1;
+  } while (size > minSize);
+  ctx.fillText(text, x, y);
 }
 
 function hexToRgba(hex, alpha) {
@@ -342,6 +502,244 @@ function drawStar(ctx, x, y, outer, inner, color, alpha) {
   ctx.closePath();
   ctx.fill();
   ctx.restore();
+}
+
+function drawSemanticOrnaments(ctx, theme, width, height) {
+  const variant = themeVariant(theme, 9);
+  drawMicroTexture(ctx, theme, width, height, variant);
+  drawCornerAccents(ctx, theme, width, height, variant);
+
+  if (hasTag(theme, "water")) drawWaveLattice(ctx, theme, width, height, variant);
+  if (hasTag(theme, "botanical")) drawBotanicalVines(ctx, theme, width, height, variant);
+  if (hasTag(theme, "celebration")) drawRibbonConfetti(ctx, theme, width, height, variant);
+  if (hasTag(theme, "civic")) drawCivicRosettes(ctx, theme, width, height, variant);
+  if (hasTag(theme, "sky")) drawConstellationVeil(ctx, theme, width, height, variant);
+  if (hasTag(theme, "mountain")) drawContourLines(ctx, theme, width, height, variant);
+  if (hasTag(theme, "winter")) drawFrostCrystals(ctx, theme, width, height, variant);
+  if (hasTag(theme, "memorial")) drawQuietLightMarks(ctx, theme, width, height, variant);
+  if (hasTag(theme, "island")) drawIslandFronds(ctx, theme, width, height, variant);
+  if (hasTag(theme, "sun")) drawSolarHalos(ctx, theme, width, height, variant);
+  if (hasTag(theme, "light")) drawSmallLanternGlow(ctx, theme, width, height, variant);
+}
+
+function hasTag(theme, tag) {
+  return theme.tags && theme.tags.includes(tag);
+}
+
+function themeVariant(theme, modulo, salt = 0) {
+  const text = `${theme.title}:${theme.motif}:${salt}`;
+  let hash = 0;
+  for (let i = 0; i < text.length; i++) {
+    hash = (hash * 31 + text.charCodeAt(i)) >>> 0;
+  }
+  return hash % modulo;
+}
+
+function drawMicroTexture(ctx, theme, width, height, variant) {
+  for (let i = 0; i < 70; i++) {
+    const x = 42 + ((i * 97 + variant * 53) % (width - 84));
+    const y = 110 + ((i * 149 + variant * 71) % (height - 240));
+    const color = i % 2 ? theme.accent : theme.secondary;
+    dot(ctx, x, y, 1.4 + (i % 3) * 0.5, color, 0.025 + (i % 5) * 0.006);
+  }
+}
+
+function drawCornerAccents(ctx, theme, width, height, variant) {
+  const corners = [
+    [86, 650],
+    [width - 86, 650],
+    [110, height - 620],
+    [width - 110, height - 620]
+  ];
+  for (let i = 0; i < corners.length; i++) {
+    const [x, y] = corners[i];
+    const flip = x > width / 2 ? -1 : 1;
+    for (let ring = 0; ring < 3; ring++) {
+      strokePath(
+        ctx,
+        [[x + flip * ring * 11, y + ring * 18], [x + flip * (34 + ring * 13), y - 46 - ring * 22]],
+        ring % 2 ? theme.secondary : theme.accent,
+        2,
+        0.09 + ring * 0.025
+      );
+    }
+    if ((variant + i) % 2 === 0) drawDiamond(ctx, x + flip * 28, y + 72, 12 + (variant % 3) * 3, theme.secondary, 0.11);
+    else drawTinyGlyphFlower(ctx, theme, x + flip * 24, y + 70, 18 + (variant % 2) * 4, 0.11);
+  }
+}
+
+function drawWaveLattice(ctx, theme, width, height, variant) {
+  for (const baseY of [150 + variant * 6, height - 180 - variant * 5]) {
+    for (let row = 0; row < 4; row++) {
+      const y = baseY + row * 30;
+      strokePath(ctx, [[44, y], [240, y - 52, 390, y + 54, 575, y - 4], [770, y - 62, 946, y + 50, width - 44, y - 6]], row % 2 ? theme.secondary : theme.accent, 2, 0.08 + row * 0.012);
+    }
+  }
+  for (let i = 0; i < 15; i++) {
+    drawEllipse(ctx, 86 + ((i * 83 + variant * 41) % (width - 172)), 520 + ((i * 157) % 1540), 5 + (i % 3) * 2, 11 + (i % 4) * 2, i * 0.6, i % 2 ? theme.secondary : theme.accent, 0.07);
+  }
+}
+
+function drawBotanicalVines(ctx, theme, width, height, variant) {
+  for (const side of [-1, 1]) {
+    const startX = side < 0 ? 58 : width - 58;
+    for (let vine = 0; vine < 3; vine++) {
+      const y = 815 + vine * 455 + variant * 9;
+      strokePath(ctx, [[startX, y], [startX + side * 82, y - 70, startX + side * 150, y + 62, startX + side * 226, y - 12]], theme.accent, 2, 0.11 + vine * 0.016);
+      for (let leaf = 0; leaf < 5; leaf++) {
+        const lx = startX + side * (54 + leaf * 38);
+        const ly = y - 38 + ((leaf + vine + variant) % 3) * 28;
+        drawEllipse(ctx, lx, ly, 7, 18, side * (leaf % 2 ? 0.7 : -0.5), leaf % 2 ? theme.secondary : theme.accent, 0.1);
+      }
+    }
+  }
+}
+
+function drawRibbonConfetti(ctx, theme, width, height, variant) {
+  for (let i = 0; i < 34; i++) {
+    const x = 58 + ((i * 137 + variant * 83) % (width - 116));
+    const y = i % 2 ? 125 + ((i * 47) % 360) : height - 380 + ((i * 53) % 280);
+    if (i % 3 === 0) {
+      strokePath(ctx, [[x - 12, y], [x + 12, y - 10, x + 22, y + 11, x + 38, y]], i % 2 ? theme.secondary : theme.accent, 2, 0.11);
+    } else if (i % 3 === 1) {
+      drawDiamond(ctx, x, y, 7 + (i % 4), i % 2 ? theme.accent : theme.secondary, 0.12);
+    } else {
+      flag(ctx, x, y, i % 2 ? theme.secondary : theme.accent);
+    }
+  }
+}
+
+function drawCivicRosettes(ctx, theme, width, height, variant) {
+  const points = [
+    [150, 520],
+    [width - 150, 520],
+    [180, height - 485],
+    [width - 180, height - 485]
+  ];
+  for (let p = 0; p < points.length; p++) {
+    const [cx, cy] = points[p];
+    const spokes = 14 + ((variant + p) % 5);
+    for (let i = 0; i < spokes; i++) {
+      const angle = (Math.PI * 2 * i) / spokes;
+      const r1 = 16;
+      const r2 = 52 + (i % 3) * 7;
+      strokePath(ctx, [[cx + Math.cos(angle) * r1, cy + Math.sin(angle) * r1], [cx + Math.cos(angle) * r2, cy + Math.sin(angle) * r2]], i % 2 ? theme.secondary : theme.accent, 2, 0.075);
+    }
+    dot(ctx, cx, cy, 10, p % 2 ? theme.secondary : theme.accent, 0.1);
+  }
+}
+
+function drawConstellationVeil(ctx, theme, width, height, variant) {
+  const stars = [];
+  for (let i = 0; i < 24; i++) {
+    stars.push([
+      70 + ((i * 151 + variant * 67) % (width - 140)),
+      105 + ((i * 79 + variant * 29) % 360)
+    ]);
+  }
+  for (let i = 0; i < stars.length; i++) {
+    const [x, y] = stars[i];
+    if (i % 5 === 0) drawStar(ctx, x, y, 7, 3, theme.secondary, 0.12);
+    else dot(ctx, x, y, 2.5 + (i % 3), theme.accent, 0.1);
+    if (i > 0 && i % 4 !== 0) {
+      const [px, py] = stars[i - 1];
+      if (Math.abs(x - px) < 260) strokePath(ctx, [[px, py], [x, y]], theme.secondary, 1, 0.045);
+    }
+  }
+}
+
+function drawContourLines(ctx, theme, width, height, variant) {
+  for (let row = 0; row < 5; row++) {
+    const y = height - 300 + row * 28;
+    strokePath(ctx, [[70, y], [240, y - 44 - row * 8, 420, y + 36, 590, y - 10], [790, y - 58, 970, y + 40, width - 70, y - 18]], row % 2 ? theme.secondary : theme.accent, 2, 0.05 + row * 0.011);
+  }
+  for (let i = 0; i < 7; i++) {
+    const x = 130 + ((i * 149 + variant * 47) % (width - 260));
+    flag(ctx, x, height - 410 + (i % 3) * 22, i % 2 ? theme.accent : theme.secondary);
+  }
+}
+
+function drawFrostCrystals(ctx, theme, width, height, variant) {
+  for (let i = 0; i < 18; i++) {
+    const cx = 80 + ((i * 173 + variant * 59) % (width - 160));
+    const cy = i % 2 ? 135 + ((i * 71) % 420) : height - 515 + ((i * 61) % 350);
+    const size = 10 + (i % 4) * 3;
+    for (let arm = 0; arm < 6; arm++) {
+      const angle = (Math.PI * 2 * arm) / 6;
+      strokePath(ctx, [[cx, cy], [cx + Math.cos(angle) * size, cy + Math.sin(angle) * size]], "#f3f7ff", 1.4, 0.08);
+    }
+  }
+}
+
+function drawQuietLightMarks(ctx, theme, width, height, variant) {
+  for (const side of [-1, 1]) {
+    for (let i = 0; i < 4; i++) {
+      const x = side < 0 ? 78 + i * 72 : width - 78 - i * 72;
+      const y = height - 570 + ((i + variant) % 3) * 45;
+      ctx.fillStyle = hexToRgba(theme.secondary, 0.08);
+      roundRect(ctx, x - 8, y - 18, 16, 42, 4);
+      ctx.fill();
+      drawEllipse(ctx, x, y - 29, 5, 12, 0, theme.accent, 0.13);
+    }
+  }
+}
+
+function drawIslandFronds(ctx, theme, width, height, variant) {
+  for (const [baseX, baseY, side] of [[92, height - 260, 1], [width - 92, height - 260, -1], [76, 430, 1], [width - 76, 430, -1]]) {
+    for (let i = 0; i < 5; i++) {
+      const angle = side * (-0.8 + i * 0.22);
+      const endX = baseX + Math.cos(angle) * (76 + i * 10) * side;
+      const endY = baseY - Math.sin(angle) * (40 + i * 6) - variant * 2;
+      strokePath(ctx, [[baseX, baseY], [endX, endY]], i % 2 ? theme.secondary : theme.accent, 2, 0.075);
+      for (let leaf = 0; leaf < 3; leaf++) {
+        drawEllipse(ctx, baseX + side * (24 + leaf * 18 + i * 4), baseY - 8 - leaf * 12 - i * 3, 5, 15, angle, theme.accent, 0.07);
+      }
+    }
+  }
+}
+
+function drawSolarHalos(ctx, theme, width, height, variant) {
+  for (const [cx, cy] of [[width / 2, 285], [width / 2, height - 230]]) {
+    for (let ring = 0; ring < 3; ring++) {
+      ctx.save();
+      ctx.strokeStyle = hexToRgba(ring % 2 ? theme.secondary : theme.accent, 0.055 + ring * 0.018);
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.arc(cx, cy, 74 + ring * 42 + variant * 2, Math.PI * 0.08, Math.PI * 0.92);
+      ctx.stroke();
+      ctx.restore();
+    }
+  }
+}
+
+function drawSmallLanternGlow(ctx, theme, width, height, variant) {
+  for (let i = 0; i < 8; i++) {
+    const x = 165 + ((i * 181 + variant * 37) % (width - 330));
+    const y = i % 2 ? 520 + ((i * 151) % 620) : height - 690 + ((i * 127) % 430);
+    drawSoftGlow(ctx, x, y, 42 + (i % 3) * 12, i % 2 ? theme.secondary : theme.accent, 0.035);
+    drawEllipse(ctx, x, y, 5, 14, 0, i % 2 ? theme.secondary : theme.accent, 0.08);
+  }
+}
+
+function drawDiamond(ctx, x, y, size, color, alpha) {
+  ctx.save();
+  ctx.fillStyle = hexToRgba(color, alpha);
+  ctx.beginPath();
+  ctx.moveTo(x, y - size);
+  ctx.lineTo(x + size, y);
+  ctx.lineTo(x, y + size);
+  ctx.lineTo(x - size, y);
+  ctx.closePath();
+  ctx.fill();
+  ctx.restore();
+}
+
+function drawTinyGlyphFlower(ctx, theme, cx, cy, size, alpha) {
+  for (let i = 0; i < 6; i++) {
+    const angle = (Math.PI * 2 * i) / 6;
+    drawEllipse(ctx, cx + Math.cos(angle) * size * 0.42, cy + Math.sin(angle) * size * 0.42, size * 0.14, size * 0.3, angle, i % 2 ? theme.secondary : theme.accent, alpha);
+  }
+  dot(ctx, cx, cy, size * 0.13, theme.accent, alpha);
 }
 
 function drawGrain(ctx, theme, width) {
@@ -661,3 +1059,8 @@ function roundRect(ctx, x, y, w, h, r) {
   ctx.quadraticCurveTo(x, y, x + r, y);
   ctx.closePath();
 }
+
+globalThis.ThemeEngine = {
+  getDailyTheme,
+  rankDailyThemes
+};

@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "render": "node render.js"
+    "render": "node render.js",
+    "render:force": "node render.js --force"
   },
   "dependencies": {
     "puppeteer": "^22.8.0"
