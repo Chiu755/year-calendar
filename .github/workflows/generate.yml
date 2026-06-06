@@ -9,6 +9,9 @@ on:
 permissions:
   contents: write
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 concurrency:
   group: generate-daily-wallpaper
   cancel-in-progress: false
@@ -21,17 +24,17 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 24
 
       - name: Install dependencies
-        run: PUPPETEER_SKIP_DOWNLOAD=true npm install
+        run: PUPPETEER_SKIP_DOWNLOAD=true npm ci
 
       - name: Install Puppeteer browser
         run: |
