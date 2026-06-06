@@ -19,8 +19,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      PUPPETEER_CACHE_DIR: ${{ runner.temp }}/puppeteer-cache
 
     steps:
       - name: Checkout repo
@@ -38,6 +36,8 @@ jobs:
 
       - name: Install Puppeteer browser
         run: |
+          echo "PUPPETEER_CACHE_DIR=$RUNNER_TEMP/puppeteer-cache" >> "$GITHUB_ENV"
+          export PUPPETEER_CACHE_DIR="$RUNNER_TEMP/puppeteer-cache"
           test -n "$PUPPETEER_CACHE_DIR"
           rm -rf "$PUPPETEER_CACHE_DIR"
           npx puppeteer browsers install chrome
