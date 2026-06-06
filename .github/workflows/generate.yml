@@ -16,6 +16,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      PUPPETEER_CACHE_DIR: ${{ runner.temp }}/puppeteer-cache
 
     steps:
       - name: Checkout repo
@@ -32,7 +34,13 @@ jobs:
         run: PUPPETEER_SKIP_DOWNLOAD=true npm install
 
       - name: Install Puppeteer browser
-        run: npx puppeteer install chrome
+        run: |
+          test -n "$PUPPETEER_CACHE_DIR"
+          rm -rf "$PUPPETEER_CACHE_DIR"
+          npx puppeteer browsers install chrome
+
+      - name: Verify Puppeteer browser
+        run: node --input-type=module -e 'import puppeteer from "puppeteer"; console.log(await puppeteer.executablePath());'
 
       - name: Install rendering fonts
         run: |
