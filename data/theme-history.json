@@ -1,5 +1,107 @@
 {
   "version": 1,
-  "updatedAt": null,
-  "days": {}
+  "updatedAt": "2026-06-06T07:39:28.995Z",
+  "days": {
+    "2026-06-06": {
+      "title": "芒种",
+      "motif": "grain",
+      "tags": [
+        "botanical",
+        "harvest"
+      ]
+    },
+    "2026-06-07": {
+      "title": "Summer Water Pattern / 芒种",
+      "motif": "waterFlowers",
+      "tags": [
+        "water",
+        "botanical",
+        "seasonal",
+        "summer",
+        "light",
+        "harvest",
+        "term-芒种",
+        "grain-season",
+        "solar-nearby"
+      ]
+    },
+    "2026-06-08": {
+      "title": "King's Birthday",
+      "motif": "tricolor",
+      "tags": [
+        "civic",
+        "celebration",
+        "sky"
+      ]
+    },
+    "2026-06-09": {
+      "title": "Day of La Rioja",
+      "motif": "tricolor",
+      "tags": [
+        "civic",
+        "celebration",
+        "sun"
+      ]
+    },
+    "2026-06-10": {
+      "title": "Summer Water Pattern / 芒种",
+      "motif": "waterFlowers",
+      "tags": [
+        "water",
+        "botanical",
+        "seasonal",
+        "summer",
+        "light",
+        "harvest",
+        "term-芒种",
+        "grain-season",
+        "solar-nearby"
+      ]
+    },
+    "2026-06-11": {
+      "title": "Summer Water Pattern / 芒种",
+      "motif": "waterFlowers",
+      "tags": [
+        "water",
+        "botanical",
+        "seasonal",
+        "summer",
+        "light",
+        "harvest",
+        "term-芒种",
+        "grain-season",
+        "solar-nearby"
+      ]
+    },
+    "2026-06-12": {
+      "title": "Summer Water Pattern / 芒种",
+      "motif": "waterFlowers",
+      "tags": [
+        "water",
+        "botanical",
+        "seasonal",
+        "summer",
+        "light",
+        "harvest",
+        "term-芒种",
+        "grain-season",
+        "solar-nearby"
+      ]
+    },
+    "2026-06-13": {
+      "title": "Summer Water Pattern / 芒种",
+      "motif": "waterFlowers",
+      "tags": [
+        "water",
+        "botanical",
+        "seasonal",
+        "summer",
+        "light",
+        "harvest",
+        "term-芒种",
+        "grain-season",
+        "solar-nearby"
+      ]
+    }
+  }
 }
