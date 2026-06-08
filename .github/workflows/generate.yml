@@ -59,6 +59,14 @@ jobs:
       - name: Render wallpaper
         run: npm run render
 
+      - name: Upload render debug screenshots
+        if: failure()
+        uses: actions/upload-artifact@v5
+        with:
+          name: render-debug
+          path: debug-render
+          if-no-files-found: ignore
+
       - name: Commit latest wallpaper
         run: |
           git config user.name "github-actions"

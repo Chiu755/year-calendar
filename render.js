@@ -17,6 +17,16 @@ const PUPPETEER_PROFILE = path.join(os.tmpdir(), "year-calendar-puppeteer-profil
 const LOOKAHEAD_DAYS = 7;
 const DIVERSITY_LOOKBACK_DAYS = 10;
 const HISTORY_KEEP_DAYS = 45;
+const VIEWPORT = {
+  width: 1170,
+  height: 2532,
+  deviceScaleFactor: 2
+};
+const EXPECTED_PNG = {
+  width: VIEWPORT.width * VIEWPORT.deviceScaleFactor,
+  height: VIEWPORT.height * VIEWPORT.deviceScaleFactor,
+  minBytes: 200000
+};
 
 function parseArgs(argv) {
   const options = {
@@ -146,6 +156,52 @@ function writeThemeHistory(history, baseDate) {
   fs.writeFileSync(THEME_HISTORY_FILE, `${JSON.stringify(history, null, 2)}\n`);
 }
 
+function readPngSize(filePath) {
+  const header = Buffer.alloc(24);
+  const fd = fs.openSync(filePath, "r");
+  try {
+    fs.readSync(fd, header, 0, header.length, 0);
+  } finally {
+    fs.closeSync(fd);
+  }
+
+  if (header.toString("ascii", 1, 4) !== "PNG") {
+    throw new Error(`${filePath} is not a PNG file`);
+  }
+
+  return {
+    width: header.readUInt32BE(16),
+    height: header.readUInt32BE(20)
+  };
+}
+
+function assertWallpaperOutput(filePath, label) {
+  if (!fs.existsSync(filePath)) {
+    throw new Error(`${label} was not created: ${filePath}`);
+  }
+
+  const stats = fs.statSync(filePath);
+  if (stats.size < EXPECTED_PNG.minBytes) {
+    throw new Error(`${label} is unexpectedly small: ${stats.size} bytes`);
+  }
+
+  const size = readPngSize(filePath);
+  if (size.width !== EXPECTED_PNG.width || size.height !== EXPECTED_PNG.height) {
+    throw new Error(`${label} has wrong dimensions: ${size.width}x${size.height}, expected ${EXPECTED_PNG.width}x${EXPECTED_PNG.height}`);
+  }
+}
+
+async function writeDebugScreenshot(page, date, reason) {
+  const debugPath = path.join("debug-render", `${dateKey(date)}-${slug(reason)}.png`);
+  try {
+    fs.mkdirSync(path.dirname(debugPath), { recursive: true });
+    await page.screenshot({ path: debugPath, fullPage: false });
+    console.error(`Debug screenshot saved: ${debugPath}`);
+  } catch (error) {
+    console.error(`Could not save debug screenshot: ${error.message}`);
+  }
+}
+
 async function renderWallpaper(page, date, themeRank, outputPath, avoidMotifs = []) {
   const key = dateKey(date);
   const params = new URLSearchParams({
@@ -157,16 +213,22 @@ async function renderWallpaper(page, date, themeRank, outputPath, avoidMotifs = 
   }
   const url = `${HTML_URL}?${params.toString()}`;
 
-  await page.goto(url, { waitUntil: "load" });
-  await page.waitForSelector("img");
-  await page.waitForFunction(() => {
-    const img = document.querySelector("img");
-    return Boolean(img && img.complete && img.naturalWidth > 0);
-  });
+  try {
+    await page.goto(url, { waitUntil: "load", timeout: 30000 });
+    await page.waitForSelector("img", { timeout: 15000 });
+    await page.waitForFunction(() => {
+      const img = document.querySelector("img");
+      return Boolean(img && img.complete && img.naturalWidth > 0);
+    }, { timeout: 15000 });
+  } catch (error) {
+    await writeDebugScreenshot(page, date, "render-timeout");
+    throw error;
+  }
 
   const buffer = await page.screenshot({ fullPage: false });
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(outputPath, buffer);
+  assertWallpaperOutput(outputPath, `${key} wallpaper`);
 
   return page.evaluate(() => window.__YEAR_CALENDAR_RENDER_INFO);
 }
@@ -212,11 +274,8 @@ const browser = await puppeteer.launch({
 });
 
 const page = await browser.newPage();
-await page.setViewport({
-  width: 1170,
-  height: 2532,
-  deviceScaleFactor: 2
-});
+await page.setDefaultTimeout(15000);
+await page.setViewport(VIEWPORT);
 
 const generated = [];
 const skipped = [];
@@ -251,6 +310,7 @@ if (fs.existsSync(todayArchive)) {
 
 await browser.close();
 writeThemeHistory(themeHistory, baseDate);
+assertWallpaperOutput(TODAY_OUTPUT, "today wallpaper");
 
 console.log("Wallpaper generation complete:");
 console.log(`   base date: ${dateKey(baseDate)}`);

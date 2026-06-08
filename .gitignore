@@ -4,3 +4,4 @@ output/**
 !output/
 !output/today.png
 drafts/
+debug-render/

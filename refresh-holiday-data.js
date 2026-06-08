@@ -51,7 +51,15 @@ const MOTIF_TAGS = {
   candle: ["memorial", "light", "winter"],
   streamers: ["civic", "celebration"],
   starfield: ["sky", "light"],
-  aurora: ["sky", "mountain", "light"]
+  aurora: ["sky", "mountain", "light"],
+  lanterns: ["light", "celebration", "culture"],
+  paperKites: ["sky", "celebration", "wind"],
+  wovenPattern: ["culture", "civic"],
+  moonOrbit: ["sky", "light", "seasonal"],
+  rainGarden: ["water", "botanical", "seasonal"],
+  harvestSheaves: ["botanical", "harvest", "seasonal"],
+  paperCut: ["civic", "celebration", "culture"],
+  teaSteam: ["culture", "light", "winter"]
 };
 
 const MOTIF_STYLES = {
@@ -71,7 +79,15 @@ const MOTIF_STYLES = {
   candle: [["#101827", "#37304d", "#111214"], "#f0c95c", "#f2f0d6"],
   snow: [["#101827", "#263a35", "#111314"], "#d8c070", "#86b38c"],
   grain: [["#211916", "#604026", "#111314"], "#d8a05f", "#9bb06d"],
-  springBuds: [["#18251f", "#5b6040", "#111516"], "#a9d37f", "#e6b6c8"]
+  springBuds: [["#18251f", "#5b6040", "#111516"], "#a9d37f", "#e6b6c8"],
+  lanterns: [["#171427", "#523143", "#111214"], "#f0c95c", "#e85a63"],
+  paperKites: [["#102238", "#365a70", "#101418"], "#78bde6", "#e6b66b"],
+  wovenPattern: [["#171822", "#4d3d32", "#111314"], "#d8b95b", "#78bde8"],
+  moonOrbit: [["#101729", "#2f3158", "#111316"], "#d8c070", "#9fc8ff"],
+  rainGarden: [["#122735", "#346158", "#101518"], "#87c9b7", "#c8d58f"],
+  harvestSheaves: [["#211916", "#604026", "#111314"], "#d8a05f", "#9bb06d"],
+  paperCut: [["#25080c", "#7a1e26", "#12090a"], "#f6c85f", "#e83b36"],
+  teaSteam: [["#101827", "#37304d", "#111214"], "#f0c95c", "#f2f0d6"]
 };
 
 const COUNTRY_PALETTES = {
@@ -216,17 +232,20 @@ function selectMotif(holiday, country) {
   if (/christmas|boxing|new year|independence|constitution|national|republic|liberation|victory|bastille|unity|foundation/.test(text)) return "fireworks";
   if (/valentine|rose|mother|flower|buddha|vesak|all saints|memorial|remembrance/.test(text)) return "petals";
   if (/patrick/.test(text)) return "clover";
-  if (/sea|ocean|island|songkran|dragon boat|water|marine|harbour|harbor/.test(text)) return "waterFlowers";
+  if (/lantern/.test(text)) return "lanterns";
+  if (/moon|mid-autumn/.test(text)) return "moonOrbit";
+  if (/songkran|water|rain|garden/.test(text)) return "rainGarden";
+  if (/sea|ocean|island|dragon boat|marine|harbour|harbor/.test(text)) return "waterFlowers";
   if (/mountain|swiss|norway|alps|himalaya|qingming|tomb/.test(text)) return "mountainFlags";
-  if (/lantern|moon|mid-autumn|star|tanabata|eve/.test(text)) return "tanabata";
+  if (/star|tanabata|eve/.test(text)) return "tanabata";
   if (/halloween/.test(text)) return "pumpkin";
   if (/dead|muertos/.test(text)) return "marigold";
   if (/lucia|candle|light/.test(text)) return "candle";
   if (/winter|snow|epiphany/.test(text)) return "snow";
-  if (/labor|labour|workers|may day|flag|civic|state|federation/.test(text)) return "tricolor";
-  if (/thanksgiving|harvest|autumn/.test(text)) return "grain";
+  if (/labor|labour|workers|may day|flag|civic|state|federation/.test(text)) return "paperCut";
+  if (/thanksgiving|harvest|autumn/.test(text)) return "harvestSheaves";
   if (/spring|easter|good friday|qingming/.test(text)) return "springBuds";
-  return country.affinity >= 20 ? "sunRibbons" : "tricolor";
+  return country.affinity >= 20 ? "sunRibbons" : "wovenPattern";
 }
 
 function visualScore(holiday) {

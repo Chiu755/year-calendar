@@ -23,7 +23,15 @@ const MOTIF_TAGS = {
   candle: ["memorial", "light", "winter"],
   streamers: ["civic", "celebration"],
   starfield: ["sky", "light"],
-  aurora: ["sky", "mountain", "light"]
+  aurora: ["sky", "mountain", "light"],
+  lanterns: ["light", "celebration", "culture"],
+  paperKites: ["sky", "celebration", "wind"],
+  wovenPattern: ["culture", "civic"],
+  moonOrbit: ["sky", "light", "seasonal"],
+  rainGarden: ["water", "botanical", "seasonal"],
+  harvestSheaves: ["botanical", "harvest", "seasonal"],
+  paperCut: ["civic", "celebration", "culture"],
+  teaSteam: ["culture", "light", "winter"]
 };
 
 const CULTURAL_PALETTES = {
@@ -408,6 +416,21 @@ const MONTH_MOODS = [
   }
 ];
 
+const MONTH_MOTIF_ROTATION = [
+  ["snow", "candle", "moonOrbit", "teaSteam"],
+  ["springBuds", "rainGarden", "paperKites", "petals"],
+  ["springBuds", "petals", "paperKites", "rainGarden"],
+  ["rainGarden", "waterFlowers", "springBuds", "wovenPattern"],
+  ["grain", "harvestSheaves", "sunRibbons", "paperKites"],
+  ["waterFlowers", "rainGarden", "sunRibbons", "moonOrbit"],
+  ["sunRibbons", "waterFlowers", "paperKites", "lanterns"],
+  ["grain", "harvestSheaves", "moonOrbit", "wovenPattern"],
+  ["harvestSheaves", "grain", "moonOrbit", "teaSteam"],
+  ["aurora", "paperCut", "wovenPattern", "lanterns"],
+  ["candle", "teaSteam", "wovenPattern", "starfield"],
+  ["snow", "lanterns", "candle", "moonOrbit"]
+];
+
 function createTheme({ title, caption, motif, gradient, accent, secondary, priority = 50, description, tags = [], source = null }) {
   const theme = {
     title,
@@ -532,6 +555,7 @@ function fallbackTheme(date) {
   const nearbyTerm = nearestSolarTerm(date);
   const hasNearbyTerm = nearbyTerm && nearbyTerm.distance <= 9;
   const termWeight = hasNearbyTerm ? Math.max(0.2, (10 - nearbyTerm.distance) / 10 * 0.55) : 0;
+  const motif = seasonalFallbackMotif(date);
   const title = hasNearbyTerm ? `${mood.title} / ${nearbyTerm.title}` : mood.title;
   const caption = hasNearbyTerm ? `${mood.title} · ${nearbyTerm.title}` : `${mood.title} · ${mood.zhMonth}气质`;
   const description = seasonalFallbackDescription(mood, nearbyTerm);
@@ -541,7 +565,7 @@ function fallbackTheme(date) {
     title,
     caption,
     description,
-    motif: mood.motif,
+    motif,
     gradient: termTheme ? blendGradient(mood.gradient, termTheme.gradient, termWeight) : mood.gradient,
     accent: termTheme ? mixHex(mood.accent, termTheme.accent, termWeight) : mood.accent,
     secondary: termTheme ? mixHex(mood.secondary, termTheme.secondary, termWeight) : mood.secondary,
@@ -553,6 +577,11 @@ function fallbackTheme(date) {
       hasNearbyTerm ? "solar-nearby" : "month-mood"
     ]
   });
+}
+
+function seasonalFallbackMotif(date) {
+  const motifs = MONTH_MOTIF_ROTATION[date.getMonth()];
+  return motifs[Math.floor((date.getDate() - 1) / 3) % motifs.length];
 }
 
 function nearestSolarTerm(date) {
@@ -942,6 +971,30 @@ function drawThemeDecorations(ctx, theme, width, height) {
       break;
     case "starfield":
       drawStarfield(ctx, theme, width, height);
+      break;
+    case "lanterns":
+      drawLanterns(ctx, theme, width, height);
+      break;
+    case "paperKites":
+      drawPaperKites(ctx, theme, width, height);
+      break;
+    case "wovenPattern":
+      drawWovenPattern(ctx, theme, width, height);
+      break;
+    case "moonOrbit":
+      drawMoonOrbit(ctx, theme, width, height);
+      break;
+    case "rainGarden":
+      drawRainGarden(ctx, theme, width, height);
+      break;
+    case "harvestSheaves":
+      drawHarvestSheaves(ctx, theme, width, height);
+      break;
+    case "paperCut":
+      drawPaperCut(ctx, theme, width, height);
+      break;
+    case "teaSteam":
+      drawTeaSteam(ctx, theme, width, height);
       break;
     default:
       drawAurora(ctx, theme, width, height);
@@ -1921,6 +1974,154 @@ function drawStarfield(ctx, theme) {
   }
   strokePath(ctx, [[78, 2360], [240, 2285, 420, 2355, 574, 2268]], theme.secondary, 3, 0.18);
   strokePath(ctx, [[1182, 2360], [1020, 2285, 840, 2355, 686, 2268]], theme.secondary, 3, 0.18);
+}
+
+function drawLanterns(ctx, theme, width, height) {
+  for (const y of [150, height - 410]) {
+    strokePath(ctx, [[78, y], [280, y - 44, 440, y + 34, 620, y - 8], [820, y - 52, 986, y + 36, width - 78, y - 10]], theme.secondary, 2, 0.15);
+    for (let i = 0; i < 9; i++) {
+      const x = 120 + i * ((width - 240) / 8);
+      const ly = y + 38 + ((i % 3) * 13);
+      strokePath(ctx, [[x, y + 4], [x, ly - 34]], theme.secondary, 1.4, 0.12);
+      drawSoftGlow(ctx, x, ly, 54, i % 2 ? theme.secondary : theme.accent, 0.035);
+      drawEllipse(ctx, x, ly, 18, 30, 0, i % 2 ? theme.secondary : theme.accent, 0.16);
+      strokePath(ctx, [[x - 16, ly], [x + 16, ly]], "#ffffff", 1.2, 0.12);
+      strokePath(ctx, [[x, ly + 31], [x, ly + 50]], theme.accent, 1.5, 0.1);
+    }
+  }
+}
+
+function drawPaperKites(ctx, theme, width, height) {
+  const kites = [
+    [135, 385, 0.72],
+    [width - 150, 415, -0.62],
+    [190, height - 455, -0.45],
+    [width - 175, height - 500, 0.55]
+  ];
+  for (const [cx, cy, angle] of kites) {
+    drawKite(ctx, cx, cy, 56, angle, theme.accent, theme.secondary);
+    strokePath(ctx, [[cx, cy + 40], [cx - 36, cy + 110, cx + 44, cy + 160, cx - 18, cy + 220]], theme.secondary, 1.8, 0.1);
+    for (let bow = 0; bow < 3; bow++) {
+      const bx = cx + (bow % 2 ? 22 : -18);
+      const by = cy + 95 + bow * 48;
+      drawDiamond(ctx, bx, by, 8, bow % 2 ? theme.secondary : theme.accent, 0.12);
+    }
+  }
+  drawConstellationVeil(ctx, theme, width, height, themeVariant(theme, 7));
+}
+
+function drawWovenPattern(ctx, theme, width, height) {
+  for (const baseY of [210, height - 350]) {
+    for (let row = 0; row < 5; row++) {
+      const y = baseY + row * 26;
+      for (let i = 0; i < 16; i++) {
+        const x = 84 + i * ((width - 168) / 15);
+        const color = (i + row) % 2 ? theme.secondary : theme.accent;
+        strokePath(ctx, [[x - 18, y - 10], [x + 18, y + 10]], color, 2.2, 0.08);
+        strokePath(ctx, [[x - 18, y + 10], [x + 18, y - 10]], color, 2.2, 0.06);
+      }
+    }
+  }
+  for (const [x, y] of [[105, 610], [width - 105, 610], [126, height - 610], [width - 126, height - 610]]) {
+    drawDiamond(ctx, x, y, 34, theme.accent, 0.08);
+    drawDiamond(ctx, x, y, 18, theme.secondary, 0.1);
+  }
+}
+
+function drawMoonOrbit(ctx, theme, width, height) {
+  for (const [cx, cy, scale] of [[width / 2, 255, 1], [width / 2, height - 330, 0.85]]) {
+    drawSoftGlow(ctx, cx, cy, 170 * scale, theme.secondary, 0.035);
+    drawEllipse(ctx, cx, cy, 64 * scale, 64 * scale, 0, theme.secondary, 0.11);
+    drawEllipse(ctx, cx + 24 * scale, cy - 6 * scale, 56 * scale, 60 * scale, 0, theme.gradient[0], 0.23);
+    for (let ring = 0; ring < 3; ring++) {
+      ctx.save();
+      ctx.strokeStyle = hexToRgba(ring % 2 ? theme.accent : theme.secondary, 0.055 + ring * 0.012);
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.ellipse(cx, cy, (145 + ring * 40) * scale, (44 + ring * 14) * scale, -0.18 + ring * 0.2, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.restore();
+    }
+    for (let i = 0; i < 12; i++) {
+      const angle = (Math.PI * 2 * i) / 12;
+      dot(ctx, cx + Math.cos(angle) * 210 * scale, cy + Math.sin(angle) * 66 * scale, 2.8 + (i % 3), "#ffffff", 0.11);
+    }
+  }
+}
+
+function drawRainGarden(ctx, theme, width, height) {
+  drawWaveLattice(ctx, theme, width, height, themeVariant(theme, 7));
+  for (const [baseX, baseY, side] of [[95, 690, 1], [width - 95, 700, -1], [126, height - 620, 1], [width - 126, height - 635, -1]]) {
+    strokePath(ctx, [[baseX, baseY + 72], [baseX + side * 38, baseY + 10, baseX + side * 82, baseY - 20, baseX + side * 132, baseY - 88]], theme.accent, 2.5, 0.11);
+    for (let i = 0; i < 5; i++) {
+      drawEllipse(ctx, baseX + side * (34 + i * 22), baseY - 12 - i * 16, 7, 18, side * (0.5 - i * 0.12), i % 2 ? theme.secondary : theme.accent, 0.1);
+    }
+    flower(ctx, baseX + side * 146, baseY - 96, 26, theme.secondary, theme.accent, 0.13, 7);
+  }
+  drawRainCurtainGlyphs(ctx, theme, width, height, themeVariant(theme, 5));
+}
+
+function drawHarvestSheaves(ctx, theme, width, height) {
+  for (const [baseX, baseY, side] of [[110, 720, 1], [width - 110, 720, -1], [150, height - 480, 1], [width - 150, height - 480, -1]]) {
+    for (let i = 0; i < 7; i++) {
+      const angle = side * (-0.45 + i * 0.15);
+      const x = baseX + side * i * 7;
+      strokePath(ctx, [[x, baseY], [x + Math.sin(angle) * 90, baseY - 155 - i * 8]], i % 2 ? theme.secondary : theme.accent, 2.4, 0.13);
+      for (let g = 0; g < 4; g++) {
+        drawEllipse(ctx, x + side * (20 + g * 6), baseY - 132 + g * 18 - i * 5, 7, 16, side * -0.56, i % 2 ? theme.secondary : theme.accent, 0.105);
+      }
+    }
+    strokePath(ctx, [[baseX - side * 46, baseY - 58], [baseX + side * 74, baseY - 76]], theme.secondary, 3, 0.12);
+  }
+  drawHarvestMoonGlyphs(ctx, theme, width, height, themeVariant(theme, 8));
+}
+
+function drawPaperCut(ctx, theme, width, height) {
+  for (const [cx, cy, scale] of [[width / 2, 220, 1], [width / 2, height - 240, 0.9]]) {
+    drawSoftGlow(ctx, cx, cy, 150 * scale, theme.accent, 0.035);
+    for (let i = 0; i < 16; i++) {
+      const angle = (Math.PI * 2 * i) / 16;
+      const r = 84 * scale;
+      drawDiamond(ctx, cx + Math.cos(angle) * r, cy + Math.sin(angle) * r, 12 * scale, i % 2 ? theme.secondary : theme.accent, 0.095);
+    }
+    drawDiamond(ctx, cx, cy, 48 * scale, theme.accent, 0.12);
+    drawDiamond(ctx, cx, cy, 24 * scale, theme.secondary, 0.12);
+  }
+  drawBunting(ctx, theme, 84, 120, 7);
+  drawBunting(ctx, theme, width - 574, 120, 7, true);
+}
+
+function drawTeaSteam(ctx, theme, width, height) {
+  for (const [cx, cy] of [[150, 520], [width - 150, 520], [180, height - 500], [width - 180, height - 500]]) {
+    drawEllipse(ctx, cx, cy + 54, 48, 12, 0, theme.secondary, 0.075);
+    ctx.save();
+    ctx.strokeStyle = hexToRgba(theme.accent, 0.1);
+    ctx.lineWidth = 2;
+    roundRect(ctx, cx - 42, cy + 10, 84, 54, 8);
+    ctx.stroke();
+    ctx.restore();
+    for (let i = 0; i < 4; i++) {
+      strokePath(ctx, [[cx - 30 + i * 20, cy], [cx - 46 + i * 22, cy - 44, cx - 6 + i * 18, cy - 74, cx - 22 + i * 21, cy - 118]], i % 2 ? theme.secondary : theme.accent, 2, 0.085);
+    }
+  }
+  drawSmallLanternGlow(ctx, theme, width, height, themeVariant(theme, 6));
+}
+
+function drawKite(ctx, cx, cy, size, rotation, color, secondary) {
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.rotate(rotation);
+  ctx.fillStyle = hexToRgba(color, 0.15);
+  ctx.beginPath();
+  ctx.moveTo(0, -size);
+  ctx.lineTo(size * 0.64, 0);
+  ctx.lineTo(0, size * 0.92);
+  ctx.lineTo(-size * 0.64, 0);
+  ctx.closePath();
+  ctx.fill();
+  strokePath(ctx, [[0, -size], [0, size * 0.92]], secondary, 1.5, 0.11);
+  strokePath(ctx, [[-size * 0.64, 0], [size * 0.64, 0]], secondary, 1.5, 0.11);
+  ctx.restore();
 }
 
 function drawBunting(ctx, theme, startX, y, count, alternate = false) {
