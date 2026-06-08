@@ -646,10 +646,71 @@ function displayDescriptionForSource(theme) {
   if (!theme.source) return theme.description;
   if (theme.source.provider === "Curated Cultural Observances") return theme.description;
 
-  const country = theme.source.zhName || COUNTRY_NAMES_ZH[theme.source.countryCode] || theme.source.countryName || "当地";
-  const type = holidayTypeLabelFromSource(theme.source);
-  const localPart = theme.source.localName && theme.source.localName !== theme.title ? `，当地名称是「${theme.source.localName}」` : "";
-  return `${country}的${type}${localPart}。`;
+  return holidayIntroduction(theme.title, theme.source, theme.description);
+}
+
+function holidayIntroduction(title, source, fallback) {
+  const intro = holidayIntroFor(title, source);
+  if (intro) return intro;
+
+  const text = `${title} ${source?.localName || ""}`.toLowerCase();
+  const country = source?.zhName || COUNTRY_NAMES_ZH[source?.countryCode] || source?.countryName || "当地";
+  const localName = source?.localName && source.localName !== title ? source.localName : "";
+
+  if (/king'?s birthday|queen'?s birthday/.test(text)) {
+    if (source?.countryCode === "AU") {
+      return "这是澳大利亚庆祝英国君主生日的假日，多数地区会把它安排成六月长周末，人们常借此休息、出行或参加社区活动。";
+    }
+    return "这是英联邦传统中的君主生日假日，用来象征君主制与国家礼仪，也常成为当地的长周末。";
+  }
+  if (/new year/.test(text)) return "新年假日标志公历年份开始，人们常用倒数、烟火、聚会和休息迎接新的日历周期。";
+  if (/christmas/.test(text)) return "圣诞节源自基督教传统，后来也成为许多地方的冬日团聚节日，常见象征包括灯饰、松枝、礼物和家庭餐桌。";
+  if (/boxing day/.test(text)) return "节礼日延续自英联邦传统，通常在圣诞节后一天，人们会继续休假、探亲、购物或观看体育赛事。";
+  if (/good friday/.test(text)) return "耶稣受难日纪念基督教传统中耶稣受难的日子，许多地方会以静默礼拜和复活节前的休假来标记。";
+  if (/easter/.test(text)) return "复活节源自基督教传统，纪念复活与新生，许多地方也有彩蛋、家庭聚会和春日休假的习俗。";
+  if (/independence day/.test(text)) return `${country}的独立纪念日，通常纪念国家取得主权或脱离殖民统治的历史时刻，常伴随旗帜、仪式和公共庆祝。`;
+  if (/national day/.test(text)) return `${country}的国家纪念日，通常用来纪念国家成立、宪法传统或重要历史节点，常有官方仪式和公共庆典。`;
+  if (/republic day/.test(text)) return `${country}的共和国纪念日，通常纪念共和国体制确立或重要宪政转折，是国家身份的一部分。`;
+  if (/constitution day/.test(text)) return `${country}的宪法纪念日，纪念宪法秩序或现代国家制度的重要节点。`;
+  if (/foundation day/.test(text)) return `${country}的建国或奠基纪念日，通常回望国家、城市或共同体形成的历史。`;
+  if (/labou?r day|workers'? day|may day/.test(text)) return "劳动节纪念劳动者权益与劳动生活，许多地方会在这一天休假，也可能举行游行、集会或公共活动。";
+  if (/thanksgiving/.test(text)) return "感恩节以感谢、收获和团聚为核心，常见习俗包括家庭餐桌、秋日食物和与亲友共度假日。";
+  if (/remembrance|memorial/.test(text)) return "这是带有追思性质的纪念日，常用静默、花束、仪式或公共纪念来记住历史与逝去的人。";
+  if (/all saints/.test(text)) return "诸圣节源自基督教传统，用来纪念圣徒，也常与献花、点烛和追思逝者联系在一起。";
+  if (/bank holiday/.test(text)) return `${country}的银行假日通常是公共休息日，人们会利用这一天旅行、聚会或处理家庭与社区活动。`;
+  if (/^day of /i.test(title)) {
+    const place = title.replace(/^Day of /i, "");
+    return `${place}日通常纪念地方身份、自治传统或区域历史，是当地公共生活与社区记忆的一部分。`;
+  }
+  if (localName) return `${country}以「${localName}」为名纪念这一天，通常与当地历史、传统或社区公共生活有关。`;
+  if (fallback && !/的.+节日/.test(fallback)) return fallback;
+  return `${title}是${country}日历中的纪念日，通常承载当地历史、公共生活或季节性的休假安排。`;
+}
+
+function holidayIntroFor(title, source = {}) {
+  const intros = globalThis.YearCalendarHolidayIntros || {};
+  const keys = [
+    source?.countryCode ? `${source.countryCode}|${title}` : "",
+    source?.countryCode && source?.localName ? `${source.countryCode}|${source.localName}` : "",
+    title,
+    source?.localName || ""
+  ].filter(Boolean);
+
+  for (const key of keys) {
+    const intro = intros[key] || introByNormalizedKey(intros, key);
+    if (intro) return intro;
+  }
+  return "";
+}
+
+function introByNormalizedKey(intros, key) {
+  const normalizedKey = normalizeIntroKey(key);
+  const match = Object.entries(intros).find(([introKey]) => normalizeIntroKey(introKey) === normalizedKey);
+  return match?.[1] || "";
+}
+
+function normalizeIntroKey(value) {
+  return value.toLowerCase().replace(/[’']/g, "").replace(/\s+/g, " ").trim();
 }
 
 function holidayTypeLabelFromSource(source) {
