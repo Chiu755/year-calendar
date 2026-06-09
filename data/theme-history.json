@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-08T18:29:53.357Z",
+  "updatedAt": "2026-06-09T18:13:32.197Z",
   "days": {
     "2026-06-06": {
       "title": "芒种",
@@ -135,6 +135,18 @@
       "motif": "tricolor",
       "tags": [
         "civic",
+        "celebration"
+      ]
+    },
+    "2026-06-17": {
+      "title": "Iceland National Day",
+      "motif": "aurora",
+      "tags": [
+        "sky",
+        "mountain",
+        "light",
+        "civic",
+        "winter",
         "celebration"
       ]
     }
