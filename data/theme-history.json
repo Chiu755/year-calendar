@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-09T18:13:32.197Z",
+  "updatedAt": "2026-06-10T18:35:14.977Z",
   "days": {
     "2026-06-06": {
       "title": "芒种",
@@ -148,6 +148,17 @@
         "civic",
         "winter",
         "celebration"
+      ]
+    },
+    "2026-06-18": {
+      "title": "Seychelles National Day",
+      "motif": "sunRibbons",
+      "tags": [
+        "sun",
+        "celebration",
+        "water",
+        "island",
+        "civic"
       ]
     }
   }
