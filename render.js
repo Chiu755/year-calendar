@@ -191,6 +191,24 @@ function assertWallpaperOutput(filePath, label) {
   }
 }
 
+function assertRenderInfo(info, label) {
+  if (!info || typeof info !== "object") {
+    throw new Error(`${label} render info is missing`);
+  }
+  if (!info.selectedTheme || typeof info.selectedTheme !== "object") {
+    throw new Error(`${label} selected theme is missing`);
+  }
+  if (!Array.isArray(info.candidates) || info.candidates.length === 0) {
+    throw new Error(`${label} render candidates are missing`);
+  }
+  if (!Number.isInteger(info.selectedRank)) {
+    throw new Error(`${label} selected rank is invalid`);
+  }
+  if (!info.candidates.some((candidate) => candidate.rank === info.selectedRank)) {
+    throw new Error(`${label} selected rank is not present in candidates`);
+  }
+}
+
 async function writeDebugScreenshot(page, date, reason) {
   const debugPath = path.join("debug-render", `${dateKey(date)}-${slug(reason)}.png`);
   try {
@@ -230,7 +248,14 @@ async function renderWallpaper(page, date, themeRank, outputPath, avoidMotifs = 
   fs.writeFileSync(outputPath, buffer);
   assertWallpaperOutput(outputPath, `${key} wallpaper`);
 
-  return page.evaluate(() => window.__YEAR_CALENDAR_RENDER_INFO);
+  const info = await page.evaluate(() => window.__YEAR_CALENDAR_RENDER_INFO);
+  try {
+    assertRenderInfo(info, `${key} wallpaper`);
+  } catch (error) {
+    await writeDebugScreenshot(page, date, "render-info");
+    throw error;
+  }
+  return info;
 }
 
 async function renderDiscardedCandidates(page, date, info, options, avoidMotifs) {
@@ -273,34 +298,38 @@ const browser = await puppeteer.launch({
   ]
 });
 
-const page = await browser.newPage();
-await page.setDefaultTimeout(15000);
-await page.setViewport(VIEWPORT);
-
 const generated = [];
 const skipped = [];
 const themeHistory = readThemeHistory();
 
-for (const date of dates) {
-  const archivePath = archivePathForDate(date);
-  const shouldRender = options.force || isSameDate(date, baseDate) || !fs.existsSync(archivePath);
+try {
+  const page = await browser.newPage();
+  await page.setDefaultTimeout(15000);
+  await page.setViewport(VIEWPORT);
 
-  if (!shouldRender) {
-    skipped.push(dateKey(date));
-    continue;
+  for (const date of dates) {
+    const archivePath = archivePathForDate(date);
+    const shouldRender = options.force || isSameDate(date, baseDate) || !fs.existsSync(archivePath);
+
+    if (!shouldRender) {
+      skipped.push(dateKey(date));
+      continue;
+    }
+
+    const avoidMotifs = recentMotifsForDate(themeHistory, date);
+    const info = await renderWallpaper(page, date, 0, archivePath, avoidMotifs);
+    await renderDiscardedCandidates(page, date, info, options, avoidMotifs);
+    rememberTheme(themeHistory, date, info.selectedTheme);
+    generated.push({
+      date: dateKey(date),
+      output: archivePath,
+      selectedTheme: info.selectedTheme.title,
+      selectedMotif: info.selectedTheme.motif,
+      discardedCount: info.candidates.length - 1
+    });
   }
-
-  const avoidMotifs = recentMotifsForDate(themeHistory, date);
-  const info = await renderWallpaper(page, date, 0, archivePath, avoidMotifs);
-  await renderDiscardedCandidates(page, date, info, options, avoidMotifs);
-  rememberTheme(themeHistory, date, info.selectedTheme);
-  generated.push({
-    date: dateKey(date),
-    output: archivePath,
-    selectedTheme: info.selectedTheme.title,
-    selectedMotif: info.selectedTheme.motif,
-    discardedCount: info.candidates.length - 1
-  });
+} finally {
+  await browser.close();
 }
 
 const todayArchive = archivePathForDate(baseDate);
@@ -308,7 +337,6 @@ if (fs.existsSync(todayArchive)) {
   fs.copyFileSync(todayArchive, TODAY_OUTPUT);
 }
 
-await browser.close();
 writeThemeHistory(themeHistory, baseDate);
 assertWallpaperOutput(TODAY_OUTPUT, "today wallpaper");
 

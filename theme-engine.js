@@ -550,12 +550,11 @@ function seededJitter(seed, index) {
   return x - Math.floor(x);
 }
 
-function fallbackTheme(date) {
+function fallbackTheme(date, motif = seasonalFallbackMotifs(date)[0], priorityOffset = 0) {
   const mood = MONTH_MOODS[date.getMonth()];
   const nearbyTerm = nearestSolarTerm(date);
   const hasNearbyTerm = nearbyTerm && nearbyTerm.distance <= 9;
   const termWeight = hasNearbyTerm ? Math.max(0.2, (10 - nearbyTerm.distance) / 10 * 0.55) : 0;
-  const motif = seasonalFallbackMotif(date);
   const title = hasNearbyTerm ? `${mood.title} / ${nearbyTerm.title}` : mood.title;
   const caption = hasNearbyTerm ? `${mood.title} · ${nearbyTerm.title}` : `${mood.title} · ${mood.zhMonth}气质`;
   const description = seasonalFallbackDescription(mood, nearbyTerm);
@@ -569,7 +568,7 @@ function fallbackTheme(date) {
     gradient: termTheme ? blendGradient(mood.gradient, termTheme.gradient, termWeight) : mood.gradient,
     accent: termTheme ? mixHex(mood.accent, termTheme.accent, termWeight) : mood.accent,
     secondary: termTheme ? mixHex(mood.secondary, termTheme.secondary, termWeight) : mood.secondary,
-    priority: 30,
+    priority: 30 - priorityOffset,
     tags: [
       ...mood.tags,
       ...(termTheme ? termTheme.tags : []),
@@ -579,9 +578,14 @@ function fallbackTheme(date) {
   });
 }
 
-function seasonalFallbackMotif(date) {
+function fallbackThemes(date) {
+  return seasonalFallbackMotifs(date).map((motif, index) => fallbackTheme(date, motif, index * 0.25));
+}
+
+function seasonalFallbackMotifs(date) {
   const motifs = MONTH_MOTIF_ROTATION[date.getMonth()];
-  return motifs[Math.floor((date.getDate() - 1) / 3) % motifs.length];
+  const start = Math.floor((date.getDate() - 1) / 3) % motifs.length;
+  return [...motifs.slice(start), ...motifs.slice(0, start)];
 }
 
 function nearestSolarTerm(date) {
@@ -788,7 +792,7 @@ function rankDailyThemes(date, options = {}) {
   }
 
   if (candidates.length === 0) {
-    candidates.push(fallbackTheme(date));
+    candidates.push(...fallbackThemes(date));
   }
 
   const seed = seedForDate(date);
