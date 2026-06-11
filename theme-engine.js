@@ -169,31 +169,36 @@ const DAY_INTROS = {
 };
 
 const SOLAR_TERMS = [
-  ["02-04", "立春", "立春 · 东风解冻，万物起始", "springBuds", ["#14251d", "#496143", "#111516"], "#8fcb7d", "#d8c070"],
-  ["02-19", "雨水", "雨水 · 天街小雨，草色遥看", "waterFlowers", ["#102132", "#25495c", "#111518"], "#72bdd4", "#91b987"],
-  ["03-06", "惊蛰", "惊蛰 · 春雷初动，蛰虫始振", "aurora", ["#152236", "#34495f", "#101418"], "#8fd0ff", "#d8b95b"],
-  ["03-21", "春分", "春分 · 昼夜均分，花信渐浓", "springBuds", ["#18251f", "#5b6040", "#111516"], "#a9d37f", "#e6b6c8"],
-  ["04-05", "清明", "清明 · 风清景明，草木新发", "waterFlowers", ["#142723", "#3d6659", "#111516"], "#87c9b7", "#c8d58f"],
-  ["04-20", "谷雨", "谷雨 · 雨生百谷，暮春将深", "waterFlowers", ["#122735", "#2d5c63", "#101518"], "#75d6d0", "#d7c56f"],
-  ["05-06", "立夏", "立夏 · 风暖昼长，万物并秀", "grain", ["#1a271c", "#526638", "#121515"], "#b5d46f", "#6fb58a"],
-  ["05-21", "小满", "小满 · 麦粒渐盈，夏意初满", "grain", ["#20281b", "#6d6132", "#121515"], "#d5bd63", "#86a86f"],
-  ["06-06", "芒种", "芒种 · 麦黄梅熟，仲夏将至", "grain", ["#19251d", "#6e6130", "#151516"], "#d8b95b", "#78a879"],
-  ["06-21", "夏至", "夏至 · 日长之至，万物盛明", "sunRibbons", ["#1c2332", "#6c522e", "#111316"], "#f0c95c", "#79b7d8"],
-  ["07-07", "小暑", "小暑 · 风动莲香，暑气渐盛", "waterFlowers", ["#102735", "#2c6567", "#111518"], "#73d1c9", "#e6b6c8"],
-  ["07-23", "大暑", "大暑 · 炎蒸乃极，云雨时行", "sunRibbons", ["#221a20", "#68412a", "#121314"], "#e89b42", "#75bdd0"],
-  ["08-08", "立秋", "立秋 · 凉风有信，秋意初来", "grain", ["#1d211a", "#615237", "#121414"], "#d6a95e", "#88a06a"],
-  ["08-23", "处暑", "处暑 · 暑云渐散，新凉入夜", "aurora", ["#152034", "#3d4d61", "#111418"], "#8ec6e6", "#d6b06a"],
-  ["09-08", "白露", "白露 · 蒹葭苍苍，露华初凝", "aurora", ["#111f2b", "#324f59", "#101416"], "#a8d9e8", "#d9d0a1"],
-  ["09-23", "秋分", "秋分 · 昼夜再均，秋色平分", "grain", ["#201d1b", "#635136", "#121414"], "#d8a95e", "#8fa36b"],
-  ["10-08", "寒露", "寒露 · 露气寒生，秋声渐远", "aurora", ["#111c2b", "#30445a", "#101316"], "#91bfe6", "#c5b06f"],
-  ["10-23", "霜降", "霜降 · 霜华初下，草木深秋", "aurora", ["#171b28", "#3a3b4c", "#101214"], "#b8c9df", "#d6ad71"],
-  ["11-07", "立冬", "立冬 · 水始冰，冬意入窗", "aurora", ["#101b2b", "#253c50", "#101214"], "#84bde6", "#d2d8e6"],
-  ["11-22", "小雪", "小雪 · 云暗初寒，雪意未深", "snow", ["#111a28", "#2a3d51", "#101214"], "#b6d5ef", "#f1f4f8"],
-  ["12-07", "大雪", "大雪 · 北风渐紧，天地清寒", "snow", ["#101826", "#24364e", "#101214"], "#a7cdf0", "#eef4ff"],
-  ["12-22", "冬至", "冬至 · 日南至，长夜生光", "snow", ["#11182a", "#273154", "#101214"], "#9dbaf0", "#d6c071"],
-  ["01-06", "小寒", "小寒 · 寒气渐深，微光入岁", "snow", ["#101827", "#26374c", "#101214"], "#a9c9e8", "#d9d9e5"],
-  ["01-20", "大寒", "大寒 · 岁末严寒，春信将近", "snow", ["#101725", "#28334a", "#101214"], "#b3cbe6", "#d8b95b"]
+  [285, "小寒", "小寒 · 寒气渐深，微光入岁", "snow", ["#101827", "#26374c", "#101214"], "#a9c9e8", "#d9d9e5"],
+  [300, "大寒", "大寒 · 岁末严寒，春信将近", "snow", ["#101725", "#28334a", "#101214"], "#b3cbe6", "#d8b95b"],
+  [315, "立春", "立春 · 东风解冻，万物起始", "springBuds", ["#14251d", "#496143", "#111516"], "#8fcb7d", "#d8c070"],
+  [330, "雨水", "雨水 · 天街小雨，草色遥看", "waterFlowers", ["#102132", "#25495c", "#111518"], "#72bdd4", "#91b987"],
+  [345, "惊蛰", "惊蛰 · 春雷初动，蛰虫始振", "aurora", ["#152236", "#34495f", "#101418"], "#8fd0ff", "#d8b95b"],
+  [0, "春分", "春分 · 昼夜均分，花信渐浓", "springBuds", ["#18251f", "#5b6040", "#111516"], "#a9d37f", "#e6b6c8"],
+  [15, "清明", "清明 · 风清景明，草木新发", "waterFlowers", ["#142723", "#3d6659", "#111516"], "#87c9b7", "#c8d58f"],
+  [30, "谷雨", "谷雨 · 雨生百谷，暮春将深", "waterFlowers", ["#122735", "#2d5c63", "#101518"], "#75d6d0", "#d7c56f"],
+  [45, "立夏", "立夏 · 风暖昼长，万物并秀", "grain", ["#1a271c", "#526638", "#121515"], "#b5d46f", "#6fb58a"],
+  [60, "小满", "小满 · 麦粒渐盈，夏意初满", "grain", ["#20281b", "#6d6132", "#121515"], "#d5bd63", "#86a86f"],
+  [75, "芒种", "芒种 · 麦黄梅熟，仲夏将至", "grain", ["#19251d", "#6e6130", "#151516"], "#d8b95b", "#78a879"],
+  [90, "夏至", "夏至 · 日长之至，万物盛明", "sunRibbons", ["#1c2332", "#6c522e", "#111316"], "#f0c95c", "#79b7d8"],
+  [105, "小暑", "小暑 · 风动莲香，暑气渐盛", "waterFlowers", ["#102735", "#2c6567", "#111518"], "#73d1c9", "#e6b6c8"],
+  [120, "大暑", "大暑 · 炎蒸乃极，云雨时行", "sunRibbons", ["#221a20", "#68412a", "#121314"], "#e89b42", "#75bdd0"],
+  [135, "立秋", "立秋 · 凉风有信，秋意初来", "grain", ["#1d211a", "#615237", "#121414"], "#d6a95e", "#88a06a"],
+  [150, "处暑", "处暑 · 暑云渐散，新凉入夜", "aurora", ["#152034", "#3d4d61", "#111418"], "#8ec6e6", "#d6b06a"],
+  [165, "白露", "白露 · 蒹葭苍苍，露华初凝", "aurora", ["#111f2b", "#324f59", "#101416"], "#a8d9e8", "#d9d0a1"],
+  [180, "秋分", "秋分 · 昼夜再均，秋色平分", "grain", ["#201d1b", "#635136", "#121414"], "#d8a95e", "#8fa36b"],
+  [195, "寒露", "寒露 · 露气寒生，秋声渐远", "aurora", ["#111c2b", "#30445a", "#101316"], "#91bfe6", "#c5b06f"],
+  [210, "霜降", "霜降 · 霜华初下，草木深秋", "aurora", ["#171b28", "#3a3b4c", "#101214"], "#b8c9df", "#d6ad71"],
+  [225, "立冬", "立冬 · 水始冰，冬意入窗", "aurora", ["#101b2b", "#253c50", "#101214"], "#84bde6", "#d2d8e6"],
+  [240, "小雪", "小雪 · 云暗初寒，雪意未深", "snow", ["#111a28", "#2a3d51", "#101214"], "#b6d5ef", "#f1f4f8"],
+  [255, "大雪", "大雪 · 北风渐紧，天地清寒", "snow", ["#101826", "#24364e", "#101214"], "#a7cdf0", "#eef4ff"],
+  [270, "冬至", "冬至 · 日南至，长夜生光", "snow", ["#11182a", "#273154", "#101214"], "#9dbaf0", "#d6c071"]
 ];
+
+const DAY_MS = 24 * 60 * 60 * 1000;
+const HOUR_MS = 60 * 60 * 1000;
+const SHANGHAI_OFFSET_MS = 8 * HOUR_MS;
+const SOLAR_TERM_YEAR_CACHE = new Map();
 
 const SOLAR_TERM_DESCRIPTIONS = {
   立春: "立春是二十四节气之首，意味着寒冬开始松动，春天的气息重新进入日历。",
@@ -552,28 +557,19 @@ function seededJitter(seed, index) {
 
 function fallbackTheme(date, motif = seasonalFallbackMotifs(date)[0], priorityOffset = 0) {
   const mood = MONTH_MOODS[date.getMonth()];
-  const nearbyTerm = nearestSolarTerm(date);
-  const hasNearbyTerm = nearbyTerm && nearbyTerm.distance <= 9;
-  const termWeight = hasNearbyTerm ? Math.max(0.2, (10 - nearbyTerm.distance) / 10 * 0.55) : 0;
-  const title = hasNearbyTerm ? `${mood.title} / ${nearbyTerm.title}` : mood.title;
-  const caption = hasNearbyTerm ? `${mood.title} · ${nearbyTerm.title}` : `${mood.title} · ${mood.zhMonth}气质`;
-  const description = seasonalFallbackDescription(mood, nearbyTerm);
-  const termTheme = hasNearbyTerm ? nearbyTerm.theme : null;
 
   return createTheme({
-    title,
-    caption,
-    description,
+    title: mood.title,
+    caption: `${mood.title} · ${mood.zhMonth}气质`,
+    description: seasonalFallbackDescription(mood),
     motif,
-    gradient: termTheme ? blendGradient(mood.gradient, termTheme.gradient, termWeight) : mood.gradient,
-    accent: termTheme ? mixHex(mood.accent, termTheme.accent, termWeight) : mood.accent,
-    secondary: termTheme ? mixHex(mood.secondary, termTheme.secondary, termWeight) : mood.secondary,
+    gradient: mood.gradient,
+    accent: mood.accent,
+    secondary: mood.secondary,
     priority: 30 - priorityOffset,
     tags: [
       ...mood.tags,
-      ...(termTheme ? termTheme.tags : []),
-      ...(termTheme ? solarTermTags(nearbyTerm.title) : []),
-      hasNearbyTerm ? "solar-nearby" : "month-mood"
+      "month-mood"
     ]
   });
 }
@@ -588,38 +584,100 @@ function seasonalFallbackMotifs(date) {
   return [...motifs.slice(start), ...motifs.slice(0, start)];
 }
 
-function nearestSolarTerm(date) {
-  const year = date.getFullYear();
-  const target = startOfDay(date);
-  let nearest = null;
-
-  for (const candidateYear of [year - 1, year, year + 1]) {
-    for (const [termDate, title, caption, motif, gradient, accent, secondary] of SOLAR_TERMS) {
-      const candidateDate = dateFromMonthDay(candidateYear, termDate);
-      const diff = Math.round((target - candidateDate) / 86400000);
-      const distance = Math.abs(diff);
-      if (!nearest || distance < nearest.distance) {
-        nearest = {
-          title,
-          caption,
-          diff,
-          distance,
-          date: candidateDate,
-          theme: createTheme({ title, caption, motif, gradient, accent, secondary, priority: 95 })
-        };
-      }
-    }
-  }
-
-  return nearest;
+function getSolarTermForDate(date) {
+  const key = dateKey(date);
+  return getSolarTermsForYear(date.getFullYear()).find((term) => term.dateKey === key) || null;
 }
 
-function seasonalFallbackDescription(mood, nearbyTerm) {
-  if (nearbyTerm?.distance <= 9) {
-    const relation = nearbyTerm.diff < 0 ? "临近" : nearbyTerm.diff === 0 ? "正逢" : "刚过";
-    const termDescription = SOLAR_TERM_DESCRIPTIONS[nearbyTerm.title] || `「${nearbyTerm.title}」是二十四节气之一。`;
-    return `${termDescription}这一天${relation}这个节气。`;
+function getSolarTermsForYear(year) {
+  if (SOLAR_TERM_YEAR_CACHE.has(year)) return SOLAR_TERM_YEAR_CACHE.get(year);
+
+  const terms = SOLAR_TERMS.map(([solarLongitude, title, caption, motif, gradient, accent, secondary]) => ({
+    dateKey: shanghaiDateKeyFromUtcMs(calculateSolarTermUtcMs(year, solarLongitude)),
+    solarLongitude,
+    title,
+    caption,
+    motif,
+    gradient,
+    accent,
+    secondary
+  }));
+
+  SOLAR_TERM_YEAR_CACHE.set(year, terms);
+  return terms;
+}
+
+function calculateSolarTermUtcMs(year, targetLongitude) {
+  const start = Date.UTC(year, 0, 1) - DAY_MS;
+  const end = Date.UTC(year + 1, 0, 1) + DAY_MS;
+  const step = 12 * HOUR_MS;
+  let previousMs = start;
+  let previousDelta = solarLongitudeDelta(previousMs, targetLongitude);
+
+  for (let ms = start + step; ms <= end; ms += step) {
+    const currentDelta = solarLongitudeDelta(ms, targetLongitude);
+    if (previousDelta <= 0 && currentDelta >= 0) {
+      return refineSolarTermUtcMs(previousMs, ms, targetLongitude);
+    }
+    previousMs = ms;
+    previousDelta = currentDelta;
   }
+
+  throw new Error(`Could not calculate solar term ${targetLongitude} for ${year}`);
+}
+
+function refineSolarTermUtcMs(startMs, endMs, targetLongitude) {
+  let low = startMs;
+  let high = endMs;
+  for (let i = 0; i < 48; i++) {
+    const mid = (low + high) / 2;
+    if (solarLongitudeDelta(mid, targetLongitude) >= 0) high = mid;
+    else low = mid;
+  }
+  return high;
+}
+
+function solarLongitudeDelta(utcMs, targetLongitude) {
+  return normalizeDegrees180(apparentSolarLongitude(utcMs) - targetLongitude);
+}
+
+function apparentSolarLongitude(utcMs) {
+  const jd = utcMs / DAY_MS + 2440587.5;
+  const t = (jd - 2451545.0) / 36525;
+  const meanLongitude = normalizeDegrees360(280.46646 + 36000.76983 * t + 0.0003032 * t * t);
+  const meanAnomaly = 357.52911 + 35999.05029 * t - 0.0001537 * t * t;
+  const anomalyRad = degreesToRadians(meanAnomaly);
+  const center =
+    (1.914602 - 0.004817 * t - 0.000014 * t * t) * Math.sin(anomalyRad) +
+    (0.019993 - 0.000101 * t) * Math.sin(2 * anomalyRad) +
+    0.000289 * Math.sin(3 * anomalyRad);
+  const trueLongitude = meanLongitude + center;
+  const omega = degreesToRadians(125.04 - 1934.136 * t);
+  return normalizeDegrees360(trueLongitude - 0.00569 - 0.00478 * Math.sin(omega));
+}
+
+function shanghaiDateKeyFromUtcMs(utcMs) {
+  const date = new Date(utcMs + SHANGHAI_OFFSET_MS);
+  return [
+    date.getUTCFullYear(),
+    String(date.getUTCMonth() + 1).padStart(2, "0"),
+    String(date.getUTCDate()).padStart(2, "0")
+  ].join("-");
+}
+
+function normalizeDegrees360(value) {
+  return ((value % 360) + 360) % 360;
+}
+
+function normalizeDegrees180(value) {
+  return ((value + 540) % 360) - 180;
+}
+
+function degreesToRadians(value) {
+  return value * Math.PI / 180;
+}
+
+function seasonalFallbackDescription(mood) {
   return mood.intro;
 }
 
@@ -633,19 +691,6 @@ function solarTermTags(title) {
   if (/小雪|大雪|小寒|大寒|冬至/.test(title)) tags.push("cold-season");
   if (/立春|惊蛰|春分|清明/.test(title)) tags.push("spring-season");
   return tags;
-}
-
-function dateFromMonthDay(year, value) {
-  const [month, day] = value.split("-").map(Number);
-  return new Date(year, month - 1, day);
-}
-
-function startOfDay(date) {
-  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
-}
-
-function blendGradient(base, overlay, amount) {
-  return base.map((color, index) => mixHex(color, overlay[index] || color, amount));
 }
 
 function dateKey(date) {
@@ -768,11 +813,10 @@ function rankDailyThemes(date, options = {}) {
   const candidates = [];
   const cachedThemes = cachedHolidayThemes(date);
   const avoidMotifs = Array.isArray(options.avoidMotifs) ? options.avoidMotifs : [];
+  const solarTerm = getSolarTermForDate(date);
 
-  for (const [termDate, title, caption, motif, gradient, accent, secondary] of SOLAR_TERMS) {
-    if (md === termDate) {
-      candidates.push(createTheme({ title, caption, motif, gradient, accent, secondary, priority: 95 }));
-    }
+  if (solarTerm) {
+    candidates.push(createTheme({ ...solarTerm, priority: 95, tags: solarTermTags(solarTerm.title) }));
   }
 
   candidates.push(...cachedThemes);
@@ -911,7 +955,7 @@ function themeMetaLine(theme) {
     const country = theme.source.zhName || COUNTRY_NAMES_ZH[theme.source.countryCode] || theme.source.countryName;
     return `${country} · ${holidayTypeLabelFromSource(theme.source)}`;
   }
-  if (hasTag(theme, "seasonal")) return hasTag(theme, "solar-nearby") ? "Seasonal Mood · Solar Term Nearby" : "Seasonal Mood";
+  if (hasTag(theme, "seasonal")) return "Seasonal Mood";
   if (/^[\u4e00-\u9fff]{2,6}$/.test(theme.title)) return "Solar Term · China";
   if (hasTag(theme, "civic")) return "Civic Holiday";
   if (hasTag(theme, "celebration")) return "Festival Day";
@@ -2218,5 +2262,7 @@ function roundRect(ctx, x, y, w, h, r) {
 
 globalThis.ThemeEngine = {
   getDailyTheme,
-  rankDailyThemes
+  rankDailyThemes,
+  getSolarTermForDate,
+  getSolarTermsForYear
 };
