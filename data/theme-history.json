@@ -1,148 +1,83 @@
 {
   "version": 1,
-<<<<<<< Updated upstream
-  "updatedAt": "2026-06-11T18:51:57.127Z",
-=======
-  "updatedAt": "2026-06-12T00:00:00.000Z",
->>>>>>> Stashed changes
+  "updatedAt": "2026-06-12T06:26:12.645Z",
   "days": {
-    "2026-06-08": {
-      "title": "King's Birthday",
-      "motif": "tricolor",
-      "tags": [
-        "civic",
-        "celebration",
-        "sky"
-      ]
-    },
-    "2026-06-09": {
-      "title": "Day of La Rioja",
-      "motif": "tricolor",
-      "tags": [
-        "civic",
-        "celebration",
-        "sun"
-      ]
-    },
-<<<<<<< Updated upstream
-    "2026-06-10": {
-      "title": "Summer Water Pattern / 芒种",
-      "motif": "moonOrbit",
-      "tags": [
-        "sky",
-        "light",
-        "seasonal",
-        "summer",
-        "water",
-        "botanical",
-        "harvest",
-        "term-芒种",
-        "grain-season",
-        "solar-nearby"
-      ]
-    },
-    "2026-06-11": {
-      "title": "Summer Water Pattern / 芒种",
-      "motif": "moonOrbit",
-      "tags": [
-        "sky",
-        "light",
-        "seasonal",
-        "summer",
-        "water",
-        "botanical",
-        "harvest",
-        "term-芒种",
-        "grain-season",
-        "solar-nearby"
-      ]
-    },
     "2026-06-12": {
-      "title": "Summer Water Pattern",
-      "motif": "sunRibbons",
-      "tags": [
-        "sun",
-        "celebration",
-        "seasonal",
-        "summer",
-        "water",
-        "light",
-        "month-mood"
-      ]
-    },
-    "2026-06-13": {
-      "title": "Summer Water Pattern",
-      "motif": "rainGarden",
-      "tags": [
-        "water",
-        "botanical",
-        "seasonal",
-        "summer",
-        "light",
-        "month-mood"
-      ]
-    },
-    "2026-06-14": {
-      "title": "Summer Water Pattern",
-      "motif": "waterFlowers",
-      "tags": [
-        "water",
-        "botanical",
-        "seasonal",
-        "summer",
-        "light",
-        "month-mood"
-      ]
-    },
-=======
->>>>>>> Stashed changes
-    "2026-06-15": {
-      "title": "World Cup Bank Holiday",
-      "motif": "tricolor",
-      "tags": [
-        "civic",
-        "celebration"
-      ]
-    },
-    "2026-06-16": {
-      "title": "Youth Day",
-      "motif": "tricolor",
-      "tags": [
-        "civic",
-        "celebration"
-      ]
-    },
-    "2026-06-17": {
-      "title": "Iceland National Day",
-      "motif": "aurora",
-      "tags": [
-        "sky",
-        "mountain",
-        "light",
-        "civic",
-        "winter",
-        "celebration"
-      ]
-    },
-    "2026-06-18": {
-      "title": "Seychelles National Day",
-      "motif": "sunRibbons",
-      "tags": [
-        "sun",
-        "celebration",
-        "water",
-        "island",
-        "civic"
-      ]
-    },
-    "2026-06-19": {
-      "title": "Juneteenth National Independence Day",
+      "title": "Independence Day",
       "motif": "fireworks",
       "tags": [
         "sky",
         "celebration",
         "light",
         "civic"
+      ]
+    },
+    "2026-06-13": {
+      "title": "St Anthony",
+      "motif": "wovenPattern",
+      "tags": [
+        "culture",
+        "civic",
+        "sun"
+      ]
+    },
+    "2026-06-14": {
+      "title": "Municipal holiday",
+      "motif": "wovenPattern",
+      "tags": [
+        "culture",
+        "civic",
+        "celebration"
+      ]
+    },
+    "2026-06-15": {
+      "title": "Sacred Heart",
+      "motif": "wovenPattern",
+      "tags": [
+        "culture",
+        "civic"
+      ]
+    },
+    "2026-06-16": {
+      "title": "Youth Day",
+      "motif": "wovenPattern",
+      "tags": [
+        "culture",
+        "civic",
+        "celebration"
+      ]
+    },
+    "2026-06-17": {
+      "title": "Icelandic National Day",
+      "motif": "fireworks",
+      "tags": [
+        "sky",
+        "celebration",
+        "light",
+        "civic",
+        "winter"
+      ]
+    },
+    "2026-06-18": {
+      "title": "Constitution Day",
+      "motif": "fireworks",
+      "tags": [
+        "sky",
+        "celebration",
+        "light",
+        "civic"
+      ]
+    },
+    "2026-06-19": {
+      "title": "Dragon Boat Festival",
+      "motif": "waterFlowers",
+      "tags": [
+        "water",
+        "botanical",
+        "celebration",
+        "civic",
+        "sun",
+        "light"
       ]
     }
   }
