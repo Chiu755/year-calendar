@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-12T06:26:12.645Z",
+  "updatedAt": "2026-06-12T18:13:12.371Z",
   "days": {
     "2026-06-12": {
       "title": "Independence Day",
@@ -78,6 +78,17 @@
         "civic",
         "sun",
         "light"
+      ]
+    },
+    "2026-06-20": {
+      "title": "World Refugee Day",
+      "motif": "mountainFlags",
+      "tags": [
+        "mountain",
+        "civic",
+        "celebration",
+        "culture",
+        "international"
       ]
     }
   }
