@@ -32,7 +32,7 @@ jobs:
           node-version: 24
 
       - name: Refresh holiday cache
-        run: npm run refresh-holidays
+        run: npm run refresh-holidays -- --days 90
 
       - name: Commit holiday cache
         run: |

@@ -5,13 +5,18 @@ import path from "path";
 
 const OUTPUT_FILE = path.join("data", "holiday-cache.js");
 const API_ROOT = "https://date.nager.at/api/v3";
-const LOOKAHEAD_DAYS = 240;
+const OPEN_HOLIDAYS_API_ROOT = "https://openholidaysapi.org";
+const LOOKAHEAD_DAYS = 90;
 const MAX_CANDIDATES_PER_DAY = 5;
+const DEFAULT_COUNTRY_AFFINITY = 3;
+const NAGER_FETCH_CONCURRENCY = 8;
+const OPEN_HOLIDAYS_FETCH_CONCURRENCY = 6;
+const MIN_CACHE_DAYS_FOR_RENDER = 14;
 
 await import("./data/holiday-intros.js");
 const HOLIDAY_INTROS = globalThis.YearCalendarHolidayIntros || {};
 
-const COUNTRY_PROFILE = [
+const FEATURED_COUNTRY_PROFILE = [
   ["CN", "China", "中国", 42],
   ["US", "United States", "美国", 34],
   ["JP", "Japan", "日本", 26],
@@ -32,7 +37,11 @@ const COUNTRY_PROFILE = [
   ["IN", "India", "印度", 8],
   ["ZA", "South Africa", "南非", 8],
   ["NZ", "New Zealand", "新西兰", 8]
-].map(([code, name, zhName, affinity]) => ({ code, name, zhName, affinity }));
+];
+
+const FEATURED_COUNTRY_BY_CODE = new Map(
+  FEATURED_COUNTRY_PROFILE.map(([code, name, zhName, affinity]) => [code, { code, name, zhName, affinity }])
+);
 
 const MOTIF_TAGS = {
   grain: ["botanical", "harvest"],
@@ -122,36 +131,72 @@ const OCCASION_PALETTES = [
 ];
 
 const CULTURAL_OBSERVANCES = [
+  ["01-04", "World Braille Day", "世界盲文日", "联合国纪念日，关注盲文、无障碍阅读和信息平等。", "starfield", ["#101827", "#2e3d51", "#101316"], "#d8c070", "#78bde8", 66, ["culture", "international", "light"]],
   ["01-24", "International Day of Education", "国际教育日", "联合国设立的国际日，关注学习、知识与人的发展。", "starfield", ["#111d34", "#263e5b", "#101316"], "#78bde8", "#d8c070", 66, ["culture", "international", "light"]],
+  ["01-27", "International Holocaust Remembrance Day", "国际大屠杀纪念日", "联合国纪念日，追思大屠杀受害者，并提醒人们警惕仇恨与暴力。", "candle", ["#101827", "#37304d", "#111214"], "#f0c95c", "#f2f0d6", 76, ["culture", "international", "memorial", "light"]],
+  ["01-28", "Data Privacy Day", "数据隐私日", "关注个人数据、数字权利和网络生活边界的国际倡议日。", "wovenPattern", ["#101b33", "#2e4770", "#101316"], "#9fc8ff", "#e6c86f", 62, ["culture", "international", "civic"]],
+  ["02-02", "World Wetlands Day", "世界湿地日", "纪念湿地生态、候鸟栖息地与水陆之间的生命系统。", "waterFlowers", ["#0d2836", "#1d5a64", "#101518"], "#70d6d0", "#8bd0b6", 70, ["culture", "international", "water", "botanical"]],
   ["02-11", "Women and Girls in Science Day", "妇女和女童参与科学国际日", "国际日，鼓励更多女性进入科学与探索的领域。", "aurora", ["#17182d", "#3d2f59", "#111316"], "#b68fd8", "#78bde8", 68, ["culture", "international", "sky"]],
+  ["02-13", "World Radio Day", "世界广播日", "联合国教科文组织纪念日，关注声音媒介、公共传播和跨地域连接。", "starfield", ["#111729", "#493456", "#111316"], "#d6c070", "#8fc8ff", 66, ["culture", "international", "sky", "light"]],
   ["02-21", "International Mother Language Day", "国际母语日", "联合国教科文组织倡议的日子，纪念语言多样性与文化传承。", "streamers", ["#151d2d", "#3f3a58", "#111316"], "#d8b95b", "#78bde8", 72, ["culture", "international", "celebration"]],
+  ["03-03", "World Wildlife Day", "世界野生动植物日", "联合国纪念日，关注野生动植物、多样生态和人与自然的关系。", "springBuds", ["#14251d", "#496143", "#111516"], "#8fcb7d", "#d8c070", 70, ["culture", "international", "botanical"]],
   ["03-08", "International Women's Day", "国际妇女节", "纪念女性权益与创造力的国际节日。", "petals", ["#241525", "#643044", "#111214"], "#e87a94", "#d7b56b", 74, ["culture", "international", "celebration", "botanical"]],
+  ["03-14", "Pi Day", "圆周率日", "以 3.14 纪念数学、好奇心和理性之美的轻量文化日。", "moonOrbit", ["#101729", "#2f3158", "#111316"], "#d8c070", "#9fc8ff", 62, ["culture", "international", "light"]],
   ["03-20", "International Day of Happiness", "国际幸福日", "联合国设立的国际日，提醒人们珍视幸福与共同生活。", "sunRibbons", ["#201d25", "#5e4a2a", "#111314"], "#f0c95c", "#e87a94", 66, ["culture", "international", "sun", "celebration"]],
   ["03-21", "World Poetry Day", "世界诗歌日", "联合国教科文组织设立的文化日，纪念诗歌、语言与想象力。", "petals", ["#17182d", "#473254", "#111316"], "#d6b6e8", "#d8c070", 70, ["culture", "international", "botanical"]],
   ["03-22", "World Water Day", "世界水日", "联合国设立的国际日，关注水资源与蓝色星球。", "waterFlowers", ["#0c2134", "#225a6a", "#101418"], "#70cce8", "#8bd0b6", 72, ["culture", "international", "water"]],
+  ["03-23", "World Meteorological Day", "世界气象日", "纪念天气、气候观测和人类理解大气变化的科学工作。", "aurora", ["#102238", "#365a70", "#101418"], "#78bde6", "#e6b66b", 66, ["culture", "international", "sky"]],
+  ["04-07", "World Health Day", "世界卫生日", "世界卫生组织纪念日，关注健康、公平和公共卫生系统。", "springBuds", ["#18251f", "#5b6040", "#111516"], "#a9d37f", "#e6b6c8", 70, ["culture", "international", "botanical"]],
   ["04-15", "World Art Day", "世界艺术日", "纪念艺术、创作与视觉文化的世界性日子。", "streamers", ["#19172d", "#5a344d", "#111316"], "#e87a94", "#78bde8", 72, ["culture", "international", "celebration"]],
+  ["04-18", "World Heritage Day", "世界遗产日", "关注文化遗产、古迹保护和人类共同记忆的国际文化日。", "mountainFlags", ["#171822", "#4d3d32", "#111314"], "#d8b95b", "#78bde8", 70, ["culture", "international", "civic"]],
   ["04-22", "Earth Day", "世界地球日", "关注环境保护与生态共生的全球纪念日。", "aurora", ["#102622", "#2f5c4c", "#101516"], "#77c98e", "#75bdd8", 76, ["culture", "international", "botanical", "water"]],
   ["04-23", "World Book Day", "世界读书日", "联合国教科文组织设立的文化日，纪念阅读、书籍与出版。", "starfield", ["#171827", "#3c3350", "#111316"], "#d8c070", "#b68fd8", 70, ["culture", "international", "light"]],
+  ["04-29", "International Dance Day", "国际舞蹈日", "纪念舞蹈、身体表达和跨文化表演传统的国际艺术日。", "streamers", ["#19172d", "#5a344d", "#111316"], "#e87a94", "#78bde8", 70, ["culture", "international", "celebration"]],
   ["04-30", "International Jazz Day", "国际爵士乐日", "联合国教科文组织设立的音乐日，纪念即兴、节奏与城市夜色。", "starfield", ["#111729", "#493456", "#111316"], "#d6c070", "#8fc8ff", 74, ["culture", "international", "sky", "celebration"]],
+  ["05-03", "World Press Freedom Day", "世界新闻自由日", "联合国纪念日，关注新闻自由、公共信息和表达权利。", "paperKites", ["#102238", "#365a70", "#101418"], "#78bde6", "#e6b66b", 70, ["culture", "international", "civic"]],
+  ["05-08", "World Red Cross and Red Crescent Day", "世界红十字与红新月日", "纪念人道救援、志愿服务和跨国互助传统。", "candle", ["#101827", "#37304d", "#111214"], "#f0c95c", "#e85a63", 70, ["culture", "international", "light", "memorial"]],
+  ["05-15", "International Day of Families", "国际家庭日", "联合国设立的国际日，关注家庭、照护关系和日常生活中的支持网络。", "lanterns", ["#171427", "#523143", "#111214"], "#f0c95c", "#e85a63", 66, ["culture", "international", "light"]],
   ["05-18", "International Museum Day", "国际博物馆日", "纪念博物馆、收藏与公共文化记忆。", "mountainFlags", ["#171822", "#4d3d32", "#111314"], "#d8b95b", "#78bde8", 70, ["culture", "international", "civic"]],
+  ["05-20", "World Bee Day", "世界蜜蜂日", "联合国纪念日，关注授粉、农业生态和小型生命对食物系统的影响。", "springBuds", ["#18251f", "#604026", "#111515"], "#f0a24a", "#70bf75", 70, ["culture", "international", "botanical", "harvest"]],
   ["05-21", "International Tea Day", "国际茶日", "联合国设立的国际日，纪念茶、农耕与日常仪式感。", "springBuds", ["#14251d", "#496143", "#111516"], "#8fcb7d", "#d8c070", 72, ["culture", "international", "botanical", "harvest"]],
+  ["05-22", "International Day for Biological Diversity", "国际生物多样性日", "联合国纪念日，关注生态系统、多样物种与共同栖居的地球。", "aurora", ["#102622", "#465c2d", "#101516"], "#77c98e", "#d8c070", 72, ["culture", "international", "botanical", "water"]],
+  ["06-01", "Global Day of Parents", "全球父母节", "联合国设立的国际日，感谢父母和照护者在家庭生活中的支持与陪伴。", "lanterns", ["#171427", "#523143", "#111214"], "#f0c95c", "#e85a63", 64, ["culture", "international", "light"]],
+  ["06-03", "World Bicycle Day", "世界自行车日", "联合国纪念日，关注低碳出行、城市道路和日常移动自由。", "paperKites", ["#102238", "#365a70", "#101418"], "#78bde6", "#e6b66b", 66, ["culture", "international", "wind"]],
   ["06-05", "World Environment Day", "世界环境日", "联合国环境日，关注生态、城市与地球未来。", "aurora", ["#102622", "#2f5c4c", "#101516"], "#77c98e", "#75bdd8", 74, ["culture", "international", "botanical", "water"]],
+  ["06-07", "World Food Safety Day", "世界食品安全日", "联合国纪念日，关注食物生产、餐桌安全和公共健康。", "grain", ["#211916", "#604026", "#111314"], "#d8a05f", "#9bb06d", 66, ["culture", "international", "harvest"]],
   ["06-08", "World Oceans Day", "世界海洋日", "关注海洋、潮汐与蓝色星球的国际日。", "waterFlowers", ["#0c2134", "#225a6a", "#101418"], "#70cce8", "#8bd0b6", 76, ["culture", "international", "water", "island"]],
-  ["06-21", "World Music Day", "世界音乐日", "夏至前后的音乐日，用节奏、声响与街头庆祝连接城市。", "sunRibbons", ["#1c2332", "#6c522e", "#111316"], "#f0c95c", "#79b7d8", 74, ["culture", "international", "celebration", "sun"]],
+  ["06-20", "World Refugee Day", "世界难民日", "联合国纪念日，关注被迫迁徙者的处境、尊严和重建生活的力量。", "mountainFlags", ["#111d34", "#263e5b", "#101316"], "#78bde8", "#d8c070", 72, ["culture", "international", "mountain", "civic"]],
+  ["06-21", "World Music Day", "世界音乐日", "纪念音乐、节奏与公共空间中的街头庆祝。", "sunRibbons", ["#1c2332", "#6c522e", "#111316"], "#f0c95c", "#79b7d8", 74, ["culture", "international", "celebration", "sun"]],
+  ["06-30", "Asteroid Day", "小行星日", "国际科普日，关注小行星、空间观测和行星防御意识。", "starfield", ["#101729", "#2f3158", "#111316"], "#d8c070", "#9fc8ff", 66, ["culture", "international", "sky", "light"]],
+  ["07-11", "World Population Day", "世界人口日", "联合国纪念日，关注人口变化、城市生活、家庭与公共政策。", "wovenPattern", ["#171822", "#4d3d32", "#111314"], "#d8b95b", "#78bde8", 64, ["culture", "international", "civic"]],
+  ["07-17", "World Emoji Day", "世界表情符号日", "轻量数字文化日，纪念表情符号如何改变日常表达和网络交流。", "streamers", ["#141d2f", "#493456", "#111316"], "#d6c070", "#78b8e6", 62, ["culture", "international", "celebration"]],
+  ["07-20", "International Chess Day", "国际象棋日", "纪念棋类、策略思考和跨文化智力游戏传统的国际日。", "wovenPattern", ["#171822", "#4d3d32", "#111314"], "#d8b95b", "#78bde8", 64, ["culture", "international", "civic"]],
+  ["07-28", "World Nature Conservation Day", "世界自然保护日", "关注自然保护、土地与水域生态，以及人与环境的长期关系。", "aurora", ["#102622", "#2f5c4c", "#101516"], "#77c98e", "#75bdd8", 68, ["culture", "international", "botanical", "water"]],
   ["07-30", "International Day of Friendship", "国际友谊日", "联合国设立的国际日，纪念友谊、理解与相互照亮。", "streamers", ["#141d2f", "#493456", "#111316"], "#d6c070", "#78b8e6", 68, ["culture", "international", "celebration", "light"]],
   ["08-09", "Indigenous Peoples Day", "世界土著人民国际日", "联合国设立的国际日，关注原住民文化、土地与传统。", "mountainFlags", ["#1a2019", "#5a5634", "#111515"], "#d8b95b", "#91c47c", 70, ["culture", "international", "mountain", "botanical"]],
   ["08-12", "International Youth Day", "国际青年日", "联合国设立的国际日，关注年轻人的创造力与公共参与。", "streamers", ["#102238", "#365a70", "#101418"], "#78bde6", "#e66b58", 68, ["culture", "international", "celebration"]],
   ["08-19", "World Photography Day", "世界摄影日", "纪念影像、光线与观看方式的文化日。", "starfield", ["#111827", "#2e3d51", "#101316"], "#d8c070", "#78bde8", 68, ["culture", "international", "light"]],
+  ["08-29", "World Video Game Day", "世界电子游戏日", "轻量文化日，纪念电子游戏、互动叙事和数字娱乐中的创造力。", "starfield", ["#0f1734", "#25265f", "#11131d"], "#9fc8ff", "#e6c86f", 62, ["culture", "international", "sky", "light"]],
+  ["09-08", "International Literacy Day", "国际扫盲日", "联合国教科文组织纪念日，关注阅读能力、教育公平和人的发展。", "starfield", ["#171827", "#3c3350", "#111316"], "#d8c070", "#b68fd8", 70, ["culture", "international", "light"]],
+  ["09-15", "International Day of Democracy", "国际民主日", "联合国纪念日，关注公共参与、制度信任和公民生活。", "tricolor", ["#101d34", "#263a54", "#111316"], "#78aee8", "#f3f3f5", 68, ["culture", "international", "civic"]],
   ["09-21", "International Day of Peace", "国际和平日", "联合国设立的国际日，纪念和平、停火与共同生活。", "candle", ["#101827", "#37304d", "#111214"], "#f0c95c", "#f2f0d6", 76, ["culture", "international", "light", "memorial"]],
   ["09-27", "World Tourism Day", "世界旅游日", "关注旅行、地方文化与人与地点之间的连接。", "mountainFlags", ["#102039", "#5c4227", "#101417"], "#6da2cf", "#f0b64d", 66, ["culture", "international", "mountain", "celebration"]],
+  ["09-29", "World Heart Day", "世界心脏日", "全球健康倡议日，关注心血管健康、运动和日常生活习惯。", "petals", ["#241525", "#643044", "#111214"], "#e87a94", "#d7b56b", 66, ["culture", "international", "botanical"]],
   ["10-01", "International Coffee Day", "国际咖啡日", "纪念咖啡、手作与城市日常节奏的国际文化日。", "grain", ["#1b1513", "#563321", "#111314"], "#d8a05f", "#9bb06d", 64, ["culture", "international", "harvest"]],
+  ["10-04", "World Space Week", "世界空间周", "纪念空间探索、卫星科技和人类望向宇宙的想象力。", "starfield", ["#101729", "#2f3158", "#111316"], "#d8c070", "#9fc8ff", 70, ["culture", "international", "sky", "light"]],
   ["10-05", "World Teachers' Day", "世界教师日", "联合国教科文组织设立的国际日，感谢教育者与知识传递。", "starfield", ["#171827", "#3c3350", "#111316"], "#d8c070", "#b68fd8", 68, ["culture", "international", "light"]],
+  ["10-10", "World Mental Health Day", "世界精神卫生日", "关注心理健康、照护网络和更温柔的公共讨论。", "candle", ["#101827", "#37304d", "#111214"], "#f0c95c", "#f2f0d6", 70, ["culture", "international", "light"]],
   ["10-16", "World Food Day", "世界粮食日", "联合国粮农组织纪念日，关注食物、土地与人类生活。", "grain", ["#211916", "#604026", "#111314"], "#d8a05f", "#9bb06d", 70, ["culture", "international", "harvest", "botanical"]],
   ["10-24", "United Nations Day", "联合国日", "纪念联合国宪章生效的国际日，象征合作、和平与公共秩序。", "tricolor", ["#101d34", "#263a54", "#111316"], "#78aee8", "#f3f3f5", 72, ["culture", "international", "civic"]],
+  ["11-10", "World Science Day for Peace and Development", "世界科学促进和平与发展日", "联合国教科文组织纪念日，关注科学、公共利益和社会发展。", "aurora", ["#17182d", "#3d2f59", "#111316"], "#b68fd8", "#78bde8", 68, ["culture", "international", "sky"]],
   ["11-13", "World Kindness Day", "世界友善日", "纪念善意、照顾与人与人之间温柔连接的文化日。", "petals", ["#241525", "#643044", "#111214"], "#e87a94", "#d7b56b", 66, ["culture", "international", "botanical", "light"]],
   ["11-16", "International Day for Tolerance", "国际宽容日", "联合国教科文组织设立的国际日，纪念理解、差异与共处。", "candle", ["#101827", "#37304d", "#111214"], "#f0c95c", "#f2f0d6", 68, ["culture", "international", "light"]],
+  ["11-19", "International Men's Day", "国际男性日", "民间倡议的国际日，关注男性健康、家庭角色和性别议题中的互相理解。", "wovenPattern", ["#171822", "#4d3d32", "#111314"], "#d8b95b", "#78bde8", 62, ["culture", "international", "civic"]],
   ["11-21", "World Television Day", "世界电视日", "联合国设立的国际日，纪念影像媒介与公共叙事。", "starfield", ["#101b33", "#2e4770", "#101316"], "#9fc8ff", "#e6c86f", 62, ["culture", "international", "sky", "light"]],
+  ["12-03", "International Day of Persons with Disabilities", "国际残疾人日", "联合国纪念日，关注无障碍环境、平等参与和多样身体经验。", "paperKites", ["#102238", "#365a70", "#101418"], "#78bde6", "#e6b66b", 70, ["culture", "international", "civic"]],
+  ["12-05", "International Volunteer Day", "国际志愿者日", "联合国纪念日，感谢志愿服务、社区互助和日常善意。", "lanterns", ["#171427", "#523143", "#111214"], "#f0c95c", "#e85a63", 68, ["culture", "international", "light"]],
   ["12-10", "Human Rights Day", "人权日", "联合国纪念日，关注人的尊严、自由与平等。", "candle", ["#101827", "#37304d", "#111214"], "#f0c95c", "#f2f0d6", 74, ["culture", "international", "civic", "light"]],
+  ["12-11", "International Mountain Day", "国际山岳日", "联合国纪念日，关注山地生态、地方社区和高处风景中的生活。", "mountainFlags", ["#151b27", "#4d2727", "#111314"], "#e65b5b", "#f0f0f2", 68, ["culture", "international", "mountain"]],
   ["12-18", "International Migrants Day", "国际移民日", "联合国设立的国际日，关注迁徙、家园与跨文化生活。", "mountainFlags", ["#111d34", "#263e5b", "#101316"], "#78bde8", "#d8c070", 66, ["culture", "international", "mountain"]]
 ].map(([monthDay, title, localName, description, motif, gradient, accent, secondary, priority, tags]) => ({
   monthDay,
@@ -169,7 +214,9 @@ const CULTURAL_OBSERVANCES = [
 function parseArgs(argv) {
   const options = {
     date: null,
-    days: LOOKAHEAD_DAYS
+    days: LOOKAHEAD_DAYS,
+    ifNeeded: argv.includes("--if-needed"),
+    minDays: MIN_CACHE_DAYS_FOR_RENDER
   };
 
   const dateIndex = argv.indexOf("--date");
@@ -177,6 +224,9 @@ function parseArgs(argv) {
 
   const daysIndex = argv.indexOf("--days");
   if (daysIndex !== -1) options.days = Number(argv[daysIndex + 1]) || LOOKAHEAD_DAYS;
+
+  const minDaysIndex = argv.indexOf("--min-days");
+  if (minDaysIndex !== -1) options.minDays = Number(argv[minDaysIndex + 1]) || MIN_CACHE_DAYS_FOR_RENDER;
 
   return options;
 }
@@ -216,6 +266,61 @@ function inRange(date, startDate, endDate) {
   return date >= startDate && date <= endDate;
 }
 
+function coverageForDays(rankedDays, startDate, endDate) {
+  const missingDates = [];
+  let totalDays = 0;
+
+  for (let date = startDate; date <= endDate; date = addDays(date, 1)) {
+    totalDays++;
+    const key = dateKey(date);
+    if (!rankedDays[key]) missingDates.push(key);
+  }
+
+  return {
+    totalDays,
+    candidateDays: Object.keys(rankedDays).length,
+    fallbackDays: missingDates.length,
+    fallbackDates: missingDates
+  };
+}
+
+function readExistingHolidayCache() {
+  if (!fs.existsSync(OUTPUT_FILE)) return null;
+  const content = fs.readFileSync(OUTPUT_FILE, "utf8");
+  const match = content.match(/window\.YearCalendarHolidayCache\s*=\s*(\{[\s\S]*\});?\s*$/);
+  if (!match) return null;
+
+  try {
+    return JSON.parse(match[1]);
+  } catch {
+    return null;
+  }
+}
+
+function cacheCoversRenderWindow(cache, startDate, minDays) {
+  const cacheStart = dateFromKey(cache?.window?.start);
+  const cacheEnd = dateFromKey(cache?.window?.end);
+  if (!cacheStart || !cacheEnd) return false;
+
+  const requiredEnd = addDays(startDate, minDays);
+  return cacheStart <= startDate && cacheEnd >= requiredEnd;
+}
+
+async function mapWithConcurrency(items, concurrency, mapper) {
+  const results = new Array(items.length);
+  let nextIndex = 0;
+
+  async function worker() {
+    while (nextIndex < items.length) {
+      const index = nextIndex++;
+      results[index] = await mapper(items[index], index);
+    }
+  }
+
+  await Promise.all(Array.from({ length: Math.min(concurrency, items.length) }, worker));
+  return results;
+}
+
 async function fetchPublicHolidays(year, country) {
   const url = `${API_ROOT}/PublicHolidays/${year}/${country.code}`;
   const response = await fetch(url);
@@ -225,6 +330,94 @@ async function fetchPublicHolidays(year, country) {
   const body = await response.text();
   if (!body.trim()) return [];
   return JSON.parse(body);
+}
+
+async function fetchAvailableCountries() {
+  const response = await fetch(`${API_ROOT}/AvailableCountries`);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch available countries: ${response.status}`);
+  }
+  return response.json();
+}
+
+async function countryProfile() {
+  try {
+    const countries = await fetchAvailableCountries();
+    return countries
+      .map((country) => {
+        const code = country.countryCode || country.code;
+        const featured = FEATURED_COUNTRY_BY_CODE.get(code);
+        return {
+          code,
+          name: country.name || featured?.name || code,
+          zhName: featured?.zhName || country.name || code,
+          affinity: featured?.affinity || DEFAULT_COUNTRY_AFFINITY
+        };
+      })
+      .filter((country) => country.code)
+      .sort((a, b) => b.affinity - a.affinity || a.name.localeCompare(b.name));
+  } catch (error) {
+    console.warn(`Could not fetch Nager country list, using featured countries only: ${error.message}`);
+    return Array.from(FEATURED_COUNTRY_BY_CODE.values());
+  }
+}
+
+async function fetchOpenHolidaysCountries() {
+  const url = `${OPEN_HOLIDAYS_API_ROOT}/Countries?languageIsoCode=EN`;
+  const response = await fetch(url, { headers: { accept: "text/json" } });
+  if (!response.ok) {
+    throw new Error(`Failed to fetch OpenHolidays countries: ${response.status}`);
+  }
+  return response.json();
+}
+
+async function openHolidaysCountryProfile() {
+  const countries = await fetchOpenHolidaysCountries();
+  return countries
+    .map((country) => {
+      const code = country.isoCode;
+      const featured = FEATURED_COUNTRY_BY_CODE.get(code);
+      return {
+        code,
+        name: localizedText(country.name, "EN") || featured?.name || code,
+        zhName: featured?.zhName || localizedText(country.name, "EN") || code,
+        affinity: featured?.affinity || DEFAULT_COUNTRY_AFFINITY
+      };
+    })
+    .filter((country) => country.code)
+    .sort((a, b) => b.affinity - a.affinity || a.name.localeCompare(b.name));
+}
+
+async function fetchOpenPublicHolidays(country, startDate, endDate) {
+  const params = new URLSearchParams({
+    countryIsoCode: country.code,
+    languageIsoCode: "EN",
+    validFrom: dateKey(startDate),
+    validTo: dateKey(endDate)
+  });
+  const url = `${OPEN_HOLIDAYS_API_ROOT}/PublicHolidays?${params.toString()}`;
+  const response = await fetch(url, { headers: { accept: "text/json" } });
+  if (!response.ok) {
+    throw new Error(`Failed to fetch OpenHolidays ${country.code}: ${response.status}`);
+  }
+  return response.json();
+}
+
+function localizedText(values = [], language = "EN") {
+  if (!Array.isArray(values)) return "";
+  return values.find((entry) => entry.language === language)?.text || values[0]?.text || "";
+}
+
+function datesForHolidayRange(startKey, endKey, minDate, maxDate) {
+  const startDate = dateFromKey(startKey);
+  const endDate = dateFromKey(endKey || startKey);
+  if (!startDate || !endDate) return [];
+
+  const dates = [];
+  for (let date = startDate; date <= endDate; date = addDays(date, 1)) {
+    if (inRange(date, minDate, maxDate)) dates.push(date);
+  }
+  return dates;
 }
 
 function selectMotif(holiday, country) {
@@ -389,6 +582,43 @@ function themeForHoliday(holiday, country, score) {
   };
 }
 
+function themeForOpenHoliday(holiday, country, score) {
+  const name = localizedText(holiday.name, "EN");
+  const normalizedHoliday = {
+    name,
+    localName: name,
+    types: [holiday.type],
+    global: Boolean(holiday.nationwide)
+  };
+  const motif = selectMotif(normalizedHoliday, country);
+  const text = `${name} ${country.name}`.toLowerCase();
+  const occasionPalette = OCCASION_PALETTES.find(([pattern]) => pattern.test(text))?.[1];
+  const [gradient, accent, secondary] = occasionPalette || COUNTRY_PALETTES[country.code] || MOTIF_STYLES[motif] || MOTIF_STYLES.aurora;
+  const scopeLabel = holiday.nationwide ? "全国性" : "地方性";
+
+  return {
+    title: name,
+    caption: `${name} · ${country.name}`,
+    description: descriptionForHoliday(normalizedHoliday, country),
+    motif,
+    gradient,
+    accent,
+    secondary,
+    priority: priorityForHoliday(normalizedHoliday, country, score),
+    tags: inferTags(normalizedHoliday, motif),
+    source: {
+      provider: "OpenHolidays",
+      countryCode: country.code,
+      countryName: country.name,
+      localName: name,
+      typeLabels: [...holidayTypeLabels([holiday.type]), scopeLabel],
+      nationwide: Boolean(holiday.nationwide),
+      subdivisions: Array.isArray(holiday.subdivisions) ? holiday.subdivisions.map((subdivision) => subdivision.shortName || subdivision.code).filter(Boolean).slice(0, 8) : []
+    },
+    score: Math.round(score * 100) / 100
+  };
+}
+
 function scoreHoliday(holiday, country) {
   const base = country.affinity * 10;
   const visual = visualScore(holiday) * 8;
@@ -398,16 +628,27 @@ function scoreHoliday(holiday, country) {
   return base + visual + typeBoost + globalBoost + localBoost;
 }
 
+function scoreOpenHoliday(holiday, country) {
+  const name = localizedText(holiday.name, "EN");
+  const normalizedHoliday = {
+    name,
+    localName: name,
+    types: [holiday.type],
+    global: Boolean(holiday.nationwide)
+  };
+  const typeBoost = holiday.type === "Public" ? 70 : holiday.type === "Optional" ? 18 : 30;
+  const nationwideBoost = holiday.nationwide ? 35 : 8;
+  return country.affinity * 10 + visualScore(normalizedHoliday) * 8 + typeBoost + nationwideBoost;
+}
+
 function dedupeThemes(themes) {
-  const seen = new Set();
-  const result = [];
+  const seen = new Map();
   for (const theme of themes) {
-    const key = `${theme.title.toLowerCase()}-${theme.source.provider}-${theme.source.countryCode || "global"}`;
-    if (seen.has(key)) continue;
-    seen.add(key);
-    result.push(theme);
+    const key = `${theme.title.toLowerCase()}-${theme.source.countryCode || "global"}`;
+    const existing = seen.get(key);
+    if (!existing || theme.score > existing.score) seen.set(key, theme);
   }
-  return result;
+  return Array.from(seen.values());
 }
 
 function themeForCulturalObservance(observance, date) {
@@ -452,22 +693,72 @@ async function buildHolidayCache(options) {
   const years = yearsInRange(startDate, endDate);
   const days = {};
   const errors = [];
+  const countries = await countryProfile();
+  let openHolidaysCountries = [];
+  const holidayRequests = countries.flatMap((country) => years.map((year) => ({ country, year })));
 
-  for (const country of COUNTRY_PROFILE) {
-    for (const year of years) {
+  const holidayResults = await mapWithConcurrency(
+    holidayRequests,
+    NAGER_FETCH_CONCURRENCY,
+    async ({ country, year }) => {
       try {
         const holidays = await fetchPublicHolidays(year, country);
-        for (const holiday of holidays) {
-          const date = dateFromKey(holiday.date);
-          if (!date || !inRange(date, startDate, endDate)) continue;
-          const score = scoreHoliday(holiday, country);
-          days[holiday.date] ||= [];
-          days[holiday.date].push(themeForHoliday(holiday, country, score));
-        }
+        return { country, year, holidays };
       } catch (error) {
-        errors.push(`${country.code} ${year}: ${error.message}`);
+        return { country, year, error };
       }
     }
+  );
+
+  for (const result of holidayResults) {
+    if (result.error) {
+      errors.push(`${result.country.code} ${result.year}: ${result.error.message}`);
+      continue;
+    }
+
+    for (const holiday of result.holidays) {
+      const date = dateFromKey(holiday.date);
+      if (!date || !inRange(date, startDate, endDate)) continue;
+      const score = scoreHoliday(holiday, result.country);
+      days[holiday.date] ||= [];
+      days[holiday.date].push(themeForHoliday(holiday, result.country, score));
+    }
+  }
+
+  try {
+    openHolidaysCountries = await openHolidaysCountryProfile();
+    const openHolidayResults = await mapWithConcurrency(
+      openHolidaysCountries,
+      OPEN_HOLIDAYS_FETCH_CONCURRENCY,
+      async (country) => {
+        try {
+          const holidays = await fetchOpenPublicHolidays(country, startDate, endDate);
+          return { country, holidays };
+        } catch (error) {
+          return { country, error };
+        }
+      }
+    );
+
+    for (const result of openHolidayResults) {
+      if (result.error) {
+        errors.push(`OpenHolidays ${result.country.code}: ${result.error.message}`);
+        continue;
+      }
+
+      for (const holiday of result.holidays) {
+        const name = localizedText(holiday.name, "EN");
+        if (!name) continue;
+        const score = scoreOpenHoliday(holiday, result.country);
+        for (const date of datesForHolidayRange(holiday.startDate, holiday.endDate, startDate, endDate)) {
+          const key = dateKey(date);
+          days[key] ||= [];
+          days[key].push(themeForOpenHoliday(holiday, result.country, score));
+        }
+      }
+    }
+  } catch (error) {
+    errors.push(`OpenHolidays country list: ${error.message}`);
   }
 
   addCulturalObservances(days, startDate, endDate);
@@ -478,6 +769,7 @@ async function buildHolidayCache(options) {
       .sort((a, b) => b.score - a.score)
       .slice(0, MAX_CANDIDATES_PER_DAY);
   }
+  const coverage = coverageForDays(rankedDays, startDate, endDate);
 
   return {
     version: 1,
@@ -486,7 +778,17 @@ async function buildHolidayCache(options) {
     sources: [
       {
         name: "Nager.Date Public Holidays",
-        url: `${API_ROOT}/PublicHolidays/{year}/{countryCode}`
+        url: `${API_ROOT}/PublicHolidays/{year}/{countryCode}`,
+        countries: countries.length,
+        countryListUrl: `${API_ROOT}/AvailableCountries`,
+        fetchConcurrency: NAGER_FETCH_CONCURRENCY
+      },
+      {
+        name: "OpenHolidays Public Holidays",
+        url: `${OPEN_HOLIDAYS_API_ROOT}/PublicHolidays`,
+        countryListUrl: `${OPEN_HOLIDAYS_API_ROOT}/Countries`,
+        countries: openHolidaysCountries.length,
+        fetchConcurrency: OPEN_HOLIDAYS_FETCH_CONCURRENCY
       },
       {
         name: "Curated Cultural Observances",
@@ -499,22 +801,35 @@ async function buildHolidayCache(options) {
       days: options.days
     },
     profile: {
-      countries: COUNTRY_PROFILE
+      countries
     },
+    coverage,
     days: rankedDays,
     errors
   };
 }
 
 const options = parseArgs(process.argv.slice(2));
-const cache = await buildHolidayCache(options);
-fs.mkdirSync(path.dirname(OUTPUT_FILE), { recursive: true });
-fs.writeFileSync(OUTPUT_FILE, `window.YearCalendarHolidayCache = ${JSON.stringify(cache, null, 2)};\n`);
+const baseDate = options.date ? dateFromKey(options.date) : shanghaiToday();
+if (!baseDate) throw new Error(`Invalid --date value: ${options.date}`);
+const existingCache = options.ifNeeded ? readExistingHolidayCache() : null;
 
-console.log("Holiday cache refreshed:");
-console.log(`   window: ${cache.window.start} -> ${cache.window.end}`);
-console.log(`   candidate days: ${Object.keys(cache.days).length}`);
-console.log(`   source errors: ${cache.errors.length}`);
-for (const error of cache.errors.slice(0, 12)) {
-  console.log(`   ! ${error}`);
+if (options.ifNeeded && cacheCoversRenderWindow(existingCache, baseDate, options.minDays)) {
+  console.log("Holiday cache is fresh enough:");
+  console.log(`   window: ${existingCache.window.start} -> ${existingCache.window.end}`);
+  console.log(`   required through: ${dateKey(addDays(baseDate, options.minDays))}`);
+  console.log(`   fallback days: ${existingCache.coverage?.fallbackDays ?? "unknown"}`);
+} else {
+  const cache = await buildHolidayCache(options);
+  fs.mkdirSync(path.dirname(OUTPUT_FILE), { recursive: true });
+  fs.writeFileSync(OUTPUT_FILE, `window.YearCalendarHolidayCache = ${JSON.stringify(cache, null, 2)};\n`);
+
+  console.log("Holiday cache refreshed:");
+  console.log(`   window: ${cache.window.start} -> ${cache.window.end}`);
+  console.log(`   candidate days: ${cache.coverage.candidateDays}/${cache.coverage.totalDays}`);
+  console.log(`   fallback days: ${cache.coverage.fallbackDays}`);
+  console.log(`   source errors: ${cache.errors.length}`);
+  for (const error of cache.errors.slice(0, 12)) {
+    console.log(`   ! ${error}`);
+  }
 }

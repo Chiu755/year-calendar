@@ -168,65 +168,6 @@ const DAY_INTROS = {
   "Norway Constitution Day": "挪威宪法日，峡湾蓝与五月旗海庆祝国家宪法。"
 };
 
-const SOLAR_TERMS = [
-  [285, "小寒", "小寒 · 寒气渐深，微光入岁", "snow", ["#101827", "#26374c", "#101214"], "#a9c9e8", "#d9d9e5"],
-  [300, "大寒", "大寒 · 岁末严寒，春信将近", "snow", ["#101725", "#28334a", "#101214"], "#b3cbe6", "#d8b95b"],
-  [315, "立春", "立春 · 东风解冻，万物起始", "springBuds", ["#14251d", "#496143", "#111516"], "#8fcb7d", "#d8c070"],
-  [330, "雨水", "雨水 · 天街小雨，草色遥看", "waterFlowers", ["#102132", "#25495c", "#111518"], "#72bdd4", "#91b987"],
-  [345, "惊蛰", "惊蛰 · 春雷初动，蛰虫始振", "aurora", ["#152236", "#34495f", "#101418"], "#8fd0ff", "#d8b95b"],
-  [0, "春分", "春分 · 昼夜均分，花信渐浓", "springBuds", ["#18251f", "#5b6040", "#111516"], "#a9d37f", "#e6b6c8"],
-  [15, "清明", "清明 · 风清景明，草木新发", "waterFlowers", ["#142723", "#3d6659", "#111516"], "#87c9b7", "#c8d58f"],
-  [30, "谷雨", "谷雨 · 雨生百谷，暮春将深", "waterFlowers", ["#122735", "#2d5c63", "#101518"], "#75d6d0", "#d7c56f"],
-  [45, "立夏", "立夏 · 风暖昼长，万物并秀", "grain", ["#1a271c", "#526638", "#121515"], "#b5d46f", "#6fb58a"],
-  [60, "小满", "小满 · 麦粒渐盈，夏意初满", "grain", ["#20281b", "#6d6132", "#121515"], "#d5bd63", "#86a86f"],
-  [75, "芒种", "芒种 · 麦黄梅熟，仲夏将至", "grain", ["#19251d", "#6e6130", "#151516"], "#d8b95b", "#78a879"],
-  [90, "夏至", "夏至 · 日长之至，万物盛明", "sunRibbons", ["#1c2332", "#6c522e", "#111316"], "#f0c95c", "#79b7d8"],
-  [105, "小暑", "小暑 · 风动莲香，暑气渐盛", "waterFlowers", ["#102735", "#2c6567", "#111518"], "#73d1c9", "#e6b6c8"],
-  [120, "大暑", "大暑 · 炎蒸乃极，云雨时行", "sunRibbons", ["#221a20", "#68412a", "#121314"], "#e89b42", "#75bdd0"],
-  [135, "立秋", "立秋 · 凉风有信，秋意初来", "grain", ["#1d211a", "#615237", "#121414"], "#d6a95e", "#88a06a"],
-  [150, "处暑", "处暑 · 暑云渐散，新凉入夜", "aurora", ["#152034", "#3d4d61", "#111418"], "#8ec6e6", "#d6b06a"],
-  [165, "白露", "白露 · 蒹葭苍苍，露华初凝", "aurora", ["#111f2b", "#324f59", "#101416"], "#a8d9e8", "#d9d0a1"],
-  [180, "秋分", "秋分 · 昼夜再均，秋色平分", "grain", ["#201d1b", "#635136", "#121414"], "#d8a95e", "#8fa36b"],
-  [195, "寒露", "寒露 · 露气寒生，秋声渐远", "aurora", ["#111c2b", "#30445a", "#101316"], "#91bfe6", "#c5b06f"],
-  [210, "霜降", "霜降 · 霜华初下，草木深秋", "aurora", ["#171b28", "#3a3b4c", "#101214"], "#b8c9df", "#d6ad71"],
-  [225, "立冬", "立冬 · 水始冰，冬意入窗", "aurora", ["#101b2b", "#253c50", "#101214"], "#84bde6", "#d2d8e6"],
-  [240, "小雪", "小雪 · 云暗初寒，雪意未深", "snow", ["#111a28", "#2a3d51", "#101214"], "#b6d5ef", "#f1f4f8"],
-  [255, "大雪", "大雪 · 北风渐紧，天地清寒", "snow", ["#101826", "#24364e", "#101214"], "#a7cdf0", "#eef4ff"],
-  [270, "冬至", "冬至 · 日南至，长夜生光", "snow", ["#11182a", "#273154", "#101214"], "#9dbaf0", "#d6c071"]
-];
-
-const DAY_MS = 24 * 60 * 60 * 1000;
-const HOUR_MS = 60 * 60 * 1000;
-const SHANGHAI_OFFSET_MS = 8 * HOUR_MS;
-const SOLAR_TERM_YEAR_CACHE = new Map();
-
-const SOLAR_TERM_DESCRIPTIONS = {
-  立春: "立春是二十四节气之首，意味着寒冬开始松动，春天的气息重新进入日历。",
-  雨水: "雨水是春季的第二个节气，气温回升，降水增多，草木开始得到更柔和的滋养。",
-  惊蛰: "惊蛰标志春雷渐起、蛰伏的生命开始苏醒，是春天从静到动的转折。",
-  春分: "春分时昼夜大致平分，春意进入更稳定的阶段，花木与日光一同舒展。",
-  清明: "清明天气清澈明朗，草木新发，也是踏青、祭扫和记取春日人事的时节。",
-  谷雨: "谷雨是春季最后一个节气，雨水滋养百谷，暮春逐渐走向初夏。",
-  立夏: "立夏表示夏季开始，白昼变长，草木繁盛，天气开始显露稳定的暖意。",
-  小满: "小满时麦类作物籽粒渐渐饱满，但还没有完全成熟，夏意正在积蓄。",
-  芒种: "芒种多在仲夏前后，麦类收获、稻类播种，农事进入忙碌而丰盛的时段。",
-  夏至: "夏至是一年中白昼最长的节气，日光抵达盛处，盛夏也由此逐渐展开。",
-  小暑: "小暑意味着暑气开始明显增强，天气转热，雷雨和潮湿感也更频繁出现。",
-  大暑: "大暑是一年中最热的节气之一，炎热、湿气与午后云雨构成盛夏的高点。",
-  立秋: "立秋表示秋季开始，但暑气常未散尽，凉意先在夜里和风里出现。",
-  处暑: "处暑意味着暑热逐渐退去，白天仍暖，夜晚开始有更清楚的新凉。",
-  白露: "白露是秋季的第三个节气，天气转凉，清晨水汽凝成露珠，秋意开始变得清晰。",
-  秋分: "秋分时昼夜再次大致平分，秋色进入中段，收获、凉意与均衡感同时出现。",
-  寒露: "寒露时气温继续下降，露水带上寒意，深秋的清冷感变得更明显。",
-  霜降: "霜降是秋季最后一个节气，气温更低，霜意初现，草木逐渐进入深秋收束。",
-  立冬: "立冬表示冬季开始，万物趋向收藏，日历进入更安静的寒冷时段。",
-  小雪: "小雪时天气继续转寒，北方开始出现初雪或雪意，冬天的轮廓更清楚。",
-  大雪: "大雪表示寒意更深、降雪可能增多，冬季进入更沉静清寒的阶段。",
-  冬至: "冬至是一年中黑夜最长的节气，此后白昼开始慢慢回升，是冬天里的转折点。",
-  小寒: "小寒标志寒气加深，天气进入一年中最冷的一段，岁末微光也越来越近。",
-  大寒: "大寒是二十四节气的最后一个，严寒抵达深处，也预示新的春信将近。"
-};
-
 const FIXED_HOLIDAYS = [
   ["01-01", "New Year's Day", "New Year's Day · 新年第一束光", "fireworks", ["#151a2d", "#493456", "#111316"], "#d6c070", "#78b8e6", 90],
   ["02-14", "Valentine's Day", "Valentine's Day · 玫瑰色的二月心跳", "petals", ["#241525", "#643044", "#111214"], "#e87a94", "#d7b56b", 70],
@@ -302,7 +243,7 @@ const MONTH_MOODS = [
     title: "Early Spring Signal",
     zhMonth: "二月",
     mood: "早春枝芽、细雨和将醒未醒的空气",
-    intro: "二月常在冬末与早春之间摆动，寒意还在，雨水和枝芽已经开始提示新的季节。",
+    intro: "二月常在冬末与早春之间摆动，寒意还在，降水和枝芽已经开始提示新的季节。",
     motif: "springBuds",
     gradient: ["#14251d", "#425643", "#111516"],
     accent: "#92c982",
@@ -323,8 +264,8 @@ const MONTH_MOODS = [
   {
     title: "Clear Rain Garden",
     zhMonth: "四月",
-    mood: "清明雨气、水面花影和暮春透明感",
-    intro: "四月多有清明与谷雨，春雨变得频繁，草木继续生长，暮春的气息逐渐加深。",
+    mood: "春雨气息、水面花影和暮春透明感",
+    intro: "四月的春雨变得频繁，草木继续生长，暮春的空气带着透明的水汽和新绿。",
     motif: "waterFlowers",
     gradient: ["#122735", "#346158", "#101518"],
     accent: "#87c9b7",
@@ -346,7 +287,7 @@ const MONTH_MOODS = [
     title: "Summer Water Pattern",
     zhMonth: "六月",
     mood: "夏日水纹、梅雨蓝绿和长昼里的潮湿光感",
-    intro: "六月进入仲夏，芒种与夏至前后日照变长，湿热、梅雨和水汽让季节变得丰沛。",
+    intro: "六月进入仲夏，白昼拉长，湿热、梅雨和水汽让季节变得丰沛而明亮。",
     motif: "waterFlowers",
     gradient: ["#102735", "#2d6467", "#111518"],
     accent: "#73d1c9",
@@ -357,7 +298,7 @@ const MONTH_MOODS = [
     title: "High Summer Heatwave",
     zhMonth: "七月",
     mood: "盛夏热浪、莲叶水面和午后云雨",
-    intro: "七月是暑气最明显的月份，小暑与大暑相继到来，热浪、云雨和漫长午后构成盛夏。",
+    intro: "七月是暑气最明显的月份，热浪、云雨和漫长午后构成盛夏的高点。",
     motif: "sunRibbons",
     gradient: ["#221a20", "#68412a", "#121314"],
     accent: "#e89b42",
@@ -368,7 +309,7 @@ const MONTH_MOODS = [
     title: "Late Summer Grain",
     zhMonth: "八月",
     mood: "暑气渐散、初秋谷色和夜里的新凉",
-    intro: "八月仍有暑气，却已经接近立秋与处暑，夜里开始出现新凉，季节悄悄转向秋天。",
+    intro: "八月仍有暑气，夜里开始出现新凉，金色谷物和低一点的天光让季节悄悄转向秋天。",
     motif: "grain",
     gradient: ["#1d211a", "#615237", "#121414"],
     accent: "#d6a95e",
@@ -378,8 +319,8 @@ const MONTH_MOODS = [
   {
     title: "Autumn Grain Balance",
     zhMonth: "九月",
-    mood: "秋分前后的谷物、露水和昼夜均衡",
-    intro: "九月从白露走向秋分，暑气退去，清晨露水增多，昼夜重新接近均衡。",
+    mood: "初秋谷物、露水和昼夜均衡",
+    intro: "九月暑气退去，清晨露水增多，谷物、凉风和均衡的日光让秋意变得清楚。",
     motif: "grain",
     gradient: ["#201d1b", "#635136", "#121414"],
     accent: "#d8a95e",
@@ -390,7 +331,7 @@ const MONTH_MOODS = [
     title: "Cold Dew Skyline",
     zhMonth: "十月",
     mood: "深秋冷露、霜色边缘和更清澈的夜空",
-    intro: "十月进入深秋，寒露与霜降带来更明显的凉意，天空清透，草木开始收束。",
+    intro: "十月进入深秋，凉意更明显，天空清透，草木开始收束，夜色也更有轮廓。",
     motif: "aurora",
     gradient: ["#111c2b", "#30445a", "#101316"],
     accent: "#91bfe6",
@@ -401,7 +342,7 @@ const MONTH_MOODS = [
     title: "First Winter Window",
     zhMonth: "十一月",
     mood: "初冬窗光、浅寒空气和安静的蓝灰色",
-    intro: "十一月从立冬走向小雪，寒意逐渐稳定，日历进入更安静、更向内的初冬。",
+    intro: "十一月寒意逐渐稳定，窗光、浅冷空气和蓝灰色的傍晚让日历进入更安静的初冬。",
     motif: "candle",
     gradient: ["#101b2b", "#253c50", "#101214"],
     accent: "#84bde6",
@@ -412,7 +353,7 @@ const MONTH_MOODS = [
     title: "Winter Solstice Glow",
     zhMonth: "十二月",
     mood: "冬光、雪意和长夜里慢慢回升的金色",
-    intro: "十二月接近一年中黑夜最长的时段，大雪与冬至带来寒意，也带来白昼回升的转折。",
+    intro: "十二月接近一年中黑夜最长的时段，雪意、冬光和慢慢回升的金色让寒冷不至于沉闷。",
     motif: "snow",
     gradient: ["#11182a", "#273154", "#101214"],
     accent: "#9dbaf0",
@@ -422,19 +363,90 @@ const MONTH_MOODS = [
 ];
 
 const MONTH_MOTIF_ROTATION = [
-  ["snow", "candle", "moonOrbit", "teaSteam"],
-  ["springBuds", "rainGarden", "paperKites", "petals"],
-  ["springBuds", "petals", "paperKites", "rainGarden"],
-  ["rainGarden", "waterFlowers", "springBuds", "wovenPattern"],
-  ["grain", "harvestSheaves", "sunRibbons", "paperKites"],
-  ["waterFlowers", "rainGarden", "sunRibbons", "moonOrbit"],
-  ["sunRibbons", "waterFlowers", "paperKites", "lanterns"],
-  ["grain", "harvestSheaves", "moonOrbit", "wovenPattern"],
-  ["harvestSheaves", "grain", "moonOrbit", "teaSteam"],
-  ["aurora", "paperCut", "wovenPattern", "lanterns"],
-  ["candle", "teaSteam", "wovenPattern", "starfield"],
-  ["snow", "lanterns", "candle", "moonOrbit"]
+  ["snow", "candle", "moonOrbit", "teaSteam", "starfield", "aurora", "paperCut", "lanterns"],
+  ["springBuds", "rainGarden", "paperKites", "petals", "waterFlowers", "moonOrbit", "teaSteam", "wovenPattern"],
+  ["springBuds", "petals", "paperKites", "rainGarden", "waterFlowers", "wovenPattern", "moonOrbit", "lanterns"],
+  ["rainGarden", "waterFlowers", "springBuds", "wovenPattern", "petals", "paperKites", "moonOrbit", "teaSteam"],
+  ["grain", "harvestSheaves", "sunRibbons", "paperKites", "waterFlowers", "wovenPattern", "lanterns", "springBuds"],
+  ["waterFlowers", "rainGarden", "sunRibbons", "moonOrbit", "paperKites", "lanterns", "wovenPattern", "starfield"],
+  ["sunRibbons", "waterFlowers", "paperKites", "lanterns", "rainGarden", "starfield", "moonOrbit", "wovenPattern"],
+  ["grain", "harvestSheaves", "moonOrbit", "wovenPattern", "sunRibbons", "lanterns", "paperKites", "teaSteam"],
+  ["harvestSheaves", "grain", "moonOrbit", "teaSteam", "aurora", "wovenPattern", "paperKites", "lanterns"],
+  ["aurora", "paperCut", "wovenPattern", "lanterns", "candle", "starfield", "moonOrbit", "harvestSheaves"],
+  ["candle", "teaSteam", "wovenPattern", "starfield", "aurora", "snow", "moonOrbit", "lanterns"],
+  ["snow", "lanterns", "candle", "moonOrbit", "starfield", "teaSteam", "aurora", "paperCut"]
 ];
+
+const SEASONAL_MOTIF_COPY = {
+  snow: {
+    titles: ["雪光", "霜窗", "冷白"],
+    descriptions: ["清冷的雪意和低色温光线让这一天更安静。", "像窗边凝住的寒光，适合留一点留白。", "冷白色的空气把季节压低，也让微光更清楚。"]
+  },
+  candle: {
+    titles: ["窗灯", "暖烛", "夜灯"],
+    descriptions: ["一点暖光把冷空气收拢起来，让日历显得更向内。", "烛光感让这一天不只是寒冷，也有安定的室内气息。", "夜灯和暗色背景给桌面留出更清楚的阅读空间。"]
+  },
+  moonOrbit: {
+    titles: ["月轨", "夜潮", "微月"],
+    descriptions: ["月相般的轨迹给潮湿或清冷的日子留出缓慢节奏。", "夜色和潮气叠在一起，画面更像一个安静的天象切片。", "微光绕开正中央，让日历主体保持干净。"]
+  },
+  teaSteam: {
+    titles: ["茶汽", "暖雾", "杯影"],
+    descriptions: ["蒸汽一样的线条让季节有一点日常的温度。", "暖雾散开，给冷色背景添一点柔和的生活感。", "杯影和细线让画面更安静，不去抢日历主体。"]
+  },
+  springBuds: {
+    titles: ["新芽", "枝信", "青芽"],
+    descriptions: ["细小的新芽让季节显得轻一点，像刚展开的日历页。", "枝条和浅绿把空气拉开，保留春天刚出现的弹性。", "青色的小形状让画面更有生长感。"]
+  },
+  rainGarden: {
+    titles: ["雨庭", "雨幕", "湿光"],
+    descriptions: ["雨线和庭院感让这一天带着湿润、清亮的层次。", "细雨像一层轻幕，压低对比度，也让桌面更耐看。", "湿光铺在背景上，画面更丰沛但不过分热闹。"]
+  },
+  paperKites: {
+    titles: ["纸鸢", "风线", "晴风"],
+    descriptions: ["纸鸢和风线让画面有向上的轻快感。", "细线穿过边角，像风把日历轻轻提起来。", "晴风主题给普通的一天一点明亮的动势。"]
+  },
+  petals: {
+    titles: ["花影", "花信", "柔瓣"],
+    descriptions: ["花瓣形状提供柔和的节奏，不让画面显得单调。", "花信感更轻，适合普通日子里的小变化。", "柔瓣装饰把色彩压得更细，也更像插画。"]
+  },
+  waterFlowers: {
+    titles: ["水花", "水纹", "潮色"],
+    descriptions: ["水面花影让湿润的季节感更具体。", "水纹把背景分成更细的层次，避免大面积色块重复。", "潮色在边缘铺开，让这一天有一点清凉的波动。"]
+  },
+  wovenPattern: {
+    titles: ["织纹", "经纬", "布纹"],
+    descriptions: ["织纹让普通日子多一点手作质感。", "经纬线条给画面秩序感，也让背景更耐看。", "布纹感比纯装饰更克制，适合长期使用。"]
+  },
+  grain: {
+    titles: ["麦色", "谷光", "穗影"],
+    descriptions: ["谷物色调让画面更温暖，也更接近季节里的土地感。", "谷光带来一点收获感，但不把主题说成具体节日。", "穗影让边角有节奏，中心仍保持清楚。"]
+  },
+  harvestSheaves: {
+    titles: ["麦束", "谷束", "金穗"],
+    descriptions: ["成束的谷物形状让日子更有插画感。", "谷束比单纯色块更有层次，也减少重复。", "金穗带来温暖的边缘装饰，不影响文字阅读。"]
+  },
+  sunRibbons: {
+    titles: ["长昼", "日带", "晴弧"],
+    descriptions: ["长昼感用细亮色带表现，明亮但不刺眼。", "日带从边缘穿过，让普通日子也有一点节庆气息。", "晴弧让画面更开阔，像日光划过背景。"]
+  },
+  lanterns: {
+    titles: ["灯影", "小灯", "光串"],
+    descriptions: ["小灯串给普通日子一点轻微的庆祝感。", "灯影悬在边缘，既有氛围，也不会抢掉日历。", "光串让背景更有节奏，适合夜色或暖色主题。"]
+  },
+  aurora: {
+    titles: ["天光", "流光", "山色"],
+    descriptions: ["流动天光让背景更有纵深。", "柔和的光带给冷色背景增加变化。", "山色和天光让画面更开阔，不像固定模板。"]
+  },
+  paperCut: {
+    titles: ["剪影", "纸纹", "红金"],
+    descriptions: ["剪纸式几何让画面更像节日插画，但不绑定具体节日。", "纸纹给边角增加手工质感。", "红金元素提供一点仪式感，同时保持背景克制。"]
+  },
+  starfield: {
+    titles: ["星图", "夜星", "星线"],
+    descriptions: ["星图让普通夜色更有空间感。", "夜星细碎分布，给背景一点安静的闪动。", "星线把画面连起来，但不制造视觉噪音。"]
+  }
+};
 
 function createTheme({ title, caption, motif, gradient, accent, secondary, priority = 50, description, tags = [], source = null }) {
   const theme = {
@@ -490,9 +502,6 @@ function inferThemeDescription(title, caption) {
   if (DAY_INTROS[title]) return DAY_INTROS[title];
 
   const phrase = caption.includes("·") ? caption.split("·").slice(1).join("·").trim() : caption;
-  if (/^[\u4e00-\u9fff]{2,4}$/.test(title)) {
-    return SOLAR_TERM_DESCRIPTIONS[title] || `二十四节气之一，${phrase}。`;
-  }
   if (/Independence Day/i.test(title)) {
     return `${title.replace(" Independence Day", "")}的独立纪念日，${phrase}。`;
   }
@@ -557,11 +566,12 @@ function seededJitter(seed, index) {
 
 function fallbackTheme(date, motif = seasonalFallbackMotifs(date)[0], priorityOffset = 0) {
   const mood = MONTH_MOODS[date.getMonth()];
+  const copy = seasonalFallbackCopy(date, mood, motif, priorityOffset);
 
   return createTheme({
-    title: mood.title,
-    caption: `${mood.title} · ${mood.zhMonth}气质`,
-    description: seasonalFallbackDescription(mood),
+    title: copy.title,
+    caption: copy.caption,
+    description: copy.description,
     motif,
     gradient: mood.gradient,
     accent: mood.accent,
@@ -578,119 +588,25 @@ function fallbackThemes(date) {
   return seasonalFallbackMotifs(date).map((motif, index) => fallbackTheme(date, motif, index * 0.25));
 }
 
+function seasonalFallbackCopy(date, mood, motif, priorityOffset) {
+  const motifCopy = SEASONAL_MOTIF_COPY[motif] || {
+    titles: [mood.title],
+    descriptions: [mood.intro]
+  };
+  const variantIndex = (date.getDate() + Math.round(priorityOffset * 4)) % motifCopy.titles.length;
+  const title = `${mood.zhMonth}${motifCopy.titles[variantIndex]}`;
+  const description = `${mood.intro}${motifCopy.descriptions[variantIndex]}`;
+  return {
+    title,
+    caption: `${mood.zhMonth} · ${mood.mood}`,
+    description
+  };
+}
+
 function seasonalFallbackMotifs(date) {
   const motifs = MONTH_MOTIF_ROTATION[date.getMonth()];
-  const start = Math.floor((date.getDate() - 1) / 3) % motifs.length;
+  const start = (date.getDate() - 1) % motifs.length;
   return [...motifs.slice(start), ...motifs.slice(0, start)];
-}
-
-function getSolarTermForDate(date) {
-  const key = dateKey(date);
-  return getSolarTermsForYear(date.getFullYear()).find((term) => term.dateKey === key) || null;
-}
-
-function getSolarTermsForYear(year) {
-  if (SOLAR_TERM_YEAR_CACHE.has(year)) return SOLAR_TERM_YEAR_CACHE.get(year);
-
-  const terms = SOLAR_TERMS.map(([solarLongitude, title, caption, motif, gradient, accent, secondary]) => ({
-    dateKey: shanghaiDateKeyFromUtcMs(calculateSolarTermUtcMs(year, solarLongitude)),
-    solarLongitude,
-    title,
-    caption,
-    motif,
-    gradient,
-    accent,
-    secondary
-  }));
-
-  SOLAR_TERM_YEAR_CACHE.set(year, terms);
-  return terms;
-}
-
-function calculateSolarTermUtcMs(year, targetLongitude) {
-  const start = Date.UTC(year, 0, 1) - DAY_MS;
-  const end = Date.UTC(year + 1, 0, 1) + DAY_MS;
-  const step = 12 * HOUR_MS;
-  let previousMs = start;
-  let previousDelta = solarLongitudeDelta(previousMs, targetLongitude);
-
-  for (let ms = start + step; ms <= end; ms += step) {
-    const currentDelta = solarLongitudeDelta(ms, targetLongitude);
-    if (previousDelta <= 0 && currentDelta >= 0) {
-      return refineSolarTermUtcMs(previousMs, ms, targetLongitude);
-    }
-    previousMs = ms;
-    previousDelta = currentDelta;
-  }
-
-  throw new Error(`Could not calculate solar term ${targetLongitude} for ${year}`);
-}
-
-function refineSolarTermUtcMs(startMs, endMs, targetLongitude) {
-  let low = startMs;
-  let high = endMs;
-  for (let i = 0; i < 48; i++) {
-    const mid = (low + high) / 2;
-    if (solarLongitudeDelta(mid, targetLongitude) >= 0) high = mid;
-    else low = mid;
-  }
-  return high;
-}
-
-function solarLongitudeDelta(utcMs, targetLongitude) {
-  return normalizeDegrees180(apparentSolarLongitude(utcMs) - targetLongitude);
-}
-
-function apparentSolarLongitude(utcMs) {
-  const jd = utcMs / DAY_MS + 2440587.5;
-  const t = (jd - 2451545.0) / 36525;
-  const meanLongitude = normalizeDegrees360(280.46646 + 36000.76983 * t + 0.0003032 * t * t);
-  const meanAnomaly = 357.52911 + 35999.05029 * t - 0.0001537 * t * t;
-  const anomalyRad = degreesToRadians(meanAnomaly);
-  const center =
-    (1.914602 - 0.004817 * t - 0.000014 * t * t) * Math.sin(anomalyRad) +
-    (0.019993 - 0.000101 * t) * Math.sin(2 * anomalyRad) +
-    0.000289 * Math.sin(3 * anomalyRad);
-  const trueLongitude = meanLongitude + center;
-  const omega = degreesToRadians(125.04 - 1934.136 * t);
-  return normalizeDegrees360(trueLongitude - 0.00569 - 0.00478 * Math.sin(omega));
-}
-
-function shanghaiDateKeyFromUtcMs(utcMs) {
-  const date = new Date(utcMs + SHANGHAI_OFFSET_MS);
-  return [
-    date.getUTCFullYear(),
-    String(date.getUTCMonth() + 1).padStart(2, "0"),
-    String(date.getUTCDate()).padStart(2, "0")
-  ].join("-");
-}
-
-function normalizeDegrees360(value) {
-  return ((value % 360) + 360) % 360;
-}
-
-function normalizeDegrees180(value) {
-  return ((value + 540) % 360) - 180;
-}
-
-function degreesToRadians(value) {
-  return value * Math.PI / 180;
-}
-
-function seasonalFallbackDescription(mood) {
-  return mood.intro;
-}
-
-function solarTermTags(title) {
-  const tags = [`term-${title}`];
-  if (/雨水|谷雨|小暑|大暑/.test(title)) tags.push("rain-season");
-  if (/白露|寒露|霜降/.test(title)) tags.push("dew-season");
-  if (/春分|秋分/.test(title)) tags.push("equinox");
-  if (/小满|芒种|立秋|秋分/.test(title)) tags.push("grain-season");
-  if (/夏至|小暑|大暑/.test(title)) tags.push("heat-season");
-  if (/小雪|大雪|小寒|大寒|冬至/.test(title)) tags.push("cold-season");
-  if (/立春|惊蛰|春分|清明/.test(title)) tags.push("spring-season");
-  return tags;
 }
 
 function dateKey(date) {
@@ -802,10 +718,12 @@ function primaryHolidayTypeLabel(types = []) {
 }
 
 function diversityPenalty(theme, avoidMotifs = []) {
+  if (!theme.tags.includes("month-mood")) return 0;
   const recentIndex = avoidMotifs.lastIndexOf(theme.motif);
   if (recentIndex === -1) return 0;
   const recency = avoidMotifs.length - recentIndex;
-  return Math.max(5, 18 - recency * 2);
+  if (recency <= 7) return 40 - recency * 3;
+  return Math.max(5, 16 - (recency - 7) * 2);
 }
 
 function rankDailyThemes(date, options = {}) {
@@ -813,12 +731,6 @@ function rankDailyThemes(date, options = {}) {
   const candidates = [];
   const cachedThemes = cachedHolidayThemes(date);
   const avoidMotifs = Array.isArray(options.avoidMotifs) ? options.avoidMotifs : [];
-  const solarTerm = getSolarTermForDate(date);
-
-  if (solarTerm) {
-    candidates.push(createTheme({ ...solarTerm, priority: 95, tags: solarTermTags(solarTerm.title) }));
-  }
-
   candidates.push(...cachedThemes);
 
   if (cachedThemes.length === 0) {
@@ -956,7 +868,6 @@ function themeMetaLine(theme) {
     return `${country} · ${holidayTypeLabelFromSource(theme.source)}`;
   }
   if (hasTag(theme, "seasonal")) return "Seasonal Mood";
-  if (/^[\u4e00-\u9fff]{2,6}$/.test(theme.title)) return "Solar Term · China";
   if (hasTag(theme, "civic")) return "Civic Holiday";
   if (hasTag(theme, "celebration")) return "Festival Day";
   return "";
@@ -2262,7 +2173,5 @@ function roundRect(ctx, x, y, w, h, r) {
 
 globalThis.ThemeEngine = {
   getDailyTheme,
-  rankDailyThemes,
-  getSolarTermForDate,
-  getSolarTermsForYear
+  rankDailyThemes
 };

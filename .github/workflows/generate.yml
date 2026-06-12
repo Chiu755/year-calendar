@@ -56,6 +56,9 @@ jobs:
           sudo apt-get install -y fonts-noto-cjk
           fc-cache -f
 
+      - name: Ensure holiday cache
+        run: npm run refresh-holidays:if-needed
+
       - name: Render wallpaper
         run: npm run render
 
@@ -72,6 +75,7 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add -f output/today.png
+          git add data/holiday-cache.js
           git add data/theme-history.json
           git commit -m "chore: update today wallpaper" || echo "No today wallpaper changes"
           git push origin HEAD:${GITHUB_REF_NAME}
