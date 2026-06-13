@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-12T18:13:12.371Z",
+  "updatedAt": "2026-06-13T17:29:14.899Z",
   "days": {
     "2026-06-12": {
       "title": "Independence Day",
@@ -89,6 +89,17 @@
         "celebration",
         "culture",
         "international"
+      ]
+    },
+    "2026-06-21": {
+      "title": "National Aboriginal Day",
+      "motif": "fireworks",
+      "tags": [
+        "sky",
+        "celebration",
+        "light",
+        "civic",
+        "botanical"
       ]
     }
   }
