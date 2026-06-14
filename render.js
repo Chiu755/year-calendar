@@ -11,6 +11,7 @@ const DRAFT_ROOT = "drafts";
 const DATA_ROOT = "data";
 const THEME_HISTORY_FILE = path.join(DATA_ROOT, "theme-history.json");
 const TODAY_OUTPUT = path.join(OUTPUT_ROOT, "today.png");
+const RENDER_SUMMARY_FILE = path.join(OUTPUT_ROOT, "render-summary.json");
 const HTML_ENTRY = path.resolve("index.html");
 const HTML_URL = pathToFileURL(HTML_ENTRY).href;
 const PUPPETEER_PROFILE = path.join(os.tmpdir(), "year-calendar-puppeteer-profile");
@@ -292,6 +293,7 @@ const browser = await puppeteer.launch({
   args: [
     "--no-sandbox",
     "--disable-setuid-sandbox",
+    "--disable-dev-shm-usage",
     "--disable-crash-reporter",
     "--disable-crashpad",
     `--user-data-dir=${PUPPETEER_PROFILE}`
@@ -339,6 +341,16 @@ if (fs.existsSync(todayArchive)) {
 
 writeThemeHistory(themeHistory, baseDate);
 assertWallpaperOutput(TODAY_OUTPUT, "today wallpaper");
+
+const renderSummary = {
+  generatedAt: new Date().toISOString(),
+  baseDate: dateKey(baseDate),
+  ensuredThrough: dateKey(addDays(baseDate, LOOKAHEAD_DAYS)),
+  today: TODAY_OUTPUT,
+  generated,
+  skipped
+};
+fs.writeFileSync(RENDER_SUMMARY_FILE, `${JSON.stringify(renderSummary, null, 2)}\n`);
 
 console.log("Wallpaper generation complete:");
 console.log(`   base date: ${dateKey(baseDate)}`);

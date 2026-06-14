@@ -89,6 +89,79 @@ const COUNTRY_NAMES_ZH = {
   NZ: "新西兰"
 };
 
+const REGION_NAMES_ZH = typeof Intl !== "undefined" && Intl.DisplayNames
+  ? new Intl.DisplayNames(["zh-Hans"], { type: "region" })
+  : null;
+
+const ZH_MONTH_TO_EN = {
+  一月: "January",
+  二月: "February",
+  三月: "March",
+  四月: "April",
+  五月: "May",
+  六月: "June",
+  七月: "July",
+  八月: "August",
+  九月: "September",
+  十月: "October",
+  十一月: "November",
+  十二月: "December"
+};
+
+const SEASONAL_TITLE_EN = {
+  雪光: "Snowlight",
+  霜窗: "Frost Window",
+  冷白: "Cold White",
+  窗灯: "Window Light",
+  暖烛: "Warm Candle",
+  夜灯: "Night Light",
+  月轨: "Moon Orbit",
+  夜潮: "Night Tide",
+  微月: "Small Moon",
+  茶汽: "Tea Steam",
+  暖雾: "Warm Mist",
+  杯影: "Cup Shadow",
+  新芽: "New Buds",
+  枝信: "Branch Signal",
+  青芽: "Green Buds",
+  雨庭: "Rain Garden",
+  雨幕: "Rain Veil",
+  湿光: "Wet Light",
+  纸鸢: "Paper Kites",
+  风线: "Wind Lines",
+  晴风: "Clear Wind",
+  花影: "Petal Shadows",
+  花信: "Flower Signal",
+  柔瓣: "Soft Petals",
+  水花: "Water Flowers",
+  水纹: "Water Pattern",
+  潮色: "Tidal Color",
+  织纹: "Woven Pattern",
+  经纬: "Warp and Weft",
+  布纹: "Cloth Texture",
+  麦色: "Wheat Color",
+  谷光: "Grain Light",
+  穗影: "Ear Shadows",
+  麦束: "Wheat Sheaves",
+  谷束: "Grain Sheaves",
+  金穗: "Golden Ears",
+  长昼: "Long Day",
+  日带: "Sun Ribbon",
+  晴弧: "Clear Arc",
+  灯影: "Lantern Shadows",
+  小灯: "Small Lights",
+  光串: "Light String",
+  天光: "Sky Light",
+  流光: "Flowing Light",
+  山色: "Mountain Color",
+  剪影: "Paper Cut",
+  纸纹: "Paper Texture",
+  红金: "Red and Gold",
+  星图: "Star Map",
+  夜星: "Night Stars",
+  星线: "Star Lines"
+};
+
 const HOLIDAY_TYPE_LABELS = {
   Public: "公众节日",
   Bank: "银行假日",
@@ -648,7 +721,7 @@ function holidayIntroduction(title, source, fallback) {
   if (intro) return intro;
 
   const text = `${title} ${source?.localName || ""}`.toLowerCase();
-  const country = source?.zhName || COUNTRY_NAMES_ZH[source?.countryCode] || source?.countryName || "当地";
+  const country = countryNameZh(source);
   const localName = source?.localName && source.localName !== title ? source.localName : "";
 
   if (/king'?s birthday|queen'?s birthday/.test(text)) {
@@ -662,6 +735,12 @@ function holidayIntroduction(title, source, fallback) {
   if (/boxing day/.test(text)) return "节礼日延续自英联邦传统，通常在圣诞节后一天，人们会继续休假、探亲、购物或观看体育赛事。";
   if (/good friday/.test(text)) return "耶稣受难日纪念基督教传统中耶稣受难的日子，许多地方会以静默礼拜和复活节前的休假来标记。";
   if (/easter/.test(text)) return "复活节源自基督教传统，纪念复活与新生，许多地方也有彩蛋、家庭聚会和春日休假的习俗。";
+  if (/sacred heart/.test(text)) return "圣心节源自天主教传统，纪念耶稣圣心，许多地区会以弥撒、游行或地方守护庆典标记。";
+  if (/corpus christi/.test(text)) return "基督圣体圣血节源自天主教传统，常以圣体游行、花毯和城镇仪式表达信仰共同体。";
+  if (/midsummer|st john|st\. john|john's day/.test(text)) return "仲夏相关节日常见于欧洲传统，篝火、夏夜聚会和地方仪式是重要习俗。";
+  if (/st\.?\s|saint|sankt|san |santa |santo /.test(text)) return saintDayIntroduction(title, country);
+  if (/carnival|karneval|mardi gras/.test(text)) return "狂欢节通常出现在大斋期前后，人们以游行、面具、音乐和街头庆祝暂时打破日常秩序。";
+  if (/municipal holiday|city day|town day|communal holiday|community holiday/.test(text)) return `${country}的地方假日，通常由城市或市镇纪念守护圣人、建城传统或本地共同体历史。`;
   if (/independence day/.test(text)) return `${country}的独立纪念日，通常纪念国家取得主权或脱离殖民统治的历史时刻，常伴随旗帜、仪式和公共庆祝。`;
   if (/national day/.test(text)) return `${country}的国家纪念日，通常用来纪念国家成立、宪法传统或重要历史节点，常有官方仪式和公共庆典。`;
   if (/republic day/.test(text)) return `${country}的共和国纪念日，通常纪念共和国体制确立或重要宪政转折，是国家身份的一部分。`;
@@ -676,25 +755,72 @@ function holidayIntroduction(title, source, fallback) {
     const place = title.replace(/^Day of /i, "");
     return `${place}日通常纪念地方身份、自治传统或区域历史，是当地公共生活与社区记忆的一部分。`;
   }
-  if (localName) return `${country}以「${localName}」为名纪念这一天，通常与当地历史、传统或社区公共生活有关。`;
+  if (localName) return `${country}以「${localName}」为名标记这一天，名称本身往往保留了地方语言、宗教传统或社区记忆。`;
   if (fallback && !/的.+节日/.test(fallback)) return fallback;
-  return `${title}是${country}日历中的纪念日，通常承载当地历史、公共生活或季节性的休假安排。`;
+  return genericHolidayIntroduction(title, source, country);
+}
+
+function saintDayIntroduction(title, country) {
+  const saint = title.replace(/^(st\.?|saint|sankt|san|santa|santo)\s+/i, "").trim();
+  if (saint) return `${title}多与基督教圣人纪念和地方守护传统有关，在${country}可能以礼拜、集市、游行或社区聚会延续。`;
+  return `${country}的圣人纪念日多与地方守护传统有关，常见形式包括礼拜、游行、集市和社区聚会。`;
+}
+
+function genericHolidayIntroduction(title, source, country) {
+  const typeLabel = holidayTypeLabelFromSource(source);
+  if (source?.nationwide === false) return `${title}是${country}的地方性${typeLabel}，多半与特定城市、地区守护传统或地方历史记忆有关。`;
+  if (/公众节日|银行假日|Public|Bank/.test((source?.typeLabels || []).join(" "))) return `${title}是${country}的${typeLabel}，这一天会进入公共日历，常伴随休息、仪式或地方社区活动。`;
+  return `${title}在${country}日历中标记一段地方记忆、宗教传统或公共生活节点。`;
 }
 
 function holidayIntroFor(title, source = {}) {
+  const content = holidayContentFor(title, source);
+  if (content?.description) return content.description;
+
   const intros = globalThis.YearCalendarHolidayIntros || {};
-  const keys = [
-    source?.countryCode ? `${source.countryCode}|${title}` : "",
-    source?.countryCode && source?.localName ? `${source.countryCode}|${source.localName}` : "",
-    title,
-    source?.localName || ""
-  ].filter(Boolean);
+  const keys = holidayLookupKeys(title, source);
 
   for (const key of keys) {
     const intro = intros[key] || introByNormalizedKey(intros, key);
     if (intro) return intro;
   }
   return "";
+}
+
+function holidayContentFor(title, source = {}) {
+  const content = globalThis.YearCalendarHolidayContent;
+  const entries = Array.isArray(content?.entries) ? content.entries : [];
+  if (!entries.length) return null;
+
+  const keys = holidayLookupKeys(title, source);
+  const countryScopedKeys = keys.filter(isCountryScopedHolidayKey);
+  const countryLookup = new Set(countryScopedKeys.map(normalizeIntroKey));
+  const countryMatch = entries.find((entry) => holidayContentKeys(entry).some((key) => countryLookup.has(normalizeIntroKey(key))));
+  if (countryMatch) return countryMatch;
+
+  const genericLookup = new Set(keys.filter((key) => !isCountryScopedHolidayKey(key)).map(normalizeIntroKey));
+  return entries.find((entry) => {
+    const entryKeys = holidayContentKeys(entry);
+    if (entryKeys.some(isCountryScopedHolidayKey)) return false;
+    return entryKeys.some((key) => genericLookup.has(normalizeIntroKey(key)));
+  }) || null;
+}
+
+function holidayContentKeys(entry) {
+  return Array.isArray(entry.keys) ? entry.keys.filter(Boolean) : [];
+}
+
+function holidayLookupKeys(title, source = {}) {
+  return [
+    source?.countryCode ? `${source.countryCode}|${title}` : "",
+    source?.countryCode && source?.localName ? `${source.countryCode}|${source.localName}` : "",
+    title,
+    source?.localName || ""
+  ].filter(Boolean);
+}
+
+function isCountryScopedHolidayKey(key) {
+  return /^[A-Z]{2}\|/.test(key);
 }
 
 function introByNormalizedKey(intros, key) {
@@ -705,6 +831,18 @@ function introByNormalizedKey(intros, key) {
 
 function normalizeIntroKey(value) {
   return value.toLowerCase().replace(/[’']/g, "").replace(/\s+/g, " ").trim();
+}
+
+function countryNameZh(source = {}) {
+  if (source.zhName) return source.zhName;
+  if (COUNTRY_NAMES_ZH[source.countryCode]) return COUNTRY_NAMES_ZH[source.countryCode];
+  try {
+    const regionName = source.countryCode ? REGION_NAMES_ZH?.of(source.countryCode) : "";
+    if (regionName && regionName !== source.countryCode) return regionName;
+  } catch {
+    // Some upstream country codes are not valid ISO regions.
+  }
+  return "当地";
 }
 
 function holidayTypeLabelFromSource(source) {
@@ -854,8 +992,9 @@ function drawThemeCaption(ctx, theme, x, y) {
   }
 
   ctx.fillStyle = "rgba(242,242,246,0.86)";
-  const titleSize = /^[\u4e00-\u9fff]{2,6}$/.test(theme.title) ? 40 : 36;
-  drawFittedText(ctx, theme.title, x, y - 6, 980, titleSize, 25);
+  const title = themeDisplayTitle(theme);
+  const titleSize = /^[\u4e00-\u9fff]{2,6}$/.test(title) ? 40 : 36;
+  drawFittedText(ctx, title, x, y - 6, 980, titleSize, 25);
 
   ctx.fillStyle = "rgba(215,215,219,0.66)";
   drawFittedText(ctx, theme.description, x, y + 39, 1040, 23, 17);
@@ -864,13 +1003,35 @@ function drawThemeCaption(ctx, theme, x, y) {
 
 function themeMetaLine(theme) {
   if (theme.source?.countryName) {
-    const country = theme.source.zhName || COUNTRY_NAMES_ZH[theme.source.countryCode] || theme.source.countryName;
-    return `${country} · ${holidayTypeLabelFromSource(theme.source)}`;
+    return `${countryNameZh(theme.source)} · ${holidayTypeLabelFromSource(theme.source)}`;
   }
-  if (hasTag(theme, "seasonal")) return "Seasonal Mood";
-  if (hasTag(theme, "civic")) return "Civic Holiday";
-  if (hasTag(theme, "celebration")) return "Festival Day";
+  if (hasTag(theme, "seasonal")) return "季节气质";
+  if (hasTag(theme, "civic")) return "公共节日";
+  if (hasTag(theme, "celebration")) return "节庆日";
   return "";
+}
+
+function themeDisplayTitle(theme) {
+  const content = holidayContentFor(theme.title, theme.source || {});
+
+  if (theme.source?.countryCode === "CN") {
+    const localName = theme.source.localName && theme.source.localName !== theme.title ? theme.source.localName : "";
+    if (localName && /[\u4e00-\u9fff]/.test(localName) && !/[\u4e00-\u9fff]/.test(theme.title)) {
+      return `${localName} · ${content?.title || theme.title}`;
+    }
+  }
+
+  if (hasTag(theme, "month-mood")) return seasonalDisplayTitle(theme);
+  if (content?.title) return content.title;
+  return theme.title;
+}
+
+function seasonalDisplayTitle(theme) {
+  const zhMonth = theme.caption?.split("·")[0]?.trim() || "";
+  const month = ZH_MONTH_TO_EN[zhMonth] || "Seasonal";
+  const suffix = theme.title.replace(zhMonth, "");
+  const motifTitle = SEASONAL_TITLE_EN[suffix] || theme.title;
+  return `${month} ${motifTitle}`;
 }
 
 function drawCaptionRule(ctx, theme, x, y) {

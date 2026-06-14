@@ -30,9 +30,27 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: 24
+          cache: npm
 
       - name: Refresh holiday cache
-        run: npm run refresh-holidays -- --days 90
+        run: npm run refresh-holidays -- --days 90 --strict-providers
+
+      - name: Validate holiday content
+        run: |
+          npm run content:validate
+          npm run content:gaps:check
+
+      - name: Collect failure diagnostics
+        if: failure()
+        run: npm run diagnostics
+
+      - name: Upload failure diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v5
+        with:
+          name: refresh-diagnostics
+          path: debug-action
+          if-no-files-found: ignore
 
       - name: Commit holiday cache
         run: |

@@ -12,8 +12,14 @@ const DEFAULT_COUNTRY_AFFINITY = 3;
 const NAGER_FETCH_CONCURRENCY = 8;
 const OPEN_HOLIDAYS_FETCH_CONCURRENCY = 6;
 const MIN_CACHE_DAYS_FOR_RENDER = 14;
+const FETCH_TIMEOUT_MS = 15000;
+const FETCH_RETRIES = 3;
+const FETCH_BACKOFF_MS = 700;
+const ERROR_SAMPLE_LIMIT = 12;
 
+await import("./data/holiday-content.js");
 await import("./data/holiday-intros.js");
+const HOLIDAY_CONTENT = globalThis.YearCalendarHolidayContent || {};
 const HOLIDAY_INTROS = globalThis.YearCalendarHolidayIntros || {};
 
 const FEATURED_COUNTRY_PROFILE = [
@@ -216,7 +222,9 @@ function parseArgs(argv) {
     date: null,
     days: LOOKAHEAD_DAYS,
     ifNeeded: argv.includes("--if-needed"),
-    minDays: MIN_CACHE_DAYS_FOR_RENDER
+    strictProviders: argv.includes("--strict-providers"),
+    minDays: MIN_CACHE_DAYS_FOR_RENDER,
+    output: OUTPUT_FILE
   };
 
   const dateIndex = argv.indexOf("--date");
@@ -227,6 +235,9 @@ function parseArgs(argv) {
 
   const minDaysIndex = argv.indexOf("--min-days");
   if (minDaysIndex !== -1) options.minDays = Number(argv[minDaysIndex + 1]) || MIN_CACHE_DAYS_FOR_RENDER;
+
+  const outputIndex = argv.indexOf("--output");
+  if (outputIndex !== -1) options.output = argv[outputIndex + 1] || OUTPUT_FILE;
 
   return options;
 }
@@ -284,9 +295,9 @@ function coverageForDays(rankedDays, startDate, endDate) {
   };
 }
 
-function readExistingHolidayCache() {
-  if (!fs.existsSync(OUTPUT_FILE)) return null;
-  const content = fs.readFileSync(OUTPUT_FILE, "utf8");
+function readExistingHolidayCache(filePath = OUTPUT_FILE) {
+  if (!fs.existsSync(filePath)) return null;
+  const content = fs.readFileSync(filePath, "utf8");
   const match = content.match(/window\.YearCalendarHolidayCache\s*=\s*(\{[\s\S]*\});?\s*$/);
   if (!match) return null;
 
@@ -321,23 +332,65 @@ async function mapWithConcurrency(items, concurrency, mapper) {
   return results;
 }
 
-async function fetchPublicHolidays(year, country) {
-  const url = `${API_ROOT}/PublicHolidays/${year}/${country.code}`;
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch ${country.code} ${year}: ${response.status}`);
+async function fetchTextWithRetry(url, options = {}) {
+  const label = options.label || url;
+  let lastError = null;
+
+  for (let attempt = 1; attempt <= FETCH_RETRIES; attempt++) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), options.timeoutMs || FETCH_TIMEOUT_MS);
+    try {
+      const response = await fetch(url, {
+        headers: options.headers,
+        signal: controller.signal
+      });
+      const body = await response.text();
+
+      if (response.ok) return body;
+
+      const message = `${label}: ${response.status} ${response.statusText}${body ? ` - ${body.slice(0, 180)}` : ""}`;
+      lastError = new Error(message);
+      if (!isRetryableStatus(response.status) || attempt === FETCH_RETRIES) break;
+    } catch (error) {
+      lastError = error;
+      if (!isRetryableFetchError(error) || attempt === FETCH_RETRIES) {
+        throw new Error(`${label}: ${error.message}`);
+      }
+    } finally {
+      clearTimeout(timeout);
+    }
+
+    await sleep(FETCH_BACKOFF_MS * attempt);
   }
-  const body = await response.text();
+
+  throw lastError || new Error(`${label}: fetch failed`);
+}
+
+async function fetchJsonWithRetry(url, options = {}) {
+  const body = await fetchTextWithRetry(url, options);
   if (!body.trim()) return [];
   return JSON.parse(body);
 }
 
+function isRetryableStatus(status) {
+  return status === 408 || status === 429 || status >= 500;
+}
+
+function isRetryableFetchError(error) {
+  return error?.name === "AbortError" || /fetch failed|network|timeout|terminated|socket/i.test(error?.message || "");
+}
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function fetchPublicHolidays(year, country) {
+  const url = `${API_ROOT}/PublicHolidays/${year}/${country.code}`;
+  return fetchJsonWithRetry(url, { label: `Nager.Date ${country.code} ${year}` });
+}
+
 async function fetchAvailableCountries() {
-  const response = await fetch(`${API_ROOT}/AvailableCountries`);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch available countries: ${response.status}`);
-  }
-  return response.json();
+  return fetchJsonWithRetry(`${API_ROOT}/AvailableCountries`, { label: "Nager.Date country list" });
 }
 
 async function countryProfile() {
@@ -364,11 +417,10 @@ async function countryProfile() {
 
 async function fetchOpenHolidaysCountries() {
   const url = `${OPEN_HOLIDAYS_API_ROOT}/Countries?languageIsoCode=EN`;
-  const response = await fetch(url, { headers: { accept: "text/json" } });
-  if (!response.ok) {
-    throw new Error(`Failed to fetch OpenHolidays countries: ${response.status}`);
-  }
-  return response.json();
+  return fetchJsonWithRetry(url, {
+    headers: { accept: "text/json" },
+    label: "OpenHolidays country list"
+  });
 }
 
 async function openHolidaysCountryProfile() {
@@ -396,11 +448,10 @@ async function fetchOpenPublicHolidays(country, startDate, endDate) {
     validTo: dateKey(endDate)
   });
   const url = `${OPEN_HOLIDAYS_API_ROOT}/PublicHolidays?${params.toString()}`;
-  const response = await fetch(url, { headers: { accept: "text/json" } });
-  if (!response.ok) {
-    throw new Error(`Failed to fetch OpenHolidays ${country.code}: ${response.status}`);
-  }
-  return response.json();
+  return fetchJsonWithRetry(url, {
+    headers: { accept: "text/json" },
+    label: `OpenHolidays ${country.code} ${dateKey(startDate)}..${dateKey(endDate)}`
+  });
 }
 
 function localizedText(values = [], language = "EN") {
@@ -476,18 +527,51 @@ function descriptionForHoliday(holiday, country) {
 }
 
 function holidayIntroFor(title, country, localName = "") {
-  const keys = [
-    `${country.code}|${title}`,
-    localName ? `${country.code}|${localName}` : "",
-    title,
-    localName
-  ].filter(Boolean);
+  const content = holidayContentFor(title, country, localName);
+  if (content?.description) return content.description;
+
+  const keys = holidayLookupKeys(title, country, localName);
 
   for (const key of keys) {
     const intro = HOLIDAY_INTROS[key] || introByNormalizedKey(key);
     if (intro) return intro;
   }
   return "";
+}
+
+function holidayContentFor(title, country, localName = "") {
+  const entries = Array.isArray(HOLIDAY_CONTENT.entries) ? HOLIDAY_CONTENT.entries : [];
+  if (!entries.length) return null;
+
+  const keys = holidayLookupKeys(title, country, localName);
+  const countryScopedKeys = keys.filter(isCountryScopedHolidayKey);
+  const countryLookup = new Set(countryScopedKeys.map(normalizeIntroKey));
+  const countryMatch = entries.find((entry) => holidayContentKeys(entry).some((key) => countryLookup.has(normalizeIntroKey(key))));
+  if (countryMatch) return countryMatch;
+
+  const genericLookup = new Set(keys.filter((key) => !isCountryScopedHolidayKey(key)).map(normalizeIntroKey));
+  return entries.find((entry) => {
+    const entryKeys = holidayContentKeys(entry);
+    if (entryKeys.some(isCountryScopedHolidayKey)) return false;
+    return entryKeys.some((key) => genericLookup.has(normalizeIntroKey(key)));
+  }) || null;
+}
+
+function holidayContentKeys(entry) {
+  return Array.isArray(entry.keys) ? entry.keys.filter(Boolean) : [];
+}
+
+function holidayLookupKeys(title, country, localName = "") {
+  return [
+    `${country.code}|${title}`,
+    localName ? `${country.code}|${localName}` : "",
+    title,
+    localName
+  ].filter(Boolean);
+}
+
+function isCountryScopedHolidayKey(key) {
+  return /^[A-Z]{2}\|/.test(key);
 }
 
 function introByNormalizedKey(key) {
@@ -695,7 +779,18 @@ async function buildHolidayCache(options) {
   const errors = [];
   const countries = await countryProfile();
   let openHolidaysCountries = [];
+  const sourceStats = {
+    nagerRequests: 0,
+    nagerSuccessfulRequests: 0,
+    nagerFailedRequests: 0,
+    nagerErrorSamples: [],
+    openHolidaysRequests: 0,
+    openHolidaysSuccessfulRequests: 0,
+    openHolidaysFailedRequests: 0,
+    openHolidaysErrorSamples: []
+  };
   const holidayRequests = countries.flatMap((country) => years.map((year) => ({ country, year })));
+  sourceStats.nagerRequests = holidayRequests.length;
 
   const holidayResults = await mapWithConcurrency(
     holidayRequests,
@@ -712,9 +807,13 @@ async function buildHolidayCache(options) {
 
   for (const result of holidayResults) {
     if (result.error) {
-      errors.push(`${result.country.code} ${result.year}: ${result.error.message}`);
+      const message = `${result.country.code} ${result.year}: ${result.error.message}`;
+      errors.push(message);
+      sourceStats.nagerFailedRequests += 1;
+      if (sourceStats.nagerErrorSamples.length < ERROR_SAMPLE_LIMIT) sourceStats.nagerErrorSamples.push(message);
       continue;
     }
+    sourceStats.nagerSuccessfulRequests += 1;
 
     for (const holiday of result.holidays) {
       const date = dateFromKey(holiday.date);
@@ -727,6 +826,7 @@ async function buildHolidayCache(options) {
 
   try {
     openHolidaysCountries = await openHolidaysCountryProfile();
+    sourceStats.openHolidaysRequests = openHolidaysCountries.length;
     const openHolidayResults = await mapWithConcurrency(
       openHolidaysCountries,
       OPEN_HOLIDAYS_FETCH_CONCURRENCY,
@@ -742,9 +842,13 @@ async function buildHolidayCache(options) {
 
     for (const result of openHolidayResults) {
       if (result.error) {
-        errors.push(`OpenHolidays ${result.country.code}: ${result.error.message}`);
+        const message = `OpenHolidays ${result.country.code}: ${result.error.message}`;
+        errors.push(message);
+        sourceStats.openHolidaysFailedRequests += 1;
+        if (sourceStats.openHolidaysErrorSamples.length < ERROR_SAMPLE_LIMIT) sourceStats.openHolidaysErrorSamples.push(message);
         continue;
       }
+      sourceStats.openHolidaysSuccessfulRequests += 1;
 
       for (const holiday of result.holidays) {
         const name = localizedText(holiday.name, "EN");
@@ -758,7 +862,19 @@ async function buildHolidayCache(options) {
       }
     }
   } catch (error) {
-    errors.push(`OpenHolidays country list: ${error.message}`);
+    const message = `OpenHolidays country list: ${error.message}`;
+    errors.push(message);
+    sourceStats.openHolidaysFailedRequests += 1;
+    if (sourceStats.openHolidaysErrorSamples.length < ERROR_SAMPLE_LIMIT) sourceStats.openHolidaysErrorSamples.push(message);
+  }
+
+  if (options.strictProviders) {
+    const failedSources = [];
+    if (sourceStats.nagerSuccessfulRequests === 0) failedSources.push("Nager.Date");
+    if (sourceStats.openHolidaysSuccessfulRequests === 0) failedSources.push("OpenHolidays");
+    if (failedSources.length) {
+      throw new Error(`Strict provider refresh failed: no successful responses from ${failedSources.join(", ")}`);
+    }
   }
 
   addCulturalObservances(days, startDate, endDate);
@@ -804,6 +920,7 @@ async function buildHolidayCache(options) {
       countries
     },
     coverage,
+    sourceStats,
     days: rankedDays,
     errors
   };
@@ -812,7 +929,7 @@ async function buildHolidayCache(options) {
 const options = parseArgs(process.argv.slice(2));
 const baseDate = options.date ? dateFromKey(options.date) : shanghaiToday();
 if (!baseDate) throw new Error(`Invalid --date value: ${options.date}`);
-const existingCache = options.ifNeeded ? readExistingHolidayCache() : null;
+const existingCache = options.ifNeeded ? readExistingHolidayCache(options.output) : null;
 
 if (options.ifNeeded && cacheCoversRenderWindow(existingCache, baseDate, options.minDays)) {
   console.log("Holiday cache is fresh enough:");
@@ -821,10 +938,11 @@ if (options.ifNeeded && cacheCoversRenderWindow(existingCache, baseDate, options
   console.log(`   fallback days: ${existingCache.coverage?.fallbackDays ?? "unknown"}`);
 } else {
   const cache = await buildHolidayCache(options);
-  fs.mkdirSync(path.dirname(OUTPUT_FILE), { recursive: true });
-  fs.writeFileSync(OUTPUT_FILE, `window.YearCalendarHolidayCache = ${JSON.stringify(cache, null, 2)};\n`);
+  fs.mkdirSync(path.dirname(options.output), { recursive: true });
+  fs.writeFileSync(options.output, `window.YearCalendarHolidayCache = ${JSON.stringify(cache, null, 2)};\n`);
 
   console.log("Holiday cache refreshed:");
+  console.log(`   output: ${options.output}`);
   console.log(`   window: ${cache.window.start} -> ${cache.window.end}`);
   console.log(`   candidate days: ${cache.coverage.candidateDays}/${cache.coverage.totalDays}`);
   console.log(`   fallback days: ${cache.coverage.fallbackDays}`);

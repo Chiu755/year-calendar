@@ -5,3 +5,5 @@ output/**
 !output/today.png
 drafts/
 debug-render/
+debug-action/
+tmp/

@@ -45,7 +45,12 @@ jobs:
       - name: Install Puppeteer browser
         run: |
           test -n "$PUPPETEER_CACHE_DIR"
-          npx puppeteer browsers install chrome
+          chrome_path="$(node --input-type=module -e 'import puppeteer from "puppeteer"; console.log(await puppeteer.executablePath());')"
+          if [ -x "$chrome_path" ]; then
+            echo "Using cached Puppeteer browser: $chrome_path"
+          else
+            npx puppeteer browsers install chrome
+          fi
 
       - name: Verify Puppeteer browser
         run: node --input-type=module -e 'import puppeteer from "puppeteer"; console.log(await puppeteer.executablePath());'
@@ -59,15 +64,26 @@ jobs:
       - name: Ensure holiday cache
         run: npm run refresh-holidays:if-needed
 
+      - name: Validate holiday content
+        run: |
+          npm run content:validate
+          npm run content:gaps:check
+
       - name: Render wallpaper
         run: npm run render
+
+      - name: Collect failure diagnostics
+        if: failure()
+        run: npm run diagnostics
 
       - name: Upload render debug screenshots
         if: failure()
         uses: actions/upload-artifact@v5
         with:
           name: render-debug
-          path: debug-render
+          path: |
+            debug-render
+            debug-action
           if-no-files-found: ignore
 
       - name: Commit latest wallpaper
@@ -75,6 +91,7 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add -f output/today.png
+          git add -f output/render-summary.json
           git add data/holiday-cache.js
           git add data/theme-history.json
           git commit -m "chore: update today wallpaper" || echo "No today wallpaper changes"
