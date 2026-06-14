@@ -1,0 +1,65 @@
+{
+  "generatedAt": "2026-06-14T17:26:17.782Z",
+  "baseDate": "2026-06-15",
+  "ensuredThrough": "2026-06-22",
+  "today": "output/today.png",
+  "generated": [
+    {
+      "date": "2026-06-15",
+      "output": "output/2026/2026.06/2026.06.15.png",
+      "selectedTheme": "Sacred Heart",
+      "selectedMotif": "wovenPattern",
+      "discardedCount": 2
+    },
+    {
+      "date": "2026-06-16",
+      "output": "output/2026/2026.06/2026.06.16.png",
+      "selectedTheme": "Youth Day",
+      "selectedMotif": "wovenPattern",
+      "discardedCount": 1
+    },
+    {
+      "date": "2026-06-17",
+      "output": "output/2026/2026.06/2026.06.17.png",
+      "selectedTheme": "Icelandic National Day",
+      "selectedMotif": "fireworks",
+      "discardedCount": 0
+    },
+    {
+      "date": "2026-06-18",
+      "output": "output/2026/2026.06/2026.06.18.png",
+      "selectedTheme": "Constitution Day",
+      "selectedMotif": "fireworks",
+      "discardedCount": 0
+    },
+    {
+      "date": "2026-06-19",
+      "output": "output/2026/2026.06/2026.06.19.png",
+      "selectedTheme": "Dragon Boat Festival",
+      "selectedMotif": "waterFlowers",
+      "discardedCount": 4
+    },
+    {
+      "date": "2026-06-20",
+      "output": "output/2026/2026.06/2026.06.20.png",
+      "selectedTheme": "World Refugee Day",
+      "selectedMotif": "mountainFlags",
+      "discardedCount": 4
+    },
+    {
+      "date": "2026-06-21",
+      "output": "output/2026/2026.06/2026.06.21.png",
+      "selectedTheme": "National Aboriginal Day",
+      "selectedMotif": "fireworks",
+      "discardedCount": 4
+    },
+    {
+      "date": "2026-06-22",
+      "output": "output/2026/2026.06/2026.06.22.png",
+      "selectedTheme": "Anti-Fascist Struggle Day",
+      "selectedMotif": "wovenPattern",
+      "discardedCount": 1
+    }
+  ],
+  "skipped": []
+}
