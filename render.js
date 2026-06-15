@@ -244,7 +244,19 @@ async function renderWallpaper(page, date, themeRank, outputPath, avoidMotifs = 
     throw error;
   }
 
-  const buffer = await page.screenshot({ fullPage: false });
+  const dataUrl = await page.$eval("img", (img, expected) => {
+    const canvas = document.createElement("canvas");
+    canvas.width = expected.width;
+    canvas.height = expected.height;
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0, expected.width, expected.height);
+    return canvas.toDataURL("image/png");
+  }, EXPECTED_PNG);
+  const match = dataUrl.match(/^data:image\/png;base64,(.+)$/);
+  if (!match) {
+    throw new Error(`Rendered ${key} wallpaper did not expose a PNG data URL`);
+  }
+  const buffer = Buffer.from(match[1], "base64");
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(outputPath, buffer);
   assertWallpaperOutput(outputPath, `${key} wallpaper`);

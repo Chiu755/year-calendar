@@ -31,7 +31,25 @@ const MOTIF_TAGS = {
   rainGarden: ["water", "botanical", "seasonal"],
   harvestSheaves: ["botanical", "harvest", "seasonal"],
   paperCut: ["civic", "celebration", "culture"],
-  teaSteam: ["culture", "light", "winter"]
+  teaSteam: ["culture", "light", "winter"],
+  dragonDance: ["celebration", "culture", "procession", "folk"],
+  crescentLantern: ["islamic", "religious", "light", "sky"],
+  lotusMandala: ["religious", "botanical", "culture", "heritage"],
+  templeBells: ["religious", "heritage", "light"],
+  carnivalMasks: ["celebration", "procession", "folk", "market"],
+  folkEmbroidery: ["folk", "heritage", "culture"],
+  cityParade: ["civic", "celebration", "procession"],
+  maritimeFlags: ["maritime", "water", "civic", "island"],
+  desertGeometry: ["islamic", "heritage", "sun"],
+  tropicalBloom: ["island", "botanical", "water"],
+  oliveBranches: ["heritage", "botanical", "civic"],
+  laurelTorch: ["civic", "remembrance", "light"],
+  sportsMedals: ["sports", "celebration", "civic"],
+  bookPress: ["literature", "culture", "heritage"],
+  marketBanners: ["market", "celebration", "folk"],
+  ancestralTable: ["remembrance", "religious", "light"],
+  doveGarland: ["remembrance", "light", "civic"],
+  stainedGlass: ["religious", "heritage", "light"]
 };
 
 const CULTURAL_PALETTES = {
@@ -436,18 +454,18 @@ const MONTH_MOODS = [
 ];
 
 const MONTH_MOTIF_ROTATION = [
-  ["snow", "candle", "moonOrbit", "teaSteam", "starfield", "aurora", "paperCut", "lanterns"],
-  ["springBuds", "rainGarden", "paperKites", "petals", "waterFlowers", "moonOrbit", "teaSteam", "wovenPattern"],
-  ["springBuds", "petals", "paperKites", "rainGarden", "waterFlowers", "wovenPattern", "moonOrbit", "lanterns"],
-  ["rainGarden", "waterFlowers", "springBuds", "wovenPattern", "petals", "paperKites", "moonOrbit", "teaSteam"],
-  ["grain", "harvestSheaves", "sunRibbons", "paperKites", "waterFlowers", "wovenPattern", "lanterns", "springBuds"],
-  ["waterFlowers", "rainGarden", "sunRibbons", "moonOrbit", "paperKites", "lanterns", "wovenPattern", "starfield"],
-  ["sunRibbons", "waterFlowers", "paperKites", "lanterns", "rainGarden", "starfield", "moonOrbit", "wovenPattern"],
-  ["grain", "harvestSheaves", "moonOrbit", "wovenPattern", "sunRibbons", "lanterns", "paperKites", "teaSteam"],
-  ["harvestSheaves", "grain", "moonOrbit", "teaSteam", "aurora", "wovenPattern", "paperKites", "lanterns"],
-  ["aurora", "paperCut", "wovenPattern", "lanterns", "candle", "starfield", "moonOrbit", "harvestSheaves"],
-  ["candle", "teaSteam", "wovenPattern", "starfield", "aurora", "snow", "moonOrbit", "lanterns"],
-  ["snow", "lanterns", "candle", "moonOrbit", "starfield", "teaSteam", "aurora", "paperCut"]
+  ["snow", "candle", "moonOrbit", "teaSteam", "starfield", "aurora", "paperCut", "lanterns", "doveGarland", "stainedGlass"],
+  ["springBuds", "rainGarden", "paperKites", "petals", "waterFlowers", "moonOrbit", "teaSteam", "wovenPattern", "lotusMandala", "crescentLantern"],
+  ["springBuds", "petals", "paperKites", "rainGarden", "waterFlowers", "wovenPattern", "moonOrbit", "lanterns", "folkEmbroidery", "bookPress"],
+  ["rainGarden", "waterFlowers", "springBuds", "wovenPattern", "petals", "paperKites", "moonOrbit", "teaSteam", "templeBells", "oliveBranches"],
+  ["grain", "harvestSheaves", "sunRibbons", "paperKites", "waterFlowers", "wovenPattern", "lanterns", "springBuds", "cityParade", "sportsMedals"],
+  ["waterFlowers", "rainGarden", "sunRibbons", "moonOrbit", "paperKites", "lanterns", "wovenPattern", "starfield", "maritimeFlags", "dragonDance"],
+  ["sunRibbons", "waterFlowers", "paperKites", "lanterns", "rainGarden", "starfield", "moonOrbit", "wovenPattern", "cityParade", "tropicalBloom"],
+  ["grain", "harvestSheaves", "moonOrbit", "wovenPattern", "sunRibbons", "lanterns", "paperKites", "teaSteam", "marketBanners", "desertGeometry"],
+  ["harvestSheaves", "grain", "moonOrbit", "teaSteam", "aurora", "wovenPattern", "paperKites", "lanterns", "folkEmbroidery", "bookPress"],
+  ["aurora", "paperCut", "wovenPattern", "lanterns", "candle", "starfield", "moonOrbit", "harvestSheaves", "carnivalMasks", "ancestralTable"],
+  ["candle", "teaSteam", "wovenPattern", "starfield", "aurora", "snow", "moonOrbit", "lanterns", "doveGarland", "laurelTorch"],
+  ["snow", "lanterns", "candle", "moonOrbit", "starfield", "teaSteam", "aurora", "paperCut", "stainedGlass", "crescentLantern"]
 ];
 
 const SEASONAL_MOTIF_COPY = {
@@ -518,6 +536,78 @@ const SEASONAL_MOTIF_COPY = {
   starfield: {
     titles: ["星图", "夜星", "星线"],
     descriptions: ["星图让普通夜色更有空间感。", "夜星细碎分布，给背景一点安静的闪动。", "星线把画面连起来，但不制造视觉噪音。"]
+  },
+  dragonDance: {
+    titles: ["龙影", "鳞光", "红舞"],
+    descriptions: ["弧形龙身和流苏让普通日子也带一点东亚节庆的动势。", "细鳞片把红金色压成纹理，热闹但不遮挡主体。", "红色舞龙构图让画面更像节日插画。"]
+  },
+  crescentLantern: {
+    titles: ["月灯", "弯月", "星灯"],
+    descriptions: ["新月与悬灯提供安静的夜色仪式感。", "弯月和星点让深色背景有更柔和的层次。", "灯影悬在边缘，给普通夜色一点节庆感。"]
+  },
+  lotusMandala: {
+    titles: ["莲环", "曼荼", "花轮"],
+    descriptions: ["莲花环和几何花瓣带来南亚与佛教文化里的静定感。", "曼荼罗式结构让画面更完整，也更像一张节庆海报。", "花轮在上下呼应，中心保持干净。"]
+  },
+  templeBells: {
+    titles: ["钟影", "檐铃", "香线"],
+    descriptions: ["钟形轮廓和香烟线让画面带一点宗教场所的庄重。", "檐铃式的细线给边角增加节奏。", "温暖钟影让深色背景更有仪式感。"]
+  },
+  carnivalMasks: {
+    titles: ["面具", "彩羽", "游彩"],
+    descriptions: ["面具、羽饰和彩带让普通日子更有街头庆典的辨识度。", "彩羽构图比单纯飘带更有角色感。", "游行式装饰给画面一点表演节奏。"]
+  },
+  folkEmbroidery: {
+    titles: ["绣纹", "菱绣", "线纹"],
+    descriptions: ["对称刺绣和菱形纹给画面加一点地方手工质感。", "绣线式边框让背景更细密，也减少重复感。", "民俗纹样让普通日期不只是抽象装饰。"]
+  },
+  cityParade: {
+    titles: ["旗街", "巡游", "城彩"],
+    descriptions: ["城市旗列和街道节奏让画面更接近公共庆典。", "巡游构图让上下边缘有明确方向。", "城市节庆感适合国庆、公众节日和普通夏日。"]
+  },
+  maritimeFlags: {
+    titles: ["海旗", "港灯", "潮旗"],
+    descriptions: ["航海旗和波线让画面带着港口与岛屿气息。", "港灯感的竖线给海色背景增加秩序。", "潮旗把水纹和旗色组合成更具体的主视觉。"]
+  },
+  desertGeometry: {
+    titles: ["沙纹", "星沙", "几何"],
+    descriptions: ["沙丘曲线和几何星纹让暖色背景更有地域气质。", "星形几何比普通日光更有文化辨识度。", "沙纹构图让画面开阔但不过分空。"]
+  },
+  tropicalBloom: {
+    titles: ["岛花", "阔叶", "热花"],
+    descriptions: ["大叶和热带花让岛屿主题更鲜明。", "阔叶把边角撑开，中心仍留给文字。", "热带花影给普通夏日更多生命力。"]
+  },
+  oliveBranches: {
+    titles: ["橄榄", "枝环", "绿冠"],
+    descriptions: ["橄榄枝和和平环让画面更克制、典雅。", "枝环式装饰适合纪念、文化与公共主题。", "绿色叶片让深色背景更安静。"]
+  },
+  laurelTorch: {
+    titles: ["桂冠", "火炬", "纪光"],
+    descriptions: ["桂冠与火炬带来纪念碑式的公共仪式感。", "火光集中在边缘，让画面庄重但不刺眼。", "桂冠结构让普通日子也有清晰主视觉。"]
+  },
+  sportsMedals: {
+    titles: ["奖章", "跑道", "金弧"],
+    descriptions: ["奖牌和跑道弧线让公共活动主题更有运动感。", "金色圆章给画面一点胜利和参与的气息。", "跑道弧线提供清楚的动势。"]
+  },
+  bookPress: {
+    titles: ["书页", "铅字", "印纹"],
+    descriptions: ["书页和铅字块让文化日更像知识与出版主题。", "印刷纹理提供稳定的版式感。", "书页构图比星点更贴近阅读和语言主题。"]
+  },
+  marketBanners: {
+    titles: ["市棚", "彩摊", "集旗"],
+    descriptions: ["摊棚和三角旗让画面有社区集市的温度。", "彩摊结构让节庆更落地，也更有人间烟火。", "集旗在上下边缘形成轻快节奏。"]
+  },
+  ancestralTable: {
+    titles: ["供桌", "烛台", "花祭"],
+    descriptions: ["供桌、烛台和花枝让追思主题更具体。", "低亮烛光让画面保持安静的纪念感。", "花祭式边角装饰适合祖先与亡灵相关日子。"]
+  },
+  doveGarland: {
+    titles: ["鸽环", "静羽", "白光"],
+    descriptions: ["抽象鸽影和花环让和平、追思主题更柔和。", "静羽形状让深色背景多一点安定感。", "白光点缀让纪念主题不显沉重。"]
+  },
+  stainedGlass: {
+    titles: ["彩窗", "玫窗", "光格"],
+    descriptions: ["彩窗分割线让宗教节日更有建筑与光感。", "玫瑰窗式构图提供清晰的中心装饰。", "光格纹理让深色背景更像节庆插画。"]
   }
 };
 
@@ -611,6 +701,15 @@ function inferThemeTags(title, caption) {
   if (/mountain|alps|andes|pyrenees|himalaya|bhutan|nepal|andorra|san marino|山/.test(text)) tags.push("mountain");
   if (/memorial|remembrance|saints|muertos|candle|记忆|纪念|烛/.test(text)) tags.push("memorial");
   if (/halloween|children|songkran|thanksgiving|valentine|day|festival|庆典|节日|祝福/.test(text)) tags.push("celebration");
+  if (/eid|ramadan|adha|fitr|islam|hijri|muharram|mawlid/.test(text)) tags.push("islamic", "religious");
+  if (/saint|christian|church|orthodox|easter|pentecost|epiphany|buddha|vesak|diwali|hindu|buddhist/.test(text)) tags.push("religious");
+  if (/parade|procession|carnival|festival|mardi gras|fiesta/.test(text)) tags.push("procession");
+  if (/market|fair|bank holiday/.test(text)) tags.push("market");
+  if (/indigenous|culture|heritage|language|literature|autonomy|regional|folk|tradition/.test(text)) tags.push("heritage", "folk");
+  if (/sea|ocean|island|marine|harbour|harbor|azores|port/.test(text)) tags.push("maritime");
+  if (/memorial|remembrance|reconciliation|peace|martyr|dead|souls|ancestors|muertos/.test(text)) tags.push("remembrance");
+  if (/language|literature|book|education|teacher|poetry|press/.test(text)) tags.push("literature");
+  if (/sport|youth|games|medal|olympic/.test(text)) tags.push("sports");
   return tags;
 }
 
@@ -1116,6 +1215,60 @@ function drawThemeDecorations(ctx, theme, width, height) {
     case "teaSteam":
       drawTeaSteam(ctx, theme, width, height);
       break;
+    case "dragonDance":
+      drawDragonDance(ctx, theme, width, height);
+      break;
+    case "crescentLantern":
+      drawCrescentLantern(ctx, theme, width, height);
+      break;
+    case "lotusMandala":
+      drawLotusMandala(ctx, theme, width, height);
+      break;
+    case "templeBells":
+      drawTempleBells(ctx, theme, width, height);
+      break;
+    case "carnivalMasks":
+      drawCarnivalMasks(ctx, theme, width, height);
+      break;
+    case "folkEmbroidery":
+      drawFolkEmbroidery(ctx, theme, width, height);
+      break;
+    case "cityParade":
+      drawCityParade(ctx, theme, width, height);
+      break;
+    case "maritimeFlags":
+      drawMaritimeFlags(ctx, theme, width, height);
+      break;
+    case "desertGeometry":
+      drawDesertGeometry(ctx, theme, width, height);
+      break;
+    case "tropicalBloom":
+      drawTropicalBloom(ctx, theme, width, height);
+      break;
+    case "oliveBranches":
+      drawOliveBranches(ctx, theme, width, height);
+      break;
+    case "laurelTorch":
+      drawLaurelTorch(ctx, theme, width, height);
+      break;
+    case "sportsMedals":
+      drawSportsMedals(ctx, theme, width, height);
+      break;
+    case "bookPress":
+      drawBookPress(ctx, theme, width, height);
+      break;
+    case "marketBanners":
+      drawMarketBanners(ctx, theme, width, height);
+      break;
+    case "ancestralTable":
+      drawAncestralTable(ctx, theme, width, height);
+      break;
+    case "doveGarland":
+      drawDoveGarland(ctx, theme, width, height);
+      break;
+    case "stainedGlass":
+      drawStainedGlass(ctx, theme, width, height);
+      break;
     default:
       drawAurora(ctx, theme, width, height);
   }
@@ -1234,6 +1387,16 @@ function drawSemanticOrnaments(ctx, theme, width, height) {
   if (hasTag(theme, "island")) drawIslandFronds(ctx, theme, width, height, variant);
   if (hasTag(theme, "sun")) drawSolarHalos(ctx, theme, width, height, variant);
   if (hasTag(theme, "light")) drawSmallLanternGlow(ctx, theme, width, height, variant);
+  if (hasTag(theme, "procession")) drawFestivalDrums(ctx, theme, width, height, variant);
+  if (hasTag(theme, "islamic")) drawPrayerArchways(ctx, theme, width, height, variant);
+  if (hasTag(theme, "folk")) drawWovenBorders(ctx, theme, width, height, variant);
+  if (hasTag(theme, "maritime")) drawHarborSignals(ctx, theme, width, height, variant);
+  if (hasTag(theme, "market")) drawMarketStalls(ctx, theme, width, height, variant);
+  if (hasTag(theme, "heritage")) drawOliveSprigs(ctx, theme, width, height, variant);
+  if (hasTag(theme, "remembrance")) drawCommemorativeTorches(ctx, theme, width, height, variant);
+  if (hasTag(theme, "literature")) drawBookPressMarks(ctx, theme, width, height, variant);
+  if (hasTag(theme, "religious")) drawAncestralOfferings(ctx, theme, width, height, variant);
+  if (hasTag(theme, "celebration") && /carnival|mask|mardi|狂欢|面具/i.test(`${theme.title} ${theme.caption}`)) drawMaskConfetti(ctx, theme, width, height, variant);
   drawSignatureOrnaments(ctx, theme, width, height, variant);
 }
 
@@ -1433,6 +1596,145 @@ function drawSmallLanternGlow(ctx, theme, width, height, variant) {
     const y = i % 2 ? 520 + ((i * 151) % 620) : height - 690 + ((i * 127) % 430);
     drawSoftGlow(ctx, x, y, 42 + (i % 3) * 12, i % 2 ? theme.secondary : theme.accent, 0.035);
     drawEllipse(ctx, x, y, 5, 14, 0, i % 2 ? theme.secondary : theme.accent, 0.08);
+  }
+}
+
+function drawFestivalDrums(ctx, theme, width, height, variant) {
+  for (const [cx, cy, side] of [[118, 520, 1], [width - 118, 520, -1], [148, height - 560, 1], [width - 148, height - 560, -1]]) {
+    drawEllipse(ctx, cx, cy, 28, 38, side * 0.12, theme.accent, 0.08);
+    drawEllipse(ctx, cx, cy, 20, 30, side * 0.12, theme.secondary, 0.07);
+    strokePath(ctx, [[cx - side * 38, cy - 54], [cx + side * 18, cy - 12]], theme.secondary, 2, 0.075);
+    strokePath(ctx, [[cx - side * 48, cy + 52], [cx + side * 22, cy + 8]], theme.accent, 2, 0.075);
+    for (let i = 0; i < 3; i++) {
+      dot(ctx, cx + side * (42 + i * 18), cy - 44 + i * 12 + variant, 3.5, i % 2 ? theme.secondary : theme.accent, 0.09);
+    }
+  }
+}
+
+function drawPrayerArchways(ctx, theme, width, height, variant) {
+  for (const [cx, cy] of [[width / 2, 345], [width / 2, height - 430]]) {
+    for (let i = 0; i < 5; i++) {
+      const x = cx - 240 + i * 120;
+      ctx.save();
+      ctx.strokeStyle = hexToRgba(i % 2 ? theme.secondary : theme.accent, 0.055 + (i % 2) * 0.018);
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(x - 36, cy + 58);
+      ctx.lineTo(x - 36, cy - 6);
+      ctx.quadraticCurveTo(x, cy - 78 - variant * 2, x + 36, cy - 6);
+      ctx.lineTo(x + 36, cy + 58);
+      ctx.stroke();
+      ctx.restore();
+      drawStar(ctx, x, cy - 18, 7, 3, theme.secondary, 0.08);
+    }
+  }
+}
+
+function drawWovenBorders(ctx, theme, width, height, variant) {
+  for (const y of [118 + variant * 2, height - 126 - variant * 2]) {
+    for (let i = 0; i < 22; i++) {
+      const x = 72 + i * ((width - 144) / 21);
+      drawDiamond(ctx, x, y, 8 + (i % 3), i % 2 ? theme.secondary : theme.accent, 0.085);
+      strokePath(ctx, [[x - 22, y - 15], [x + 22, y + 15]], theme.accent, 1.5, 0.045);
+      strokePath(ctx, [[x - 22, y + 15], [x + 22, y - 15]], theme.secondary, 1.5, 0.045);
+    }
+  }
+}
+
+function drawHarborSignals(ctx, theme, width, height, variant) {
+  for (const [baseX, baseY, side] of [[86, 455, 1], [width - 86, 455, -1], [106, height - 455, 1], [width - 106, height - 455, -1]]) {
+    strokePath(ctx, [[baseX, baseY + 88], [baseX, baseY - 70]], theme.secondary, 2.2, 0.075);
+    drawSoftGlow(ctx, baseX, baseY - 92, 44, theme.accent, 0.03);
+    for (let i = 0; i < 4; i++) {
+      flag(ctx, baseX + side * (10 + i * 24), baseY - 58 + i * 26, i % 2 ? theme.secondary : theme.accent);
+    }
+    for (let row = 0; row < 2; row++) {
+      strokePath(ctx, [[baseX + side * 14, baseY + 44 + row * 24], [baseX + side * 130, baseY + 20 + row * 16]], theme.accent, 1.6, 0.055);
+    }
+  }
+}
+
+function drawMarketStalls(ctx, theme, width, height, variant) {
+  for (const [x, y] of [[78, 520], [width - 258, 520], [108, height - 565], [width - 288, height - 565]]) {
+    ctx.save();
+    ctx.fillStyle = hexToRgba(theme.accent, 0.045);
+    roundRect(ctx, x, y, 180, 92, 6);
+    ctx.fill();
+    for (let i = 0; i < 5; i++) {
+      ctx.fillStyle = hexToRgba(i % 2 ? theme.secondary : theme.accent, 0.09);
+      roundRect(ctx, x + i * 36, y - 38, 36, 38, 4);
+      ctx.fill();
+    }
+    strokePath(ctx, [[x + 16, y + 92], [x + 16, y + 144]], theme.secondary, 2, 0.065);
+    strokePath(ctx, [[x + 164, y + 92], [x + 164, y + 144]], theme.secondary, 2, 0.065);
+    dot(ctx, x + 52 + variant, y + 46, 6, theme.secondary, 0.07);
+    dot(ctx, x + 96, y + 54, 5, theme.accent, 0.08);
+    ctx.restore();
+  }
+}
+
+function drawOliveSprigs(ctx, theme, width, height, variant) {
+  for (const [baseX, baseY, side] of [[120, 420, 1], [width - 120, 420, -1], [150, height - 430, 1], [width - 150, height - 430, -1]]) {
+    strokePath(ctx, [[baseX, baseY + 70], [baseX + side * 42, baseY + 10, baseX + side * 96, baseY - 30, baseX + side * 154, baseY - 82]], theme.secondary, 2, 0.07);
+    for (let i = 0; i < 7; i++) {
+      const x = baseX + side * (28 + i * 18);
+      const y = baseY + 30 - i * 18 + ((i + variant) % 2) * 8;
+      drawEllipse(ctx, x, y, 5, 14, side * (i % 2 ? -0.72 : 0.58), theme.accent, 0.075);
+      if (i % 3 === 0) dot(ctx, x + side * 10, y + 6, 3, theme.secondary, 0.09);
+    }
+  }
+}
+
+function drawCommemorativeTorches(ctx, theme, width, height, variant) {
+  for (const [cx, cy] of [[132, 470], [width - 132, 470], [168, height - 500], [width - 168, height - 500]]) {
+    strokePath(ctx, [[cx, cy + 76], [cx, cy - 10]], theme.secondary, 3, 0.075);
+    drawEllipse(ctx, cx, cy - 32, 10, 28, 0.1, theme.accent, 0.12);
+    drawEllipse(ctx, cx + 9, cy - 34, 7, 20, -0.4, theme.secondary, 0.09);
+    for (let i = 0; i < 4; i++) {
+      strokePath(ctx, [[cx - 32 + i * 20, cy + 78], [cx - 18 + i * 14, cy + 106 + variant]], i % 2 ? theme.accent : theme.secondary, 1.5, 0.055);
+    }
+  }
+}
+
+function drawBookPressMarks(ctx, theme, width, height, variant) {
+  for (const [x, y] of [[86, 370], [width - 246, 370], [116, height - 475], [width - 276, height - 475]]) {
+    ctx.save();
+    ctx.strokeStyle = hexToRgba(theme.accent, 0.075);
+    ctx.lineWidth = 2;
+    roundRect(ctx, x, y, 160, 118, 6);
+    ctx.stroke();
+    for (let row = 0; row < 5; row++) {
+      strokePath(ctx, [[x + 24, y + 26 + row * 16], [x + 132 - (row % 2) * 24, y + 26 + row * 16]], row % 2 ? theme.secondary : theme.accent, 1.5, 0.065);
+    }
+    for (let i = 0; i < 4; i++) {
+      drawDiamond(ctx, x + 34 + i * 28, y + 94 + ((i + variant) % 2) * 6, 5, i % 2 ? theme.secondary : theme.accent, 0.07);
+    }
+    ctx.restore();
+  }
+}
+
+function drawAncestralOfferings(ctx, theme, width, height, variant) {
+  for (const [cx, cy] of [[width / 2, 405], [width / 2, height - 455]]) {
+    strokePath(ctx, [[cx - 150, cy + 72], [cx + 150, cy + 72]], theme.secondary, 2.4, 0.075);
+    drawEllipse(ctx, cx, cy + 52, 54, 14, 0, theme.accent, 0.055);
+    for (let i = 0; i < 3; i++) {
+      const x = cx - 72 + i * 72;
+      ctx.fillStyle = hexToRgba(theme.secondary, 0.07);
+      roundRect(ctx, x - 8, cy - 8, 16, 54, 4);
+      ctx.fill();
+      drawEllipse(ctx, x, cy - 22, 5, 13, 0, theme.accent, 0.11);
+    }
+    flower(ctx, cx + 122, cy + 34 + variant, 18, theme.accent, theme.secondary, 0.075, 6);
+  }
+}
+
+function drawMaskConfetti(ctx, theme, width, height, variant) {
+  for (let i = 0; i < 24; i++) {
+    const x = 80 + ((i * 127 + variant * 41) % (width - 160));
+    const y = i % 2 ? 180 + ((i * 53) % 320) : height - 560 + ((i * 47) % 320);
+    if (i % 4 === 0) drawEllipse(ctx, x, y, 12, 7, i * 0.28, theme.accent, 0.09);
+    else if (i % 4 === 1) drawDiamond(ctx, x, y, 7, theme.secondary, 0.1);
+    else strokePath(ctx, [[x - 12, y], [x + 8, y - 12, x + 18, y + 10, x + 34, y - 2]], i % 2 ? theme.secondary : theme.accent, 1.6, 0.075);
   }
 }
 
@@ -2225,6 +2527,302 @@ function drawTeaSteam(ctx, theme, width, height) {
     }
   }
   drawSmallLanternGlow(ctx, theme, width, height, themeVariant(theme, 6));
+}
+
+function drawDragonDance(ctx, theme, width, height) {
+  for (const [baseY, flip] of [[210, 1], [height - 260, -1]]) {
+    strokePath(ctx, [[80, baseY], [260, baseY - 88 * flip, 430, baseY + 95 * flip, 615, baseY + 8 * flip], [805, baseY - 82 * flip, 990, baseY + 72 * flip, width - 78, baseY - 18 * flip]], theme.accent, 18, 0.105);
+    strokePath(ctx, [[92, baseY + 34 * flip], [280, baseY - 48 * flip, 440, baseY + 102 * flip, 620, baseY + 18 * flip], [818, baseY - 54 * flip, 990, baseY + 84 * flip, width - 96, baseY]], theme.secondary, 5, 0.12);
+    for (let i = 0; i < 17; i++) {
+      const x = 125 + i * ((width - 250) / 16);
+      const y = baseY + Math.sin(i * 0.9) * 52 * flip;
+      drawDiamond(ctx, x, y, 8 + (i % 3), i % 2 ? theme.secondary : theme.accent, 0.13);
+      strokePath(ctx, [[x - 8, y + 24 * flip], [x - 16, y + 58 * flip]], theme.secondary, 1.8, 0.09);
+    }
+    drawStar(ctx, width - 118, baseY - 38 * flip, 24, 10, theme.accent, 0.16);
+  }
+}
+
+function drawCrescentLantern(ctx, theme, width, height) {
+  for (const [cx, cy, scale] of [[width / 2, 250, 1], [width / 2, height - 300, 0.86]]) {
+    drawSoftGlow(ctx, cx, cy, 170 * scale, theme.secondary, 0.035);
+    drawEllipse(ctx, cx - 28 * scale, cy, 70 * scale, 82 * scale, -0.2, theme.secondary, 0.13);
+    drawEllipse(ctx, cx + 6 * scale, cy - 8 * scale, 68 * scale, 84 * scale, -0.2, theme.gradient[0], 0.28);
+    for (let i = 0; i < 8; i++) {
+      const x = cx - 300 * scale + i * 86 * scale;
+      const y = cy + 90 * scale + (i % 2) * 26;
+      strokePath(ctx, [[x, cy - 30 * scale], [x, y - 32 * scale]], theme.secondary, 1.3, 0.08);
+      drawEllipse(ctx, x, y, 12 * scale, 24 * scale, 0, i % 2 ? theme.secondary : theme.accent, 0.12);
+      dot(ctx, x, y, 2.5 * scale, "#ffffff", 0.1);
+    }
+    for (let i = 0; i < 22; i++) {
+      const angle = Math.PI * 2 * (i / 22);
+      drawStar(ctx, cx + Math.cos(angle) * 230 * scale, cy + Math.sin(angle) * 72 * scale, 5 * scale, 2 * scale, i % 2 ? theme.accent : theme.secondary, 0.09);
+    }
+  }
+}
+
+function drawLotusMandala(ctx, theme, width, height) {
+  for (const [cx, cy, scale] of [[width / 2, 250, 1], [width / 2, height - 310, 0.9]]) {
+    drawSoftGlow(ctx, cx, cy, 170 * scale, theme.accent, 0.03);
+    for (let ring = 0; ring < 3; ring++) {
+      const petals = 12 + ring * 4;
+      for (let i = 0; i < petals; i++) {
+        const angle = (Math.PI * 2 * i) / petals + ring * 0.12;
+        const r = (45 + ring * 42) * scale;
+        drawEllipse(ctx, cx + Math.cos(angle) * r, cy + Math.sin(angle) * r, 10 * scale, (28 + ring * 6) * scale, angle, (i + ring) % 2 ? theme.secondary : theme.accent, 0.085 - ring * 0.006);
+      }
+    }
+    for (let i = 0; i < 8; i++) drawDiamond(ctx, cx + Math.cos(i * Math.PI / 4) * 150 * scale, cy + Math.sin(i * Math.PI / 4) * 150 * scale, 9 * scale, theme.secondary, 0.08);
+  }
+}
+
+function drawTempleBells(ctx, theme, width, height) {
+  for (const [cx, cy, scale] of [[142, 520, 1], [width - 142, 520, 1], [185, height - 500, 0.95], [width - 185, height - 500, 0.95]]) {
+    ctx.save();
+    ctx.strokeStyle = hexToRgba(theme.accent, 0.09);
+    ctx.lineWidth = 2.5 * scale;
+    ctx.beginPath();
+    ctx.moveTo(cx - 42 * scale, cy + 54 * scale);
+    ctx.quadraticCurveTo(cx - 30 * scale, cy - 38 * scale, cx, cy - 72 * scale);
+    ctx.quadraticCurveTo(cx + 30 * scale, cy - 38 * scale, cx + 42 * scale, cy + 54 * scale);
+    ctx.lineTo(cx - 42 * scale, cy + 54 * scale);
+    ctx.stroke();
+    ctx.restore();
+    drawEllipse(ctx, cx, cy + 60 * scale, 48 * scale, 9 * scale, 0, theme.secondary, 0.08);
+    dot(ctx, cx, cy + 72 * scale, 5 * scale, theme.accent, 0.11);
+    for (let i = 0; i < 4; i++) strokePath(ctx, [[cx - 28 * scale + i * 18 * scale, cy - 86 * scale], [cx - 42 * scale + i * 22 * scale, cy - 132 * scale, cx + 8 * scale + i * 12 * scale, cy - 154 * scale, cx - 18 * scale + i * 18 * scale, cy - 194 * scale]], i % 2 ? theme.secondary : theme.accent, 1.6 * scale, 0.055);
+  }
+}
+
+function drawCarnivalMasks(ctx, theme, width, height) {
+  for (const [cx, cy, side] of [[140, 430, 1], [width - 140, 430, -1], [175, height - 450, 1], [width - 175, height - 450, -1]]) {
+    drawEllipse(ctx, cx - side * 22, cy, 38, 52, side * 0.18, theme.accent, 0.09);
+    drawEllipse(ctx, cx + side * 22, cy, 38, 52, -side * 0.18, theme.secondary, 0.08);
+    drawEllipse(ctx, cx - side * 18, cy - 8, 10, 5, 0, theme.gradient[0], 0.28);
+    drawEllipse(ctx, cx + side * 18, cy - 8, 10, 5, 0, theme.gradient[0], 0.28);
+    for (let i = 0; i < 5; i++) {
+      const angle = side * (-0.82 + i * 0.28);
+      strokePath(ctx, [[cx, cy - 50], [cx + Math.cos(angle) * 88, cy - 92 + Math.sin(angle) * 28]], i % 2 ? theme.secondary : theme.accent, 2.4, 0.085);
+    }
+    strokePath(ctx, [[cx - side * 86, cy + 78], [cx - side * 28, cy + 112, cx + side * 42, cy + 48, cx + side * 98, cy + 88]], theme.accent, 2, 0.075);
+  }
+}
+
+function drawFolkEmbroidery(ctx, theme, width, height) {
+  for (const x of [72, width - 72]) {
+    for (let i = 0; i < 13; i++) {
+      const y = 360 + i * 160;
+      drawDiamond(ctx, x, y, 20 + (i % 2) * 5, i % 2 ? theme.secondary : theme.accent, 0.08);
+      drawDiamond(ctx, x, y, 9, i % 2 ? theme.accent : theme.secondary, 0.1);
+      strokePath(ctx, [[x - 28, y - 28], [x + 28, y + 28]], theme.accent, 1.6, 0.055);
+      strokePath(ctx, [[x - 28, y + 28], [x + 28, y - 28]], theme.secondary, 1.6, 0.055);
+    }
+  }
+  drawWovenBorders(ctx, theme, width, height, themeVariant(theme, 7));
+}
+
+function drawCityParade(ctx, theme, width, height) {
+  for (const y of [170, 225, height - 245, height - 190]) {
+    strokePath(ctx, [[70, y], [260, y - 34, 430, y + 32, 610, y - 4], [810, y - 42, 988, y + 30, width - 70, y - 8]], y < height / 2 ? theme.accent : theme.secondary, 3, 0.12);
+    for (let i = 0; i < 12; i++) {
+      const x = 110 + i * ((width - 220) / 11);
+      flag(ctx, x, y + 8 + (i % 3) * 10, i % 2 ? theme.secondary : theme.accent);
+    }
+  }
+  for (let i = 0; i < 9; i++) {
+    const x = 160 + i * ((width - 320) / 8);
+    strokePath(ctx, [[x, 360], [x - 42, 450], [x + 42, 450], [x, 360]], theme.secondary, 1.8, 0.055);
+    strokePath(ctx, [[x, height - 360], [x - 42, height - 450], [x + 42, height - 450], [x, height - 360]], theme.accent, 1.8, 0.055);
+  }
+}
+
+function drawMaritimeFlags(ctx, theme, width, height) {
+  for (const y of [190, height - 250]) {
+    for (let row = 0; row < 4; row++) {
+      strokePath(ctx, [[60, y + row * 26], [240, y - 32 + row * 18, 430, y + 42 + row * 12, 620, y], [830, y - 44 + row * 14, 1000, y + 32 + row * 10, width - 60, y - 6]], row % 2 ? theme.secondary : theme.accent, 2, 0.075);
+    }
+    for (let i = 0; i < 14; i++) {
+      const x = 92 + i * ((width - 184) / 13);
+      ctx.fillStyle = hexToRgba(i % 2 ? theme.secondary : theme.accent, 0.13);
+      ctx.beginPath();
+      ctx.moveTo(x, y + 76);
+      ctx.lineTo(x + 22, y + 92 + (i % 2) * 10);
+      ctx.lineTo(x, y + 110);
+      ctx.closePath();
+      ctx.fill();
+    }
+  }
+  drawHarborSignals(ctx, theme, width, height, themeVariant(theme, 6));
+}
+
+function drawDesertGeometry(ctx, theme, width, height) {
+  for (const y of [310, height - 380]) {
+    strokePath(ctx, [[60, y + 70], [250, y - 35, 455, y + 80, 650, y + 6], [850, y - 80, 1020, y + 58, width - 60, y + 12]], theme.accent, 3, 0.09);
+    strokePath(ctx, [[80, y + 120], [300, y + 22, 500, y + 122, 710, y + 42], [900, y - 20, 1055, y + 94, width - 80, y + 52]], theme.secondary, 2, 0.07);
+  }
+  for (const [cx, cy] of [[180, 500], [width - 180, 500], [220, height - 525], [width - 220, height - 525], [width / 2, 250], [width / 2, height - 260]]) {
+    for (let i = 0; i < 8; i++) {
+      const angle = (Math.PI * 2 * i) / 8;
+      drawDiamond(ctx, cx + Math.cos(angle) * 44, cy + Math.sin(angle) * 44, 8, i % 2 ? theme.secondary : theme.accent, 0.085);
+    }
+    drawStar(ctx, cx, cy, 15, 6, theme.secondary, 0.09);
+  }
+}
+
+function drawTropicalBloom(ctx, theme, width, height) {
+  for (const [baseX, baseY, side] of [[86, 500, 1], [width - 86, 500, -1], [115, height - 500, 1], [width - 115, height - 500, -1]]) {
+    for (let i = 0; i < 5; i++) {
+      const angle = side * (-0.85 + i * 0.32);
+      drawEllipse(ctx, baseX + side * (48 + i * 20), baseY - 20 + i * 9, 18, 72, angle, i % 2 ? theme.secondary : theme.accent, 0.075);
+      strokePath(ctx, [[baseX, baseY], [baseX + side * (88 + i * 28), baseY - 50 + i * 14]], theme.secondary, 1.5, 0.055);
+    }
+    flower(ctx, baseX + side * 138, baseY + 78, 38, theme.accent, theme.secondary, 0.105, 7);
+  }
+  drawWaveLattice(ctx, theme, width, height, themeVariant(theme, 8));
+}
+
+function drawOliveBranches(ctx, theme, width, height) {
+  for (const [cx, cy, scale] of [[width / 2, 260, 1], [width / 2, height - 300, 0.9]]) {
+    for (const side of [-1, 1]) {
+      strokePath(ctx, [[cx + side * 18 * scale, cy + 86 * scale], [cx + side * 76 * scale, cy + 16 * scale, cx + side * 122 * scale, cy - 52 * scale, cx + side * 188 * scale, cy - 92 * scale]], theme.secondary, 2, 0.08);
+      for (let i = 0; i < 8; i++) {
+        const x = cx + side * (42 + i * 19) * scale;
+        const y = cy + (55 - i * 20) * scale;
+        drawEllipse(ctx, x, y, 6 * scale, 17 * scale, side * (i % 2 ? -0.65 : 0.55), theme.accent, 0.08);
+        if (i % 3 === 1) dot(ctx, x + side * 9 * scale, y + 7 * scale, 3 * scale, theme.secondary, 0.1);
+      }
+    }
+  }
+}
+
+function drawLaurelTorch(ctx, theme, width, height) {
+  for (const [cx, cy, scale] of [[width / 2, 260, 1], [width / 2, height - 310, 0.86]]) {
+    strokePath(ctx, [[cx, cy + 95 * scale], [cx, cy - 34 * scale]], theme.secondary, 4 * scale, 0.08);
+    drawEllipse(ctx, cx - 8 * scale, cy - 70 * scale, 14 * scale, 38 * scale, -0.22, theme.accent, 0.13);
+    drawEllipse(ctx, cx + 10 * scale, cy - 68 * scale, 10 * scale, 28 * scale, 0.38, theme.secondary, 0.1);
+    for (const side of [-1, 1]) {
+      for (let i = 0; i < 11; i++) {
+        const angle = side * (1.1 + i * 0.11);
+        const r = (78 + i * 10) * scale;
+        const x = cx + Math.cos(angle) * r;
+        const y = cy + Math.sin(angle) * r * 0.9;
+        drawEllipse(ctx, x, y, 6 * scale, 16 * scale, angle, i % 2 ? theme.secondary : theme.accent, 0.08);
+      }
+    }
+  }
+}
+
+function drawSportsMedals(ctx, theme, width, height) {
+  for (const [cx, cy, scale] of [[width / 2, 285, 1], [width / 2, height - 330, 0.9]]) {
+    for (let ring = 0; ring < 4; ring++) {
+      ctx.save();
+      ctx.strokeStyle = hexToRgba(ring % 2 ? theme.secondary : theme.accent, 0.055 + ring * 0.012);
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.ellipse(cx, cy, (190 + ring * 45) * scale, (60 + ring * 13) * scale, -0.08, Math.PI * 0.05, Math.PI * 1.1);
+      ctx.stroke();
+      ctx.restore();
+    }
+    for (let i = 0; i < 5; i++) {
+      const x = cx - 150 * scale + i * 75 * scale;
+      strokePath(ctx, [[x - 18 * scale, cy - 95 * scale], [x, cy - 52 * scale], [x + 18 * scale, cy - 95 * scale]], theme.secondary, 2, 0.08);
+      drawEllipse(ctx, x, cy - 30 * scale, 24 * scale, 24 * scale, 0, i % 2 ? theme.secondary : theme.accent, 0.105);
+      drawStar(ctx, x, cy - 30 * scale, 8 * scale, 3 * scale, "#ffffff", 0.08);
+    }
+  }
+}
+
+function drawBookPress(ctx, theme, width, height) {
+  for (const [cx, cy, scale] of [[width / 2, 275, 1], [width / 2, height - 330, 0.9]]) {
+    ctx.save();
+    ctx.strokeStyle = hexToRgba(theme.accent, 0.09);
+    ctx.lineWidth = 2;
+    roundRect(ctx, cx - 210 * scale, cy - 78 * scale, 190 * scale, 142 * scale, 8 * scale);
+    roundRect(ctx, cx + 20 * scale, cy - 78 * scale, 190 * scale, 142 * scale, 8 * scale);
+    ctx.stroke();
+    ctx.restore();
+    strokePath(ctx, [[cx, cy - 82 * scale], [cx, cy + 72 * scale]], theme.secondary, 2, 0.075);
+    for (let row = 0; row < 6; row++) {
+      strokePath(ctx, [[cx - 178 * scale, cy - 44 * scale + row * 20 * scale], [cx - 58 * scale, cy - 44 * scale + row * 20 * scale]], row % 2 ? theme.secondary : theme.accent, 1.6 * scale, 0.065);
+      strokePath(ctx, [[cx + 58 * scale, cy - 44 * scale + row * 20 * scale], [cx + 178 * scale, cy - 44 * scale + row * 20 * scale]], row % 2 ? theme.accent : theme.secondary, 1.6 * scale, 0.065);
+    }
+    for (let i = 0; i < 12; i++) drawDiamond(ctx, cx - 260 * scale + i * 47 * scale, cy + 118 * scale + (i % 2) * 8 * scale, 6 * scale, i % 2 ? theme.secondary : theme.accent, 0.07);
+  }
+}
+
+function drawMarketBanners(ctx, theme, width, height) {
+  for (const [x, y] of [[86, 360], [width - 386, 360], [116, height - 500], [width - 416, height - 500]]) {
+    ctx.save();
+    ctx.fillStyle = hexToRgba(theme.secondary, 0.055);
+    roundRect(ctx, x, y, 300, 130, 8);
+    ctx.fill();
+    for (let i = 0; i < 6; i++) {
+      ctx.fillStyle = hexToRgba(i % 2 ? theme.accent : theme.secondary, 0.1);
+      roundRect(ctx, x + i * 50, y - 54, 50, 54, 5);
+      ctx.fill();
+    }
+    strokePath(ctx, [[x + 24, y + 132], [x + 24, y + 210]], theme.secondary, 2, 0.065);
+    strokePath(ctx, [[x + 276, y + 132], [x + 276, y + 210]], theme.secondary, 2, 0.065);
+    drawBunting(ctx, theme, x + 18, y + 28, 4);
+    ctx.restore();
+  }
+}
+
+function drawAncestralTable(ctx, theme, width, height) {
+  for (const [cx, cy, scale] of [[width / 2, 350, 1], [width / 2, height - 405, 0.92]]) {
+    drawSoftGlow(ctx, cx, cy, 150 * scale, theme.accent, 0.03);
+    strokePath(ctx, [[cx - 240 * scale, cy + 95 * scale], [cx + 240 * scale, cy + 95 * scale]], theme.secondary, 3, 0.08);
+    strokePath(ctx, [[cx - 210 * scale, cy + 95 * scale], [cx - 250 * scale, cy + 165 * scale]], theme.secondary, 2, 0.06);
+    strokePath(ctx, [[cx + 210 * scale, cy + 95 * scale], [cx + 250 * scale, cy + 165 * scale]], theme.secondary, 2, 0.06);
+    for (let i = 0; i < 3; i++) {
+      const x = cx - 80 * scale + i * 80 * scale;
+      ctx.fillStyle = hexToRgba(theme.secondary, 0.08);
+      roundRect(ctx, x - 10 * scale, cy + 22 * scale, 20 * scale, 58 * scale, 4 * scale);
+      ctx.fill();
+      drawEllipse(ctx, x, cy + 4 * scale, 6 * scale, 16 * scale, 0, theme.accent, 0.12);
+    }
+    flower(ctx, cx + 165 * scale, cy + 48 * scale, 27 * scale, theme.accent, theme.secondary, 0.095, 7);
+    drawEllipse(ctx, cx - 165 * scale, cy + 70 * scale, 42 * scale, 12 * scale, 0, theme.accent, 0.07);
+  }
+}
+
+function drawDoveGarland(ctx, theme, width, height) {
+  for (const [cx, cy, scale] of [[width / 2, 255, 1], [width / 2, height - 300, 0.88]]) {
+    for (const side of [-1, 1]) {
+      drawEllipse(ctx, cx + side * 36 * scale, cy, 58 * scale, 20 * scale, side * -0.35, "#f3f3f5", 0.07);
+      drawEllipse(ctx, cx + side * 82 * scale, cy - 18 * scale, 30 * scale, 11 * scale, side * -0.2, theme.secondary, 0.055);
+    }
+    strokePath(ctx, [[cx - 210 * scale, cy + 95 * scale], [cx - 90 * scale, cy + 145 * scale, cx + 90 * scale, cy + 145 * scale, cx + 210 * scale, cy + 95 * scale]], theme.accent, 2.4 * scale, 0.075);
+    for (let i = 0; i < 13; i++) {
+      const t = i / 12;
+      const x = cx - 205 * scale + t * 410 * scale;
+      const y = cy + (95 + Math.sin(t * Math.PI) * 45) * scale;
+      drawEllipse(ctx, x, y, 5 * scale, 13 * scale, t * Math.PI - 1.2, i % 2 ? theme.secondary : theme.accent, 0.08);
+    }
+    for (let i = 0; i < 11; i++) dot(ctx, cx - 180 * scale + i * 36 * scale, cy - 82 * scale + (i % 3) * 9 * scale, 2.8 * scale, "#ffffff", 0.09);
+  }
+}
+
+function drawStainedGlass(ctx, theme, width, height) {
+  for (const [cx, cy, scale] of [[width / 2, 255, 1], [width / 2, height - 310, 0.86]]) {
+    drawSoftGlow(ctx, cx, cy, 160 * scale, theme.accent, 0.03);
+    for (let ring = 0; ring < 3; ring++) {
+      ctx.save();
+      ctx.strokeStyle = hexToRgba(ring % 2 ? theme.secondary : theme.accent, 0.07);
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.arc(cx, cy, (48 + ring * 42) * scale, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.restore();
+    }
+    for (let i = 0; i < 16; i++) {
+      const angle = (Math.PI * 2 * i) / 16;
+      strokePath(ctx, [[cx, cy], [cx + Math.cos(angle) * 142 * scale, cy + Math.sin(angle) * 142 * scale]], i % 2 ? theme.secondary : theme.accent, 1.5, 0.06);
+      drawEllipse(ctx, cx + Math.cos(angle + 0.1) * 86 * scale, cy + Math.sin(angle + 0.1) * 86 * scale, 10 * scale, 25 * scale, angle, i % 3 ? theme.accent : theme.secondary, 0.055);
+    }
+    drawStar(ctx, cx, cy, 20 * scale, 8 * scale, "#f3f7ff", 0.09);
+  }
 }
 
 function drawKite(ctx, cx, cy, size, rotation, color, secondary) {

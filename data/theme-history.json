@@ -1,6 +1,10 @@
 {
   "version": 1,
+<<<<<<< Updated upstream
   "updatedAt": "2026-06-14T17:26:17.776Z",
+=======
+  "updatedAt": "2026-06-15T08:11:11.077Z",
+>>>>>>> Stashed changes
   "days": {
     "2026-06-12": {
       "title": "Independence Day",
@@ -44,7 +48,8 @@
       "tags": [
         "culture",
         "civic",
-        "celebration"
+        "celebration",
+        "sports"
       ]
     },
     "2026-06-17": {
@@ -75,6 +80,7 @@
         "water",
         "botanical",
         "celebration",
+        "procession",
         "civic",
         "sun",
         "light"

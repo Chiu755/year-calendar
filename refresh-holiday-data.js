@@ -74,7 +74,25 @@ const MOTIF_TAGS = {
   rainGarden: ["water", "botanical", "seasonal"],
   harvestSheaves: ["botanical", "harvest", "seasonal"],
   paperCut: ["civic", "celebration", "culture"],
-  teaSteam: ["culture", "light", "winter"]
+  teaSteam: ["culture", "light", "winter"],
+  dragonDance: ["celebration", "culture", "procession", "folk"],
+  crescentLantern: ["islamic", "religious", "light", "sky"],
+  lotusMandala: ["religious", "botanical", "culture", "heritage"],
+  templeBells: ["religious", "heritage", "light"],
+  carnivalMasks: ["celebration", "procession", "folk", "market"],
+  folkEmbroidery: ["folk", "heritage", "culture"],
+  cityParade: ["civic", "celebration", "procession"],
+  maritimeFlags: ["maritime", "water", "civic", "island"],
+  desertGeometry: ["islamic", "heritage", "sun"],
+  tropicalBloom: ["island", "botanical", "water"],
+  oliveBranches: ["heritage", "botanical", "civic"],
+  laurelTorch: ["civic", "remembrance", "light"],
+  sportsMedals: ["sports", "celebration", "civic"],
+  bookPress: ["literature", "culture", "heritage"],
+  marketBanners: ["market", "celebration", "folk"],
+  ancestralTable: ["remembrance", "religious", "light"],
+  doveGarland: ["remembrance", "light", "civic"],
+  stainedGlass: ["religious", "heritage", "light"]
 };
 
 const MOTIF_STYLES = {
@@ -102,7 +120,25 @@ const MOTIF_STYLES = {
   rainGarden: [["#122735", "#346158", "#101518"], "#87c9b7", "#c8d58f"],
   harvestSheaves: [["#211916", "#604026", "#111314"], "#d8a05f", "#9bb06d"],
   paperCut: [["#25080c", "#7a1e26", "#12090a"], "#f6c85f", "#e83b36"],
-  teaSteam: [["#101827", "#37304d", "#111214"], "#f0c95c", "#f2f0d6"]
+  teaSteam: [["#101827", "#37304d", "#111214"], "#f0c95c", "#f2f0d6"],
+  dragonDance: [["#25080c", "#7a1e26", "#12090a"], "#f6c85f", "#e83b36"],
+  crescentLantern: [["#101729", "#27345f", "#111316"], "#d8c070", "#78bde8"],
+  lotusMandala: [["#171427", "#4c3652", "#111214"], "#d6b6e8", "#87c9b7"],
+  templeBells: [["#171822", "#4d3d32", "#111314"], "#d8b95b", "#78bde8"],
+  carnivalMasks: [["#18142a", "#5a2f4c", "#111315"], "#e87a94", "#78bde8"],
+  folkEmbroidery: [["#171822", "#4d2f32", "#111314"], "#d8b95b", "#e65b5b"],
+  cityParade: [["#101d34", "#4a2432", "#111316"], "#78aee8", "#e85a63"],
+  maritimeFlags: [["#0c2635", "#255d70", "#101417"], "#76cce8", "#f0c95c"],
+  desertGeometry: [["#211916", "#604026", "#111314"], "#d8a05f", "#78bde8"],
+  tropicalBloom: [["#102622", "#465c2d", "#101516"], "#77c98e", "#f0a24a"],
+  oliveBranches: [["#10251f", "#465c2d", "#111515"], "#9bb06d", "#d8b95b"],
+  laurelTorch: [["#151515", "#55302d", "#111111"], "#d8b95b", "#d65345"],
+  sportsMedals: [["#101d34", "#365a70", "#101418"], "#d8b95b", "#78bde8"],
+  bookPress: [["#171822", "#4d3d32", "#111314"], "#d8b95b", "#f2f0d6"],
+  marketBanners: [["#211619", "#63362a", "#111314"], "#f0c95c", "#78bde8"],
+  ancestralTable: [["#101827", "#37304d", "#111214"], "#f0c95c", "#d65345"],
+  doveGarland: [["#101827", "#2e3d51", "#101316"], "#f2f0d6", "#d8c070"],
+  stainedGlass: [["#101a34", "#4a2734", "#111316"], "#9fc8ff", "#e87a94"]
 };
 
 const COUNTRY_PALETTES = {
@@ -473,6 +509,20 @@ function datesForHolidayRange(startKey, endKey, minDate, maxDate) {
 
 function selectMotif(holiday, country) {
   const text = `${holiday.name} ${holiday.localName} ${country.name}`.toLowerCase();
+  if (/dragon boat|lunar|spring festival|chinese new year|tết|tet|seollal|chuseok|duanwu|boat festival/.test(text)) return "dragonDance";
+  if (/eid|ramadan|adha|fitr|islam|hijri|muharram|mawlid/.test(text)) return /desert|oman|qatar|kuwait|saudi|emirates|uae|bahrain/.test(text) ? "desertGeometry" : "crescentLantern";
+  if (/buddha|vesak|diwali|holi|guru|krishna|hindu|buddhist|lotus/.test(text)) return "lotusMandala";
+  if (/saint|assumption|immaculate|corpus christi|pentecost|whit|orthodox|easter|good friday|epiphany|christian|church/.test(text)) return /church|cathedral|glass|saint|assumption|immaculate/.test(text) ? "stainedGlass" : "templeBells";
+  if (/carnival|mardi gras|fiesta|festival|masquerade/.test(text)) return "carnivalMasks";
+  if (/language|literature|book|education|teacher|press|poetry|trubar/.test(text)) return "bookPress";
+  if (/indigenous|cultural diversity|heritage|culture|tradition|folk|autonomy|regional/.test(text)) return "folkEmbroidery";
+  if (/dead|souls|ancestors|ancestral|muertos|all souls/.test(text)) return "ancestralTable";
+  if (/memorial|remembrance|reconciliation|peace|human rights|martyr/.test(text)) return "doveGarland";
+  if (/sea|ocean|island|marine|harbour|harbor|azores|fiji|samoa|tonga|kiribati|seychelles|maldives|barbados|cape verde/.test(text)) return /flower|bloom|tropical|flora/.test(text) ? "tropicalBloom" : "maritimeFlags";
+  if (/independence|constitution|national|republic|liberation|victory|bastille|unity|foundation|statehood/.test(text)) return /victory|liberation|reconciliation|peace/.test(text) ? "laurelTorch" : "cityParade";
+  if (/sport|youth|games|medal|olympic|parade/.test(text)) return "sportsMedals";
+  if (/market|fair|bank holiday|summer bank|spring bank/.test(text)) return "marketBanners";
+  if (/olive|democracy|freedom/.test(text)) return "oliveBranches";
   if (/christmas|boxing|new year|independence|constitution|national|republic|liberation|victory|bastille|unity|foundation/.test(text)) return "fireworks";
   if (/valentine|rose|mother|flower|buddha|vesak|all saints|memorial|remembrance/.test(text)) return "petals";
   if (/patrick/.test(text)) return "clover";
@@ -511,6 +561,15 @@ function inferTags(holiday, motif) {
   if (/moon|star|lantern|light|eve/.test(text)) tags.push("sky", "light");
   if (/spring|flower|rose|green|qingming/.test(text)) tags.push("botanical");
   if (/memorial|remembrance|tomb|all saints/.test(text)) tags.push("memorial");
+  if (/eid|ramadan|adha|fitr|islam|hijri|muharram|mawlid/.test(text)) tags.push("islamic", "religious");
+  if (/saint|christian|church|orthodox|easter|pentecost|epiphany|buddha|vesak|diwali|hindu|buddhist/.test(text)) tags.push("religious");
+  if (/parade|procession|carnival|festival|mardi gras|fiesta/.test(text)) tags.push("procession");
+  if (/market|fair|bank holiday/.test(text)) tags.push("market");
+  if (/indigenous|culture|heritage|language|literature|autonomy|regional|folk|tradition/.test(text)) tags.push("heritage", "folk");
+  if (/sea|ocean|island|marine|harbour|harbor|azores|port/.test(text)) tags.push("maritime");
+  if (/memorial|remembrance|reconciliation|peace|martyr|dead|souls|ancestors|muertos/.test(text)) tags.push("remembrance");
+  if (/language|literature|book|education|teacher|poetry|press/.test(text)) tags.push("literature");
+  if (/sport|youth|games|medal|olympic/.test(text)) tags.push("sports");
   return Array.from(new Set(tags));
 }
 
