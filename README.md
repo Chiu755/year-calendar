@@ -1,14 +1,49 @@
 # Year Calendar Wallpaper
 
-This branch contains the wallpaper renderer and the current published wallpaper.
+An automated year-calendar wallpaper generator for iPhone. The project builds a dark illustrated calendar wallpaper every day, picks the most visually interesting holiday or cultural observance for that date, and publishes the current wallpaper as:
 
-- `output/today.png` is the latest wallpaper used by GitHub Pages.
-- `data/holiday-cache.js` is refreshed automatically as a 90-day rolling holiday window from all Nager.Date public-holiday countries, OpenHolidays, and curated cultural observances.
-- `data/holiday-content.js` stores structured holiday names, types, and Chinese descriptions; run `npm run content:gaps -- --limit 50` to find missing descriptions, add `--legacy-only` to migrate old intro entries, or pass `--cache ./tmp-cache.js` after generating a future window with `npm run refresh-holidays -- --date YYYY-MM-DD --output ./tmp-cache.js --strict-providers`.
-- `npm run content:validate` checks the structured holiday content database for empty fields, TODO text, uncovered legacy intro keys, and risky duplicate lookup keys.
-- `npm run content:gaps:check` is the CI gate for the current holiday cache: it fails if Nager/OpenHolidays provider data is missing, uncovered, or still relying on legacy intros.
-- `npm run content:scan -- --start YYYY-MM-DD --windows 4 --report-json holiday-content-coverage.json` scans multiple future provider windows into ignored temp files and reports missing or legacy-only content without overwriting the production cache.
-- `.github/workflows/scan-holiday-content.yml` validates the content database, runs the same coverage scan in GitHub Actions, and uploads text, JSON, and JS stub artifacts for the next content batch; it never commits temporary caches.
-- Chinese solar terms are not used as wallpaper themes.
-- `data/theme-history.json` tracks recent motif choices so generated wallpapers vary over time.
-- Generated wallpaper history lives on the `generated-wallpapers` branch.
+`output/today.png`
+
+GitHub Actions handles the routine work: refreshing the rolling holiday cache, rendering today's wallpaper, generating the next 7 days, and keeping wallpaper history in the archive branch.
+
+## How It Works
+
+The daily theme comes from a ranked list of candidates:
+
+- public holidays from Nager.Date
+- holidays from OpenHolidays
+- curated cultural and international observances
+- seasonal fallback themes when no suitable holiday is available
+
+Holiday names, display labels, and short Chinese descriptions are stored in the local content database so the rendered text stays consistent and readable.
+
+The visual system uses reusable motif rules instead of hand-drawing every holiday. Each theme selects a motif, palette, and semantic ornaments, then renders the final PNG through the canvas-based wallpaper renderer.
+
+## Automation
+
+- `refresh-holidays` keeps `data/holiday-cache.js` updated as a rolling future window.
+- `render` creates `output/today.png`, archives the next 7 days, and saves discarded candidate drafts.
+- GitHub Pages serves `output/today.png` from `main`.
+- Long-term generated wallpaper history is kept on the `generated-wallpapers` branch.
+
+## Local Commands
+
+```bash
+npm run refresh-holidays
+npm run render
+npm run content:validate
+npm run content:gaps:check
+```
+
+Useful content-maintenance commands:
+
+```bash
+npm run content:gaps -- --limit 50
+npm run content:scan -- --start YYYY-MM-DD --windows 4 --report-json holiday-content-coverage.json
+```
+
+For the maintainer-oriented checklist, see [docs/maintenance.md](docs/maintenance.md).
+
+## Notes
+
+Chinese solar terms are intentionally not used as wallpaper themes. The project focuses on holidays, cultural observances, and fallback seasonal moods.
