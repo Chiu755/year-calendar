@@ -1,16 +1,9 @@
 {
-  "generatedAt": "2026-06-14T17:26:17.782Z",
-  "baseDate": "2026-06-15",
-  "ensuredThrough": "2026-06-22",
+  "generatedAt": "2026-06-15T19:52:29.873Z",
+  "baseDate": "2026-06-16",
+  "ensuredThrough": "2026-06-23",
   "today": "output/today.png",
   "generated": [
-    {
-      "date": "2026-06-15",
-      "output": "output/2026/2026.06/2026.06.15.png",
-      "selectedTheme": "Sacred Heart",
-      "selectedMotif": "wovenPattern",
-      "discardedCount": 2
-    },
     {
       "date": "2026-06-16",
       "output": "output/2026/2026.06/2026.06.16.png",
@@ -59,6 +52,13 @@
       "selectedTheme": "Anti-Fascist Struggle Day",
       "selectedMotif": "wovenPattern",
       "discardedCount": 1
+    },
+    {
+      "date": "2026-06-23",
+      "output": "output/2026/2026.06/2026.06.23.png",
+      "selectedTheme": "Celebration of independence",
+      "selectedMotif": "fireworks",
+      "discardedCount": 4
     }
   ],
   "skipped": []

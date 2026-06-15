@@ -1,47 +1,7 @@
 {
   "version": 1,
-<<<<<<< Updated upstream
-  "updatedAt": "2026-06-14T17:26:17.776Z",
-=======
-  "updatedAt": "2026-06-15T08:11:11.077Z",
->>>>>>> Stashed changes
+  "updatedAt": "2026-06-15T19:52:29.872Z",
   "days": {
-    "2026-06-12": {
-      "title": "Independence Day",
-      "motif": "fireworks",
-      "tags": [
-        "sky",
-        "celebration",
-        "light",
-        "civic"
-      ]
-    },
-    "2026-06-13": {
-      "title": "St Anthony",
-      "motif": "wovenPattern",
-      "tags": [
-        "culture",
-        "civic",
-        "sun"
-      ]
-    },
-    "2026-06-14": {
-      "title": "Municipal holiday",
-      "motif": "wovenPattern",
-      "tags": [
-        "culture",
-        "civic",
-        "celebration"
-      ]
-    },
-    "2026-06-15": {
-      "title": "Sacred Heart",
-      "motif": "wovenPattern",
-      "tags": [
-        "culture",
-        "civic"
-      ]
-    },
     "2026-06-16": {
       "title": "Youth Day",
       "motif": "wovenPattern",
@@ -115,6 +75,17 @@
         "culture",
         "civic",
         "celebration"
+      ]
+    },
+    "2026-06-23": {
+      "title": "Celebration of independence",
+      "motif": "fireworks",
+      "tags": [
+        "sky",
+        "celebration",
+        "light",
+        "civic",
+        "mountain"
       ]
     }
   }
