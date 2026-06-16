@@ -1,16 +1,9 @@
 {
-  "generatedAt": "2026-06-15T19:52:29.873Z",
-  "baseDate": "2026-06-16",
-  "ensuredThrough": "2026-06-23",
+  "generatedAt": "2026-06-16T19:42:36.383Z",
+  "baseDate": "2026-06-17",
+  "ensuredThrough": "2026-06-24",
   "today": "output/today.png",
   "generated": [
-    {
-      "date": "2026-06-16",
-      "output": "output/2026/2026.06/2026.06.16.png",
-      "selectedTheme": "Youth Day",
-      "selectedMotif": "wovenPattern",
-      "discardedCount": 1
-    },
     {
       "date": "2026-06-17",
       "output": "output/2026/2026.06/2026.06.17.png",
@@ -57,6 +50,13 @@
       "date": "2026-06-23",
       "output": "output/2026/2026.06/2026.06.23.png",
       "selectedTheme": "Celebration of independence",
+      "selectedMotif": "fireworks",
+      "discardedCount": 4
+    },
+    {
+      "date": "2026-06-24",
+      "output": "output/2026/2026.06/2026.06.24.png",
+      "selectedTheme": "National Holiday",
       "selectedMotif": "fireworks",
       "discardedCount": 4
     }
