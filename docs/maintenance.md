@@ -74,4 +74,10 @@ The scan writes ignored temporary files and reports missing or legacy-only conte
 
 - Chinese solar terms are intentionally not used as wallpaper themes.
 - Fallback themes should stay available until holiday coverage is good enough to cover every date naturally.
-- New motifs should be wired in both `theme-engine.js` and `refresh-holiday-data.js`, then added to fallback rotation if they are suitable for ordinary days.
+- `theme-engine.js` owns theme creation, candidate ranking, and daily selection.
+- `theme-palettes.js` owns theme colors, cultural palettes, and monthly fallback moods.
+- `theme-motifs.js` owns motif tags, seasonal motif copy, and fallback motif rotation.
+- `theme-renderers.js` owns the shared canvas background, caption, and low-level drawing helpers.
+- `motif-renderers.js` owns the large motif dispatcher and main motif drawing functions.
+- `ornament-renderers.js` owns semantic ornaments, cultural overlays, and signature glyphs.
+- New motifs should be wired in `theme-motifs.js`, `motif-renderers.js`, and `refresh-holiday-data.js`, then added to fallback rotation if they are suitable for ordinary days.
