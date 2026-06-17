@@ -1,16 +1,9 @@
 {
-  "generatedAt": "2026-06-16T19:42:36.383Z",
-  "baseDate": "2026-06-17",
-  "ensuredThrough": "2026-06-24",
+  "generatedAt": "2026-06-17T18:27:20.426Z",
+  "baseDate": "2026-06-18",
+  "ensuredThrough": "2026-06-25",
   "today": "output/today.png",
   "generated": [
-    {
-      "date": "2026-06-17",
-      "output": "output/2026/2026.06/2026.06.17.png",
-      "selectedTheme": "Icelandic National Day",
-      "selectedMotif": "fireworks",
-      "discardedCount": 0
-    },
     {
       "date": "2026-06-18",
       "output": "output/2026/2026.06/2026.06.18.png",
@@ -59,6 +52,13 @@
       "selectedTheme": "National Holiday",
       "selectedMotif": "fireworks",
       "discardedCount": 4
+    },
+    {
+      "date": "2026-06-25",
+      "output": "output/2026/2026.06/2026.06.25.png",
+      "selectedTheme": "Independence Day",
+      "selectedMotif": "fireworks",
+      "discardedCount": 1
     }
   ],
   "skipped": []
