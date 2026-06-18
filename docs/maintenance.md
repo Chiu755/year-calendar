@@ -7,7 +7,7 @@ This document collects the operational notes for keeping the wallpaper automatio
 - `output/` is generated locally by render commands but is ignored on `main`.
 - `npm run render` generates today's wallpaper, the next 7 days, archived output images, discarded draft candidates, and `output/render-summary.json`.
 - `data/theme-history.json` tracks recent motif choices so fallback wallpapers avoid repeating the same visual language too often.
-- Current and archived wallpaper output is kept on the `generated-wallpapers` branch.
+- Current and archived wallpaper output is kept on the `generated-wallpapers` branch, which should be configured as the GitHub Pages publishing branch.
 
 ## Holiday Cache
 
@@ -53,6 +53,8 @@ git diff --check
 `npm run content:validate` checks for empty fields, TODO text, uncovered legacy intro keys, and risky duplicate lookup keys.
 
 `npm run content:gaps:check` is the CI gate for the current holiday cache. It fails if provider data is missing, uncovered, or still relying on legacy intros.
+
+Local rendering uses Puppeteer's cached Chrome. If the local cache is missing or corrupted, run `npx puppeteer browsers install chrome`, or set `PUPPETEER_CACHE_DIR` to a clean cache directory. To use a manually installed browser, set `PUPPETEER_EXECUTABLE_PATH` explicitly.
 
 ## Coverage Scans
 

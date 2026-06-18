@@ -28,6 +28,16 @@ const EXPECTED_PNG = {
   height: VIEWPORT.height * VIEWPORT.deviceScaleFactor,
   minBytes: 200000
 };
+function browserExecutablePath() {
+  const explicitPath = process.env.PUPPETEER_EXECUTABLE_PATH;
+  if (explicitPath) {
+    if (!fs.existsSync(explicitPath)) {
+      throw new Error(`PUPPETEER_EXECUTABLE_PATH does not exist: ${explicitPath}`);
+    }
+    return explicitPath;
+  }
+  return null;
+}
 
 function parseArgs(argv) {
   const options = {
@@ -301,7 +311,9 @@ const dates = datesToEnsure(baseDate);
 fs.mkdirSync(OUTPUT_ROOT, { recursive: true });
 fs.mkdirSync(PUPPETEER_PROFILE, { recursive: true });
 
+const executablePath = browserExecutablePath();
 const browser = await puppeteer.launch({
+  ...(executablePath ? { executablePath } : {}),
   args: [
     "--no-sandbox",
     "--disable-setuid-sandbox",

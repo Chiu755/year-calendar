@@ -22,7 +22,7 @@ The visual system uses reusable motif rules instead of hand-drawing every holida
 - `refresh-holidays` keeps `data/holiday-cache.js` updated as a rolling future window.
 - `render` creates `output/today.png`, archives the next 7 days, and saves discarded candidate drafts.
 - Generated image output is ignored on `main`.
-- Current and archived wallpaper output is kept on the `generated-wallpapers` branch.
+- Current and archived wallpaper output is kept on the `generated-wallpapers` branch, which is the GitHub Pages publishing branch.
 
 ## Local Commands
 
