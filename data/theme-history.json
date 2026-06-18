@@ -1,0 +1,122 @@
+{
+  "version": 1,
+  "updatedAt": "2026-06-18T18:32:20.214Z",
+  "days": {
+    "2026-06-16": {
+      "title": "Youth Day",
+      "motif": "wovenPattern",
+      "tags": [
+        "culture",
+        "civic",
+        "celebration",
+        "sports"
+      ]
+    },
+    "2026-06-17": {
+      "title": "Icelandic National Day",
+      "motif": "fireworks",
+      "tags": [
+        "sky",
+        "celebration",
+        "light",
+        "civic",
+        "winter"
+      ]
+    },
+    "2026-06-18": {
+      "title": "Constitution Day",
+      "motif": "fireworks",
+      "tags": [
+        "sky",
+        "celebration",
+        "light",
+        "civic"
+      ]
+    },
+    "2026-06-19": {
+      "title": "Dragon Boat Festival",
+      "motif": "waterFlowers",
+      "tags": [
+        "water",
+        "botanical",
+        "celebration",
+        "procession",
+        "civic",
+        "sun",
+        "light"
+      ]
+    },
+    "2026-06-20": {
+      "title": "World Refugee Day",
+      "motif": "mountainFlags",
+      "tags": [
+        "mountain",
+        "civic",
+        "celebration",
+        "culture",
+        "international"
+      ]
+    },
+    "2026-06-21": {
+      "title": "World Music Day",
+      "motif": "sunRibbons",
+      "tags": [
+        "sun",
+        "celebration",
+        "culture",
+        "international"
+      ]
+    },
+    "2026-06-22": {
+      "title": "Anti-Fascist Struggle Day",
+      "motif": "wovenPattern",
+      "tags": [
+        "culture",
+        "civic",
+        "celebration"
+      ]
+    },
+    "2026-06-23": {
+      "title": "Grand Duke's Birthday",
+      "motif": "dragonDance",
+      "tags": [
+        "culture",
+        "civic",
+        "celebration",
+        "procession",
+        "folk"
+      ]
+    },
+    "2026-06-24": {
+      "title": "Discovery Day",
+      "motif": "folkEmbroidery",
+      "tags": [
+        "culture",
+        "civic",
+        "celebration",
+        "botanical",
+        "folk",
+        "heritage"
+      ]
+    },
+    "2026-06-25": {
+      "title": "Statehood Day",
+      "motif": "paperCut",
+      "tags": [
+        "civic",
+        "celebration",
+        "culture"
+      ]
+    },
+    "2026-06-26": {
+      "title": "Independence Day",
+      "motif": "fireworks",
+      "tags": [
+        "sky",
+        "celebration",
+        "light",
+        "civic"
+      ]
+    }
+  }
+}

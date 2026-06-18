@@ -1,16 +1,9 @@
 {
-  "generatedAt": "2026-06-17T18:27:20.426Z",
-  "baseDate": "2026-06-18",
-  "ensuredThrough": "2026-06-25",
+  "generatedAt": "2026-06-18T18:32:20.217Z",
+  "baseDate": "2026-06-19",
+  "ensuredThrough": "2026-06-26",
   "today": "output/today.png",
   "generated": [
-    {
-      "date": "2026-06-18",
-      "output": "output/2026/2026.06/2026.06.18.png",
-      "selectedTheme": "Constitution Day",
-      "selectedMotif": "fireworks",
-      "discardedCount": 0
-    },
     {
       "date": "2026-06-19",
       "output": "output/2026/2026.06/2026.06.19.png",
@@ -28,8 +21,8 @@
     {
       "date": "2026-06-21",
       "output": "output/2026/2026.06/2026.06.21.png",
-      "selectedTheme": "National Aboriginal Day",
-      "selectedMotif": "fireworks",
+      "selectedTheme": "World Music Day",
+      "selectedMotif": "sunRibbons",
       "discardedCount": 4
     },
     {
@@ -42,23 +35,30 @@
     {
       "date": "2026-06-23",
       "output": "output/2026/2026.06/2026.06.23.png",
-      "selectedTheme": "Celebration of independence",
-      "selectedMotif": "fireworks",
+      "selectedTheme": "Grand Duke's Birthday",
+      "selectedMotif": "dragonDance",
       "discardedCount": 4
     },
     {
       "date": "2026-06-24",
       "output": "output/2026/2026.06/2026.06.24.png",
-      "selectedTheme": "National Holiday",
-      "selectedMotif": "fireworks",
+      "selectedTheme": "Discovery Day",
+      "selectedMotif": "folkEmbroidery",
       "discardedCount": 4
     },
     {
       "date": "2026-06-25",
       "output": "output/2026/2026.06/2026.06.25.png",
+      "selectedTheme": "Statehood Day",
+      "selectedMotif": "paperCut",
+      "discardedCount": 1
+    },
+    {
+      "date": "2026-06-26",
+      "output": "output/2026/2026.06/2026.06.26.png",
       "selectedTheme": "Independence Day",
       "selectedMotif": "fireworks",
-      "discardedCount": 1
+      "discardedCount": 0
     }
   ],
   "skipped": []
