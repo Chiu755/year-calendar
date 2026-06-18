@@ -2,6 +2,7 @@ process.env.TZ = "Asia/Shanghai";
 
 import fs from "fs";
 import path from "path";
+import { createHolidayCacheBuilder } from "./holiday-cache-builder.js";
 
 const OUTPUT_FILE = path.join("data", "holiday-cache.js");
 const API_ROOT = "https://date.nager.at/api/v3";
@@ -311,24 +312,6 @@ function yearsInRange(startDate, endDate) {
 
 function inRange(date, startDate, endDate) {
   return date >= startDate && date <= endDate;
-}
-
-function coverageForDays(rankedDays, startDate, endDate) {
-  const missingDates = [];
-  let totalDays = 0;
-
-  for (let date = startDate; date <= endDate; date = addDays(date, 1)) {
-    totalDays++;
-    const key = dateKey(date);
-    if (!rankedDays[key]) missingDates.push(key);
-  }
-
-  return {
-    totalDays,
-    candidateDays: Object.keys(rankedDays).length,
-    fallbackDays: missingDates.length,
-    fallbackDates: missingDates
-  };
 }
 
 function readExistingHolidayCache(filePath = OUTPUT_FILE) {
@@ -784,16 +767,6 @@ function scoreOpenHoliday(holiday, country) {
   return country.affinity * 10 + visualScore(normalizedHoliday) * 8 + typeBoost + nationwideBoost;
 }
 
-function dedupeThemes(themes) {
-  const seen = new Map();
-  for (const theme of themes) {
-    const key = `${theme.title.toLowerCase()}-${theme.source.countryCode || "global"}`;
-    const existing = seen.get(key);
-    if (!existing || theme.score > existing.score) seen.set(key, theme);
-  }
-  return Array.from(seen.values());
-}
-
 function themeForCulturalObservance(observance, date) {
   return {
     title: observance.title,
@@ -817,14 +790,12 @@ function themeForCulturalObservance(observance, date) {
   };
 }
 
-function addCulturalObservances(days, startDate, endDate) {
+function addCulturalObservances(builder, startDate, endDate) {
   for (const year of yearsInRange(startDate, endDate)) {
     for (const observance of CULTURAL_OBSERVANCES) {
       const date = dateFromKey(`${year}-${observance.monthDay}`);
       if (!date || !inRange(date, startDate, endDate)) continue;
-      const key = dateKey(date);
-      days[key] ||= [];
-      days[key].push(themeForCulturalObservance(observance, date));
+      builder.addTheme(dateKey(date), themeForCulturalObservance(observance, date));
     }
   }
 }
@@ -834,7 +805,13 @@ async function buildHolidayCache(options) {
   if (!startDate) throw new Error(`Invalid --date value: ${options.date}`);
   const endDate = addDays(startDate, options.days);
   const years = yearsInRange(startDate, endDate);
-  const days = {};
+  const builder = createHolidayCacheBuilder({
+    startDate,
+    endDate,
+    maxCandidatesPerDay: MAX_CANDIDATES_PER_DAY,
+    dateKey,
+    addDays
+  });
   const errors = [];
   const countries = await countryProfile();
   let openHolidaysCountries = [];
@@ -878,8 +855,7 @@ async function buildHolidayCache(options) {
       const date = dateFromKey(holiday.date);
       if (!date || !inRange(date, startDate, endDate)) continue;
       const score = scoreHoliday(holiday, result.country);
-      days[holiday.date] ||= [];
-      days[holiday.date].push(themeForHoliday(holiday, result.country, score));
+      builder.addTheme(holiday.date, themeForHoliday(holiday, result.country, score));
     }
   }
 
@@ -915,8 +891,7 @@ async function buildHolidayCache(options) {
         const score = scoreOpenHoliday(holiday, result.country);
         for (const date of datesForHolidayRange(holiday.startDate, holiday.endDate, startDate, endDate)) {
           const key = dateKey(date);
-          days[key] ||= [];
-          days[key].push(themeForOpenHoliday(holiday, result.country, score));
+          builder.addTheme(key, themeForOpenHoliday(holiday, result.country, score));
         }
       }
     }
@@ -936,15 +911,8 @@ async function buildHolidayCache(options) {
     }
   }
 
-  addCulturalObservances(days, startDate, endDate);
-
-  const rankedDays = {};
-  for (const [day, themes] of Object.entries(days).sort(([a], [b]) => a.localeCompare(b))) {
-    rankedDays[day] = dedupeThemes(themes)
-      .sort((a, b) => b.score - a.score)
-      .slice(0, MAX_CANDIDATES_PER_DAY);
-  }
-  const coverage = coverageForDays(rankedDays, startDate, endDate);
+  addCulturalObservances(builder, startDate, endDate);
+  const { days: rankedDays, coverage } = builder.finalize();
 
   return {
     version: 1,

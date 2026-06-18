@@ -12,6 +12,8 @@
     "content:scan": "node scan-holiday-content-coverage.js",
     "content:audit": "node audit-holiday-content-coverage.js",
     "content:validate": "node validate-holiday-content.js",
+    "publish:restore-history": "node publish-generated-assets.js restore-history",
+    "publish:archive": "node publish-generated-assets.js publish-archive",
     "diagnostics": "node collect-action-diagnostics.js"
   },
   "dependencies": {

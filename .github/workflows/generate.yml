@@ -73,19 +73,7 @@ jobs:
           npm run content:gaps:check
 
       - name: Restore theme history
-        run: |
-          mkdir -p data
-          if git fetch origin generated-wallpapers:refs/remotes/origin/generated-wallpapers && git show origin/generated-wallpapers:data/theme-history.json > data/theme-history.json; then
-            echo "Restored theme history from generated-wallpapers"
-          else
-            history_source="$(git log --diff-filter=AM --format=%H -n 1 -- data/theme-history.json || true)"
-            if [ -n "$history_source" ] && git show "$history_source:data/theme-history.json" > data/theme-history.json; then
-              echo "Restored theme history from main history"
-            else
-              printf '{\n  "version": 1,\n  "updatedAt": null,\n  "days": {}\n}\n' > data/theme-history.json
-              echo "Started a new theme history"
-            fi
-          fi
+        run: npm run publish:restore-history
 
       - name: Render wallpaper
         run: npm run render
@@ -114,46 +102,6 @@ jobs:
 
       - name: Commit generated archive
         run: |
-          find output -maxdepth 4 -type f | sort
-          if [ -d drafts ]; then find drafts -maxdepth 4 -type f | sort; fi
-
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-
-          asset_branch="generated-wallpapers"
-          asset_worktree="../generated-wallpapers"
-
-          if git ls-remote --exit-code --heads origin "$asset_branch"; then
-            git fetch origin "$asset_branch:$asset_branch"
-            git worktree add "$asset_worktree" "$asset_branch"
-          else
-            git worktree add --detach "$asset_worktree"
-            git -C "$asset_worktree" checkout --orphan "$asset_branch"
-            git -C "$asset_worktree" rm -rf . || true
-          fi
-
-          if [ ! -d "$asset_worktree/output" ] || ! find "$asset_worktree/output" -mindepth 1 -maxdepth 1 -type d | grep -q .; then
-            archive_source="$(git log --diff-filter=AM --format=%H -n 1 -- output drafts || true)"
-            if [ -n "$archive_source" ]; then
-              git -C "$asset_worktree" checkout "$archive_source" -- output || true
-              git -C "$asset_worktree" checkout "$archive_source" -- drafts || true
-            fi
-          fi
-
-          mkdir -p "$asset_worktree/output"
-          cp -R output/. "$asset_worktree/output/"
-          mkdir -p "$asset_worktree/data"
-          cp data/theme-history.json "$asset_worktree/data/theme-history.json"
-
-          if [ -d drafts ]; then
-            mkdir -p "$asset_worktree/drafts"
-            cp -R drafts/. "$asset_worktree/drafts/"
-          fi
-
-          if [ -d "$asset_worktree/drafts" ]; then find "$asset_worktree/drafts" -name "*.json" -delete; fi
-
-          git -C "$asset_worktree" add -A output
-          git -C "$asset_worktree" add -A data/theme-history.json
-          if [ -d "$asset_worktree/drafts" ]; then git -C "$asset_worktree" add -A drafts; fi
-          git -C "$asset_worktree" commit -m "chore: update generated wallpapers" || echo "No generated image changes"
-          git -C "$asset_worktree" push origin "$asset_branch"
+          npm run publish:archive
