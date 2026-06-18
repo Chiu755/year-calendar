@@ -536,12 +536,75 @@ function primaryHolidayTypeLabel(types = []) {
 }
 
 function diversityPenalty(theme, avoidMotifs = []) {
-  if (!theme.tags.includes("month-mood")) return 0;
-  const recentIndex = avoidMotifs.lastIndexOf(theme.motif);
+  const recentMotifs = avoidMotifs.slice(-7);
+  const recentIndex = recentMotifs.lastIndexOf(theme.motif);
   if (recentIndex === -1) return 0;
-  const recency = avoidMotifs.length - recentIndex;
-  if (recency <= 7) return 40 - recency * 3;
-  return Math.max(5, 16 - (recency - 7) * 2);
+  const recency = recentMotifs.length - recentIndex;
+  const occurrences = recentMotifs.filter((motif) => motif === theme.motif).length;
+  const monthMoodPenalty = theme.tags.includes("month-mood") ? 12 : 0;
+  const recencyPenalty = [0, 36, 28, 20, 14, 10, 7, 5][recency] || 0;
+  const frequencyPenalty = Math.max(0, occurrences - 1) * 10;
+  return recencyPenalty + frequencyPenalty + monthMoodPenalty;
+}
+
+const MOTIF_ALTERNATIVES = {
+  fireworks: ["cityParade", "laurelTorch", "streamers", "sunRibbons", "starfield", "maritimeFlags"],
+  wovenPattern: ["folkEmbroidery", "bookPress", "marketBanners", "paperCut", "streamers", "lotusMandala"],
+  waterFlowers: ["maritimeFlags", "tropicalBloom", "rainGarden", "sunRibbons", "paperKites"],
+  mountainFlags: ["cityParade", "maritimeFlags", "laurelTorch", "aurora", "paperKites"],
+  sunRibbons: ["sportsMedals", "cityParade", "streamers", "paperKites", "marketBanners"],
+  paperCut: ["dragonDance", "lanterns", "folkEmbroidery", "cityParade", "carnivalMasks"],
+  streamers: ["cityParade", "marketBanners", "carnivalMasks", "paperKites", "sportsMedals"],
+  starfield: ["moonOrbit", "crescentLantern", "aurora", "stainedGlass", "doveGarland"],
+  petals: ["lotusMandala", "tropicalBloom", "oliveBranches", "rainGarden", "springBuds"],
+  candle: ["doveGarland", "stainedGlass", "templeBells", "ancestralTable", "crescentLantern"],
+  lanterns: ["crescentLantern", "dragonDance", "marketBanners", "paperCut", "starfield"]
+};
+
+function recentMotifSet(avoidMotifs = [], days = 3) {
+  return new Set(avoidMotifs.slice(-days));
+}
+
+function semanticMotifAlternatives(theme) {
+  const tags = theme.tags || [];
+  const alternatives = [];
+  if (tags.includes("civic")) alternatives.push("cityParade", "laurelTorch", "maritimeFlags", "streamers");
+  if (tags.includes("celebration")) alternatives.push("marketBanners", "carnivalMasks", "sunRibbons", "sportsMedals");
+  if (tags.includes("water") || tags.includes("island")) alternatives.push("maritimeFlags", "tropicalBloom", "rainGarden");
+  if (tags.includes("religious")) alternatives.push("stainedGlass", "templeBells", "crescentLantern", "lotusMandala");
+  if (tags.includes("remembrance") || tags.includes("memorial")) alternatives.push("doveGarland", "ancestralTable", "candle", "oliveBranches");
+  if (tags.includes("culture") || tags.includes("heritage")) alternatives.push("folkEmbroidery", "bookPress", "lotusMandala", "templeBells");
+  if (tags.includes("sky")) alternatives.push("moonOrbit", "aurora", "starfield", "paperKites");
+  return alternatives;
+}
+
+function diversifyRecentMotif(theme, avoidMotifs = [], date, index) {
+  const recentMotifs = recentMotifSet(avoidMotifs);
+  if (!recentMotifs.has(theme.motif)) return theme;
+
+  const veryRecentIndex = avoidMotifs.slice(-2).lastIndexOf(theme.motif);
+  if (veryRecentIndex === -1) return theme;
+
+  const monthMotifs = MONTH_MOTIF_ROTATION[date.getMonth()] || [];
+  const alternatives = [
+    ...(MOTIF_ALTERNATIVES[theme.motif] || []),
+    ...semanticMotifAlternatives(theme),
+    ...monthMotifs
+  ];
+  const uniqueAlternatives = Array.from(new Set(alternatives))
+    .filter((motif) => motif !== theme.motif && MOTIF_TAGS[motif] && !recentMotifs.has(motif));
+
+  if (uniqueAlternatives.length < 3) return theme;
+
+  const shouldDiversify = themeVariant(theme, 100, index + 23) < 65;
+  if (!shouldDiversify) return theme;
+
+  const motif = uniqueAlternatives[(themeVariant(theme, uniqueAlternatives.length, index + 11)) % uniqueAlternatives.length];
+  return {
+    ...theme,
+    motif,
+    tags: Array.from(new Set([...(theme.tags || []), ...(MOTIF_TAGS[motif] || [])]))
+  };
 }
 
 function rankDailyThemes(date, options = {}) {
@@ -572,10 +635,11 @@ function rankDailyThemes(date, options = {}) {
   const seed = seedForDate(date);
   return candidates
     .map((theme, index) => {
-      const variedTheme = applyPaletteAtmosphere(theme, date, index);
+      const diversifiedTheme = diversifyRecentMotif(theme, avoidMotifs, date, index);
+      const variedTheme = applyPaletteAtmosphere(diversifiedTheme, date, index);
       return {
         theme: variedTheme,
-        score: theme.priority + seededJitter(seed, index) * 6 - diversityPenalty(theme, avoidMotifs),
+        score: diversifiedTheme.priority + seededJitter(seed, index) * 6 - diversityPenalty(diversifiedTheme, avoidMotifs),
         rankSeed: seed,
         sourceIndex: index
       };

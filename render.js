@@ -9,7 +9,7 @@ import { pathToFileURL } from "url";
 const OUTPUT_ROOT = "output";
 const DRAFT_ROOT = "drafts";
 const DATA_ROOT = "data";
-const THEME_HISTORY_FILE = path.join(DATA_ROOT, "theme-history.json");
+const THEME_HISTORY_FILE = process.env.THEME_HISTORY_FILE || path.join(DATA_ROOT, "theme-history.json");
 const TODAY_OUTPUT = path.join(OUTPUT_ROOT, "today.png");
 const RENDER_SUMMARY_FILE = path.join(OUTPUT_ROOT, "render-summary.json");
 const HTML_ENTRY = path.resolve("index.html");
@@ -163,7 +163,7 @@ function trimThemeHistory(history, baseDate) {
 
 function writeThemeHistory(history, baseDate) {
   trimThemeHistory(history, baseDate);
-  fs.mkdirSync(DATA_ROOT, { recursive: true });
+  fs.mkdirSync(path.dirname(THEME_HISTORY_FILE), { recursive: true });
   fs.writeFileSync(THEME_HISTORY_FILE, `${JSON.stringify(history, null, 2)}\n`);
 }
 

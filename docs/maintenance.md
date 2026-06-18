@@ -6,7 +6,7 @@ This document collects the operational notes for keeping the wallpaper automatio
 
 - `output/` is generated locally by render commands but is ignored on `main`.
 - `npm run render` generates today's wallpaper, the next 7 days, archived output images, discarded draft candidates, and `output/render-summary.json`.
-- `data/theme-history.json` tracks recent motif choices so fallback wallpapers avoid repeating the same visual language too often.
+- `data/theme-history.json` tracks recent motif choices so generated wallpapers avoid repeating the same visual language too often. It is ignored on `main` and persisted on `generated-wallpapers`.
 - Current and archived wallpaper output is kept on the `generated-wallpapers` branch, which should be configured as the GitHub Pages publishing branch.
 
 ## Holiday Cache
