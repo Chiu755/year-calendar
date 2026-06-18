@@ -1,6 +1,6 @@
 # Year Calendar Wallpaper
 
-An automated year-calendar wallpaper generator for iPhone. The project builds a dark illustrated calendar wallpaper every day and picks the most visually interesting holiday or cultural observance for that date.
+An automated year-calendar wallpaper generator for iPhone Air. The project builds a dark illustrated calendar wallpaper every day and picks the most visually interesting holiday or cultural observance for that date.
 
 GitHub Actions handles the routine work: refreshing the rolling holiday cache, rendering today's wallpaper, generating the next 7 days, and keeping wallpaper history in the generated archive branch.
 
