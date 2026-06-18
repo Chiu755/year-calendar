@@ -86,15 +86,13 @@ jobs:
             debug-action
           if-no-files-found: ignore
 
-      - name: Commit latest wallpaper
+      - name: Commit generated data
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add -f output/today.png
-          git add -f output/render-summary.json
           git add data/holiday-cache.js
           git add data/theme-history.json
-          git commit -m "chore: update today wallpaper" || echo "No today wallpaper changes"
+          git commit -m "chore: update generated data" || echo "No generated data changes"
           git push origin HEAD:${GITHUB_REF_NAME}
 
       - name: Commit generated archive

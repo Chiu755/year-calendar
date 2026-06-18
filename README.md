@@ -1,10 +1,8 @@
 # Year Calendar Wallpaper
 
-An automated year-calendar wallpaper generator for iPhone. The project builds a dark illustrated calendar wallpaper every day, picks the most visually interesting holiday or cultural observance for that date, and publishes the current wallpaper as:
+An automated year-calendar wallpaper generator for iPhone. The project builds a dark illustrated calendar wallpaper every day and picks the most visually interesting holiday or cultural observance for that date.
 
-`output/today.png`
-
-GitHub Actions handles the routine work: refreshing the rolling holiday cache, rendering today's wallpaper, generating the next 7 days, and keeping wallpaper history in the archive branch.
+GitHub Actions handles the routine work: refreshing the rolling holiday cache, rendering today's wallpaper, generating the next 7 days, and keeping wallpaper history in the generated archive branch.
 
 ## How It Works
 
@@ -23,8 +21,8 @@ The visual system uses reusable motif rules instead of hand-drawing every holida
 
 - `refresh-holidays` keeps `data/holiday-cache.js` updated as a rolling future window.
 - `render` creates `output/today.png`, archives the next 7 days, and saves discarded candidate drafts.
-- GitHub Pages serves `output/today.png` from `main`.
-- Long-term generated wallpaper history is kept on the `generated-wallpapers` branch.
+- Generated image output is ignored on `main`.
+- Current and archived wallpaper output is kept on the `generated-wallpapers` branch.
 
 ## Local Commands
 

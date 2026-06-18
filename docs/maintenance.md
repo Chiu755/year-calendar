@@ -4,10 +4,10 @@ This document collects the operational notes for keeping the wallpaper automatio
 
 ## Daily Wallpaper Output
 
-- `output/today.png` is the current wallpaper served by GitHub Pages.
+- `output/` is generated locally by render commands but is ignored on `main`.
 - `npm run render` generates today's wallpaper, the next 7 days, archived output images, discarded draft candidates, and `output/render-summary.json`.
 - `data/theme-history.json` tracks recent motif choices so fallback wallpapers avoid repeating the same visual language too often.
-- Generated wallpaper history is kept on the `generated-wallpapers` branch.
+- Current and archived wallpaper output is kept on the `generated-wallpapers` branch.
 
 ## Holiday Cache
 
