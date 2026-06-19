@@ -1,16 +1,9 @@
 {
-  "generatedAt": "2026-06-18T18:32:20.217Z",
-  "baseDate": "2026-06-19",
-  "ensuredThrough": "2026-06-26",
+  "generatedAt": "2026-06-19T18:03:50.271Z",
+  "baseDate": "2026-06-20",
+  "ensuredThrough": "2026-06-27",
   "today": "output/today.png",
   "generated": [
-    {
-      "date": "2026-06-19",
-      "output": "output/2026/2026.06/2026.06.19.png",
-      "selectedTheme": "Dragon Boat Festival",
-      "selectedMotif": "waterFlowers",
-      "discardedCount": 4
-    },
     {
       "date": "2026-06-20",
       "output": "output/2026/2026.06/2026.06.20.png",
@@ -58,6 +51,13 @@
       "output": "output/2026/2026.06/2026.06.26.png",
       "selectedTheme": "Independence Day",
       "selectedMotif": "fireworks",
+      "discardedCount": 0
+    },
+    {
+      "date": "2026-06-27",
+      "output": "output/2026/2026.06/2026.06.27.png",
+      "selectedTheme": "Journalists' Day",
+      "selectedMotif": "wovenPattern",
       "discardedCount": 0
     }
   ],

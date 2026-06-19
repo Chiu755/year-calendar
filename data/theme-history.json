@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-18T18:32:20.214Z",
+  "updatedAt": "2026-06-19T18:03:50.267Z",
   "days": {
     "2026-06-16": {
       "title": "Youth Day",
@@ -116,6 +116,15 @@
         "celebration",
         "light",
         "civic"
+      ]
+    },
+    "2026-06-27": {
+      "title": "Journalists' Day",
+      "motif": "wovenPattern",
+      "tags": [
+        "culture",
+        "civic",
+        "celebration"
       ]
     }
   }
