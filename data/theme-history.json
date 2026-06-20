@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-19T18:03:50.267Z",
+  "updatedAt": "2026-06-20T17:40:47.683Z",
   "days": {
     "2026-06-16": {
       "title": "Youth Day",
@@ -125,6 +125,17 @@
         "culture",
         "civic",
         "celebration"
+      ]
+    },
+    "2026-06-28": {
+      "title": "Constitution Day",
+      "motif": "laurelTorch",
+      "tags": [
+        "sky",
+        "celebration",
+        "light",
+        "civic",
+        "remembrance"
       ]
     }
   }

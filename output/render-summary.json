@@ -1,16 +1,9 @@
 {
-  "generatedAt": "2026-06-19T18:03:50.271Z",
-  "baseDate": "2026-06-20",
-  "ensuredThrough": "2026-06-27",
+  "generatedAt": "2026-06-20T17:40:47.684Z",
+  "baseDate": "2026-06-21",
+  "ensuredThrough": "2026-06-28",
   "today": "output/today.png",
   "generated": [
-    {
-      "date": "2026-06-20",
-      "output": "output/2026/2026.06/2026.06.20.png",
-      "selectedTheme": "World Refugee Day",
-      "selectedMotif": "mountainFlags",
-      "discardedCount": 4
-    },
     {
       "date": "2026-06-21",
       "output": "output/2026/2026.06/2026.06.21.png",
@@ -59,6 +52,13 @@
       "selectedTheme": "Journalists' Day",
       "selectedMotif": "wovenPattern",
       "discardedCount": 0
+    },
+    {
+      "date": "2026-06-28",
+      "output": "output/2026/2026.06/2026.06.28.png",
+      "selectedTheme": "Constitution Day",
+      "selectedMotif": "laurelTorch",
+      "discardedCount": 1
     }
   ],
   "skipped": []
