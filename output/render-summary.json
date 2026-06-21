@@ -1,16 +1,9 @@
 {
-  "generatedAt": "2026-06-20T17:40:47.684Z",
-  "baseDate": "2026-06-21",
-  "ensuredThrough": "2026-06-28",
+  "generatedAt": "2026-06-21T17:44:57.631Z",
+  "baseDate": "2026-06-22",
+  "ensuredThrough": "2026-06-29",
   "today": "output/today.png",
   "generated": [
-    {
-      "date": "2026-06-21",
-      "output": "output/2026/2026.06/2026.06.21.png",
-      "selectedTheme": "World Music Day",
-      "selectedMotif": "sunRibbons",
-      "discardedCount": 4
-    },
     {
       "date": "2026-06-22",
       "output": "output/2026/2026.06/2026.06.22.png",
@@ -59,6 +52,13 @@
       "selectedTheme": "Constitution Day",
       "selectedMotif": "laurelTorch",
       "discardedCount": 1
+    },
+    {
+      "date": "2026-06-29",
+      "output": "output/2026/2026.06/2026.06.29.png",
+      "selectedTheme": "Saint Peter and Saint Paul",
+      "selectedMotif": "lotusMandala",
+      "discardedCount": 4
     }
   ],
   "skipped": []

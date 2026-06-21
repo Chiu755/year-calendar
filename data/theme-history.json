@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-20T17:40:47.683Z",
+  "updatedAt": "2026-06-21T17:44:57.631Z",
   "days": {
     "2026-06-16": {
       "title": "Youth Day",
@@ -136,6 +136,17 @@
         "light",
         "civic",
         "remembrance"
+      ]
+    },
+    "2026-06-29": {
+      "title": "Saint Peter and Saint Paul",
+      "motif": "lotusMandala",
+      "tags": [
+        "culture",
+        "civic",
+        "religious",
+        "botanical",
+        "heritage"
       ]
     }
   }
