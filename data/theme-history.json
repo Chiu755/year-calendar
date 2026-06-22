@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-21T17:44:57.631Z",
+  "updatedAt": "2026-06-22T19:36:00.649Z",
   "days": {
     "2026-06-16": {
       "title": "Youth Day",
@@ -147,6 +147,17 @@
         "religious",
         "botanical",
         "heritage"
+      ]
+    },
+    "2026-06-30": {
+      "title": "Asteroid Day",
+      "motif": "starfield",
+      "tags": [
+        "sky",
+        "light",
+        "celebration",
+        "culture",
+        "international"
       ]
     }
   }

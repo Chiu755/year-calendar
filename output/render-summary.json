@@ -1,16 +1,9 @@
 {
-  "generatedAt": "2026-06-21T17:44:57.631Z",
-  "baseDate": "2026-06-22",
-  "ensuredThrough": "2026-06-29",
+  "generatedAt": "2026-06-22T19:36:00.651Z",
+  "baseDate": "2026-06-23",
+  "ensuredThrough": "2026-06-30",
   "today": "output/today.png",
   "generated": [
-    {
-      "date": "2026-06-22",
-      "output": "output/2026/2026.06/2026.06.22.png",
-      "selectedTheme": "Anti-Fascist Struggle Day",
-      "selectedMotif": "wovenPattern",
-      "discardedCount": 1
-    },
     {
       "date": "2026-06-23",
       "output": "output/2026/2026.06/2026.06.23.png",
@@ -59,6 +52,13 @@
       "selectedTheme": "Saint Peter and Saint Paul",
       "selectedMotif": "lotusMandala",
       "discardedCount": 4
+    },
+    {
+      "date": "2026-06-30",
+      "output": "output/2026/2026.06/2026.06.30.png",
+      "selectedTheme": "Asteroid Day",
+      "selectedMotif": "starfield",
+      "discardedCount": 2
     }
   ],
   "skipped": []
