@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-22T19:36:00.649Z",
+  "updatedAt": "2026-06-23T18:04:38.762Z",
   "days": {
     "2026-06-16": {
       "title": "Youth Day",
@@ -158,6 +158,16 @@
         "celebration",
         "culture",
         "international"
+      ]
+    },
+    "2026-07-01": {
+      "title": "Republic Day",
+      "motif": "fireworks",
+      "tags": [
+        "sky",
+        "celebration",
+        "light",
+        "civic"
       ]
     }
   }

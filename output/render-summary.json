@@ -1,16 +1,9 @@
 {
-  "generatedAt": "2026-06-22T19:36:00.651Z",
-  "baseDate": "2026-06-23",
-  "ensuredThrough": "2026-06-30",
+  "generatedAt": "2026-06-23T18:04:38.765Z",
+  "baseDate": "2026-06-24",
+  "ensuredThrough": "2026-07-01",
   "today": "output/today.png",
   "generated": [
-    {
-      "date": "2026-06-23",
-      "output": "output/2026/2026.06/2026.06.23.png",
-      "selectedTheme": "Grand Duke's Birthday",
-      "selectedMotif": "dragonDance",
-      "discardedCount": 4
-    },
     {
       "date": "2026-06-24",
       "output": "output/2026/2026.06/2026.06.24.png",
@@ -59,6 +52,13 @@
       "selectedTheme": "Asteroid Day",
       "selectedMotif": "starfield",
       "discardedCount": 2
+    },
+    {
+      "date": "2026-07-01",
+      "output": "output/2026/2026.07/2026.07.01.png",
+      "selectedTheme": "Republic Day",
+      "selectedMotif": "fireworks",
+      "discardedCount": 4
     }
   ],
   "skipped": []
