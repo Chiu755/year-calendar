@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-24T18:01:27.800Z",
+  "updatedAt": "2026-06-25T18:18:45.977Z",
   "days": {
     "2026-06-16": {
       "title": "Youth Day",
@@ -129,24 +129,26 @@
     },
     "2026-06-28": {
       "title": "Constitution Day",
-      "motif": "laurelTorch",
+      "motif": "dragonDance",
       "tags": [
         "sky",
         "celebration",
         "light",
         "civic",
-        "remembrance"
+        "culture",
+        "procession",
+        "folk"
       ]
     },
     "2026-06-29": {
       "title": "Saint Peter and Saint Paul",
-      "motif": "lotusMandala",
+      "motif": "sunRibbons",
       "tags": [
         "culture",
         "civic",
         "religious",
-        "botanical",
-        "heritage"
+        "sun",
+        "celebration"
       ]
     },
     "2026-06-30": {
@@ -176,6 +178,19 @@
       "tags": [
         "culture",
         "civic"
+      ]
+    },
+    "2026-07-03": {
+      "title": "Independence Day",
+      "motif": "rainGarden",
+      "tags": [
+        "sky",
+        "celebration",
+        "light",
+        "civic",
+        "water",
+        "botanical",
+        "seasonal"
       ]
     }
   }

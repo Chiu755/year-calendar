@@ -1,16 +1,9 @@
 {
-  "generatedAt": "2026-06-24T18:01:27.802Z",
-  "baseDate": "2026-06-25",
-  "ensuredThrough": "2026-07-02",
+  "generatedAt": "2026-06-25T18:18:45.978Z",
+  "baseDate": "2026-06-26",
+  "ensuredThrough": "2026-07-03",
   "today": "output/today.png",
   "generated": [
-    {
-      "date": "2026-06-25",
-      "output": "output/2026/2026.06/2026.06.25.png",
-      "selectedTheme": "Statehood Day",
-      "selectedMotif": "paperCut",
-      "discardedCount": 1
-    },
     {
       "date": "2026-06-26",
       "output": "output/2026/2026.06/2026.06.26.png",
@@ -29,14 +22,14 @@
       "date": "2026-06-28",
       "output": "output/2026/2026.06/2026.06.28.png",
       "selectedTheme": "Constitution Day",
-      "selectedMotif": "laurelTorch",
+      "selectedMotif": "dragonDance",
       "discardedCount": 1
     },
     {
       "date": "2026-06-29",
       "output": "output/2026/2026.06/2026.06.29.png",
       "selectedTheme": "Saint Peter and Saint Paul",
-      "selectedMotif": "lotusMandala",
+      "selectedMotif": "sunRibbons",
       "discardedCount": 4
     },
     {
@@ -59,6 +52,13 @@
       "selectedTheme": "June 30 Revolution",
       "selectedMotif": "wovenPattern",
       "discardedCount": 1
+    },
+    {
+      "date": "2026-07-03",
+      "output": "output/2026/2026.07/2026.07.03.png",
+      "selectedTheme": "Independence Day",
+      "selectedMotif": "rainGarden",
+      "discardedCount": 4
     }
   ],
   "skipped": []
