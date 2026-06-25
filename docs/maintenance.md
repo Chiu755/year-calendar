@@ -84,4 +84,6 @@ The scan writes ignored temporary files and reports missing or legacy-only conte
 - `theme-renderers.js` owns the shared canvas background, caption, and low-level drawing helpers.
 - `motif-renderers.js` owns the large motif dispatcher and main motif drawing functions.
 - `ornament-renderers.js` owns semantic ornaments, cultural overlays, and signature glyphs.
+- `calendar-layout.js` owns the year calendar model: date math, month geometry, day states, payday markers, and progress placement.
+- `calendar-renderer.js` owns drawing that year calendar model onto canvas.
 - New motifs should be wired in `theme-motifs.js`, `motif-renderers.js`, and `refresh-holiday-data.js`, then added to fallback rotation if they are suitable for ordinary days.

@@ -1,151 +1,65 @@
 // Main motif dispatcher and large motif drawing functions.
 
+const THEME_DECORATION_RENDERERS = Object.freeze({
+  grain: drawGrain,
+  marigold: drawMarigold,
+  clover: drawClover,
+  mountainFlags: drawMountainFlags,
+  tanabata: drawTanabata,
+  waterFlowers: drawWaterFlowers,
+  tricolor: drawTricolor,
+  pumpkin: drawPumpkin,
+  snow: drawSnow,
+  springBuds: drawSpringBuds,
+  sunRibbons: drawSunRibbons,
+  fireworks: drawFireworks,
+  petals: drawPetals,
+  candle: drawCandle,
+  streamers: drawStreamers,
+  starfield: drawStarfield,
+  lanterns: drawLanterns,
+  paperKites: drawPaperKites,
+  wovenPattern: drawWovenPattern,
+  moonOrbit: drawMoonOrbit,
+  rainGarden: drawRainGarden,
+  harvestSheaves: drawHarvestSheaves,
+  paperCut: drawPaperCut,
+  teaSteam: drawTeaSteam,
+  dragonDance: drawDragonDance,
+  crescentLantern: drawCrescentLantern,
+  lotusMandala: drawLotusMandala,
+  templeBells: drawTempleBells,
+  carnivalMasks: drawCarnivalMasks,
+  folkEmbroidery: drawFolkEmbroidery,
+  cityParade: drawCityParade,
+  maritimeFlags: drawMaritimeFlags,
+  desertGeometry: drawDesertGeometry,
+  tropicalBloom: drawTropicalBloom,
+  oliveBranches: drawOliveBranches,
+  laurelTorch: drawLaurelTorch,
+  sportsMedals: drawSportsMedals,
+  bookPress: drawBookPress,
+  marketBanners: drawMarketBanners,
+  ancestralTable: drawAncestralTable,
+  doveGarland: drawDoveGarland,
+  stainedGlass: drawStainedGlass,
+  musicWaves: drawMusicWaves,
+  cosmicObservatory: drawCosmicObservatory,
+  gardenGate: drawGardenGate,
+  oceanCompass: drawOceanCompass,
+  aurora: drawAurora
+});
+
 function drawThemeDecorations(ctx, theme, width, height) {
-  switch (theme.motif) {
-    case "grain":
-      drawGrain(ctx, theme, width, height);
-      break;
-    case "marigold":
-      drawMarigold(ctx, theme, width, height);
-      break;
-    case "clover":
-      drawClover(ctx, theme, width, height);
-      break;
-    case "mountainFlags":
-      drawMountainFlags(ctx, theme, width, height);
-      break;
-    case "tanabata":
-      drawTanabata(ctx, theme, width, height);
-      break;
-    case "waterFlowers":
-      drawWaterFlowers(ctx, theme, width, height);
-      break;
-    case "tricolor":
-      drawTricolor(ctx, theme, width, height);
-      break;
-    case "pumpkin":
-      drawPumpkin(ctx, theme, width, height);
-      break;
-    case "snow":
-      drawSnow(ctx, theme, width, height);
-      break;
-    case "springBuds":
-      drawSpringBuds(ctx, theme, width, height);
-      break;
-    case "sunRibbons":
-      drawSunRibbons(ctx, theme, width, height);
-      break;
-    case "fireworks":
-      drawFireworks(ctx, theme, width, height);
-      break;
-    case "petals":
-      drawPetals(ctx, theme, width, height);
-      break;
-    case "candle":
-      drawCandle(ctx, theme, width, height);
-      break;
-    case "streamers":
-      drawStreamers(ctx, theme, width, height);
-      break;
-    case "starfield":
-      drawStarfield(ctx, theme, width, height);
-      break;
-    case "lanterns":
-      drawLanterns(ctx, theme, width, height);
-      break;
-    case "paperKites":
-      drawPaperKites(ctx, theme, width, height);
-      break;
-    case "wovenPattern":
-      drawWovenPattern(ctx, theme, width, height);
-      break;
-    case "moonOrbit":
-      drawMoonOrbit(ctx, theme, width, height);
-      break;
-    case "rainGarden":
-      drawRainGarden(ctx, theme, width, height);
-      break;
-    case "harvestSheaves":
-      drawHarvestSheaves(ctx, theme, width, height);
-      break;
-    case "paperCut":
-      drawPaperCut(ctx, theme, width, height);
-      break;
-    case "teaSteam":
-      drawTeaSteam(ctx, theme, width, height);
-      break;
-    case "dragonDance":
-      drawDragonDance(ctx, theme, width, height);
-      break;
-    case "crescentLantern":
-      drawCrescentLantern(ctx, theme, width, height);
-      break;
-    case "lotusMandala":
-      drawLotusMandala(ctx, theme, width, height);
-      break;
-    case "templeBells":
-      drawTempleBells(ctx, theme, width, height);
-      break;
-    case "carnivalMasks":
-      drawCarnivalMasks(ctx, theme, width, height);
-      break;
-    case "folkEmbroidery":
-      drawFolkEmbroidery(ctx, theme, width, height);
-      break;
-    case "cityParade":
-      drawCityParade(ctx, theme, width, height);
-      break;
-    case "maritimeFlags":
-      drawMaritimeFlags(ctx, theme, width, height);
-      break;
-    case "desertGeometry":
-      drawDesertGeometry(ctx, theme, width, height);
-      break;
-    case "tropicalBloom":
-      drawTropicalBloom(ctx, theme, width, height);
-      break;
-    case "oliveBranches":
-      drawOliveBranches(ctx, theme, width, height);
-      break;
-    case "laurelTorch":
-      drawLaurelTorch(ctx, theme, width, height);
-      break;
-    case "sportsMedals":
-      drawSportsMedals(ctx, theme, width, height);
-      break;
-    case "bookPress":
-      drawBookPress(ctx, theme, width, height);
-      break;
-    case "marketBanners":
-      drawMarketBanners(ctx, theme, width, height);
-      break;
-    case "ancestralTable":
-      drawAncestralTable(ctx, theme, width, height);
-      break;
-    case "doveGarland":
-      drawDoveGarland(ctx, theme, width, height);
-      break;
-    case "stainedGlass":
-      drawStainedGlass(ctx, theme, width, height);
-      break;
-    case "musicWaves":
-      drawMusicWaves(ctx, theme, width, height);
-      break;
-    case "cosmicObservatory":
-      drawCosmicObservatory(ctx, theme, width, height);
-      break;
-    case "gardenGate":
-      drawGardenGate(ctx, theme, width, height);
-      break;
-    case "oceanCompass":
-      drawOceanCompass(ctx, theme, width, height);
-      break;
-    default:
-      drawAurora(ctx, theme, width, height);
-  }
+  const renderer = THEME_DECORATION_RENDERERS[theme.motif] || THEME_DECORATION_RENDERERS.aurora;
+  renderer(ctx, theme, width, height);
   drawCulturalIllustration(ctx, theme, width, height);
   drawSemanticOrnaments(ctx, theme, width, height);
 }
+
+globalThis.YearCalendarMotifRenderers = {
+  renderers: THEME_DECORATION_RENDERERS
+};
 
 function drawGrain(ctx, theme, width) {
   for (const side of [-1, 1]) {

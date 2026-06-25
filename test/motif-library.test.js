@@ -38,8 +38,7 @@ test("every registered motif reaches the drawing dispatcher", () => {
   const { MOTIF_TAGS } = loadMotifMetadata();
 
   for (const motif of Object.keys(MOTIF_TAGS)) {
-    if (motif === "aurora") continue;
-    assert.match(motifRendererSource, new RegExp(`case ["']${motif}["']`), `${motif} should be dispatched`);
+    assert.match(motifRendererSource, new RegExp(`\\b${motif}:\\s*draw[A-Z]`), `${motif} should be registered with a renderer`);
   }
 });
 

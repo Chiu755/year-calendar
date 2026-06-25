@@ -20,33 +20,16 @@
 <script src="motif-renderers.js"></script>
 <script src="ornament-renderers.js"></script>
 <script src="calendar-rules.js"></script>
+<script src="calendar-layout.js"></script>
+<script src="calendar-renderer.js"></script>
 <script>
 /* ================== 画布 ================== */
 const canvas = document.getElementById("c");
 const ctx = canvas.getContext("2d");
 
-const WIDTH = 1260;
-const HEIGHT = 2736;
+const { width: WIDTH, height: HEIGHT } = YearCalendarLayout.RENDER_SURFACE;
 canvas.width = WIDTH;
 canvas.height = HEIGHT;
-
-/* ================== 视觉常量 ================== */
-const CALENDAR_SCALE = 1.25;
-
-const BG_COLOR = "#141414";
-const TEXT_COLOR = "#8e8e93";
-const PAST_DAY_COLOR = "#8e8e93";
-const TODAY_COLOR = "#ff453a";
-const FUTURE_DAY_COLOR = "#2c2c2e";
-const PAYDAY_GOLD = "#d4af37"; // 金色
-
-/* ================== 预留区域 ================== */
-const TOP_RESERVED = 550;
-const BOTTOM_RESERVED = 420;
-
-const CALENDAR_TOP = TOP_RESERVED;
-const CALENDAR_BOTTOM = HEIGHT - BOTTOM_RESERVED;
-const CALENDAR_HEIGHT = CALENDAR_BOTTOM - CALENDAR_TOP;
 
 /* ================== 日期 ================== */
 function shanghaiNow() {
@@ -68,15 +51,7 @@ const avoidMotifs = (params.get("avoidMotifs") || "")
   .map((value) => value.trim())
   .filter(Boolean);
 
-const year = today.getFullYear();
-const startOfYear = new Date(year, 0, 1);
-const dayOfYear = Math.floor((today - startOfYear) / 86400000) + 1;
-
-const endOfYear = new Date(year, 11, 31);
-const daysInYear = Math.floor((endOfYear - startOfYear) / 86400000) + 1;
-
-const progressPercent = Math.floor((dayOfYear / daysInYear) * 100);
-const daysLeft = daysInYear - dayOfYear;
+const calendarModel = YearCalendarLayout.createYearCalendarModel(today);
 
 /* ================== 每日主题背景 ================== */
 const rankedThemes = ThemeEngine.rankDailyThemes(today, { avoidMotifs });
@@ -90,176 +65,14 @@ window.__YEAR_CALENDAR_RENDER_INFO = {
 };
 drawDailyThemeBackground(ctx, dailyTheme, WIDTH, HEIGHT);
 
-/* ================== 月份数据 ================== */
-const months = [
-  { name: "Jan", days: 31 },
-  { name: "Feb", days: new Date(year, 1, 29).getMonth() === 1 ? 29 : 28 },
-  { name: "Mar", days: 31 },
-  { name: "Apr", days: 30 },
-  { name: "May", days: 31 },
-  { name: "Jun", days: 30 },
-  { name: "Jul", days: 31 },
-  { name: "Aug", days: 31 },
-  { name: "Sep", days: 30 },
-  { name: "Oct", days: 31 },
-  { name: "Nov", days: 30 },
-  { name: "Dec", days: 31 }
-];
-
-/* ================== 日历布局 ================== */
-const MONTHS_PER_ROW = 3;
-const COLS = 7;
-const DOT_SIZE = 22;
-const DOT_GAP = 10;
-
-const MONTH_TITLE_HEIGHT = 36;
-const TITLE_GAP = 14;
-const MONTH_GAP = 36;
-const ROW_GAP = 52;
-
-function getMonthHeight(days, monthIndex) {
-  const firstDay = new Date(year, monthIndex, 1).getDay();
-  const offset = (firstDay + 6) % 7;
-  const rows = Math.ceil((offset + days) / COLS);
-  return MONTH_TITLE_HEIGHT + TITLE_GAP + rows * DOT_SIZE + (rows - 1) * DOT_GAP;
-}
-
-const MAX_MONTH_HEIGHT = Math.max(...months.map((m, i) => getMonthHeight(m.days, i)));
-
-const TOTAL_ROWS = 4;
-const calendarHeight = TOTAL_ROWS * MAX_MONTH_HEIGHT + (TOTAL_ROWS - 1) * ROW_GAP;
-const scaledCalendarHeight = calendarHeight * CALENDAR_SCALE;
-const calendarStartY = CALENDAR_TOP + (CALENDAR_HEIGHT - scaledCalendarHeight) / 2 + 12;
-
 /* ================== 绘制日历 ================== */
-ctx.save();
-ctx.translate(WIDTH / 2, calendarStartY);
-ctx.scale(CALENDAR_SCALE, CALENDAR_SCALE);
-ctx.translate(-WIDTH / 2, 0);
-
-let cursorY = 0;
-let dayCounter = 1;
-
-for (let r = 0; r < TOTAL_ROWS; r++) {
-  const rowMonths = months.slice(r * MONTHS_PER_ROW, r * MONTHS_PER_ROW + MONTHS_PER_ROW);
-  const monthWidth = COLS * DOT_SIZE + (COLS - 1) * DOT_GAP;
-  const rowWidth = MONTHS_PER_ROW * monthWidth + (MONTHS_PER_ROW - 1) * MONTH_GAP;
-  let cursorX = (WIDTH - rowWidth) / 2;
-
-  rowMonths.forEach((month, i) => {
-    const monthIndex = r * MONTHS_PER_ROW + i;
-
-    ctx.fillStyle = TEXT_COLOR;
-    ctx.font = "32px -apple-system";
-    ctx.textAlign = "center";
-    ctx.fillText(month.name, cursorX + monthWidth / 2, cursorY + MONTH_TITLE_HEIGHT - 6);
-
-    const firstDay = new Date(year, monthIndex, 1).getDay();
-    const offset = (firstDay + 6) % 7;
-    const yStart = cursorY + MONTH_TITLE_HEIGHT + TITLE_GAP;
-
-    for (let d = 0; d < month.days; d++) {
-      const index = offset + d;
-      const x = cursorX + (index % COLS) * (DOT_SIZE + DOT_GAP);
-      const y = yStart + Math.floor(index / COLS) * (DOT_SIZE + DOT_GAP);
-
-      const isPayday = YearCalendarRules.isPayday(year, monthIndex, d + 1);
-
-      // ===== 颜色逻辑 =====
-      if (isPayday) {
-        ctx.fillStyle = PAYDAY_GOLD;
-      } else if (dayCounter < dayOfYear) {
-        ctx.fillStyle = PAST_DAY_COLOR;
-      } else if (dayCounter === dayOfYear) {
-        ctx.fillStyle = TODAY_COLOR;
-      } else {
-        ctx.fillStyle = FUTURE_DAY_COLOR;
-      }
-
-      ctx.beginPath();
-      ctx.arc(x + DOT_SIZE / 2, y + DOT_SIZE / 2, DOT_SIZE / 2, 0, Math.PI * 2);
-      ctx.fill();
-
-      // ===== 今日红圈 =====
-      if (dayCounter === dayOfYear) {
-        ctx.strokeStyle = "rgba(255,69,58,0.6)";
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.arc(x + DOT_SIZE / 2, y + DOT_SIZE / 2, DOT_SIZE / 2 + 3, 0, Math.PI * 2);
-        ctx.stroke();
-      }
-
-      // ===== 25号画 ¥ =====
-      if (isPayday) {
-        const centerX = x + DOT_SIZE / 2;
-        const centerY = y + DOT_SIZE / 2;
-
-        ctx.fillStyle = BG_COLOR;
-        ctx.font = "14px -apple-system";
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-        ctx.fillText("¥", centerX, centerY + 1);
-
-        // 已过去的 25 号加斜线
-        if (dayCounter < dayOfYear) {
-          ctx.strokeStyle = BG_COLOR;
-          ctx.lineWidth = 2;
-          ctx.beginPath();
-          ctx.moveTo(x + 4, y + DOT_SIZE - 4);
-          ctx.lineTo(x + DOT_SIZE - 4, y + 4);
-          ctx.stroke();
-        }
-      }
-
-      dayCounter++;
-    }
-
-    cursorX += monthWidth + MONTH_GAP;
-  });
-
-  cursorY += MAX_MONTH_HEIGHT + ROW_GAP;
-}
-
-ctx.restore();
+YearCalendarRenderer.drawYearCalendar(ctx, calendarModel);
 
 /* ================== 年度进度条 ================== */
-const firstMonthX = (WIDTH - ((COLS * DOT_SIZE + (COLS-1)*DOT_GAP)*3 + MONTH_GAP*2)) / 2;
-const lastMonthX = firstMonthX + (COLS * DOT_SIZE + (COLS-1)*DOT_GAP)*3 + MONTH_GAP*2;
-const progressBarX = firstMonthX;
-const progressBarWidth = lastMonthX - firstMonthX;
-const progressBarHeight = 20;
-const progressY = calendarStartY + scaledCalendarHeight + 58;
-const progressBarY = progressY + 30;
-
-function drawRoundedRect(x, y, w, h, r) {
-  ctx.beginPath();
-  ctx.moveTo(x + r, y);
-  ctx.lineTo(x + w - r, y);
-  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
-  ctx.lineTo(x + w, y + h - r);
-  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-  ctx.lineTo(x + r, y + h);
-  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
-  ctx.lineTo(x, y + r);
-  ctx.quadraticCurveTo(x, y, x + r, y);
-  ctx.closePath();
-  ctx.fill();
-}
-
-ctx.fillStyle = FUTURE_DAY_COLOR;
-drawRoundedRect(progressBarX, progressBarY, progressBarWidth, progressBarHeight, progressBarHeight/2);
-
-ctx.fillStyle = TODAY_COLOR;
-drawRoundedRect(progressBarX, progressBarY, progressBarWidth * (dayOfYear/daysInYear), progressBarHeight, progressBarHeight/2);
-
-/* ================== 年度文字 ================== */
-ctx.fillStyle = TEXT_COLOR;
-ctx.font = "56px -apple-system";
-ctx.textAlign = "center";
-ctx.fillText(`${progressPercent}% · ${daysLeft}d left`, WIDTH/2, progressY);
+YearCalendarRenderer.drawYearProgress(ctx, calendarModel);
 
 /* ================== 每日主题文字 ================== */
-drawThemeCaption(ctx, dailyTheme, WIDTH / 2, progressBarY + 116);
+drawThemeCaption(ctx, dailyTheme, WIDTH / 2, calendarModel.progress.barY + 116);
 
 /* ================== 导出 ================== */
 setTimeout(() => {
