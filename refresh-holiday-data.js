@@ -93,7 +93,11 @@ const MOTIF_TAGS = {
   marketBanners: ["market", "celebration", "folk"],
   ancestralTable: ["remembrance", "religious", "light"],
   doveGarland: ["remembrance", "light", "civic"],
-  stainedGlass: ["religious", "heritage", "light"]
+  stainedGlass: ["religious", "heritage", "light"],
+  musicWaves: ["music", "culture", "celebration"],
+  cosmicObservatory: ["science", "sky", "light"],
+  gardenGate: ["botanical", "heritage", "seasonal"],
+  oceanCompass: ["maritime", "water", "travel"]
 };
 
 const MOTIF_STYLES = {
@@ -139,7 +143,11 @@ const MOTIF_STYLES = {
   marketBanners: [["#211619", "#63362a", "#111314"], "#f0c95c", "#78bde8"],
   ancestralTable: [["#101827", "#37304d", "#111214"], "#f0c95c", "#d65345"],
   doveGarland: [["#101827", "#2e3d51", "#101316"], "#f2f0d6", "#d8c070"],
-  stainedGlass: [["#101a34", "#4a2734", "#111316"], "#9fc8ff", "#e87a94"]
+  stainedGlass: [["#101a34", "#4a2734", "#111316"], "#9fc8ff", "#e87a94"],
+  musicWaves: [["#15172a", "#4c3158", "#111316"], "#e6c86f", "#8fc8ff"],
+  cosmicObservatory: [["#0d1730", "#27365f", "#101219"], "#9fc8ff", "#d6b6e8"],
+  gardenGate: [["#10251f", "#3f5d42", "#101516"], "#87c98e", "#e6b6c8"],
+  oceanCompass: [["#0c2335", "#24566d", "#101417"], "#76cce8", "#e6c86f"]
 };
 
 const COUNTRY_PALETTES = {
@@ -179,8 +187,8 @@ const CULTURAL_OBSERVANCES = [
   ["01-27", "International Holocaust Remembrance Day", "国际大屠杀纪念日", "联合国纪念日，追思大屠杀受害者，并提醒人们警惕仇恨与暴力。", "candle", ["#101827", "#37304d", "#111214"], "#f0c95c", "#f2f0d6", 76, ["culture", "international", "memorial", "light"]],
   ["01-28", "Data Privacy Day", "数据隐私日", "关注个人数据、数字权利和网络生活边界的国际倡议日。", "wovenPattern", ["#101b33", "#2e4770", "#101316"], "#9fc8ff", "#e6c86f", 62, ["culture", "international", "civic"]],
   ["02-02", "World Wetlands Day", "世界湿地日", "纪念湿地生态、候鸟栖息地与水陆之间的生命系统。", "waterFlowers", ["#0d2836", "#1d5a64", "#101518"], "#70d6d0", "#8bd0b6", 70, ["culture", "international", "water", "botanical"]],
-  ["02-11", "Women and Girls in Science Day", "妇女和女童参与科学国际日", "国际日，鼓励更多女性进入科学与探索的领域。", "aurora", ["#17182d", "#3d2f59", "#111316"], "#b68fd8", "#78bde8", 68, ["culture", "international", "sky"]],
-  ["02-13", "World Radio Day", "世界广播日", "联合国教科文组织纪念日，关注声音媒介、公共传播和跨地域连接。", "starfield", ["#111729", "#493456", "#111316"], "#d6c070", "#8fc8ff", 66, ["culture", "international", "sky", "light"]],
+  ["02-11", "Women and Girls in Science Day", "妇女和女童参与科学国际日", "国际日，鼓励更多女性进入科学与探索的领域。", "cosmicObservatory", ["#17182d", "#3d2f59", "#111316"], "#b68fd8", "#78bde8", 68, ["culture", "international", "science", "sky"]],
+  ["02-13", "World Radio Day", "世界广播日", "联合国教科文组织纪念日，关注声音媒介、公共传播和跨地域连接。", "musicWaves", ["#111729", "#493456", "#111316"], "#d6c070", "#8fc8ff", 66, ["culture", "international", "music", "light"]],
   ["02-21", "International Mother Language Day", "国际母语日", "联合国教科文组织倡议的日子，纪念语言多样性与文化传承。", "streamers", ["#151d2d", "#3f3a58", "#111316"], "#d8b95b", "#78bde8", 72, ["culture", "international", "celebration"]],
   ["03-03", "World Wildlife Day", "世界野生动植物日", "联合国纪念日，关注野生动植物、多样生态和人与自然的关系。", "springBuds", ["#14251d", "#496143", "#111516"], "#8fcb7d", "#d8c070", 70, ["culture", "international", "botanical"]],
   ["03-08", "International Women's Day", "国际妇女节", "纪念女性权益与创造力的国际节日。", "petals", ["#241525", "#643044", "#111214"], "#e87a94", "#d7b56b", 74, ["culture", "international", "celebration", "botanical"]],
@@ -192,7 +200,7 @@ const CULTURAL_OBSERVANCES = [
   ["04-07", "World Health Day", "世界卫生日", "世界卫生组织纪念日，关注健康、公平和公共卫生系统。", "springBuds", ["#18251f", "#5b6040", "#111516"], "#a9d37f", "#e6b6c8", 70, ["culture", "international", "botanical"]],
   ["04-15", "World Art Day", "世界艺术日", "纪念艺术、创作与视觉文化的世界性日子。", "streamers", ["#19172d", "#5a344d", "#111316"], "#e87a94", "#78bde8", 72, ["culture", "international", "celebration"]],
   ["04-18", "World Heritage Day", "世界遗产日", "关注文化遗产、古迹保护和人类共同记忆的国际文化日。", "mountainFlags", ["#171822", "#4d3d32", "#111314"], "#d8b95b", "#78bde8", 70, ["culture", "international", "civic"]],
-  ["04-22", "Earth Day", "世界地球日", "关注环境保护与生态共生的全球纪念日。", "aurora", ["#102622", "#2f5c4c", "#101516"], "#77c98e", "#75bdd8", 76, ["culture", "international", "botanical", "water"]],
+  ["04-22", "Earth Day", "世界地球日", "关注环境保护与生态共生的全球纪念日。", "gardenGate", ["#102622", "#2f5c4c", "#101516"], "#77c98e", "#75bdd8", 76, ["culture", "international", "botanical", "water"]],
   ["04-23", "World Book Day", "世界读书日", "联合国教科文组织设立的文化日，纪念阅读、书籍与出版。", "starfield", ["#171827", "#3c3350", "#111316"], "#d8c070", "#b68fd8", 70, ["culture", "international", "light"]],
   ["04-29", "International Dance Day", "国际舞蹈日", "纪念舞蹈、身体表达和跨文化表演传统的国际艺术日。", "streamers", ["#19172d", "#5a344d", "#111316"], "#e87a94", "#78bde8", 70, ["culture", "international", "celebration"]],
   ["04-30", "International Jazz Day", "国际爵士乐日", "联合国教科文组织设立的音乐日，纪念即兴、节奏与城市夜色。", "starfield", ["#111729", "#493456", "#111316"], "#d6c070", "#8fc8ff", 74, ["culture", "international", "sky", "celebration"]],
@@ -205,16 +213,16 @@ const CULTURAL_OBSERVANCES = [
   ["05-22", "International Day for Biological Diversity", "国际生物多样性日", "联合国纪念日，关注生态系统、多样物种与共同栖居的地球。", "aurora", ["#102622", "#465c2d", "#101516"], "#77c98e", "#d8c070", 72, ["culture", "international", "botanical", "water"]],
   ["06-01", "Global Day of Parents", "全球父母节", "联合国设立的国际日，感谢父母和照护者在家庭生活中的支持与陪伴。", "lanterns", ["#171427", "#523143", "#111214"], "#f0c95c", "#e85a63", 64, ["culture", "international", "light"]],
   ["06-03", "World Bicycle Day", "世界自行车日", "联合国纪念日，关注低碳出行、城市道路和日常移动自由。", "paperKites", ["#102238", "#365a70", "#101418"], "#78bde6", "#e6b66b", 66, ["culture", "international", "wind"]],
-  ["06-05", "World Environment Day", "世界环境日", "联合国环境日，关注生态、城市与地球未来。", "aurora", ["#102622", "#2f5c4c", "#101516"], "#77c98e", "#75bdd8", 74, ["culture", "international", "botanical", "water"]],
+  ["06-05", "World Environment Day", "世界环境日", "联合国环境日，关注生态、城市与地球未来。", "gardenGate", ["#102622", "#2f5c4c", "#101516"], "#77c98e", "#75bdd8", 74, ["culture", "international", "botanical", "water"]],
   ["06-07", "World Food Safety Day", "世界食品安全日", "联合国纪念日，关注食物生产、餐桌安全和公共健康。", "grain", ["#211916", "#604026", "#111314"], "#d8a05f", "#9bb06d", 66, ["culture", "international", "harvest"]],
-  ["06-08", "World Oceans Day", "世界海洋日", "关注海洋、潮汐与蓝色星球的国际日。", "waterFlowers", ["#0c2134", "#225a6a", "#101418"], "#70cce8", "#8bd0b6", 76, ["culture", "international", "water", "island"]],
+  ["06-08", "World Oceans Day", "世界海洋日", "关注海洋、潮汐与蓝色星球的国际日。", "oceanCompass", ["#0c2134", "#225a6a", "#101418"], "#70cce8", "#8bd0b6", 76, ["culture", "international", "water", "island", "maritime"]],
   ["06-20", "World Refugee Day", "世界难民日", "联合国纪念日，关注被迫迁徙者的处境、尊严和重建生活的力量。", "mountainFlags", ["#111d34", "#263e5b", "#101316"], "#78bde8", "#d8c070", 72, ["culture", "international", "mountain", "civic"]],
-  ["06-21", "World Music Day", "世界音乐日", "纪念音乐、节奏与公共空间中的街头庆祝。", "sunRibbons", ["#1c2332", "#6c522e", "#111316"], "#f0c95c", "#79b7d8", 74, ["culture", "international", "celebration", "sun"]],
+  ["06-21", "World Music Day", "世界音乐日", "纪念音乐、节奏与公共空间中的街头庆祝。", "musicWaves", ["#1c2332", "#6c522e", "#111316"], "#f0c95c", "#79b7d8", 74, ["culture", "international", "celebration", "music"]],
   ["06-30", "Asteroid Day", "小行星日", "国际科普日，关注小行星、空间观测和行星防御意识。", "starfield", ["#101729", "#2f3158", "#111316"], "#d8c070", "#9fc8ff", 66, ["culture", "international", "sky", "light"]],
   ["07-11", "World Population Day", "世界人口日", "联合国纪念日，关注人口变化、城市生活、家庭与公共政策。", "wovenPattern", ["#171822", "#4d3d32", "#111314"], "#d8b95b", "#78bde8", 64, ["culture", "international", "civic"]],
   ["07-17", "World Emoji Day", "世界表情符号日", "轻量数字文化日，纪念表情符号如何改变日常表达和网络交流。", "streamers", ["#141d2f", "#493456", "#111316"], "#d6c070", "#78b8e6", 62, ["culture", "international", "celebration"]],
   ["07-20", "International Chess Day", "国际象棋日", "纪念棋类、策略思考和跨文化智力游戏传统的国际日。", "wovenPattern", ["#171822", "#4d3d32", "#111314"], "#d8b95b", "#78bde8", 64, ["culture", "international", "civic"]],
-  ["07-28", "World Nature Conservation Day", "世界自然保护日", "关注自然保护、土地与水域生态，以及人与环境的长期关系。", "aurora", ["#102622", "#2f5c4c", "#101516"], "#77c98e", "#75bdd8", 68, ["culture", "international", "botanical", "water"]],
+  ["07-28", "World Nature Conservation Day", "世界自然保护日", "关注自然保护、土地与水域生态，以及人与环境的长期关系。", "gardenGate", ["#102622", "#2f5c4c", "#101516"], "#77c98e", "#75bdd8", 68, ["culture", "international", "botanical", "water"]],
   ["07-30", "International Day of Friendship", "国际友谊日", "联合国设立的国际日，纪念友谊、理解与相互照亮。", "streamers", ["#141d2f", "#493456", "#111316"], "#d6c070", "#78b8e6", 68, ["culture", "international", "celebration", "light"]],
   ["08-09", "Indigenous Peoples Day", "世界土著人民国际日", "联合国设立的国际日，关注原住民文化、土地与传统。", "mountainFlags", ["#1a2019", "#5a5634", "#111515"], "#d8b95b", "#91c47c", 70, ["culture", "international", "mountain", "botanical"]],
   ["08-12", "International Youth Day", "国际青年日", "联合国设立的国际日，关注年轻人的创造力与公共参与。", "streamers", ["#102238", "#365a70", "#101418"], "#78bde6", "#e66b58", 68, ["culture", "international", "celebration"]],
@@ -226,12 +234,12 @@ const CULTURAL_OBSERVANCES = [
   ["09-27", "World Tourism Day", "世界旅游日", "关注旅行、地方文化与人与地点之间的连接。", "mountainFlags", ["#102039", "#5c4227", "#101417"], "#6da2cf", "#f0b64d", 66, ["culture", "international", "mountain", "celebration"]],
   ["09-29", "World Heart Day", "世界心脏日", "全球健康倡议日，关注心血管健康、运动和日常生活习惯。", "petals", ["#241525", "#643044", "#111214"], "#e87a94", "#d7b56b", 66, ["culture", "international", "botanical"]],
   ["10-01", "International Coffee Day", "国际咖啡日", "纪念咖啡、手作与城市日常节奏的国际文化日。", "grain", ["#1b1513", "#563321", "#111314"], "#d8a05f", "#9bb06d", 64, ["culture", "international", "harvest"]],
-  ["10-04", "World Space Week", "世界空间周", "纪念空间探索、卫星科技和人类望向宇宙的想象力。", "starfield", ["#101729", "#2f3158", "#111316"], "#d8c070", "#9fc8ff", 70, ["culture", "international", "sky", "light"]],
+  ["10-04", "World Space Week", "世界空间周", "纪念空间探索、卫星科技和人类望向宇宙的想象力。", "cosmicObservatory", ["#101729", "#2f3158", "#111316"], "#d8c070", "#9fc8ff", 70, ["culture", "international", "science", "sky", "light"]],
   ["10-05", "World Teachers' Day", "世界教师日", "联合国教科文组织设立的国际日，感谢教育者与知识传递。", "starfield", ["#171827", "#3c3350", "#111316"], "#d8c070", "#b68fd8", 68, ["culture", "international", "light"]],
   ["10-10", "World Mental Health Day", "世界精神卫生日", "关注心理健康、照护网络和更温柔的公共讨论。", "candle", ["#101827", "#37304d", "#111214"], "#f0c95c", "#f2f0d6", 70, ["culture", "international", "light"]],
   ["10-16", "World Food Day", "世界粮食日", "联合国粮农组织纪念日，关注食物、土地与人类生活。", "grain", ["#211916", "#604026", "#111314"], "#d8a05f", "#9bb06d", 70, ["culture", "international", "harvest", "botanical"]],
   ["10-24", "United Nations Day", "联合国日", "纪念联合国宪章生效的国际日，象征合作、和平与公共秩序。", "tricolor", ["#101d34", "#263a54", "#111316"], "#78aee8", "#f3f3f5", 72, ["culture", "international", "civic"]],
-  ["11-10", "World Science Day for Peace and Development", "世界科学促进和平与发展日", "联合国教科文组织纪念日，关注科学、公共利益和社会发展。", "aurora", ["#17182d", "#3d2f59", "#111316"], "#b68fd8", "#78bde8", 68, ["culture", "international", "sky"]],
+  ["11-10", "World Science Day for Peace and Development", "世界科学促进和平与发展日", "联合国教科文组织纪念日，关注科学、公共利益和社会发展。", "cosmicObservatory", ["#17182d", "#3d2f59", "#111316"], "#b68fd8", "#78bde8", 68, ["culture", "international", "science", "sky"]],
   ["11-13", "World Kindness Day", "世界友善日", "纪念善意、照顾与人与人之间温柔连接的文化日。", "petals", ["#241525", "#643044", "#111214"], "#e87a94", "#d7b56b", 66, ["culture", "international", "botanical", "light"]],
   ["11-16", "International Day for Tolerance", "国际宽容日", "联合国教科文组织设立的国际日，纪念理解、差异与共处。", "candle", ["#101827", "#37304d", "#111214"], "#f0c95c", "#f2f0d6", 68, ["culture", "international", "light"]],
   ["11-19", "International Men's Day", "国际男性日", "民间倡议的国际日，关注男性健康、家庭角色和性别议题中的互相理解。", "wovenPattern", ["#171822", "#4d3d32", "#111314"], "#d8b95b", "#78bde8", 62, ["culture", "international", "civic"]],
@@ -493,6 +501,10 @@ function datesForHolidayRange(startKey, endKey, minDate, maxDate) {
 function selectMotif(holiday, country) {
   const text = `${holiday.name} ${holiday.localName} ${country.name}`.toLowerCase();
   if (/dragon boat|lunar|spring festival|chinese new year|tết|tet|seollal|chuseok|duanwu|boat festival/.test(text)) return "dragonDance";
+  if (/science|space|astronomy|cosmos|technology|research|pi day/.test(text)) return "cosmicObservatory";
+  if (/music|radio|jazz|choir|concert|dance|theatre|theater/.test(text)) return "musicWaves";
+  if (/garden|nature|environment|ecology|forest|wildlife|earth day/.test(text)) return "gardenGate";
+  if (/navigation|nautical|sail|seafarer|navy|voyage|world oceans/.test(text)) return "oceanCompass";
   if (/eid|ramadan|adha|fitr|islam|hijri|muharram|mawlid/.test(text)) return /desert|oman|qatar|kuwait|saudi|emirates|uae|bahrain/.test(text) ? "desertGeometry" : "crescentLantern";
   if (/buddha|vesak|diwali|holi|guru|krishna|hindu|buddhist|lotus/.test(text)) return "lotusMandala";
   if (/saint|assumption|immaculate|corpus christi|pentecost|whit|orthodox|easter|good friday|epiphany|christian|church/.test(text)) return /church|cathedral|glass|saint|assumption|immaculate/.test(text) ? "stainedGlass" : "templeBells";
@@ -553,6 +565,10 @@ function inferTags(holiday, motif) {
   if (/memorial|remembrance|reconciliation|peace|martyr|dead|souls|ancestors|muertos/.test(text)) tags.push("remembrance");
   if (/language|literature|book|education|teacher|poetry|press/.test(text)) tags.push("literature");
   if (/sport|youth|games|medal|olympic/.test(text)) tags.push("sports");
+  if (/music|radio|jazz|choir|concert|dance|theatre|theater/.test(text)) tags.push("music", "culture");
+  if (/science|space|astronomy|cosmos|technology|research|pi day/.test(text)) tags.push("science", "sky");
+  if (/garden|nature|environment|ecology|forest|wildlife/.test(text)) tags.push("botanical");
+  if (/navigation|nautical|sail|seafarer|navy|voyage/.test(text)) tags.push("maritime", "travel");
   return Array.from(new Set(tags));
 }
 

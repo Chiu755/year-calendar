@@ -27,6 +27,7 @@ The visual system uses reusable motif rules instead of hand-drawing every holida
 ## Local Commands
 
 ```bash
+npm test
 npm run refresh-holidays
 npm run render
 npm run content:validate

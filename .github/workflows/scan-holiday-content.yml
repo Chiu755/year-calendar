@@ -44,7 +44,9 @@ jobs:
         run: PUPPETEER_SKIP_DOWNLOAD=true npm ci
 
       - name: Validate holiday content
-        run: npm run content:validate
+        run: |
+          npm test
+          npm run content:validate
 
       - name: Scan holiday content coverage
         run: |

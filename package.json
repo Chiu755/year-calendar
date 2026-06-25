@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "test": "node --test",
     "render": "node render.js",
     "render:force": "node render.js --force",
     "refresh-holidays": "node refresh-holiday-data.js",

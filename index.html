@@ -19,6 +19,7 @@
 <script src="theme-renderers.js"></script>
 <script src="motif-renderers.js"></script>
 <script src="ornament-renderers.js"></script>
+<script src="calendar-rules.js"></script>
 <script>
 /* ================== 画布 ================== */
 const canvas = document.getElementById("c");
@@ -162,7 +163,7 @@ for (let r = 0; r < TOTAL_ROWS; r++) {
       const x = cursorX + (index % COLS) * (DOT_SIZE + DOT_GAP);
       const y = yStart + Math.floor(index / COLS) * (DOT_SIZE + DOT_GAP);
 
-      const isPayday = (d + 1 === 25);
+      const isPayday = YearCalendarRules.isPayday(year, monthIndex, d + 1);
 
       // ===== 颜色逻辑 =====
       if (isPayday) {

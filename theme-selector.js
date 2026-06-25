@@ -16,17 +16,21 @@ const {
 } = globalThis.ThemeEngineInternals;
 
 const MOTIF_ALTERNATIVES = {
-  fireworks: ["cityParade", "laurelTorch", "streamers", "sunRibbons", "starfield", "maritimeFlags"],
+  fireworks: ["cityParade", "laurelTorch", "streamers", "sunRibbons", "musicWaves", "starfield", "maritimeFlags"],
   wovenPattern: ["folkEmbroidery", "bookPress", "marketBanners", "paperCut", "streamers", "lotusMandala"],
-  waterFlowers: ["maritimeFlags", "tropicalBloom", "rainGarden", "sunRibbons", "paperKites"],
+  waterFlowers: ["maritimeFlags", "oceanCompass", "tropicalBloom", "rainGarden", "sunRibbons", "paperKites"],
   mountainFlags: ["cityParade", "maritimeFlags", "laurelTorch", "aurora", "paperKites"],
   sunRibbons: ["sportsMedals", "cityParade", "streamers", "paperKites", "marketBanners"],
   paperCut: ["dragonDance", "lanterns", "folkEmbroidery", "cityParade", "carnivalMasks"],
-  streamers: ["cityParade", "marketBanners", "carnivalMasks", "paperKites", "sportsMedals"],
-  starfield: ["moonOrbit", "crescentLantern", "aurora", "stainedGlass", "doveGarland"],
-  petals: ["lotusMandala", "tropicalBloom", "oliveBranches", "rainGarden", "springBuds"],
+  streamers: ["cityParade", "marketBanners", "carnivalMasks", "musicWaves", "paperKites", "sportsMedals"],
+  starfield: ["cosmicObservatory", "moonOrbit", "crescentLantern", "aurora", "stainedGlass", "doveGarland"],
+  petals: ["gardenGate", "lotusMandala", "tropicalBloom", "oliveBranches", "rainGarden", "springBuds"],
   candle: ["doveGarland", "stainedGlass", "templeBells", "ancestralTable", "crescentLantern"],
-  lanterns: ["crescentLantern", "dragonDance", "marketBanners", "paperCut", "starfield"]
+  lanterns: ["crescentLantern", "dragonDance", "marketBanners", "musicWaves", "paperCut", "starfield"],
+  musicWaves: ["streamers", "marketBanners", "cityParade", "carnivalMasks", "sunRibbons"],
+  cosmicObservatory: ["starfield", "moonOrbit", "aurora", "paperKites", "stainedGlass"],
+  gardenGate: ["springBuds", "rainGarden", "petals", "tropicalBloom", "oliveBranches"],
+  oceanCompass: ["maritimeFlags", "waterFlowers", "rainGarden", "paperKites", "sunRibbons"]
 };
 
 function diversityPenalty(theme, avoidMotifs = []) {
@@ -49,12 +53,15 @@ function semanticMotifAlternatives(theme) {
   const tags = theme.tags || [];
   const alternatives = [];
   if (tags.includes("civic")) alternatives.push("cityParade", "laurelTorch", "maritimeFlags", "streamers");
-  if (tags.includes("celebration")) alternatives.push("marketBanners", "carnivalMasks", "sunRibbons", "sportsMedals");
-  if (tags.includes("water") || tags.includes("island")) alternatives.push("maritimeFlags", "tropicalBloom", "rainGarden");
+  if (tags.includes("celebration")) alternatives.push("marketBanners", "carnivalMasks", "musicWaves", "sunRibbons", "sportsMedals");
+  if (tags.includes("water") || tags.includes("island") || tags.includes("maritime")) alternatives.push("oceanCompass", "maritimeFlags", "tropicalBloom", "rainGarden");
+  if (tags.includes("botanical")) alternatives.push("gardenGate", "springBuds", "rainGarden", "tropicalBloom");
   if (tags.includes("religious")) alternatives.push("stainedGlass", "templeBells", "crescentLantern", "lotusMandala");
   if (tags.includes("remembrance") || tags.includes("memorial")) alternatives.push("doveGarland", "ancestralTable", "candle", "oliveBranches");
-  if (tags.includes("culture") || tags.includes("heritage")) alternatives.push("folkEmbroidery", "bookPress", "lotusMandala", "templeBells");
-  if (tags.includes("sky")) alternatives.push("moonOrbit", "aurora", "starfield", "paperKites");
+  if (tags.includes("culture") || tags.includes("heritage")) alternatives.push("musicWaves", "gardenGate", "folkEmbroidery", "bookPress", "lotusMandala", "templeBells");
+  if (tags.includes("music")) alternatives.push("musicWaves", "carnivalMasks", "cityParade", "marketBanners");
+  if (tags.includes("science")) alternatives.push("cosmicObservatory", "starfield", "moonOrbit", "aurora");
+  if (tags.includes("sky")) alternatives.push("cosmicObservatory", "moonOrbit", "aurora", "starfield", "paperKites");
   return alternatives;
 }
 

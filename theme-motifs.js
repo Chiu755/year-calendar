@@ -43,7 +43,11 @@ const MOTIF_TAGS = {
   marketBanners: ["market", "celebration", "folk"],
   ancestralTable: ["remembrance", "religious", "light"],
   doveGarland: ["remembrance", "light", "civic"],
-  stainedGlass: ["religious", "heritage", "light"]
+  stainedGlass: ["religious", "heritage", "light"],
+  musicWaves: ["music", "culture", "celebration"],
+  cosmicObservatory: ["science", "sky", "light"],
+  gardenGate: ["botanical", "heritage", "seasonal"],
+  oceanCompass: ["maritime", "water", "travel"]
 };
 
 const ZH_MONTH_TO_EN = {
@@ -112,22 +116,34 @@ const SEASONAL_TITLE_EN = {
   红金: "Red and Gold",
   星图: "Star Map",
   夜星: "Night Stars",
-  星线: "Star Lines"
+  星线: "Star Lines",
+  乐谱: "Music Score",
+  声浪: "Sound Waves",
+  节拍: "Rhythm",
+  星台: "Observatory",
+  轨镜: "Orbital Lens",
+  远望: "Far Gaze",
+  花门: "Garden Gate",
+  藤廊: "Vine Arbor",
+  绿径: "Green Path",
+  海针: "Sea Compass",
+  罗盘: "Compass Rose",
+  航线: "Sea Route"
 };
 
 const MONTH_MOTIF_ROTATION = [
-  ["snow", "candle", "moonOrbit", "teaSteam", "starfield", "aurora", "paperCut", "lanterns", "doveGarland", "stainedGlass"],
-  ["springBuds", "rainGarden", "paperKites", "petals", "waterFlowers", "moonOrbit", "teaSteam", "wovenPattern", "lotusMandala", "crescentLantern"],
-  ["springBuds", "petals", "paperKites", "rainGarden", "waterFlowers", "wovenPattern", "moonOrbit", "lanterns", "folkEmbroidery", "bookPress"],
-  ["rainGarden", "waterFlowers", "springBuds", "wovenPattern", "petals", "paperKites", "moonOrbit", "teaSteam", "templeBells", "oliveBranches"],
-  ["grain", "harvestSheaves", "sunRibbons", "paperKites", "waterFlowers", "wovenPattern", "lanterns", "springBuds", "cityParade", "sportsMedals"],
-  ["waterFlowers", "rainGarden", "sunRibbons", "moonOrbit", "paperKites", "lanterns", "wovenPattern", "starfield", "maritimeFlags", "dragonDance"],
-  ["sunRibbons", "waterFlowers", "paperKites", "lanterns", "rainGarden", "starfield", "moonOrbit", "wovenPattern", "cityParade", "tropicalBloom"],
-  ["grain", "harvestSheaves", "moonOrbit", "wovenPattern", "sunRibbons", "lanterns", "paperKites", "teaSteam", "marketBanners", "desertGeometry"],
-  ["harvestSheaves", "grain", "moonOrbit", "teaSteam", "aurora", "wovenPattern", "paperKites", "lanterns", "folkEmbroidery", "bookPress"],
-  ["aurora", "paperCut", "wovenPattern", "lanterns", "candle", "starfield", "moonOrbit", "harvestSheaves", "carnivalMasks", "ancestralTable"],
-  ["candle", "teaSteam", "wovenPattern", "starfield", "aurora", "snow", "moonOrbit", "lanterns", "doveGarland", "laurelTorch"],
-  ["snow", "lanterns", "candle", "moonOrbit", "starfield", "teaSteam", "aurora", "paperCut", "stainedGlass", "crescentLantern"]
+  ["snow", "candle", "moonOrbit", "teaSteam", "starfield", "aurora", "cosmicObservatory", "paperCut", "lanterns", "doveGarland", "stainedGlass"],
+  ["springBuds", "rainGarden", "paperKites", "petals", "gardenGate", "waterFlowers", "moonOrbit", "teaSteam", "wovenPattern", "lotusMandala", "crescentLantern"],
+  ["springBuds", "petals", "paperKites", "rainGarden", "gardenGate", "waterFlowers", "wovenPattern", "moonOrbit", "lanterns", "folkEmbroidery", "bookPress"],
+  ["rainGarden", "waterFlowers", "springBuds", "gardenGate", "wovenPattern", "petals", "paperKites", "moonOrbit", "teaSteam", "templeBells", "oliveBranches"],
+  ["grain", "harvestSheaves", "sunRibbons", "paperKites", "gardenGate", "waterFlowers", "wovenPattern", "lanterns", "springBuds", "cityParade", "sportsMedals"],
+  ["waterFlowers", "rainGarden", "sunRibbons", "oceanCompass", "musicWaves", "moonOrbit", "paperKites", "lanterns", "wovenPattern", "starfield", "maritimeFlags", "dragonDance"],
+  ["sunRibbons", "waterFlowers", "oceanCompass", "paperKites", "lanterns", "rainGarden", "musicWaves", "starfield", "moonOrbit", "wovenPattern", "cityParade", "tropicalBloom"],
+  ["grain", "harvestSheaves", "moonOrbit", "oceanCompass", "wovenPattern", "sunRibbons", "lanterns", "paperKites", "teaSteam", "marketBanners", "desertGeometry"],
+  ["harvestSheaves", "grain", "moonOrbit", "teaSteam", "aurora", "cosmicObservatory", "wovenPattern", "paperKites", "lanterns", "folkEmbroidery", "bookPress"],
+  ["aurora", "paperCut", "wovenPattern", "lanterns", "candle", "starfield", "cosmicObservatory", "moonOrbit", "harvestSheaves", "carnivalMasks", "ancestralTable"],
+  ["candle", "teaSteam", "wovenPattern", "starfield", "cosmicObservatory", "aurora", "snow", "moonOrbit", "lanterns", "doveGarland", "laurelTorch"],
+  ["snow", "lanterns", "candle", "moonOrbit", "starfield", "cosmicObservatory", "musicWaves", "teaSteam", "aurora", "paperCut", "stainedGlass", "crescentLantern"]
 ];
 
 const SEASONAL_MOTIF_COPY = {
@@ -270,5 +286,21 @@ const SEASONAL_MOTIF_COPY = {
   stainedGlass: {
     titles: ["彩窗", "玫窗", "光格"],
     descriptions: ["彩窗分割线让宗教节日更有建筑与光感。", "玫瑰窗式构图提供清晰的中心装饰。", "光格纹理让深色背景更像节庆插画。"]
+  },
+  musicWaves: {
+    titles: ["乐谱", "声浪", "节拍"],
+    descriptions: ["五线谱、音符和柔和声浪让画面带着音乐节奏。", "声浪从边缘散开，热闹却不会压住日历。", "轻快节拍给文化日和普通夜晚增加一点流动感。"]
+  },
+  cosmicObservatory: {
+    titles: ["星台", "轨镜", "远望"],
+    descriptions: ["观测镜与行星轨迹把夜空变成一张安静的探索图。", "轨道和透镜形状让科学主题比普通星点更具体。", "远望宇宙的构图给深色背景增加开阔感。"]
+  },
+  gardenGate: {
+    titles: ["花门", "藤廊", "绿径"],
+    descriptions: ["花门和藤蔓把春夏植物感组织成一座安静庭园。", "藤廊沿边缘生长，让中心保持清楚。", "绿径与小花给生态主题增加温和的纵深。"]
+  },
+  oceanCompass: {
+    titles: ["海针", "罗盘", "航线"],
+    descriptions: ["罗盘玫瑰与潮汐线让海洋主题有明确的航行方向。", "航海刻度给蓝色背景增加秩序和探索感。", "航线穿过边角，像一张克制的海图。"]
   }
 };

@@ -128,6 +128,18 @@ function drawThemeDecorations(ctx, theme, width, height) {
     case "stainedGlass":
       drawStainedGlass(ctx, theme, width, height);
       break;
+    case "musicWaves":
+      drawMusicWaves(ctx, theme, width, height);
+      break;
+    case "cosmicObservatory":
+      drawCosmicObservatory(ctx, theme, width, height);
+      break;
+    case "gardenGate":
+      drawGardenGate(ctx, theme, width, height);
+      break;
+    case "oceanCompass":
+      drawOceanCompass(ctx, theme, width, height);
+      break;
     default:
       drawAurora(ctx, theme, width, height);
   }
@@ -790,6 +802,165 @@ function drawStainedGlass(ctx, theme, width, height) {
     }
     drawStar(ctx, cx, cy, 20 * scale, 8 * scale, "#f3f7ff", 0.09);
   }
+}
+
+function drawMusicWaves(ctx, theme, width, height) {
+  for (const [baseY, flip] of [[180, 1], [height - 220, -1]]) {
+    for (let line = 0; line < 5; line++) {
+      const y = baseY + flip * line * 20;
+      strokePath(ctx, [[65, y], [280, y + flip * 16, 485, y - flip * 10, 690, y + flip * 8], [885, y + flip * 20, 1060, y - flip * 12, width - 65, y]], line % 2 ? theme.secondary : theme.accent, 1.6, 0.055);
+    }
+    const notes = [
+      [130, baseY + flip * 34, 0.82],
+      [300, baseY - flip * 4, 1],
+      [505, baseY + flip * 58, 0.72],
+      [760, baseY + flip * 18, 0.9],
+      [985, baseY + flip * 66, 0.76],
+      [1140, baseY + flip * 8, 0.92]
+    ];
+    notes.forEach(([x, y, scale], index) => drawMusicNote(ctx, x, y, scale, index % 2 ? theme.secondary : theme.accent, flip));
+  }
+
+  for (const side of [-1, 1]) {
+    const startX = side < 0 ? 70 : width - 70;
+    for (let wave = 0; wave < 6; wave++) {
+      const x = startX + side * wave * 18;
+      strokePath(ctx, [[x, 580], [x + side * (32 + wave * 3), 780, x - side * (24 + wave * 2), 980, x, 1180], [x + side * (26 + wave * 2), 1390, x - side * (30 + wave * 2), 1600, x, 1810], [x + side * (22 + wave * 2), 1990, x, 2170]], wave % 2 ? theme.secondary : theme.accent, 1.5, 0.04 + wave * 0.008);
+    }
+  }
+}
+
+function drawCosmicObservatory(ctx, theme, width, height) {
+  for (const [cx, cy, scale] of [[width / 2, 245, 1], [width / 2, height - 285, 0.88]]) {
+    drawSoftGlow(ctx, cx, cy, 190 * scale, theme.accent, 0.025);
+    for (let orbit = 0; orbit < 4; orbit++) {
+      ctx.save();
+      ctx.strokeStyle = hexToRgba(orbit % 2 ? theme.secondary : theme.accent, 0.05 + orbit * 0.012);
+      ctx.lineWidth = 1.6;
+      ctx.beginPath();
+      ctx.ellipse(cx, cy, (75 + orbit * 48) * scale, (28 + orbit * 17) * scale, -0.28 + orbit * 0.19, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.restore();
+      const angle = orbit * 1.7 + 0.5;
+      dot(ctx, cx + Math.cos(angle) * (75 + orbit * 48) * scale, cy + Math.sin(angle) * (28 + orbit * 17) * scale, (5 + orbit) * scale, orbit % 2 ? theme.secondary : theme.accent, 0.12);
+    }
+    drawEllipse(ctx, cx, cy, 24 * scale, 24 * scale, 0, theme.accent, 0.12);
+  }
+
+  drawTelescope(ctx, 125, 590, 1, theme, 1);
+  drawTelescope(ctx, width - 125, height - 590, 0.9, theme, -1);
+  for (let i = 0; i < 16; i++) {
+    const x = 70 + ((i * 173) % (width - 140));
+    const y = 430 + ((i * 257) % (height - 860));
+    drawStar(ctx, x, y, 5 + (i % 4) * 2, 2, i % 2 ? theme.secondary : theme.accent, 0.045 + (i % 3) * 0.012);
+  }
+}
+
+function drawGardenGate(ctx, theme, width, height) {
+  for (const [cx, cy, flip, scale] of [[width / 2, 360, 1, 1], [width / 2, height - 390, -1, 0.9]]) {
+    ctx.save();
+    ctx.strokeStyle = hexToRgba(theme.secondary, 0.065);
+    ctx.lineWidth = 3 * scale;
+    ctx.beginPath();
+    ctx.moveTo(cx - 245 * scale, cy + flip * 140 * scale);
+    ctx.lineTo(cx - 245 * scale, cy - flip * 10 * scale);
+    ctx.bezierCurveTo(cx - 245 * scale, cy - flip * 170 * scale, cx + 245 * scale, cy - flip * 170 * scale, cx + 245 * scale, cy - flip * 10 * scale);
+    ctx.lineTo(cx + 245 * scale, cy + flip * 140 * scale);
+    ctx.stroke();
+    ctx.restore();
+
+    for (const side of [-1, 1]) {
+      const baseX = cx + side * 235 * scale;
+      strokePath(ctx, [[baseX, cy + flip * 130 * scale], [baseX - side * 30 * scale, cy + flip * 40 * scale, baseX + side * 18 * scale, cy - flip * 45 * scale, cx + side * 120 * scale, cy - flip * 118 * scale]], theme.accent, 2, 0.08);
+      for (let leaf = 0; leaf < 8; leaf++) {
+        const t = leaf / 7;
+        const x = baseX - side * (18 + t * 92) * scale;
+        const y = cy + flip * (102 - t * 205) * scale;
+        drawEllipse(ctx, x + side * (leaf % 2 ? 13 : -13) * scale, y, 6 * scale, 17 * scale, side * (leaf % 2 ? -0.7 : 0.7), leaf % 2 ? theme.secondary : theme.accent, 0.075);
+      }
+      flower(ctx, cx + side * 145 * scale, cy - flip * 105 * scale, 25 * scale, theme.accent, theme.secondary, 0.085, 7);
+    }
+  }
+
+  for (const x of [76, width - 76]) {
+    for (let i = 0; i < 12; i++) {
+      const y = 540 + i * 145;
+      drawEllipse(ctx, x + (i % 2 ? 16 : -16), y, 7, 20, i % 2 ? -0.6 : 0.6, i % 2 ? theme.secondary : theme.accent, 0.055);
+    }
+  }
+}
+
+function drawOceanCompass(ctx, theme, width, height) {
+  drawCompassRose(ctx, width / 2, 255, 132, theme, 1);
+  drawCompassRose(ctx, width / 2, height - 305, 112, theme, 0.88);
+
+  for (const [baseY, flip] of [[445, 1], [height - 470, -1]]) {
+    for (let line = 0; line < 6; line++) {
+      const y = baseY + flip * line * 22;
+      strokePath(ctx, [[60, y], [235, y - flip * 38, 410, y + flip * 30, 600, y - flip * 8], [795, y - flip * 44, 980, y + flip * 34, width - 60, y - flip * 4]], line % 2 ? theme.secondary : theme.accent, 1.6, 0.045 + line * 0.007);
+    }
+  }
+
+  for (const side of [-1, 1]) {
+    const x = side < 0 ? 82 : width - 82;
+    strokePath(ctx, [[x, 670], [x + side * 42, 905, x - side * 28, 1130, x + side * 32, 1360], [x - side * 20, 1590, x + side * 36, 1820, x, 2070]], theme.accent, 2, 0.065);
+    for (let mark = 0; mark < 9; mark++) {
+      const y = 720 + mark * 165;
+      strokePath(ctx, [[x - side * 10, y], [x + side * (24 + (mark % 3) * 8), y - 12]], mark % 2 ? theme.secondary : theme.accent, 1.5, 0.06);
+    }
+  }
+}
+
+function drawMusicNote(ctx, x, y, scale, color, direction = 1) {
+  drawEllipse(ctx, x, y, 12 * scale, 8 * scale, -0.32, color, 0.13);
+  strokePath(ctx, [[x + 9 * scale, y - 2 * scale], [x + 9 * scale, y - direction * 58 * scale]], color, Math.max(1.5, 2.2 * scale), 0.12);
+  if (scale > 0.85) {
+    strokePath(ctx, [[x + 9 * scale, y - direction * 58 * scale], [x + 36 * scale, y - direction * 45 * scale]], color, Math.max(1.5, 2 * scale), 0.1);
+  }
+}
+
+function drawTelescope(ctx, x, y, scale, theme, side) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.rotate(side * -0.55);
+  ctx.fillStyle = hexToRgba(theme.accent, 0.08);
+  roundRect(ctx, -48 * scale, -22 * scale, 118 * scale, 44 * scale, 10 * scale);
+  ctx.fill();
+  ctx.fillStyle = hexToRgba(theme.secondary, 0.1);
+  roundRect(ctx, 55 * scale, -30 * scale, 28 * scale, 60 * scale, 6 * scale);
+  ctx.fill();
+  ctx.restore();
+  strokePath(ctx, [[x, y + 22 * scale], [x - 42 * scale, y + 122 * scale]], theme.secondary, 2, 0.07);
+  strokePath(ctx, [[x, y + 22 * scale], [x + 48 * scale, y + 122 * scale]], theme.secondary, 2, 0.07);
+  dot(ctx, x, y + 18 * scale, 8 * scale, theme.accent, 0.1);
+}
+
+function drawCompassRose(ctx, cx, cy, radius, theme, scale) {
+  ctx.save();
+  ctx.strokeStyle = hexToRgba(theme.secondary, 0.065);
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.arc(cx, cy, radius * scale, 0, Math.PI * 2);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(cx, cy, radius * 0.58 * scale, 0, Math.PI * 2);
+  ctx.stroke();
+  ctx.restore();
+
+  for (let i = 0; i < 16; i++) {
+    const angle = (Math.PI * 2 * i) / 16 - Math.PI / 2;
+    const outer = radius * (i % 4 === 0 ? 1 : i % 2 === 0 ? 0.78 : 0.66) * scale;
+    const inner = radius * 0.18 * scale;
+    const spread = i % 4 === 0 ? 0.1 : 0.055;
+    ctx.fillStyle = hexToRgba(i % 2 ? theme.secondary : theme.accent, i % 4 === 0 ? 0.11 : 0.065);
+    ctx.beginPath();
+    ctx.moveTo(cx + Math.cos(angle) * outer, cy + Math.sin(angle) * outer);
+    ctx.lineTo(cx + Math.cos(angle + spread) * inner, cy + Math.sin(angle + spread) * inner);
+    ctx.lineTo(cx + Math.cos(angle - spread) * inner, cy + Math.sin(angle - spread) * inner);
+    ctx.closePath();
+    ctx.fill();
+  }
+  dot(ctx, cx, cy, 8 * scale, theme.secondary, 0.12);
 }
 
 function drawKite(ctx, cx, cy, size, rotation, color, secondary) {

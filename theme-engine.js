@@ -291,6 +291,10 @@ function inferThemeTags(title, caption) {
   if (/memorial|remembrance|reconciliation|peace|martyr|dead|souls|ancestors|muertos/.test(text)) tags.push("remembrance");
   if (/language|literature|book|education|teacher|poetry|press/.test(text)) tags.push("literature");
   if (/sport|youth|games|medal|olympic/.test(text)) tags.push("sports");
+  if (/music|radio|jazz|choir|concert|dance|theatre|theater/.test(text)) tags.push("music", "culture");
+  if (/science|space|astronomy|cosmos|technology|research|pi day/.test(text)) tags.push("science", "sky");
+  if (/garden|nature|environment|ecology|forest|wildlife/.test(text)) tags.push("botanical");
+  if (/navigation|nautical|sail|seafarer|navy|voyage/.test(text)) tags.push("maritime", "travel");
   return tags;
 }
 
