@@ -1,16 +1,9 @@
 {
-  "generatedAt": "2026-06-25T18:18:45.978Z",
-  "baseDate": "2026-06-26",
-  "ensuredThrough": "2026-07-03",
+  "generatedAt": "2026-06-26T17:55:58.364Z",
+  "baseDate": "2026-06-27",
+  "ensuredThrough": "2026-07-04",
   "today": "output/today.png",
   "generated": [
-    {
-      "date": "2026-06-26",
-      "output": "output/2026/2026.06/2026.06.26.png",
-      "selectedTheme": "Independence Day",
-      "selectedMotif": "fireworks",
-      "discardedCount": 0
-    },
     {
       "date": "2026-06-27",
       "output": "output/2026/2026.06/2026.06.27.png",
@@ -59,6 +52,13 @@
       "selectedTheme": "Independence Day",
       "selectedMotif": "rainGarden",
       "discardedCount": 4
+    },
+    {
+      "date": "2026-07-04",
+      "output": "output/2026/2026.07/2026.07.04.png",
+      "selectedTheme": "Municipal holiday",
+      "selectedMotif": "wovenPattern",
+      "discardedCount": 0
     }
   ],
   "skipped": []
