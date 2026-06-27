@@ -1,16 +1,9 @@
 {
-  "generatedAt": "2026-06-26T17:55:58.364Z",
-  "baseDate": "2026-06-27",
-  "ensuredThrough": "2026-07-04",
+  "generatedAt": "2026-06-27T17:18:24.393Z",
+  "baseDate": "2026-06-28",
+  "ensuredThrough": "2026-07-05",
   "today": "output/today.png",
   "generated": [
-    {
-      "date": "2026-06-27",
-      "output": "output/2026/2026.06/2026.06.27.png",
-      "selectedTheme": "Journalists' Day",
-      "selectedMotif": "wovenPattern",
-      "discardedCount": 0
-    },
     {
       "date": "2026-06-28",
       "output": "output/2026/2026.06/2026.06.28.png",
@@ -59,6 +52,13 @@
       "selectedTheme": "Municipal holiday",
       "selectedMotif": "wovenPattern",
       "discardedCount": 0
+    },
+    {
+      "date": "2026-07-05",
+      "output": "output/2026/2026.07/2026.07.05.png",
+      "selectedTheme": "St. Cyril and Methodius Day",
+      "selectedMotif": "gardenGate",
+      "discardedCount": 4
     }
   ],
   "skipped": []

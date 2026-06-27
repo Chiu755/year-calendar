@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-26T17:55:58.353Z",
+  "updatedAt": "2026-06-27T17:18:24.381Z",
   "days": {
     "2026-06-16": {
       "title": "Youth Day",
@@ -201,6 +201,18 @@
         "civic",
         "celebration",
         "maritime"
+      ]
+    },
+    "2026-07-05": {
+      "title": "St. Cyril and Methodius Day",
+      "motif": "gardenGate",
+      "tags": [
+        "culture",
+        "civic",
+        "celebration",
+        "botanical",
+        "heritage",
+        "seasonal"
       ]
     }
   }
