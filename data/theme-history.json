@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-27T17:18:24.381Z",
+  "updatedAt": "2026-06-28T17:20:31.222Z",
   "days": {
     "2026-06-16": {
       "title": "Youth Day",
@@ -213,6 +213,16 @@
         "botanical",
         "heritage",
         "seasonal"
+      ]
+    },
+    "2026-07-06": {
+      "title": "National Day",
+      "motif": "fireworks",
+      "tags": [
+        "sky",
+        "celebration",
+        "light",
+        "civic"
       ]
     }
   }

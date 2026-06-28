@@ -1,16 +1,9 @@
 {
-  "generatedAt": "2026-06-27T17:18:24.393Z",
-  "baseDate": "2026-06-28",
-  "ensuredThrough": "2026-07-05",
+  "generatedAt": "2026-06-28T17:20:31.234Z",
+  "baseDate": "2026-06-29",
+  "ensuredThrough": "2026-07-06",
   "today": "output/today.png",
   "generated": [
-    {
-      "date": "2026-06-28",
-      "output": "output/2026/2026.06/2026.06.28.png",
-      "selectedTheme": "Constitution Day",
-      "selectedMotif": "dragonDance",
-      "discardedCount": 1
-    },
     {
       "date": "2026-06-29",
       "output": "output/2026/2026.06/2026.06.29.png",
@@ -58,6 +51,13 @@
       "output": "output/2026/2026.07/2026.07.05.png",
       "selectedTheme": "St. Cyril and Methodius Day",
       "selectedMotif": "gardenGate",
+      "discardedCount": 4
+    },
+    {
+      "date": "2026-07-06",
+      "output": "output/2026/2026.07/2026.07.06.png",
+      "selectedTheme": "National Day",
+      "selectedMotif": "fireworks",
       "discardedCount": 4
     }
   ],
