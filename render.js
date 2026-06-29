@@ -132,20 +132,28 @@ function readThemeHistory() {
   }
 }
 
-function recentMotifsForDate(history, date) {
-  const motifs = [];
+function recentThemeEntriesForDate(history, date) {
+  const entries = [];
   for (let offset = DIVERSITY_LOOKBACK_DAYS; offset >= 1; offset--) {
     const entry = history.days[dateKey(addDays(date, -offset))];
-    if (entry?.motif) motifs.push(entry.motif);
+    if (entry) entries.push(entry);
   }
-  return motifs;
+  return entries;
 }
 
 function rememberTheme(history, date, theme) {
   history.days[dateKey(date)] = {
     title: theme.title,
     motif: theme.motif,
-    tags: theme.tags || []
+    tags: theme.tags || [],
+    source: theme.source ? {
+      provider: theme.source.provider || "",
+      countryCode: theme.source.countryCode || "",
+      countryName: theme.source.countryName || "",
+      typeLabels: Array.isArray(theme.source.typeLabels) ? theme.source.typeLabels : [],
+      nationwide: theme.source.nationwide,
+      subdivisions: Array.isArray(theme.source.subdivisions) ? theme.source.subdivisions : []
+    } : null
   };
 }
 
@@ -231,7 +239,7 @@ async function writeDebugScreenshot(page, date, reason) {
   }
 }
 
-async function renderWallpaper(page, date, themeRank, outputPath, avoidMotifs = []) {
+async function renderWallpaper(page, date, themeRank, outputPath, avoidMotifs = [], recentThemes = []) {
   const key = dateKey(date);
   const params = new URLSearchParams({
     date: key,
@@ -239,6 +247,9 @@ async function renderWallpaper(page, date, themeRank, outputPath, avoidMotifs = 
   });
   if (avoidMotifs.length > 0) {
     params.set("avoidMotifs", avoidMotifs.join(","));
+  }
+  if (recentThemes.length > 0) {
+    params.set("recentThemes", JSON.stringify(recentThemes));
   }
   const url = `${HTML_URL}?${params.toString()}`;
 
@@ -281,7 +292,7 @@ async function renderWallpaper(page, date, themeRank, outputPath, avoidMotifs = 
   return info;
 }
 
-async function renderDiscardedCandidates(page, date, info, options, avoidMotifs) {
+async function renderDiscardedCandidates(page, date, info, options, avoidMotifs, recentThemes) {
   const discarded = info.candidates.filter((candidate) => candidate.rank !== info.selectedRank);
   if (discarded.length === 0) return;
 
@@ -292,7 +303,7 @@ async function renderDiscardedCandidates(page, date, info, options, avoidMotifs)
     const fileName = `rank-${String(candidate.rank + 1).padStart(2, "0")}-${slug(candidate.theme.title)}.png`;
     const outputPath = path.join(folder, fileName);
     if (!options.force && fs.existsSync(outputPath)) continue;
-    await renderWallpaper(page, date, candidate.rank, outputPath, avoidMotifs);
+    await renderWallpaper(page, date, candidate.rank, outputPath, avoidMotifs, recentThemes);
   }
 }
 
@@ -342,9 +353,10 @@ try {
       continue;
     }
 
-    const avoidMotifs = recentMotifsForDate(themeHistory, date);
-    const info = await renderWallpaper(page, date, 0, archivePath, avoidMotifs);
-    await renderDiscardedCandidates(page, date, info, options, avoidMotifs);
+    const recentThemes = recentThemeEntriesForDate(themeHistory, date);
+    const avoidMotifs = recentThemes.map((entry) => entry.motif).filter(Boolean);
+    const info = await renderWallpaper(page, date, 0, archivePath, avoidMotifs, recentThemes);
+    await renderDiscardedCandidates(page, date, info, options, avoidMotifs, recentThemes);
     rememberTheme(themeHistory, date, info.selectedTheme);
     generated.push({
       date: dateKey(date),

@@ -43,6 +43,16 @@ function parseDateParam(value) {
   return new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
 }
 
+function parseRecentThemesParam(value) {
+  if (!value) return [];
+  try {
+    const parsed = JSON.parse(value);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
 const params = new URLSearchParams(window.location.search);
 const today = parseDateParam(params.get("date"));
 const requestedThemeRank = Math.max(0, Number(params.get("themeRank") || 0));
@@ -50,11 +60,12 @@ const avoidMotifs = (params.get("avoidMotifs") || "")
   .split(",")
   .map((value) => value.trim())
   .filter(Boolean);
+const recentThemes = parseRecentThemesParam(params.get("recentThemes"));
 
 const calendarModel = YearCalendarLayout.createYearCalendarModel(today);
 
 /* ================== 每日主题背景 ================== */
-const rankedThemes = ThemeEngine.rankDailyThemes(today, { avoidMotifs });
+const rankedThemes = ThemeEngine.rankDailyThemes(today, { avoidMotifs, recentThemes });
 const selectedThemeEntry = rankedThemes[Math.min(requestedThemeRank, rankedThemes.length - 1)];
 const dailyTheme = selectedThemeEntry.theme;
 window.__YEAR_CALENDAR_RENDER_INFO = {
