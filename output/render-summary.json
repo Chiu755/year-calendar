@@ -1,56 +1,49 @@
 {
-  "generatedAt": "2026-06-28T17:20:31.234Z",
-  "baseDate": "2026-06-29",
-  "ensuredThrough": "2026-07-06",
+  "generatedAt": "2026-06-29T18:13:09.875Z",
+  "baseDate": "2026-06-30",
+  "ensuredThrough": "2026-07-07",
   "today": "output/today.png",
   "generated": [
     {
-      "date": "2026-06-29",
-      "output": "output/2026/2026.06/2026.06.29.png",
-      "selectedTheme": "Saint Peter and Saint Paul",
-      "selectedMotif": "sunRibbons",
-      "discardedCount": 4
-    },
-    {
       "date": "2026-06-30",
       "output": "output/2026/2026.06/2026.06.30.png",
-      "selectedTheme": "Asteroid Day",
-      "selectedMotif": "starfield",
+      "selectedTheme": "Independence Day",
+      "selectedMotif": "fireworks",
       "discardedCount": 2
     },
     {
       "date": "2026-07-01",
       "output": "output/2026/2026.07/2026.07.01.png",
       "selectedTheme": "Republic Day",
-      "selectedMotif": "fireworks",
+      "selectedMotif": "wovenPattern",
       "discardedCount": 4
     },
     {
       "date": "2026-07-02",
       "output": "output/2026/2026.07/2026.07.02.png",
       "selectedTheme": "June 30 Revolution",
-      "selectedMotif": "wovenPattern",
+      "selectedMotif": "oceanCompass",
       "discardedCount": 1
     },
     {
       "date": "2026-07-03",
       "output": "output/2026/2026.07/2026.07.03.png",
       "selectedTheme": "Independence Day",
-      "selectedMotif": "rainGarden",
+      "selectedMotif": "fireworks",
       "discardedCount": 4
     },
     {
       "date": "2026-07-04",
       "output": "output/2026/2026.07/2026.07.04.png",
-      "selectedTheme": "Municipal holiday",
-      "selectedMotif": "wovenPattern",
-      "discardedCount": 0
+      "selectedTheme": "Independence Day",
+      "selectedMotif": "tropicalBloom",
+      "discardedCount": 1
     },
     {
       "date": "2026-07-05",
       "output": "output/2026/2026.07/2026.07.05.png",
-      "selectedTheme": "St. Cyril and Methodius Day",
-      "selectedMotif": "gardenGate",
+      "selectedTheme": "Constitution Day",
+      "selectedMotif": "lanterns",
       "discardedCount": 4
     },
     {
@@ -59,6 +52,13 @@
       "selectedTheme": "National Day",
       "selectedMotif": "fireworks",
       "discardedCount": 4
+    },
+    {
+      "date": "2026-07-07",
+      "output": "output/2026/2026.07/2026.07.07.png",
+      "selectedTheme": "Tanabata",
+      "selectedMotif": "tanabata",
+      "discardedCount": 1
     }
   ],
   "skipped": []

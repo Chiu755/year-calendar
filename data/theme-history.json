@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-28T17:20:31.222Z",
+  "updatedAt": "2026-06-29T18:13:09.862Z",
   "days": {
     "2026-06-16": {
       "title": "Youth Day",
@@ -152,68 +152,117 @@
       ]
     },
     "2026-06-30": {
-      "title": "Asteroid Day",
-      "motif": "starfield",
-      "tags": [
-        "sky",
-        "light",
-        "celebration",
-        "culture",
-        "international"
-      ]
-    },
-    "2026-07-01": {
-      "title": "Republic Day",
+      "title": "Independence Day",
       "motif": "fireworks",
       "tags": [
         "sky",
         "celebration",
         "light",
         "civic"
-      ]
+      ],
+      "source": {
+        "provider": "Nager.Date",
+        "countryCode": "CD",
+        "countryName": "DR Congo",
+        "typeLabels": [
+          "公众节日"
+        ],
+        "subdivisions": []
+      }
     },
-    "2026-07-02": {
-      "title": "June 30 Revolution",
+    "2026-07-01": {
+      "title": "Republic Day",
       "motif": "wovenPattern",
-      "tags": [
-        "culture",
-        "civic"
-      ]
-    },
-    "2026-07-03": {
-      "title": "Independence Day",
-      "motif": "rainGarden",
       "tags": [
         "sky",
         "celebration",
         "light",
         "civic",
+        "culture"
+      ],
+      "source": {
+        "provider": "Nager.Date",
+        "countryCode": "GH",
+        "countryName": "Ghana",
+        "typeLabels": [
+          "公众节日"
+        ],
+        "subdivisions": []
+      }
+    },
+    "2026-07-02": {
+      "title": "June 30 Revolution",
+      "motif": "oceanCompass",
+      "tags": [
+        "culture",
+        "civic",
+        "maritime",
         "water",
-        "botanical",
-        "seasonal"
-      ]
+        "travel"
+      ],
+      "source": {
+        "provider": "Nager.Date",
+        "countryCode": "EG",
+        "countryName": "Egypt",
+        "typeLabels": [
+          "公众节日"
+        ],
+        "subdivisions": []
+      }
+    },
+    "2026-07-03": {
+      "title": "Independence Day",
+      "motif": "fireworks",
+      "tags": [
+        "sky",
+        "celebration",
+        "light",
+        "civic"
+      ],
+      "source": {
+        "provider": "Nager.Date",
+        "countryCode": "US",
+        "countryName": "United States",
+        "typeLabels": [
+          "公众节日",
+          "银行假日"
+        ],
+        "subdivisions": []
+      }
     },
     "2026-07-04": {
-      "title": "Municipal holiday",
-      "motif": "wovenPattern",
+      "title": "Independence Day",
+      "motif": "tropicalBloom",
       "tags": [
-        "culture",
-        "civic",
+        "sky",
         "celebration",
-        "maritime"
-      ]
+        "light",
+        "civic",
+        "island",
+        "botanical",
+        "water"
+      ],
+      "source": null
     },
     "2026-07-05": {
-      "title": "St. Cyril and Methodius Day",
-      "motif": "gardenGate",
+      "title": "Constitution Day",
+      "motif": "lanterns",
       "tags": [
-        "culture",
-        "civic",
+        "sky",
         "celebration",
-        "botanical",
-        "heritage",
-        "seasonal"
-      ]
+        "light",
+        "civic",
+        "culture"
+      ],
+      "source": {
+        "provider": "Nager.Date",
+        "countryCode": "AM",
+        "countryName": "Armenia",
+        "typeLabels": [
+          "公众节日"
+        ],
+        "subdivisions": []
+      }
     },
     "2026-07-06": {
       "title": "National Day",
@@ -223,7 +272,28 @@
         "celebration",
         "light",
         "civic"
-      ]
+      ],
+      "source": {
+        "provider": "OpenHolidays",
+        "countryCode": "LT",
+        "countryName": "Lithuania",
+        "typeLabels": [
+          "公众节日",
+          "全国性"
+        ],
+        "nationwide": true,
+        "subdivisions": []
+      }
+    },
+    "2026-07-07": {
+      "title": "Tanabata",
+      "motif": "tanabata",
+      "tags": [
+        "sky",
+        "wish",
+        "light"
+      ],
+      "source": null
     }
   }
 }
