@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-29T18:13:09.862Z",
+  "updatedAt": "2026-06-30T18:03:13.633Z",
   "days": {
     "2026-06-16": {
       "title": "Youth Day",
@@ -294,6 +294,30 @@
         "light"
       ],
       "source": null
+    },
+    "2026-07-08": {
+      "title": "Municipal holiday",
+      "motif": "wovenPattern",
+      "tags": [
+        "culture",
+        "civic",
+        "celebration",
+        "maritime"
+      ],
+      "source": {
+        "provider": "OpenHolidays",
+        "countryCode": "PT",
+        "countryName": "Portugal",
+        "typeLabels": [
+          "可选假日",
+          "地方性"
+        ],
+        "nationwide": false,
+        "subdivisions": [
+          "PO-AM",
+          "VR-CH"
+        ]
+      }
     }
   }
 }
