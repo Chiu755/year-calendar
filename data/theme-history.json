@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-06-30T18:03:13.633Z",
+  "updatedAt": "2026-07-01T18:03:42.484Z",
   "days": {
     "2026-06-16": {
       "title": "Youth Day",
@@ -192,13 +192,22 @@
     },
     "2026-07-02": {
       "title": "June 30 Revolution",
-      "motif": "oceanCompass",
+      "motif": "cityParade",
+      "gradient": [
+        "#181927",
+        "#544437",
+        "#121418"
+      ],
+      "accent": "#c5aa59",
+      "secondary": "#70b0db",
+      "holidayFamily": "revolution-day",
+      "popularityTier": "niche",
+      "scopeTier": "national",
       "tags": [
         "culture",
         "civic",
-        "maritime",
-        "water",
-        "travel"
+        "celebration",
+        "procession"
       ],
       "source": {
         "provider": "Nager.Date",
@@ -213,6 +222,16 @@
     "2026-07-03": {
       "title": "Independence Day",
       "motif": "fireworks",
+      "gradient": [
+        "#151a30",
+        "#4b2e40",
+        "#131516"
+      ],
+      "accent": "#6599e7",
+      "secondary": "#d8565c",
+      "holidayFamily": "independence-day",
+      "popularityTier": "common",
+      "scopeTier": "national",
       "tags": [
         "sky",
         "celebration",
@@ -232,21 +251,50 @@
     },
     "2026-07-04": {
       "title": "Independence Day",
-      "motif": "tropicalBloom",
+      "motif": "carnivalMasks",
+      "gradient": [
+        "#151a30",
+        "#4b2e40",
+        "#151617"
+      ],
+      "accent": "#6599e7",
+      "secondary": "#db575d",
+      "holidayFamily": "independence-day",
+      "popularityTier": "common",
+      "scopeTier": "national",
       "tags": [
         "sky",
         "celebration",
         "light",
         "civic",
-        "island",
-        "botanical",
-        "water"
+        "procession",
+        "folk",
+        "market"
       ],
-      "source": null
+      "source": {
+        "provider": "Fixed Holidays",
+        "countryCode": "US",
+        "countryName": "United States",
+        "typeLabels": [
+          "公众节日"
+        ],
+        "nationwide": true,
+        "subdivisions": []
+      }
     },
     "2026-07-05": {
       "title": "Constitution Day",
-      "motif": "lanterns",
+      "motif": "wovenPattern",
+      "gradient": [
+        "#171e32",
+        "#4d3342",
+        "#121516"
+      ],
+      "accent": "#679ce9",
+      "secondary": "#d7575d",
+      "holidayFamily": "constitution-day",
+      "popularityTier": "common",
+      "scopeTier": "national",
       "tags": [
         "sky",
         "celebration",
@@ -267,6 +315,16 @@
     "2026-07-06": {
       "title": "National Day",
       "motif": "fireworks",
+      "gradient": [
+        "#151b30",
+        "#4b3041",
+        "#131419"
+      ],
+      "accent": "#659ae7",
+      "secondary": "#d85561",
+      "holidayFamily": "national-day",
+      "popularityTier": "common",
+      "scopeTier": "national",
       "tags": [
         "sky",
         "celebration",
@@ -288,16 +346,47 @@
     "2026-07-07": {
       "title": "Tanabata",
       "motif": "tanabata",
+      "gradient": [
+        "#17191c",
+        "#54333b",
+        "#131419"
+      ],
+      "accent": "#dcddd5",
+      "secondary": "#ca484f",
+      "holidayFamily": "national-civic-day",
+      "popularityTier": "niche",
+      "scopeTier": "national",
       "tags": [
         "sky",
         "wish",
-        "light"
+        "light",
+        "sun",
+        "civic"
       ],
-      "source": null
+      "source": {
+        "provider": "Fixed Holidays",
+        "countryCode": "JP",
+        "countryName": "Japan",
+        "typeLabels": [
+          "公众节日"
+        ],
+        "nationwide": true,
+        "subdivisions": []
+      }
     },
     "2026-07-08": {
       "title": "Municipal holiday",
       "motif": "wovenPattern",
+      "gradient": [
+        "#161a26",
+        "#534537",
+        "#121518"
+      ],
+      "accent": "#c4ab59",
+      "secondary": "#71b1db",
+      "holidayFamily": "municipal-local",
+      "popularityTier": "local",
+      "scopeTier": "local",
       "tags": [
         "culture",
         "civic",
@@ -317,6 +406,36 @@
           "PO-AM",
           "VR-CH"
         ]
+      }
+    },
+    "2026-07-09": {
+      "title": "Constitutionalist Revolution of 1932",
+      "motif": "fireworks",
+      "gradient": [
+        "#142421",
+        "#485e33",
+        "#131616"
+      ],
+      "accent": "#70b783",
+      "secondary": "#cbb369",
+      "holidayFamily": "revolution-day",
+      "popularityTier": "niche",
+      "scopeTier": "national",
+      "tags": [
+        "sky",
+        "celebration",
+        "light",
+        "civic",
+        "sun"
+      ],
+      "source": {
+        "provider": "Nager.Date",
+        "countryCode": "BR",
+        "countryName": "Brazil",
+        "typeLabels": [
+          "公众节日"
+        ],
+        "subdivisions": []
       }
     }
   }

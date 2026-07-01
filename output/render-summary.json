@@ -1,21 +1,24 @@
 {
-  "generatedAt": "2026-06-30T18:03:13.635Z",
-  "baseDate": "2026-07-01",
-  "ensuredThrough": "2026-07-08",
+  "generatedAt": "2026-07-01T18:03:42.494Z",
+  "baseDate": "2026-07-02",
+  "ensuredThrough": "2026-07-09",
   "today": "output/today.png",
   "generated": [
-    {
-      "date": "2026-07-01",
-      "output": "output/2026/2026.07/2026.07.01.png",
-      "selectedTheme": "Republic Day",
-      "selectedMotif": "wovenPattern",
-      "discardedCount": 4
-    },
     {
       "date": "2026-07-02",
       "output": "output/2026/2026.07/2026.07.02.png",
       "selectedTheme": "June 30 Revolution",
-      "selectedMotif": "oceanCompass",
+      "selectedMotif": "cityParade",
+      "selectedScoreBreakdown": {
+        "basePriority": 61,
+        "popularity": 14,
+        "jitter": 2.022,
+        "motifPenalty": 0,
+        "culturalPenalty": 42,
+        "holidayFamilyPenalty": 0,
+        "colorPenalty": 0,
+        "finalScore": 35.022
+      },
       "discardedCount": 1
     },
     {
@@ -23,20 +26,50 @@
       "output": "output/2026/2026.07/2026.07.03.png",
       "selectedTheme": "Independence Day",
       "selectedMotif": "fireworks",
+      "selectedScoreBreakdown": {
+        "basePriority": 86,
+        "popularity": 30,
+        "jitter": 5.767,
+        "motifPenalty": 30,
+        "culturalPenalty": 42,
+        "holidayFamilyPenalty": 18,
+        "colorPenalty": 34,
+        "finalScore": -2.233
+      },
       "discardedCount": 4
     },
     {
       "date": "2026-07-04",
       "output": "output/2026/2026.07/2026.07.04.png",
       "selectedTheme": "Independence Day",
-      "selectedMotif": "tropicalBloom",
+      "selectedMotif": "carnivalMasks",
+      "selectedScoreBreakdown": {
+        "basePriority": 78,
+        "popularity": 30,
+        "jitter": 2.861,
+        "motifPenalty": 0,
+        "culturalPenalty": 42,
+        "holidayFamilyPenalty": 48,
+        "colorPenalty": 42,
+        "finalScore": -21.139
+      },
       "discardedCount": 1
     },
     {
       "date": "2026-07-05",
       "output": "output/2026/2026.07/2026.07.05.png",
       "selectedTheme": "Constitution Day",
-      "selectedMotif": "lanterns",
+      "selectedMotif": "wovenPattern",
+      "selectedScoreBreakdown": {
+        "basePriority": 69,
+        "popularity": 26,
+        "jitter": 1.946,
+        "motifPenalty": 14,
+        "culturalPenalty": 42,
+        "holidayFamilyPenalty": 0,
+        "colorPenalty": 42,
+        "finalScore": -1.054
+      },
       "discardedCount": 4
     },
     {
@@ -44,6 +77,16 @@
       "output": "output/2026/2026.07/2026.07.06.png",
       "selectedTheme": "National Day",
       "selectedMotif": "fireworks",
+      "selectedScoreBreakdown": {
+        "basePriority": 72,
+        "popularity": 26,
+        "jitter": 2.039,
+        "motifPenalty": 30,
+        "culturalPenalty": 42,
+        "holidayFamilyPenalty": 0,
+        "colorPenalty": 42,
+        "finalScore": -13.961
+      },
       "discardedCount": 4
     },
     {
@@ -51,6 +94,16 @@
       "output": "output/2026/2026.07/2026.07.07.png",
       "selectedTheme": "Tanabata",
       "selectedMotif": "tanabata",
+      "selectedScoreBreakdown": {
+        "basePriority": 78,
+        "popularity": 18,
+        "jitter": 0.118,
+        "motifPenalty": 0,
+        "culturalPenalty": 42,
+        "holidayFamilyPenalty": 0,
+        "colorPenalty": 42,
+        "finalScore": 12.118
+      },
       "discardedCount": 1
     },
     {
@@ -58,7 +111,34 @@
       "output": "output/2026/2026.07/2026.07.08.png",
       "selectedTheme": "Municipal holiday",
       "selectedMotif": "wovenPattern",
+      "selectedScoreBreakdown": {
+        "basePriority": 58,
+        "popularity": -22,
+        "jitter": 4.959,
+        "motifPenalty": 30,
+        "culturalPenalty": 42,
+        "holidayFamilyPenalty": 0,
+        "colorPenalty": 42,
+        "finalScore": -73.041
+      },
       "discardedCount": 0
+    },
+    {
+      "date": "2026-07-09",
+      "output": "output/2026/2026.07/2026.07.09.png",
+      "selectedTheme": "Constitutionalist Revolution of 1932",
+      "selectedMotif": "fireworks",
+      "selectedScoreBreakdown": {
+        "basePriority": 69,
+        "popularity": 14,
+        "jitter": 5.306,
+        "motifPenalty": 30,
+        "culturalPenalty": 42,
+        "holidayFamilyPenalty": 0,
+        "colorPenalty": 20,
+        "finalScore": -3.694
+      },
+      "discardedCount": 1
     }
   ],
   "skipped": []
