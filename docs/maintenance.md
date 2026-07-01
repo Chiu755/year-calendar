@@ -79,7 +79,7 @@ The scan writes ignored temporary files and reports missing or legacy-only conte
 - Chinese solar terms are intentionally not used as wallpaper themes.
 - Fallback themes should stay available until holiday coverage is good enough to cover every date naturally.
 - `theme-engine.js` owns theme creation, candidate ranking, and daily selection.
-- `theme-selector.js` balances candidate ranking with motif freshness, mainstream holiday boosts, and recent country/cultural-cluster diversity.
+- `theme-selector.js` balances candidate ranking with motif freshness, mainstream holiday boosts, recent country/cultural-cluster diversity, holiday-family freshness, and recent background-color diversity.
 - `theme-palettes.js` owns theme colors, cultural palettes, and monthly fallback moods.
 - `theme-motifs.js` owns motif tags, seasonal motif copy, and fallback motif rotation.
 - `theme-renderers.js` owns the shared canvas background, caption, and low-level drawing helpers.

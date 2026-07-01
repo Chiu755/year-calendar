@@ -145,6 +145,9 @@ function rememberTheme(history, date, theme) {
   history.days[dateKey(date)] = {
     title: theme.title,
     motif: theme.motif,
+    gradient: Array.isArray(theme.gradient) ? theme.gradient : [],
+    accent: theme.accent || "",
+    secondary: theme.secondary || "",
     tags: theme.tags || [],
     source: theme.source ? {
       provider: theme.source.provider || "",

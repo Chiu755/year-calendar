@@ -9,12 +9,12 @@ function monthDay(date) {
   return `${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
 }
 
-function candidate(title, motif, priority, tags = [], source = null) {
+function candidate(title, motif, priority, tags = [], source = null, gradient = ["#111111", "#222222", "#333333"]) {
   return {
     title,
     caption: title,
     motif,
-    gradient: ["#111111", "#222222", "#333333"],
+    gradient,
     accent: "#ffffff",
     secondary: "#999999",
     priority,
@@ -191,6 +191,70 @@ test("recent country and cultural cluster repetition can move a different public
         motif: "streamers",
         tags: ["civic", "celebration"],
         source: { countryCode: "CN" }
+      }
+    ]
+  });
+
+  assert.equal(ranked[0].theme.title, "World Oceans Day");
+  assert.ok(ranked[0].score > ranked[1].score);
+});
+
+test("recently similar background colors can move a fresher palette ahead", () => {
+  const selector = loadSelector({
+    cachedHolidayThemes: () => [
+      candidate("Deep Red Follow-up", "fireworks", 72, ["celebration"], null, ["#25080c", "#8f171c", "#12090a"]),
+      candidate("Blue Counterpoint", "oceanCompass", 62, ["maritime"], null, ["#101d34", "#263a54", "#111316"])
+    ]
+  });
+
+  const ranked = selector.rankDailyThemes(new Date(2026, 6, 7), {
+    recentThemes: [
+      {
+        title: "Yesterday Red",
+        motif: "lanterns",
+        tags: ["celebration"],
+        gradient: ["#24080d", "#8a171e", "#13090a"]
+      }
+    ]
+  });
+
+  assert.equal(ranked[0].theme.title, "Blue Counterpoint");
+  assert.ok(ranked[0].score > ranked[1].score);
+});
+
+test("recently repeated holiday families can move a fresher holiday topic ahead", () => {
+  const selector = loadSelector({
+    cachedHolidayThemes: () => [
+      candidate("Independence Day", "fireworks", 82, ["civic", "celebration"], {
+        provider: "Nager.Date",
+        countryCode: "GH",
+        countryName: "Ghana",
+        typeLabels: ["Public"],
+        nationwide: true,
+        localName: "Independence Day"
+      }),
+      candidate("World Oceans Day", "oceanCompass", 68, ["maritime", "water"], {
+        provider: "Curated Cultural Observances",
+        countryCode: "INTL",
+        countryName: "International",
+        typeLabels: ["国际日"]
+      })
+    ]
+  });
+
+  const ranked = selector.rankDailyThemes(new Date(2026, 2, 6), {
+    recentThemes: [
+      {
+        title: "Independence Day",
+        motif: "cityParade",
+        tags: ["civic", "celebration"],
+        source: {
+          countryCode: "CO",
+          countryName: "Colombia",
+          localName: "Independence Day",
+          typeLabels: ["Public"],
+          nationwide: true
+        }
       }
     ]
   });
