@@ -45,7 +45,10 @@ Run these before treating a change as stable:
 ```bash
 npm test
 node --check theme-engine.js
+node --check theme-ranking-rules.js
+node --check theme-selector.js
 node --check refresh-holiday-data.js
+node --check holiday-cache-builder.js
 node --check render.js
 npm run content:validate
 npm run content:gaps:check
@@ -78,8 +81,9 @@ The scan writes ignored temporary files and reports missing or legacy-only conte
 
 - Chinese solar terms are intentionally not used as wallpaper themes.
 - Fallback themes should stay available until holiday coverage is good enough to cover every date naturally.
-- `theme-engine.js` owns theme creation, candidate ranking, and daily selection.
-- `theme-selector.js` balances candidate ranking with motif freshness, mainstream holiday boosts, recent country/cultural-cluster diversity, holiday-family freshness, and recent background-color diversity.
+- `theme-engine.js` owns theme creation and turns fixed/cache/fallback entries into normalized theme candidates.
+- `theme-ranking-rules.js` owns shared ranking metadata and tuning knobs: holiday families, popularity/scope tiers, fixed-holiday source metadata, score breakdown helpers, motif substitution safety, and Lab/DeltaE-style gradient similarity.
+- `theme-selector.js` owns daily candidate ranking and selection flow, using the shared ranking rules to balance motif freshness, mainstream holiday boosts, recent country/cultural-cluster diversity, holiday-family freshness, and recent background-color diversity.
 - `theme-palettes.js` owns theme colors, cultural palettes, and monthly fallback moods.
 - `theme-motifs.js` owns motif tags, seasonal motif copy, and fallback motif rotation.
 - `theme-renderers.js` owns the shared canvas background, caption, and low-level drawing helpers.

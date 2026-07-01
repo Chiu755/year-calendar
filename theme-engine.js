@@ -156,7 +156,13 @@ const FLOATING_RULES = [
   }
 ];
 
-function createTheme({ title, caption, motif, gradient, accent, secondary, priority = 50, description, tags = [], source = null }) {
+const THEME_ENGINE_RANKING_RULES = globalThis.ThemeRankingRules || {
+  withRankingMetadata(theme) {
+    return theme;
+  }
+};
+
+function createTheme({ title, caption, motif, gradient, accent, secondary, priority = 50, description, tags = [], source = null, holidayFamily = "", popularityTier = "", scopeTier = "" }) {
   const theme = {
     title,
     caption,
@@ -167,9 +173,12 @@ function createTheme({ title, caption, motif, gradient, accent, secondary, prior
     accent,
     secondary,
     priority,
-    source
+    source,
+    holidayFamily,
+    popularityTier,
+    scopeTier
   };
-  return applyCulturalPalette(theme);
+  return THEME_ENGINE_RANKING_RULES.withRankingMetadata(applyCulturalPalette(theme));
 }
 
 function hexToRgb(hex) {
@@ -389,7 +398,10 @@ function cachedHolidayThemes(date) {
     secondary: theme.secondary,
     priority: theme.priority,
     tags: theme.tags || [],
-    source: theme.source || null
+    source: theme.source || null,
+    holidayFamily: theme.holidayFamily || "",
+    popularityTier: theme.popularityTier || "",
+    scopeTier: theme.scopeTier || ""
   }));
 }
 

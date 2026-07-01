@@ -4,6 +4,7 @@ import test from "node:test";
 import vm from "node:vm";
 
 const selectorSource = fs.readFileSync(new URL("../theme-selector.js", import.meta.url), "utf8");
+const rankingRulesSource = fs.readFileSync(new URL("../theme-ranking-rules.js", import.meta.url), "utf8");
 
 function monthDay(date) {
   return `${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
@@ -42,6 +43,7 @@ function loadSelector(overrides = {}) {
     }
   });
 
+  vm.runInContext(rankingRulesSource, context, { filename: "theme-ranking-rules.js" });
   vm.runInContext(selectorSource, context, { filename: "theme-selector.js" });
   return context.ThemeEngine;
 }
@@ -61,6 +63,8 @@ test("cached provider themes are retained while fixed holidays can still compete
   assert.equal(ranked[0].theme.title, "Provider Holiday");
   assert.equal(ranked[0].theme.atmosphereApplied, true);
   assert.equal(ranked[1].theme.title, "Fixed Holiday");
+  assert.ok(ranked[0].scoreBreakdown);
+  assert.equal(ranked[0].scoreBreakdown.finalScore, ranked[0].score);
 });
 
 test("fixed holidays are used before seasonal fallbacks", () => {
@@ -156,6 +160,8 @@ test("fixed mainstream holidays still compete when provider cache only has local
   const ranked = selector.rankDailyThemes(new Date(2026, 6, 4));
 
   assert.equal(ranked[0].theme.title, "Independence Day");
+  assert.equal(ranked[0].theme.source.countryCode, "US");
+  assert.equal(ranked[0].theme.holidayFamily, "independence-day");
   assert.equal(ranked[1].theme.title, "Municipal holiday");
 });
 

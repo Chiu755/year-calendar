@@ -8,7 +8,7 @@ const OUTPUT_FILE = path.join("data", "holiday-cache.js");
 const API_ROOT = "https://date.nager.at/api/v3";
 const OPEN_HOLIDAYS_API_ROOT = "https://openholidaysapi.org";
 const LOOKAHEAD_DAYS = 90;
-const MAX_CANDIDATES_PER_DAY = 5;
+const MAX_CANDIDATES_PER_DAY = 8;
 const DEFAULT_COUNTRY_AFFINITY = 3;
 const NAGER_FETCH_CONCURRENCY = 8;
 const OPEN_HOLIDAYS_FETCH_CONCURRENCY = 6;
@@ -20,8 +20,10 @@ const ERROR_SAMPLE_LIMIT = 12;
 
 await import("./data/holiday-content.js");
 await import("./data/holiday-intros.js");
+await import("./theme-ranking-rules.js");
 const HOLIDAY_CONTENT = globalThis.YearCalendarHolidayContent || {};
 const HOLIDAY_INTROS = globalThis.YearCalendarHolidayIntros || {};
+const RANKING_RULES = globalThis.ThemeRankingRules;
 
 const FEATURED_COUNTRY_PROFILE = [
   ["CN", "China", "中国", 42],
@@ -703,7 +705,7 @@ function themeForHoliday(holiday, country, score) {
   const text = `${holiday.name} ${holiday.localName}`.toLowerCase();
   const occasionPalette = OCCASION_PALETTES.find(([pattern]) => pattern.test(text))?.[1];
   const [gradient, accent, secondary] = occasionPalette || COUNTRY_PALETTES[country.code] || MOTIF_STYLES[motif] || MOTIF_STYLES.aurora;
-  return {
+  return RANKING_RULES.withRankingMetadata({
     title: holiday.name,
     caption: captionForHoliday(holiday, country),
     description: descriptionForHoliday(holiday, country),
@@ -721,7 +723,7 @@ function themeForHoliday(holiday, country, score) {
       typeLabels: holidayTypeLabels(holiday.types)
     },
     score: Math.round(score * 100) / 100
-  };
+  });
 }
 
 function themeForOpenHoliday(holiday, country, score) {
@@ -738,7 +740,7 @@ function themeForOpenHoliday(holiday, country, score) {
   const [gradient, accent, secondary] = occasionPalette || COUNTRY_PALETTES[country.code] || MOTIF_STYLES[motif] || MOTIF_STYLES.aurora;
   const scopeLabel = holiday.nationwide ? "全国性" : "地方性";
 
-  return {
+  return RANKING_RULES.withRankingMetadata({
     title: name,
     caption: `${name} · ${country.name}`,
     description: descriptionForHoliday(normalizedHoliday, country),
@@ -758,7 +760,7 @@ function themeForOpenHoliday(holiday, country, score) {
       subdivisions: Array.isArray(holiday.subdivisions) ? holiday.subdivisions.map((subdivision) => subdivision.shortName || subdivision.code).filter(Boolean).slice(0, 8) : []
     },
     score: Math.round(score * 100) / 100
-  };
+  });
 }
 
 function scoreHoliday(holiday, country) {
@@ -784,7 +786,7 @@ function scoreOpenHoliday(holiday, country) {
 }
 
 function themeForCulturalObservance(observance, date) {
-  return {
+  return RANKING_RULES.withRankingMetadata({
     title: observance.title,
     caption: `${observance.title} · ${observance.localName}`,
     description: observance.description,
@@ -803,7 +805,7 @@ function themeForCulturalObservance(observance, date) {
       typeLabels: observance.tags.includes("culture") ? ["文化日"] : ["国际日"]
     },
     score: observance.priority * 8 + date.getMonth() * 3
-  };
+  });
 }
 
 function addCulturalObservances(builder, startDate, endDate) {

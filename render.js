@@ -148,6 +148,9 @@ function rememberTheme(history, date, theme) {
     gradient: Array.isArray(theme.gradient) ? theme.gradient : [],
     accent: theme.accent || "",
     secondary: theme.secondary || "",
+    holidayFamily: theme.holidayFamily || "",
+    popularityTier: theme.popularityTier || "",
+    scopeTier: theme.scopeTier || "",
     tags: theme.tags || [],
     source: theme.source ? {
       provider: theme.source.provider || "",
@@ -366,6 +369,7 @@ try {
       output: archivePath,
       selectedTheme: info.selectedTheme.title,
       selectedMotif: info.selectedTheme.motif,
+      selectedScoreBreakdown: info.candidates.find((candidate) => candidate.rank === info.selectedRank)?.scoreBreakdown || null,
       discardedCount: info.candidates.length - 1
     });
   }
