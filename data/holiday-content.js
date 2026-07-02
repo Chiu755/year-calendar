@@ -2,6 +2,202 @@ globalThis.YearCalendarHolidayContent = {
   version: 1,
   entries: [
     {
+      title: "Curaçao National Flag and Anthem Day",
+      zhTitle: "库拉索国旗与国歌日",
+      type: "国家象征纪念日",
+      description: "库拉索国旗与国歌日纪念岛屿共同体的旗帜、国歌和自治身份，公共日历中常带有升旗、文化活动和地方自豪感。",
+      keys: ["CW|Curaçao National Flag and Anthem Day", "CW|Curaçao Nationale Vlag en Volkslied Dag"]
+    },
+    {
+      title: "Emancipation Day",
+      zhTitle: "解放日",
+      type: "历史纪念日",
+      description: "解放日纪念废除奴隶制和追求自由的历史进程，在加勒比地区常与祖先记忆、社区庆典和文化传承相连。",
+      keys: ["VI|Emancipation Day", "BM|Emancipation Day", "GY|Emancipation Day", "DM|Emancipation Day", "VC|Emancipation Day"]
+    },
+    {
+      title: "Heroes' Day",
+      zhTitle: "英雄日",
+      type: "国家纪念日",
+      description: "英雄日纪念在国家历史、独立、公共服务或社会建设中具有象征意义的人物，常通过官方仪式和社区活动表达敬意。",
+      keys: ["ZM|Heroes' Day"]
+    },
+    {
+      title: "Unity Day",
+      zhTitle: "团结日",
+      type: "国家纪念日",
+      description: "团结日强调国家共同体、族群和地区之间的连接，在公共仪式中常以旗帜、演讲和社区活动表达团结主题。",
+      keys: ["ZM|Unity Day"]
+    },
+    {
+      title: "Schoelcher Day",
+      zhTitle: "舍尔歇日",
+      type: "历史人物纪念日",
+      description: "舍尔歇日纪念法国废奴运动人物 Victor Schœlcher，也连接马提尼克关于废奴、自由和公民权利的公共记忆。",
+      keys: ["MQ|Schoelcher Day", "MQ|Fête Victor Schœlcher"]
+    },
+    {
+      title: "Anniversary of the Fall of Fascism and Day of Freedom",
+      zhTitle: "法西斯垮台与自由日",
+      type: "历史纪念日",
+      description: "法西斯垮台与自由日纪念圣马力诺摆脱法西斯统治的历史节点，把二十世纪政治转折、自由和共和国记忆连在一起。",
+      keys: ["SM|Anniversary of the Fall of Fascism and Day of Freedom"]
+    },
+    {
+      title: "Mary Prince Day",
+      zhTitle: "玛丽·普林斯日",
+      type: "历史人物纪念日",
+      description: "玛丽·普林斯日纪念出生于百慕大的废奴见证者 Mary Prince，她的叙述成为反奴隶制运动和自由记忆的重要文本。",
+      keys: ["BM|Mary Prince Day"]
+    },
+    {
+      title: "National Children's Day",
+      zhTitle: "全国儿童日",
+      type: "公众节日",
+      description: "图瓦卢全国儿童日关注儿童成长、家庭和社区照护，常以学校、教会或社区活动表达对下一代的祝福。",
+      keys: ["TV|National Children's Day", "TV|Aso Tamaliki"]
+    },
+    {
+      title: "Carnival Tuesday",
+      zhTitle: "狂欢节星期二",
+      type: "文化节庆日",
+      description: "狂欢节星期二延续加勒比狂欢季的音乐、舞蹈、服饰和街头游行传统，是社区庆典和文化表达的重要时刻。",
+      keys: ["AG|Carnival Tuesday"]
+    },
+    {
+      title: "Emancipation Tuesday",
+      zhTitle: "解放星期二",
+      type: "历史纪念日",
+      description: "英属维尔京群岛的解放星期二属于解放节庆周期，纪念废奴历史，也通过游行、音乐和社区活动延续自由记忆。",
+      keys: ["VG|Emancipation Tuesday"]
+    },
+    {
+      title: "Culturama Day",
+      zhTitle: "文化节日",
+      type: "文化节庆日",
+      description: "Culturama Day 是圣基茨和尼维斯尼维斯岛的重要文化节庆，常以音乐、舞蹈、服饰和社区游行展示岛屿传统。",
+      keys: ["KN|Culturama Day"]
+    },
+    {
+      title: "Emancipation Wednesday",
+      zhTitle: "解放星期三",
+      type: "历史纪念日",
+      description: "英属维尔京群岛的解放星期三延续解放节庆活动，把废奴历史、祖先记忆和加勒比社区庆典连接起来。",
+      keys: ["VG|Emancipation Wednesday"]
+    },
+    {
+      title: "August Thursday",
+      zhTitle: "八月星期四",
+      type: "地方节庆日",
+      description: "安圭拉八月星期四属于夏季节庆周期，常与岛屿文化、船赛、音乐和社区聚会连在一起。",
+      keys: ["AI|August Thursday"]
+    },
+    {
+      title: "Father's Day",
+      zhTitle: "父亲节",
+      type: "家庭节日",
+      description: "父亲节表达对父亲和照护者的感谢，不同国家日期各异，但通常围绕家庭团聚、祝福和亲情纪念展开。",
+      keys: ["WS|Father's Day"]
+    },
+    {
+      title: "Assumption of the Virgin Day",
+      zhTitle: "圣母升天节",
+      type: "宗教节日",
+      description: "圣母升天节是天主教传统中的重要节日，纪念圣母玛利亚升天，在许多地方会以弥撒、游行和家庭休假标记。",
+      keys: ["SM|Assumption of the Virgin Day"]
+    },
+    {
+      title: "Mother's Day",
+      zhTitle: "母亲节",
+      type: "家庭节日",
+      description: "母亲节表达对母亲和照护者的感谢，不同国家日期各异，常以家庭聚会、花束和祝福构成节日气氛。",
+      keys: ["CR|Mother's Day", "CR|Día de la Madre"]
+    },
+    {
+      title: "Founding of Asunción",
+      zhTitle: "亚松森建城日",
+      type: "城市纪念日",
+      description: "亚松森建城日纪念巴拉圭首都亚松森的城市起源，公共记忆中连接殖民城市史、地方身份和国家历史。",
+      keys: ["PY|Founding of Asunción", "PY|Fundación de Asunción"]
+    },
+    {
+      title: "Bonaire Flag Day",
+      zhTitle: "博内尔旗帜日",
+      type: "地方纪念日",
+      description: "博内尔旗帜日纪念岛屿旗帜和地方身份，常以升旗、文化活动和社区聚会表达对博内尔的归属感。",
+      keys: ["BQ|Bonaire Flag Day", "BQ|Vlagdag bonaire"]
+    },
+    {
+      title: "Birth of the Blessed Virgin Mary",
+      zhTitle: "圣母诞辰日",
+      type: "宗教纪念日",
+      description: "圣母诞辰日纪念圣母玛利亚诞生，在天主教传统和拉丁美洲地方信仰中常以礼拜、游行或守护圣母庆典标记。",
+      keys: ["VE|Birth of the Blessed Virgin Mary", "VE|Día del Virgen del Valle"]
+    },
+    {
+      title: "National Day of Prayer",
+      zhTitle: "全国祈祷日",
+      type: "宗教与公共纪念日",
+      description: "全国祈祷日把公共生活和宗教仪式连接起来，常以教堂礼拜、国家祝祷或社区聚会表达祝福与反思。",
+      keys: ["AG|National Day of Prayer"]
+    },
+    {
+      title: "Regional Holiday in Cantabria",
+      zhTitle: "坎塔布里亚地方假日",
+      type: "地方假日",
+      description: "坎塔布里亚地方假日属于西班牙区域日历的一部分，通常连接地方守护传统、社区活动和区域身份。",
+      keys: ["ES|Regional Holiday in Cantabria"]
+    },
+    {
+      title: "Day of Our Lady of the Seven Sorrows",
+      zhTitle: "七苦圣母日",
+      type: "宗教节日",
+      description: "七苦圣母日纪念天主教传统中圣母玛利亚的七种悲痛，在斯洛伐克等地具有全国性宗教和公共节日意义。",
+      keys: ["SK|Day of Our Lady of the Seven Sorrows"]
+    },
+    {
+      title: "Integration of Primorska into the Homeland",
+      zhTitle: "普里莫斯卡回归祖国纪念日",
+      type: "历史纪念日",
+      description: "普里莫斯卡回归祖国纪念日纪念斯洛文尼亚沿海地区重新并入民族共同体的历史记忆，带有地区身份和国家叙事。",
+      keys: ["SI|Integration of Primorska into the Homeland", "SI|priključitev Primorske k matični domovini"]
+    },
+    {
+      title: "National Heroes' Day",
+      zhTitle: "国家英雄日",
+      type: "国家纪念日",
+      description: "国家英雄日纪念为国家历史、公共生活或独立进程作出象征性贡献的人物，常以官方仪式和社区活动表达敬意。",
+      keys: ["KN|National Heroes' Day"]
+    },
+    {
+      title: "Republic Day",
+      zhTitle: "共和国日",
+      type: "国家纪念日",
+      description: "特立尼达和多巴哥共和国日纪念国家成为共和国的宪政节点，常与国家身份、旗帜和公共仪式相连。",
+      keys: ["TT|Republic Day"]
+    },
+    {
+      title: "National Youth Day",
+      zhTitle: "全国青年日",
+      type: "公众节日",
+      description: "全国青年日关注青年、教育和社区未来，通常通过学校、公共活动和社区庆典强调下一代的角色。",
+      keys: ["TC|National Youth Day"]
+    },
+    {
+      title: "Friday before AFL Grand Final",
+      zhTitle: "澳式橄榄球总决赛前星期五",
+      type: "体育节庆日",
+      description: "澳式橄榄球总决赛前星期五是维多利亚州围绕 AFL 总决赛形成的公众假日，把体育传统、城市活动和周末庆典连在一起。",
+      keys: ["AU|Friday before AFL Grand Final"]
+    },
+    {
+      title: "Labour Day",
+      zhTitle: "劳动节",
+      type: "公众节日",
+      description: "劳动节纪念劳动者权益与劳动生活，许多地方会在这一天休假，也可能举行游行、集会或公共活动。",
+      keys: ["BM|Labour Day", "PW|Labour Day"]
+    },
+    {
       title: "Senior Race Day",
       zhTitle: "曼岛高级摩托车赛日",
       type: "体育节庆日",
