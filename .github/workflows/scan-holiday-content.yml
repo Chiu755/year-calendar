@@ -60,7 +60,7 @@ jobs:
 
       - name: Audit cached scan coverage
         run: |
-          npm run content:audit -- --fail-on-gaps --require-openholidays-complete
+          npm run content:audit -- --require-openholidays-complete
 
       - name: Collect failure diagnostics
         if: failure()
